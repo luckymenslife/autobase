@@ -1,0 +1,159 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:props="clr-namespace:Rekod.Properties"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:ctrls="clr-namespace:Rekod.Controls"
+             xmlns:atach="clr-namespace:Rekod.AttachedProperties"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             x:Class="Rekod.DataAccess.SourceCosmetic.View.CosmeticTableViewV"
+             mc:Ignorable="d"
+             d:DesignHeight="284" d:DesignWidth="601">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/DataAccess/SourcePostgres/View/Styles/PgTableViewSV.xaml"/>
+                <ResourceDictionary Source="/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition 
+				Height="Auto" />
+            <RowDefinition
+				Height="Auto" />
+            <RowDefinition
+				Height="*" />
+            <RowDefinition 
+				Height="Auto" />
+            <RowDefinition 
+				Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="WhiteSmoke" Offset="0.086"/>
+                    <GradientStop Color="#FFE6E6E6" Offset="0.943"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="{x:Static props:Resources.LocEdit}">
+                <MenuItem
+					Command="{Binding CopySelectedObjectsCommand}"
+					Header="{x:Static props:Resources.CosTableView_CopySelected}" />
+                <MenuItem
+					Command="{Binding RemoveAllCommand}"
+					Header="{x:Static props:Resources.CosTableView_RemoveAll}"  />
+                <MenuItem
+					Command="{Binding ReloadCommand}"
+					Header="{x:Static props:Resources.CosTableView_Reload}" />
+            </MenuItem>
+        </Menu>
+
+        <DockPanel
+			LastChildFill="True"
+			Grid.Row="1">
+            <Button 
+				Command="{Binding ReloadCommand}"
+				DockPanel.Dock="Right"
+				Margin="0, 3, 3, 3">
+                <Image
+					Width="16"
+					Source="/Resources/reload.png" />
+            </Button>
+            <TextBox
+				Margin="3"
+				Background="LightGray"
+				MinHeight="26"
+				Style="{StaticResource SearchTextBoxStyle}"
+				Text="{Binding RowFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
+
+        <DataGrid
+			Margin="3, 0, 3, 0"
+			Grid.Row="2"
+			x:Name="MainGrid"
+			IsReadOnly="False"
+			VirtualizingStackPanel.IsVirtualizing="True"
+			CanUserAddRows="False"
+			CanUserDeleteRows="False"
+			CanUserReorderColumns="False"
+			atach:propDataGrid.GenerateColumns="{Binding Columns}"
+			AutoGenerateColumns="False"
+			ColumnWidth="Auto"
+			HeadersVisibility="Column"
+			VerticalGridLinesBrush="LightGray"
+			HorizontalGridLinesBrush="LightGray"
+            beh:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedItems}"
+			SelectionMode="Extended"
+			SelectionUnit="FullRow"
+			ItemsSource="{Binding Data, Converter={StaticResource CollectionViewConverter}}">
+            <DataGrid.InputBindings>
+                <KeyBinding Command="{Binding DeleteObjectCommand}" Key="Delete" />
+                <MouseBinding Command="{Binding OpenObjectCommand}" MouseAction="LeftDoubleClick" />
+            </DataGrid.InputBindings>
+            <beh:CommandBehaviorCollection.Behaviors>
+                <beh:BehaviorBinding Command="{Binding UpdateObjectAttributeCommand}" Event="CellEditEnding" />
+            </beh:CommandBehaviorCollection.Behaviors>
+        </DataGrid>
+        <DockPanel 
+			LastChildFill="True"
+			Grid.Row="3">
+            <StackPanel
+				Orientation="Horizontal" 
+				DockPanel.Dock="Left"
+				VerticalAlignment="Center">
+                <Button
+					Content="{x:Static props:Resources.LocDelete}" 
+					Margin="3" 
+					Width="80"
+					Command="{Binding DeleteObjectCommand}"
+					CommandParameter="{Binding CurrentPK}"/>
+
+                <!--<ctrls:DropDownButton
+                    Content="Добавить" 
+                    Margin="0, 3, 0, 3" 
+                    Width="80">
+                    <ctrls:DropDownButton.DropDown>
+                        <ContextMenu>
+                            <MenuItem
+                                Command="{Binding AddObjectCommand}"
+                                CommandParameter="Point"
+                                Header="Добавить точку" />
+                            <MenuItem
+                                Command="{Binding AddObjectCommand}"
+                                CommandParameter="Line"
+                                Header="Добавить линию" />
+                            <MenuItem 
+                                Command="{Binding AddObjectCommand}"
+                                CommandParameter="Polygon"
+                                Header="Добавить полигон" />
+                        </ContextMenu>
+                    </ctrls:DropDownButton.DropDown>
+                </ctrls:DropDownButton>-->
+
+                <Button 
+					Content="{x:Static props:Resources.LocChange}"
+					Margin="3"
+					Width="80" 
+					Command="{Binding OpenObjectCommand}" />
+            </StackPanel>
+            <CheckBox
+				DockPanel.Dock="Right"
+				HorizontalAlignment="Right"
+				Margin="5"
+				VerticalAlignment="Center" 
+				IsChecked="{Binding MoveToObject}"
+				Content="{x:Static props:Resources.PgFullSearch_MoveToObject}" />
+        </DockPanel>
+
+        <StatusBar
+			Grid.Row="4">
+            <TextBlock><Run Text="{x:Static props:Resources.LocCount}"/><Run Text=": "/><Run Text="{Binding Items.Count, ElementName=MainGrid, Mode=OneWay}"/></TextBlock>
+        </StatusBar>
+    </Grid>
+</UserControl>

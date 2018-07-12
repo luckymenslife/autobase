@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Rekod.PrintModule.View.PrintAreaTableV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:rpvv="clr-namespace:Rekod.PrintModule.View.ValidationRules"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="85" d:DesignWidth="353"
+             Background="WhiteSmoke">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="Margin" Value="10, 3, 3, 0" />
+                <Setter Property="MinWidth" Value="50" />
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+    <Border
+        BorderBrush="Gray"
+        BorderThickness="1">
+        <Grid
+            Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.BindingGroup>
+                <BindingGroup x:Name="PrintAreaTableBindingGroup" NotifyOnValidationError="True">
+                    <BindingGroup.ValidationRules>
+                        <rpvv:PrinatAreaTableValidationRule />
+                    </BindingGroup.ValidationRules>
+                </BindingGroup>
+            </Grid.BindingGroup>
+
+  
+            
+
+            <TextBlock
+                VerticalAlignment="Center" 
+                Text="{x:Static properties:Resources.PrintV_HorizCount}"/>
+            <TextBox 
+                Grid.Column="1"
+                Text="{Binding HorizontalCount}"/>
+
+            <TextBlock
+                Grid.Row="1"
+                VerticalAlignment="Center" 
+                Text="{x:Static properties:Resources.PrintV_VertCount}"/>
+            <TextBox 
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding VerticalCount}"/>
+
+            <StackPanel 
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Grid.Row="2"
+                Grid.ColumnSpan="100">
+                <Button
+                    Command="{Binding Path=PrintAreaTableCancelValidationCommand}" 
+                    CommandParameter="{Binding ElementName=PrintAreaTableBindingGroup}"
+                    Margin="0, 5, 5, 0"
+                    Width="70"
+                    Height="22" 
+                    Content="{x:Static properties:Resources.PrintV_Cancel}"/>
+                <Button
+                    Command="{Binding Path=PrintAreaTableCommitValidationCommand}" 
+                    CommandParameter="{Binding ElementName=PrintAreaTableBindingGroup}"
+                    Margin="0, 5, 3, 0"
+                    Width="70"
+                    Height="22" 
+                    Content="{x:Static properties:Resources.PrintV_Apply}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

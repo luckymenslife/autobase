@@ -1,0 +1,209 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.Modules.TableRegister.View.RTableV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:rm="clr-namespace:Rekod.DataAccess.SourcePostgres.Modules.TableRegister.Model"
+             xmlns:props="clr-namespace:Rekod.Properties"
+             IsEnabled="{Binding IsNotRegistered}"
+             mc:Ignorable="d" 
+             SnapsToDevicePixels="True"
+             d:DesignHeight="476" d:DesignWidth="319">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type RowDefinition}">
+            <Setter Property="MinHeight" Value="29" />
+        </Style>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="TableTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="rm:ERTableType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="GeomTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="rm:ERGeomType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock 
+            TextBlock.FontWeight="Bold"
+            Grid.ColumnSpan="10">
+            <Run Text="{x:Static props:Resources.PgReg_TableProps}"/> "<Run Text="{Binding Name}" />"
+        </TextBlock>
+
+        <TextBlock 
+            Grid.Row="1"><Run Text="{x:Static props:Resources.PgReg_SystemName}" /><Run Text=" *" /></TextBlock>
+        <TextBox 
+            Grid.Row="1"
+            Grid.Column="2"
+            IsEnabled="{Binding IsNotRegistered}"
+            Text="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock 
+            Grid.Row="2"><Run Text="{x:Static props:Resources.PgReg_TableType}" /><Run Text=" *" /></TextBlock>
+        <ComboBox
+            IsEnabled="{Binding IsNotRegistered}"
+            ItemsSource="{Binding Source={StaticResource TableTypeValues}}"
+            SelectedItem="{Binding TableType, Converter={StaticResource EnumWrapperConverter}}"
+            Grid.Row="2"
+            Grid.Column="2" />
+
+        <TextBlock 
+            Grid.Row="3"><Run Text="{x:Static props:Resources.PgReg_GeomType}" /><Run Text=" *" /></TextBlock>
+        <ComboBox
+            IsEnabled="{Binding IsRegistered, Converter={StaticResource TrueFalseConverter}}"
+            ItemsSource="{Binding Source={StaticResource GeomTypeValues}}"
+            SelectedItem="{Binding GeomType, Converter={StaticResource EnumWrapperConverter}}"
+            Grid.Row="3"
+            Grid.Column="2" />
+
+        <TextBlock 
+            Grid.Row="4"
+            Text="{x:Static props:Resources.PgReg_Photos}" />
+        <ComboBox
+            Grid.Row="4"
+            Grid.Column="2"
+            SelectedItem="{Binding Path=HasFiles,
+                Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="props:Resources.LocYes" />
+                <x:StaticExtension Member="props:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock 
+            Grid.Row="5"
+            Text="{x:Static props:Resources.PgReg_Styles}" />
+        <ComboBox
+            IsEnabled="{Binding IsRegistered, Converter={StaticResource TrueFalseConverter}}"
+            Grid.Row="5"
+            Grid.Column="2"
+            SelectedItem="{Binding Path=IsMapStyle,
+                Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="props:Resources.LocYes" />
+                <x:StaticExtension Member="props:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock 
+            Grid.Row="6"
+            Text="{x:Static props:Resources.PgReg_LabelField}" />
+        <ComboBox
+            Grid.Row="6"
+            Grid.Column="2"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Fields}"
+            SelectedItem="{Binding Path=LabelField}">
+        </ComboBox>
+
+        <TextBlock 
+            Grid.Row="7"><Run Text="{x:Static props:Resources.PgReg_PrimaryKey}" /><Run Text=" *" /></TextBlock>
+        <ComboBox
+            Grid.Row="7"
+            Grid.Column="2"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Fields}"
+            SelectedItem="{Binding Path=PkField}">
+        </ComboBox>
+
+        <TextBlock 
+            Grid.Row="8"><Run Text="{x:Static props:Resources.PgReg_GeomField}" /><Run Text=" *" /></TextBlock>
+        <ComboBox
+            Grid.Row="8"
+            Grid.Column="2"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Fields}"
+            SelectedItem="{Binding Path=GeomField}">
+        </ComboBox>
+
+        <TextBlock 
+            
+            Grid.Row="9"><Run Text="{x:Static props:Resources.PgReg_SSCGroup}" /><Run Text=" *" /></TextBlock>
+        <ComboBox
+            IsEnabled="{Binding IsSscActive}"
+            ItemsSource="{Binding MapAdmin.SscGroups}"
+            DisplayMemberPath="name"
+            SelectedItem="{Binding SscGroup}"
+            Grid.Row="9"
+            Grid.Column="2">
+        </ComboBox>
+
+        <TextBlock 
+            Visibility="{Binding IsNotRegistered, Converter={StaticResource BooleanVisibilityConverter}}"
+            Text="{x:Static props:Resources.PgReg_MarkFields}" 
+            Grid.Row="10"
+            Grid.ColumnSpan="10" />
+        <ListBox
+            MinHeight="100"
+            HorizontalAlignment="Stretch"
+            Visibility="{Binding IsNotRegistered, Converter={StaticResource BooleanVisibilityConverter}}"
+            Grid.Row="11"
+            Grid.ColumnSpan="10"
+            ItemsSource="{Binding Fields}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <CheckBox VerticalAlignment="Center" DockPanel.Dock="Left" Margin="2" IsChecked="{Binding ToBeRegistered}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Margin="2"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock
+            Foreground="Red"
+            Opacity="0.8"
+            Text="{Binding SaveErrorText}"
+            TextWrapping="Wrap"
+            Grid.Row="12" 
+            Grid.ColumnSpan="10" />
+        <Button
+            Command="{Binding SaveCommand}"
+            Content="{x:Static props:Resources.LocSave}"
+            Grid.Row="13"
+            Width="80"
+            Height="25"
+            HorizontalAlignment="Right"
+            Margin="0, 10, 0, 0"
+            VerticalAlignment="Bottom"
+            Grid.Column="2"></Button>
+    </Grid>
+</UserControl>

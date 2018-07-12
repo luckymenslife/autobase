@@ -1,0 +1,371 @@
+﻿<ResourceDictionary 
+    x:Class="Rekod.DataAccess.SourcePostgres.View.Styles.PgTableViewSV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:Rekod.SQLiteSettings"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:beh="clr-namespace:Rekod.Behaviors">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Styles/AttributesStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <sys:Double x:Key="UniformHeight">
+        22
+    </sys:Double>
+    
+    <Style x:Key="{x:Type ComboBox}"  TargetType="{x:Type ComboBox}">
+        <Style.Setters>
+            <Setter Property="Background" Value="White" />
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="FlatButtonStyle" TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Background" Value="White" />
+        </Style.Setters>
+    </Style>
+    
+    <Style TargetType="{x:Type TextBox}">
+        <Style.Setters>
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1.01" />
+        </Style.Setters>
+    </Style>
+    
+    
+    <!--Стиль элемента фильтра-->
+    <Style x:Key="sFilter" TargetType="{x:Type ContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Margin="0, 0, 0, 0">
+                      
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="sizeGrColumn"/>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="sizeGrOperator"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                     
+                       <Button 
+                            Style="{StaticResource FlatButtonStyle}"
+                            Grid.Column="0"
+                            Margin="0, 3, 3, 3"
+                            Command="{Binding Source.RemoveFilterCommand}" 
+                            CommandParameter="{Binding}"
+                            Width="{StaticResource UniformHeight}"
+                            Height="{StaticResource UniformHeight}"
+                            VerticalAlignment="Center">
+                            <Image 
+                                Source="/Resources/delete2.png" />
+                        </Button>
+                        
+                        <ComboBox 
+                                x:Name="cbColumn"
+                                Grid.Column="1" 
+                                Height="{StaticResource UniformHeight}"
+                                Width="45"
+                                Margin="0"
+                                DisplayMemberPath="Text"
+                                ItemsSource="{Binding Source.Fields}"
+                                SelectedValue="{Binding Field}" />
+                        <ComboBox 
+                                beh:OnLoadedSelectFirstBehavior.SelectFirstOnLoaded="True"
+                                x:Name="cbOperation"
+                                Grid.Column="2" 
+                                Height="{StaticResource UniformHeight}"
+                                Width="33"
+                                Margin="3, 3, 0, 3"
+                                DisplayMemberPath="Name"
+                                SelectedValuePath="Value"
+                                ItemsSource="{Binding CollOperation}"
+                                SelectedValue="{Binding TOperation, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox 
+                                x:Name="textBox" 
+                                Grid.Column="3"
+                                Height="{StaticResource UniformHeight}"
+                                MinWidth="200" 
+                                Margin="3, 3, 0, 3" 
+                                Text="{Binding Value, Mode=TwoWay, ValidatesOnDataErrors=False, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"  />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding FieldType}" Value="Date">
+                            <Setter TargetName="textBox" Property="Style" Value="{StaticResource sDateTime}"/>
+                            <Setter TargetName="textBox" Property="Text" Value="{Binding Value, StringFormat={}yyyy-MM-dd, Mode=TwoWay, ValidatesOnDataErrors=False, TargetNullValue=''}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding FieldType}" Value="DateTime">
+                            <Setter TargetName="textBox" Property="Style" Value="{StaticResource sDateTime}"/>
+                            <Setter TargetName="textBox" Property="Text" Value="{Binding Value, StringFormat={}yyyy-MM-dd HH:mm:ss, Mode=TwoWay, ValidatesOnDataErrors=False, TargetNullValue=''}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding HasError}" Value="True">
+                            <Setter TargetName="textBox" Property="BorderBrush" Value="Red" />
+                            <Setter TargetName="textBox" Property="BorderThickness" Value="1.2" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TOperation}" Value="Empty">
+                            <Setter TargetName="textBox" Property="IsEnabled"  Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding TOperation}" Value="NotEmpty">
+                            <Setter TargetName="textBox" Property="IsEnabled"  Value="False"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsFixed}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Стиль контейнера фильтра-->
+    <Style x:Key="sFilterContainer" TargetType="{x:Type ContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Кнопка "Удалить" -->
+                        <StackPanel 
+                            Orientation="Horizontal">
+                            <Button 
+                                Style="{StaticResource FlatButtonStyle}"
+                                x:Name="btnDelete"
+                                Grid.Column="0"
+                                Margin="0, 3, 3, 3"
+                                Width="{StaticResource UniformHeight}"
+                                Height="{StaticResource UniformHeight}"
+                                Command="{Binding Source.RemoveFilterCommand}" 
+                                CommandParameter="{Binding}">
+                                <Image 
+                                Source="/Resources/delete2.png" />
+                            </Button>
+                            <Button 
+                                    Style="{StaticResource FlatButtonStyle}"
+                                    Margin="0, 3, 0, 3"
+                                    x:Name="SpButton"
+                                    Grid.Column="0" 
+                                    HorizontalAlignment="Right" 
+                                    Click="SpButton_Click"
+                                    VerticalAlignment="Top"
+                                    Width="{StaticResource UniformHeight}"
+                                    Height="{StaticResource UniformHeight}">
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem 
+                                                Header="Добавить фильтр"
+                                                Command="{Binding Source.AddFilterCommand}" 
+                                                CommandParameter="{Binding}" />
+                                        <MenuItem 
+                                                Header="Добавить контейнер"
+                                                Command="{Binding Source.AddContainerCommand}" 
+                                                CommandParameter="{Binding}" />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                                <Image 
+                                            Source="/Resources/add2.png" />
+                            </Button>
+                        </StackPanel>
+                        
+                        <ComboBox 
+                                beh:OnLoadedSelectFirstBehavior.SelectFirstOnLoaded="True"
+                                Grid.Column="1" 
+                                Height="{StaticResource UniformHeight}"
+                                Width="43" 
+                                Margin="3, 3, 0, 3"
+                                ItemsSource="{Binding Source.CollRelation}"
+                                SelectedValue="{Binding TRelation, Mode=TwoWay}"
+                                DisplayMemberPath="Name"
+                                SelectedValuePath="Value" />
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Parent}" Value="{x:Null}">
+                            <Setter TargetName="btnDelete" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsFixed}" Value="true">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TreeViewItemFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
+
+    <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}" >
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="Transparent" Height="16" Padding="5,5,5,5" Width="16">
+                        <Path x:Name="ExpandPath" Data="{StaticResource TreeArrow}" Fill="Transparent" Stroke="#FF989898">
+                            <Path.RenderTransform>
+                                <RotateTransform Angle="135" CenterY="3" CenterX="3"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF1BBBFA"/>
+                            <Setter Property="Fill" TargetName="ExpandPath" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="RenderTransform" TargetName="ExpandPath">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180" CenterY="3" CenterX="3"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="ExpandPath" Value="#FF595959"/>
+                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF262626"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TreeViewItemStyle1" TargetType="{x:Type TreeViewItem}" >
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Padding" Value="1,0,0,0"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+        <Setter Property="IsExpanded" Value="true"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TreeViewItem}">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Name="Column1" Width="Auto"/>
+                            <ColumnDefinition Name="Column2" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ToggleButton 
+                            x:Name="Expander" 
+                            ClickMode="Press" 
+                            Command="{Binding UpdateQueryStringCommand}"
+                            IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                            Style="{StaticResource ExpandCollapseToggleStyle}"/>
+
+                        <Border x:Name="Bd" Grid.Column="1" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <Border 
+                            x:Name="BorderPanel"
+                            Grid.Column="2" 
+                            Grid.RowSpan="2"
+                            BorderBrush="Black"
+                            Margin="7, 0, 0, 0">
+                            <StackPanel>
+                                <ItemsPresenter 
+                                    x:Name="ItemsHost" />
+                                <TextBox 
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Bottom"
+                                    IsReadOnly="True"
+                                    Background="#88FFFFFF"
+                                    Margin="11, 3, 7, 0"                                    
+                                    x:Name="FilterText"  
+                                    Height="{StaticResource UniformHeight}"
+                                    Text = "{Binding Path=QueryString, Mode=OneWay}" 
+                                    Visibility="Collapsed"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsFixed}" Value="true"/>
+                                <Condition Binding="{Binding Parent}" Value="{x:Null}"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter Property="Visibility" TargetName="FilterText" Value="Visible"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Type}" Value="Filter">
+                            <Setter TargetName="FilterText" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=HasError}" Value="True">
+                            <Setter TargetName="FilterText" Property="BorderBrush" Value="Red" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Depth}" Value="1">
+                            <Setter TargetName="BorderPanel" Property="Background" Value="#FFCAF3F2"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Depth}" Value="2">
+                            <Setter TargetName="BorderPanel" Property="Background" Value="#FFF3DEDE"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Depth}" Value="3">
+                            <Setter TargetName="BorderPanel" Property="Background" Value="#FFD1F9D1"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Depth}" Value="4">
+                            <Setter TargetName="BorderPanel" Property="Background" Value="#FFD4D7F5"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Depth}" Value="5">
+                            <Setter TargetName="BorderPanel" Property="Background" Value="#FFF4F9D1"/>
+                        </DataTrigger>
+                        
+                        <DataTrigger Binding="{Binding Type}" Value="Filter">
+                            <Setter TargetName="BorderPanel" Property="BorderThickness" Value="0"/>
+                            <Setter TargetName="Column1" Property="Width" Value="*"/>
+                            <Setter TargetName="BorderPanel" Property="Background" Value="Transparent"/>
+                            <Setter TargetName="Column2" Property="Width" Value="Auto"/>
+                        </DataTrigger>
+                        <Trigger Property="IsExpanded" Value="false">
+                            <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

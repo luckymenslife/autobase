@@ -1,0 +1,442 @@
+﻿<UserControl x:Class="GBU_Waybill_plugin.nsWaybill.Waybill_V"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cs="clr-namespace:GBU_Waybill_plugin.nsWaybill.DTTexBox"
+             mc:Ignorable="d" 
+             Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" d:DesignWidth="940" d:DesignHeight="832">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type cs:TextBoxDateTime}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="MinHeight" Value="21"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="MinHeight" Value="23"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderThickness="1" BorderBrush="Gray">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <GroupBox Header="Регистрационные данные">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Организация" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox Grid.ColumnSpan="7" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_orgs}" SelectedItem="{Binding Selected_Org}" DisplayMemberPath="Name"/>
+                            <TextBlock Text="Мастер" Grid.Column="0" Grid.Row="1" />
+                            <ComboBox Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Wb_Repairers}" SelectedItem="{Binding Selected_Repairer}" DisplayMemberPath="Fullname"/>
+                            <TextBlock Text="№ ПЛ" Grid.Column="6" Grid.Row="1"/>
+                            <TextBox Grid.Row="1" Grid.Column="7" MinWidth="50" Text="{Binding waybill_rec.Doc_no}"/>
+                            <TextBlock Text="Выезд план" Grid.Column="0" Grid.Row="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding waybill_rec.Date_out_plan}"/>
+                            <!-- <cs:TextBoxDateTime Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding waybill_rec.Date_out_plan}"/> -->
+
+                            
+                            <TextBlock Text="Выезд факт" Grid.Column="0" Grid.Row="3"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding waybill_rec.Date_out_fact}"/>
+                            <TextBlock Text="Возвращение план" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Text="{Binding waybill_rec.Date_in_plan}"/>
+                            <TextBlock Text="Возвращение факт" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2"/>
+                            <TextBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Text="{Binding waybill_rec.Date_in_fact}"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Транспортное средство">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Гос. №" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_Cars}" SelectedItem="{Binding Selected_Car}" DisplayMemberPath="Gosno"/>
+
+                            <TextBlock Text="Гар. №" Grid.Column="2" Grid.Row="0" />
+                            <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding Wb_Cars}" SelectedItem="{Binding Selected_Car}" DisplayMemberPath="Garno"/>
+
+                            <TextBlock Text="Тип Т/С" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Selected_Car.Type_name, Mode=OneWay}" IsReadOnly="True"/>
+
+                            <TextBlock Text="Марка/Модель" Grid.Column="0" Grid.Row="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Selected_Car.Mark_and_model_name, Mode=OneWay}" IsReadOnly="True"/>
+
+                            <TextBlock Text="Режим работы" Grid.Column="4" Grid.Row="0"/>
+                            <ComboBox Grid.ColumnSpan="7" Grid.Row="0" Grid.Column="5" ItemsSource="{Binding Wb_Work_modes}" SelectedItem="{Binding Selected_Work_mode}" DisplayMemberPath="Name"/>
+
+                            <TextBlock Text="Колонна" Grid.Column="4" Grid.Row="1"/>
+                            <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding waybill_rec.Motorcade}"/>
+
+                            <TextBlock Text="Бригада" Grid.Column="4" Grid.Row="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding waybill_rec.Brigade}"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Прицеп">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Гос. №" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_Trailers}" SelectedItem="{Binding Selected_Trailer}" DisplayMemberPath="Gosno"/>
+
+                            <TextBlock Text="Гар. №" Grid.Column="2" Grid.Row="0" />
+                            <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding Wb_Trailers}" SelectedItem="{Binding Selected_Trailer}" DisplayMemberPath="Garno"/>
+
+                            <TextBlock Text="Модель" Grid.Column="4" Grid.Row="0"/>
+                            <TextBox Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding Selected_Trailer.Model_name, Mode=OneWay}" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Водитель">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="ФИО" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_Drivers}" SelectedItem="{Binding Selected_Driver}" DisplayMemberPath="Fullname"/>
+
+                            <TextBlock Text="Таб. №" Grid.Column="2" Grid.Row="0" />
+                            <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding Wb_Drivers}" SelectedItem="{Binding Selected_Driver}" DisplayMemberPath="Tabno"/>
+
+                            <TextBlock Text="Сопровождающие лица" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding waybill_rec.Support_persons}"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Задание">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Маршрут" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7" ItemsSource="{Binding Wb_Routes}" SelectedItem="{Binding Selected_Route}" DisplayMemberPath="Name"/>
+
+                            <TextBlock Text="Вид работ" Grid.Column="0" Grid.Row="1" />
+                            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" ItemsSource="{Binding Wb_Work_types}" SelectedItem="{Binding Selected_Work_type}" DisplayMemberPath="Name"/>
+
+                            <TextBlock Text="Груз" Grid.Column="0" Grid.Row="2" />
+                            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Wb_Cargo_types}" SelectedItem="{Binding Selected_Cargo_type}" DisplayMemberPath="Name"/>
+
+                            <TextBlock Text="Зона" Grid.Column="2" Grid.Row="2" />
+                            <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Wb_Road_types}" SelectedItem="{Binding Selected_Road_type}" DisplayMemberPath="Name"/>
+
+                            <TextBlock Text="ТТД" Grid.Column="4" Grid.Row="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="5" Text="{Binding waybill_rec.Ttd_count}"/>
+
+                            <TextBlock Text="Ездок" Grid.Column="6" Grid.Row="2"/>
+                            <TextBox Grid.Row="2" Grid.Column="7" Text="{Binding waybill_rec.Trip_count}"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Таксировка" Height="200">
+                    </GroupBox>
+                    <GroupBox Header="Оплата">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Работа, ч"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding waybill_rec.Pay_work_h}"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="Обед, ч"/>
+                            <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding waybill_rec.Pay_lunch_h}"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="Дежурство, ч"/>
+                            <TextBox Grid.Row="0" Grid.Column="5" Text="{Binding waybill_rec.Pay_duty_h}"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="6" Text="Ремонт, ч"/>
+                            <TextBox Grid.Row="0" Grid.Column="7" Text="{Binding waybill_rec.Pay_repair_h}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="День, ч"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding waybill_rec.Pay_day_h}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Ночь, ч"/>
+                            <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding waybill_rec.Pay_night_h}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="4" Text="Ставка, руб/ч"/>
+                            <TextBox Grid.Row="1" Grid.Column="5" Text="{Binding waybill_rec.Pay_rate_rh}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="6" Text="Итого, руб"/>
+                            <TextBox Grid.Row="1" Grid.Column="7" Text="{Binding waybill_rec.Pay_total_r}" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <GroupBox Header="Спидометр">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Начало, км" Grid.Column="0" Grid.Row="0" />
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding waybill_rec.Km_begin}"/>
+                            <TextBlock  Text="Конец, км" Grid.Column="2" Grid.Row="0"/>
+                            <TextBox  Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Km_end}"/>
+                            <TextBlock  Text="Пробег, км" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Km_run}"/>
+                            <TextBlock  Text="Пробег(гл), км" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Счетчик моточасов">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Начало, км" Grid.Column="0" Grid.Row="0" />
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding waybill_rec.Mh_begin}"/>
+                            <TextBlock  Text="Конец, км" Grid.Column="2" Grid.Row="0"/>
+                            <TextBox  Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Mh_end}"/>
+                            <TextBlock  Text="Пробег, км" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Mh_run}"/>
+                            <TextBlock  Text="Пробег(гл), км" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Счетчик моточасов оборудования">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Начало, км" Grid.Column="0" Grid.Row="0" />
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding waybill_rec.Mh_ob_begin}"/>
+                            <TextBlock  Text="Конец, км" Grid.Column="2" Grid.Row="0"/>
+                            <TextBox  Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Mh_ob_end}"/>
+                            <TextBlock  Text="Пробег, км" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Mh_ob_run}"/>
+                            <TextBlock  Text="Пробег(гл), км" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Топливо 1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Вид" Grid.Column="0" Grid.Row="0" />
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_Fuel_marks}" SelectedItem="{Binding Selected_Fuel_marks_one}" DisplayMemberPath="Name"/>
+                            <TextBlock Text="Выдать, л" Grid.Column="2" Grid.Row="0" />
+                            <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Fuel_plan}"/>
+                            <TextBlock Text="Выдано, л" Grid.Column="0" Grid.Row="1" />
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Fuel_fact}"/>
+                            <TextBlock  Text="Выдано(гл), л" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="" IsReadOnly="True"/>
+                            <TextBlock  Text="Начало, л" Grid.Column="0" Grid.Row="2"/>
+                            <TextBox  Grid.Column="1" Grid.Row="2" Text="{Binding waybill_rec.Fuel_begin}"/>
+                            <TextBlock  Text="Конец, л" Grid.Column="2" Grid.Row="2"/>
+                            <TextBox  Grid.Column="3" Grid.Row="2" Text="{Binding waybill_rec.Fuel_end}"/>
+                            <TextBlock Text="№ Т/К" Grid.Column="0" Grid.Row="3" />
+                            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Wb_Fuel_cards}" SelectedItem="{Binding Selected_Fuel_card_one}" DisplayMemberPath="Name"/>
+                            <TextBlock  Text="Начало(гл), л" Grid.Column="0" Grid.Row="4"/>
+                            <TextBox  Grid.Column="1" Grid.Row="4" Text="" IsReadOnly="True"/>
+                            <TextBlock  Text="Конец(гл), л" Grid.Column="2" Grid.Row="4"/>
+                            <TextBox  Grid.Column="3" Grid.Row="4" Text="" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Топливо 2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Вид" Grid.Column="0" Grid.Row="0" />
+                            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Wb_Fuel_marks}" SelectedItem="{Binding Selected_Fuel_marks_two}" DisplayMemberPath="Name"/>
+                            <TextBlock Text="Выдать, л" Grid.Column="2" Grid.Row="0" />
+                            <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Fuel_plan2}"/>
+                            <TextBlock Text="Выдано, л" Grid.Column="0" Grid.Row="1" />
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Fuel_fact2}"/>
+                            <TextBlock  Text="Выдано(гл), л" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="" IsReadOnly="True"/>
+                            <TextBlock  Text="Начало, л" Grid.Column="0" Grid.Row="2"/>
+                            <TextBox  Grid.Column="1" Grid.Row="2" Text="{Binding waybill_rec.Fuel_begin2}"/>
+                            <TextBlock  Text="Конец, л" Grid.Column="2" Grid.Row="2"/>
+                            <TextBox  Grid.Column="3" Grid.Row="2" Text="{Binding waybill_rec.Fuel_end2}"/>
+                            <TextBlock Text="№ Т/К" Grid.Column="0" Grid.Row="3" />
+                            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Wb_Fuel_cards}" SelectedItem="{Binding Selected_Fuel_card_two}" DisplayMemberPath="Name"/>
+                            <TextBlock  Text="Начало(гл), л" Grid.Column="0" Grid.Row="4"/>
+                            <TextBox  Grid.Column="1" Grid.Row="4" Text="" IsReadOnly="True"/>
+                            <TextBlock  Text="Конец(гл), л" Grid.Column="2" Grid.Row="4"/>
+                            <TextBox  Grid.Column="3" Grid.Row="4" Text="" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Сводный расчет">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*"/>
+                                <ColumnDefinition MinWidth="80"/>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition MinWidth="80"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Норма, л" Grid.Column="0" Grid.Row="0" />
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding waybill_rec.Calc_fuel_norm}" IsReadOnly="True"/>
+                            <TextBlock  Text="Факт, л" Grid.Column="2" Grid.Row="0"/>
+                            <TextBox  Grid.Column="3" Grid.Row="0" Text="{Binding waybill_rec.Calc_fuel_fact}" IsReadOnly="True"/>
+                            <TextBlock  Text="Разница, л" Grid.Column="0" Grid.Row="1"/>
+                            <TextBox  Grid.Column="1" Grid.Row="1" Text="{Binding waybill_rec.Calc_fuel_delta}" IsReadOnly="True"/>
+                            <TextBlock  Text="Слив, л" Grid.Column="2" Grid.Row="1"/>
+                            <TextBox  Grid.Column="3" Grid.Row="1" Text="{Binding waybill_rec.Calc_fuel_drain}" IsReadOnly="True"/>
+                            <TextBlock  Text="Разница, км" Grid.Column="0" Grid.Row="2"/>
+                            <TextBox  Grid.Column="1" Grid.Row="2" Text="{Binding waybill_rec.Calc_km_run_delta}" IsReadOnly="True"/>
+                            <TextBlock  Text="Разница, м/ч" Grid.Column="2" Grid.Row="2"/>
+                            <TextBox  Grid.Column="3" Grid.Row="2" Text="{Binding waybill_rec.Calc_mh_run_delta}" IsReadOnly="True"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Особые отметки">
+                        <ComboBox ItemsSource="{Binding Wb_Special_notes}" SelectedItem="{Binding Selected_Special_note}" DisplayMemberPath="Name"/>
+                    </GroupBox>
+                    <GroupBox Header="Комментарий">
+                        <TextBox MinLines="2" Text="{Binding waybill_rec.Notes}"/>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button>OK</Button>
+                <Button Command="{Binding CloseCommand}">Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

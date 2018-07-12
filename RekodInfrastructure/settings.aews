@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<login>
+  <DateBase>
+    <Connection>inf_test@192.168.63.36</Connection>
+    <user>fail</user>
+  </DateBase>
+  <DateBase>
+    <Connection>inf_region@162.243.235.24</Connection>
+    <user>region_user</user>
+  </DateBase>
+  <LastConnectionString>
+    <ConnectionString>inf_test@192.168.63.36</ConnectionString>
+    <Name>fail</Name>
+  </LastConnectionString>
+</login>

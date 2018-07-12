@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Rekod.ImportExport.Importers.ExcelUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="97" d:DesignWidth="663">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="..\..\Styles\Styles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <GroupBox Header="{x:Static properties:Resources.ExcelUC_SpecifyRange}" Margin="0,5">
+            <Grid>
+                <ComboBox Height="23" HorizontalAlignment="Left" Margin="5,4,0,0" Name="listCB" VerticalAlignment="Top" Width="268" IsEditable="True" ToolTip="{x:Static properties:Resources.ExcelUC_List}" Style="{DynamicResource SearchComboTolTip}"/>
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="5,33,0,0" Name="diapBeg" VerticalAlignment="Top" Width="120" ToolTip="{x:Static properties:Resources.ExcelUC_RangeWith}" Style="{DynamicResource NTBox}"/>
+                <TextBlock Height="23" HorizontalAlignment="Left" Margin="138,33,0,0" Text=":" VerticalAlignment="Top" Width="10" />
+                <TextBox Height="23" HorizontalAlignment="Left" Margin="153,33,0,0" Name="diapEnd" VerticalAlignment="Top" Width="120" ToolTip="{x:Static properties:Resources.ExcelUC_RangeBy}" Style="{DynamicResource NTBox}"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

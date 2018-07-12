@@ -1,0 +1,143 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:Rekod.DBInfoEdit.ViewModel"
+    x:Class="Rekod.DBInfoEdit.GridViewSettingWindow"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=viewModel:GridViewSettingVM}"
+    Title="Настройка вида таблицы"
+    Width="300"
+    Height="400">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Label
+                DockPanel.Dock="Left"
+                Content="Отображаемые колонки:"
+                Margin="10,5,10,5"
+                Padding="0"/>
+        </DockPanel>
+        <DockPanel 
+            DockPanel.Dock="Bottom"
+			LastChildFill="False"
+			Margin="10,5,10,10"
+            Height="30">
+            <Button 
+                Command="{Binding CancelCommand}"
+				DockPanel.Dock="Right"
+				Content="Отмена"
+				Margin="2,3,0,3"
+				Padding="6,0"
+				Width="80"/>
+            <Button
+                Command="{Binding AcceptCommand}"
+				DockPanel.Dock="Right"
+				Content="Применить" 
+				Margin="3"
+				Padding="6,0"
+				Width="80"/>
+        </DockPanel>
+        <DockPanel>
+            <DockPanel 
+                DockPanel.Dock="Bottom"
+			    LastChildFill="False"
+			    Margin="10,2,10,0">
+                <Button
+                    Command="{Binding MoveUpCommand}"
+				    DockPanel.Dock="Left"
+				    Content="▲" 
+				    Margin="0,3,0,3"
+				    Padding="3,0"/>
+                <Button
+                    Command="{Binding MoveDownCommand}"
+				    DockPanel.Dock="Left"
+				    Content="▼"
+				    Margin="3"
+				    Padding="3,0"/>
+                <!--<Label 
+                    DockPanel.Dock="Right"
+				    Content="Переместить:"
+				    Margin="3"
+				    Padding="6,3"/>-->
+
+                <!--<Button 
+                    Command="{Binding SelectAllCommand}"
+                    DockPanel.Dock="Left"
+                    Content="Выбрать все"
+				    Margin="0,3,0,3"
+				    Padding="3,0"
+				    Width="80"
+                    />
+                <Button
+                    Command="{Binding SelectNoneCommand}"
+                    DockPanel.Dock="Left"
+                    Content="Очистить"
+				    Margin="5,3,0,3"
+				    Padding="6,0"
+				    Width="80"
+                    />-->
+            </DockPanel>
+            <!--<ListBox
+                ItemsSource="{Binding ColumnList, UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SelectedIndex}"
+                Margin="10,0,10,0"
+                Visibility="Collapsed">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox 
+                            Content="{Binding Name}"
+						    IsChecked="{Binding IsChecked, 
+                                                Mode=TwoWay, 
+                                                UpdateSourceTrigger=PropertyChanged}"
+                            Margin="10,2"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ListBox>-->
+            <ListView
+                ItemsSource="{Binding ColumnList, UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SelectedIndex}"
+                Margin="10,0,10,0"
+                >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox
+						                IsChecked="{Binding IsChecked, 
+                                                            Mode=TwoWay, 
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="0,2"
+                                        IsEnabled="{Binding IsEnabled, 
+                                                            Mode=TwoWay, 
+                                                            UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox
+						                IsChecked="{Binding DataContext.CheckAll, 
+                                                            RelativeSource={RelativeSource AncestorType=Window}, 
+                                                            Mode=TwoWay, 
+                                                            UpdateSourceTrigger=PropertyChanged}"
+                                        Margin="0,2"/>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Название">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock 
+                                        Text="{Binding Text}"
+                                        Margin="5,1"
+                                        Width="150"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </DockPanel>
+</Window>

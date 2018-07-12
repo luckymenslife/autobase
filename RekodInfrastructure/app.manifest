@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app"/>
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+    <security>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- Параметры манифеста UAC
+            Если вы хотите изменить уровень контроля учетных записей Windows, 
+            замените узел requestedExecutionLevel одним из следующих.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Если вы хотите использовать виртуализацию файлов и реестра для обратной 
+            совместимости, удалите узел requestedExecutionLevel.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <file name="MVActiveX\\mvMapLib.ocx">
+    <comClass clsid="{57B8D9D6-18E1-4513-B1DE-41595174732F}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvLayer Object"></comClass>
+    <comClass clsid="{CEB17F8D-1C7F-4B30-9481-84C6862476F9}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvVectorObject Object"></comClass>
+    <comClass clsid="{06F52574-FD8A-457A-A763-3129D1CAD27C}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvGPS Object"></comClass>
+    <comClass clsid="{60B42360-D48B-419B-8074-01C7F4838A8A}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvImageLayer Object"></comClass>
+    <comClass clsid="{B946F482-3E90-462A-B836-47077747F1CF}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvStringArray Object"></comClass>
+    <comClass clsid="{B6B2D2F7-6222-4A10-8469-D06D45DE9041}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvPointArray Object"></comClass>
+    <comClass clsid="{D2AD1096-A8B1-4AEC-9395-EF17C41BF6E8}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvIntArray Object"></comClass>
+    <comClass clsid="{58A2153E-D134-4C8E-8C4D-DFA04D5D5DCF}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvPointObject Object"></comClass>
+    <comClass clsid="{D8A47DDF-C89A-4EDA-8D04-984601A3E45B}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvBboxObject Object"></comClass>
+    <comClass clsid="{A19F0174-A66D-4587-B537-DA2CD550FA8E}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvBrushObject Object"></comClass>
+    <comClass clsid="{37482CF8-5F9F-452F-9E0A-25BE2650918E}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvFontObject Object"></comClass>
+    <comClass clsid="{745B0253-1954-4792-B173-8D8E3D6EFD6E}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvPenObject Object"></comClass>
+    <comClass clsid="{6AEACF03-E92C-4A43-93CE-B87946C8BE76}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="mvSymbolObject Object"></comClass>
+    <comClass clsid="{D8EF2E5E-E4DE-4A82-B11A-11CBFA71286D}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="MapLIb Control"></comClass>
+    <comClass clsid="{7EE05F9F-D749-4821-BAD3-04608DEAF9C7}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}"></comClass>
+    <comClass clsid="{2C3051B2-BA09-46F3-97EC-8857E0EF5923}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="PostgreSQLSource Object"></comClass>
+    <comClass clsid="{36EA88F6-95F0-41AC-8032-A9446E08FFD5}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" description="SpatialiteSource Object"></comClass>
+    <comClass clsid="{417BE1D7-9DD4-40BD-AFC0-0079A5567BA1}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}"></comClass>
+    <comClass clsid="{538616A7-FAEE-47FC-9082-E0A9D4AF8061}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}"></comClass>
+    <comClass clsid="{E40A2C7D-2A80-482E-8441-6106D84C5931}" tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}"></comClass>
+    <typelib tlbid="{89A2FA60-034E-4DD3-8CCB-D5971B56333B}" resourceid="1" version="0.7" helpdir=""></typelib>
+  </file>
+</asmv1:assembly>

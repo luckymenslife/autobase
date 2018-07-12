@@ -1,0 +1,427 @@
+﻿<Window x:Class="Rekod.PrintModule.View.PreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:comp="clr-namespace:Rekod.PrintModule.RenderComponents"
+        xmlns:conv="clr-namespace:Rekod.PrintModule.Converters"
+        xmlns:v="clr-namespace:Rekod.PrintModule.View" 
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        xmlns:controls="clr-namespace:Rekod.Controls"
+        xmlns:properties="clr-namespace:Rekod.Properties"
+        Title="{x:Static properties:Resources.PrintV_Print}"
+        SnapsToDevicePixels="True"
+        RenderOptions.BitmapScalingMode="NearestNeighbor"
+        UseLayoutRounding="True"
+        Height="495"
+        Width="933.5"
+        MinHeight="570"
+        MinWidth="950"
+        x:Name="CanvasWindow"
+        beh:WindowHideOnCloseBehavior.HideOnClose="True"
+        beh:CommandBehavior.Command="{Binding RerenderCommand}"
+        beh:CommandBehavior.Event="Loaded">
+
+    <Window.InputBindings>
+        <KeyBinding Key="P"
+              Modifiers="Control" 
+              Command="{Binding PrintCommand}" />
+        <KeyBinding Key="S"
+              Modifiers="Control" 
+              Command="{Binding SaveCommand}" />
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ExtendedSlider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <conv:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+            <Style TargetType="StatusBarItem">
+                <Style.Triggers>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                    </Trigger>
+                    <Trigger Property="IsKeyboardFocused" Value="True">
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0" />
+        </Grid.ColumnDefinitions>
+
+        <Menu 
+            Padding="1, 1, 1, 0">
+            <MenuItem Header="{x:Static properties:Resources.PrintV_File}">
+                <MenuItem Command="{Binding SettingsCommand}" >
+                    <MenuItem.Header>
+                        <TextBlock>
+                            <Run Text="{x:Static properties:Resources.PrintV_PageSettings}" /><Run Text="..." />
+                        </TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding PrintSettingsCommand}" >
+                    <MenuItem.Header>
+                        <TextBlock>
+                            <Run Text="{x:Static properties:Resources.WmMenu_File_PrintSettings}" />
+                        </TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <!--<MenuItem Header="{x:Static properties:Resources.PrintV_Print}" InputGestureText="Ctrl+P" Command="{Binding PrintCommand}" />
+                <MenuItem Command="{Binding SaveCommand}" InputGestureText="Ctrl+S">
+                    <MenuItem.Header>
+                        <TextBlock>
+                            <Run Text="{x:Static properties:Resources.LocSave}" /><Run Text="..." />
+                        </TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>-->
+            </MenuItem>
+            <MenuItem Header="{x:Static properties:Resources.PrintV_Navigation}">
+                <!--<MenuItem Header="{x:Static properties:Resources.PrintV_Fit}" Command="{Binding InscribeCommand}" />-->
+                <!--<MenuItem 
+                    Header="Разрешить перемещение" 
+                    IsCheckable="True"
+                    IsChecked="{Binding ElementName=DrawingSurface, Path=AllowMoving}" />-->
+                <MenuItem 
+                    Header="{x:Static properties:Resources.Print_UpdateExtent}" 
+                    Command="{Binding SyncWithMapLibCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <ToolBar
+            Grid.Row="1"
+            Grid.ColumnSpan="10">
+            <ToolBar.Resources>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToolBar.Resources>
+            <RadioButton 
+                Name="CanvasModeButton"
+                GroupName="Mode"
+                IsChecked="{Binding ElementName=DrawingSurface, Path=CanvasMode, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Canvas}"
+                ToolTip="{x:Static properties:Resources.PrintV_CanvasMode}">
+                <Image Source="Images/canvas-change.png" Width="16" />
+            </RadioButton>
+
+            <RadioButton 
+                Name="MapModeButton"
+                GroupName="Mode"
+                IsChecked="{Binding ElementName=DrawingSurface, Path=CanvasMode, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Map}"
+                ToolTip="{x:Static properties:Resources.PrintV_MapMode}">
+                <Image Source="Images/map-change.png" Width="16" />
+            </RadioButton>
+            
+            <RadioButton 
+                Name="SelectModeButton"
+                GroupName="Mode"
+                IsChecked="{Binding ElementName=DrawingSurface, Path=CanvasMode, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Select}"
+                ToolTip="{x:Static properties:Resources.Print_SelectionMode}">
+                <Image Source="Images/selectpages.ico" Width="16" />
+            </RadioButton>
+
+            <Button
+                Name="InscribeButton"
+                Command="{Binding InscribeCommand}"
+                ToolTip="{x:Static properties:Resources.PrintV_Fit}">
+                <Image Source="Images/map-align.png" Width="16" />
+            </Button>
+            <Button
+                Name="InscribeSelectedButton"
+                Command="{Binding FitInSelectedPagesCommand}"
+                ToolTip="Вписать карту в выделенную область">
+                <Image Source="Images/map-align-selected.png" Width="16" />
+            </Button>
+            <Button
+                Name="SaveButton"
+                ToolTip="{x:Static properties:Resources.LocSave}"
+                Command="{Binding SaveCommand}">
+                <Image Source="Images/save.png" Width="16" />
+            </Button>
+            <Button
+                Name="SaveSelectedButton"
+                ToolTip="{x:Static properties:Resources.Print_SaveSelected}"
+                Command="{Binding SaveSelectedPagesCommand}">
+                <Image Source="Images/save-selected.png" Width="16" />
+            </Button>
+            <Button
+                Name="PrintButton"
+                ToolTip="{x:Static properties:Resources.PrintV_Print}"
+                Command="{Binding PrintCommand}">
+                <Image Source="Images/print.png" Width="16" />
+            </Button>
+            <Button
+                Name="PrintSelectedButton"
+                ToolTip="{x:Static properties:Resources.Print_PrintSelected}"
+                Command="{Binding PrintSelectedPagesCommand}">
+                <Image Source="Images/print-selected.png" Width="16" />
+            </Button>
+            <Button
+                SnapsToDevicePixels="False"
+                Name="RefreshRasterButton"
+                ToolTip="{x:Static properties:Resources.LocUpdate}"
+                Command="{Binding RefreshRasterCommand}">
+                <Image Source="Images/reload.png" Width="16" />
+            </Button>
+        </ToolBar>
+
+        <StatusBar
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="10">
+
+            <StatusBarItem>
+                <StackPanel
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBlock Text="{x:Static properties:Resources.PrintV_Format}" />
+                    <TextBlock Text=": " />
+                    <TextBlock Text="{Binding PaperName}" />
+                    <TextBlock Text="(" />
+                    <TextBlock Text="{Binding PaperWidth}" />
+                    <TextBlock Text="x" />
+                    <TextBlock Text="{Binding PaperHeight}" />
+                    <TextBlock Text=") " />
+                    <TextBlock Text="{x:Static properties:Resources.PrintV_Orientation}" />
+                    <TextBlock Text=": " />
+                    <TextBlock Text="{Binding Orientation}" />
+                </StackPanel>
+            </StatusBarItem>
+
+            <StatusBarItem
+                HorizontalAlignment="Right">
+                <StackPanel 
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                        <StackPanel 
+                        Orientation="Horizontal">
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Image
+                                Stretch="Fill"
+                                ToolTip="{x:Static properties:Resources.PrintV_Margins}"
+                                Margin="0, 0, 5, 0"
+                                VerticalAlignment="Center"
+                                Source="Images/fields.png"/>
+
+                            <TextBlock 
+                                VerticalAlignment="Center"
+                                ToolTip="{x:Static properties:Resources.PrintV_LeftMargin}"
+                                Text="{Binding Path=MarginLeft}" />
+                            <TextBlock
+                                Margin="2"
+                                VerticalAlignment="Center"
+                                Text="," />
+                            <TextBlock 
+                                VerticalAlignment="Center"
+                                ToolTip="{x:Static properties:Resources.PrintV_TopMargin}"
+                                Text="{Binding Path=MarginTop}" />
+                            <TextBlock
+                                Margin="2"
+                                VerticalAlignment="Center"
+                                Text="," />
+                            <TextBlock 
+                                VerticalAlignment="Center"
+                                ToolTip="{x:Static properties:Resources.PrintV_RightMargin}"
+                                Text="{Binding Path=MarginRight}" />
+                            <TextBlock
+                                Margin="2"
+                                VerticalAlignment="Center"
+                                Text="," />
+                            <TextBlock 
+                                VerticalAlignment="Center"
+                                ToolTip="{x:Static properties:Resources.PrintV_BottomMargin}"
+                                Text="{Binding Path=MarginBottom}"
+                                Margin="0, 0, 10, 0"/>
+
+                            <!--<Image
+                                ToolTip="Разбиение на страницы"
+                                MouseDown="Image_MouseDown"
+                                Margin="0, 0, 5, 0"
+                                VerticalAlignment="Center"
+                                Source="Images/table.png" 
+                                Width="22" />-->
+
+                            <ToggleButton
+                                Name="TableButton"
+                                IsChecked="{Binding ElementName=TablePopup, Path=IsOpen, Mode=TwoWay}"
+                                ToolTip="{x:Static properties:Resources.PrintV_PagesCount}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Image
+                                            Source="Images/grid.png"/>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <Popup
+                                PopupAnimation="Slide"
+                                x:Name="TablePopup" 
+                                AllowsTransparency="True"
+                                PlacementTarget="{Binding ElementName=TableButton}"
+                                StaysOpen="False"
+                                Placement="Top">
+                                <Popup.Effect>
+                                    <DropShadowEffect 
+                                        BlurRadius="8" 
+                                        Color="Gray" 
+                                        ShadowDepth="5"
+                                        Opacity="0.9"
+                                        Direction="-40"/>
+                                </Popup.Effect>
+                                <v:PrintAreaTableV
+                                    DataContext="{Binding}"/>
+                            </Popup>
+
+                            <controls:AutoFocusTextBox
+                                ToolTip="{x:Static properties:Resources.PrintV_HorizCount}"
+                                Text="{Binding HorizontalCount}"/>
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="x" />
+                            <controls:AutoFocusTextBox
+                                ToolTip="{x:Static properties:Resources.PrintV_VertCount}"
+                                Text="{Binding VerticalCount}"
+                                Margin="0, 0, 5, 0"/>
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <Image
+                                RenderOptions.BitmapScalingMode="HighQuality"
+                                ToolTip="{x:Static properties:Resources.PrintV_PagePrintableArea}"
+                                Margin="0, 0, 5, 0"
+                                VerticalAlignment="Center"
+                                Source="Images/size.png"/>
+                            <controls:AutoFocusTextBox
+                                ToolTip="{x:Static properties:Resources.PrintV_PageWidth}"
+                                IsReadOnly="True"
+                                Text="{Binding PageWidth, Mode=OneWay}" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="x" />
+                            <controls:AutoFocusTextBox
+                                ToolTip="{x:Static properties:Resources.PrintV_PageHeight}"
+                                IsReadOnly="True"
+                                Text="{Binding PageHeight, Mode=OneWay}"
+                                Margin="0, 0, 5, 0" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Separator />
+
+                    <StackPanel
+                        Grid.Row="3"
+                        
+                        VerticalAlignment="Stretch"
+                        Orientation="Horizontal">
+
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Text="{x:Static properties:Resources.PrintV_Scale}"/>
+                        <TextBlock Text=": 1:" VerticalAlignment="Center" />
+                        <!--<TextBox
+                            Name="ScaleBox"
+                            Width="80"
+                            VerticalAlignment="Center"
+                            Margin="0, 0, 15, 0"
+                            IsReadOnly="True"
+                            Text="{Binding ElementName=DrawingSurface, Path=Scale}" >
+                        </TextBox>-->
+                        <controls:AutoFocusTextBox
+                            beh:CommandBehavior.Command="{Binding ApplyNewScaleCommand}"
+                            beh:CommandBehavior.Event="LostFocus"
+                            x:Name="ScaleBox"
+                            Width="55"
+                            VerticalAlignment="Center"
+                            Margin="0, 0, 15, 0"
+                            Text="{Binding ElementName=DrawingSurface, Path=Scale}"/>
+                    </StackPanel>
+
+                    <StackPanel 
+                        Orientation="Horizontal">
+                        <TextBlock
+                        Text="1%" 
+                        VerticalAlignment="Center"/>
+                        <Slider
+                            Margin="5, 0, 5, 0"
+                            Name="CanvasSlider"
+                            Width="200"
+                            Value="{Binding ElementName=DrawingSurface, Path=Zoom}"
+                            Minimum="{Binding ElementName=DrawingSurface, Path=ZoomMin}"
+                            Maximum="{Binding ElementName=DrawingSurface, Path=ZoomMax}"/>
+
+                        <TextBlock
+                            Text="1000%" 
+                            VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+
+        <ScrollViewer
+            beh:CommandBehavior.Action="{Binding ScrollShiftAction}"
+            beh:CommandBehavior.Event="PreviewMouseWheel"
+            Name="CanvasScroll"
+            Background="LightGray"
+            HorizontalScrollBarVisibility="Visible"
+            VerticalScrollBarVisibility="Visible"
+            ScrollViewer.CanContentScroll="True"
+            Grid.Row="2">
+            <Grid
+                x:Name="CanvasGrid">
+                <Grid.Resources>
+                    <!--Visibility="{Binding RelativeSource={RelativeSource Self}, Path=PlacementTarget.SelectedContextVisible, Converter={StaticResource BooleanVisibilityConverter}}"-->
+                    <ContextMenu
+                        x:Key="DrawingSurfaceContextResource"
+                        x:Name="DrawingSurfaceContext">
+                        <!--IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedContextVisible}"-->
+                        <MenuItem
+                            Command="{Binding PrintSelectedPagesCommand}"
+                            Header="{x:Static properties:Resources.Print_PrintSelected}" />
+                        <MenuItem
+                            Command="{Binding SaveSelectedPagesCommand}"
+                            Header="{x:Static properties:Resources.Print_SaveSelected}" />
+                        <MenuItem
+                            Command="{Binding FitInSelectedPagesCommand}"
+                            Header="{x:Static properties:Resources.Print_FitMap}" />
+                    </ContextMenu>
+                </Grid.Resources>
+                <comp:DrawingCanvas
+                    SnapsToDevicePixels="False"
+                    Width="{Binding ElementName=DrawingSurface, Path=ServiceLayer.Width}"
+                    Height="{Binding ElementName=DrawingSurface, Path=ServiceLayer.Height}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    ClipToBounds="False"
+                    x:Name="DrawingSurface"
+                    ContextMenu="{StaticResource DrawingSurfaceContextResource}">
+                    <comp:DrawingCanvas.LayoutTransform>
+                        <ScaleTransform
+                            ScaleX="{Binding ElementName=DrawingSurface, Path=Zoom}"
+                            ScaleY="{Binding ElementName=DrawingSurface, Path=Zoom}" />
+                    </comp:DrawingCanvas.LayoutTransform>
+                </comp:DrawingCanvas>
+            </Grid>
+        </ScrollViewer>
+
+        <Rectangle
+            Name="PreviewRectangle"
+            Grid.Column="1"
+            Grid.Row="1" />
+    </Grid>
+</Window>

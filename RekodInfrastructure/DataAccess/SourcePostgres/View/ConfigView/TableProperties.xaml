@@ -1,0 +1,266 @@
+﻿<UserControl 
+            x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.TableProperties"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+            xmlns:absm="clr-namespace:Rekod.DataAccess.AbstractSource.Model"
+            xmlns:pgvr="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ValidationRules"
+            xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+            xmlns:beh="clr-namespace:Rekod.Behaviors"
+            mc:Ignorable="d"
+            xmlns:properties="clr-namespace:Rekod.Properties"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            d:DesignHeight="298"
+            d:DesignWidth="321">
+    
+    <UserControl.Resources>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="GeometryTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="absm:EGeomType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        
+        <Style TargetType="{x:Type Grid}" x:Key="DataContextNullEmpty">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid 
+        Style="{StaticResource DataContextNullEmpty}"
+        Name="PropertiesGrid">
+        <beh:CommandBehaviorCollection.Behaviors>
+            <beh:BehaviorBinding Event="Loaded" Action="{Binding BindingGroupLoadedAction}" CommandParameter="{Binding ElementName=mapLayerPropertiesBindingGroup}" />
+            <beh:BehaviorBinding Event="System.Windows.Controls.Validation.ErrorEvent" Action="{Binding BindingGroupErrorAction}" />
+        </beh:CommandBehaviorCollection.Behaviors>        
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="2, 2, 0, 2" />
+                </Style.Setters>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="0, 0, 3, 0" />
+                </Style.Setters>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="6, 6, 0, 6" />
+                </Style.Setters>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="2, 2, 0, 2" />
+                </Style.Setters>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.BindingGroup>
+            <BindingGroup x:Name="mapLayerPropertiesBindingGroup" NotifyOnValidationError="True">
+                <BindingGroup.ValidationRules>
+                    <pgvr:TablePropertiesValidationRule />
+                </BindingGroup.ValidationRules>
+            </BindingGroup>
+        </Grid.BindingGroup>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{x:Static properties:Resources.LocScheme}" />
+            <TextBlock Text="*" />
+        </StackPanel>
+        <ComboBox 
+            IsEnabled="{Binding Path=IsNewTable}" 
+            Grid.Column="1" 
+            SelectedItem="{Binding Path=SchemeName}"
+            ItemsSource="{Binding Path=Source.Schems}"/>
+
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="{x:Static properties:Resources.LocNameInBase}"/>
+            <TextBlock Text="*" />
+        </StackPanel>
+        <DockPanel
+            LastChildFill="True"
+            Grid.Row="1"
+            Grid.Column="1">
+            <CheckBox
+                Visibility="{Binding Path=IsNewTable, Converter={StaticResource BooleanVisibilityConverter}}"
+                DockPanel.Dock="Right"
+                IsChecked="False"
+                ToolTip="{x:Static properties:Resources.LocEdit}"
+                Name="EditBaseNameCheckBox"/>
+            <TextBox
+                beh:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=TableSystemName}"
+                beh:CopyTranslitBehavior.CheckString="True"
+                IsReadOnly="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                Name="TableDbName"
+                IsEnabled="{Binding Path=IsNewTable, Mode=OneWay}"
+                Text="{Binding Path=Name}">
+                <beh:CopyTranslitBehavior.UseTranslit>
+                    <MultiBinding Converter="{StaticResource BooleansToBooleanConverter}" ConverterParameter="And">
+                        <Binding Path="IsNewTable" Mode="OneWay"/>
+                        <Binding ElementName="EditBaseNameCheckBox" Path="IsChecked" Mode="OneWay" Converter="{StaticResource TrueFalseConverter}"/>
+                    </MultiBinding>
+                </beh:CopyTranslitBehavior.UseTranslit>
+            </TextBox>
+        </DockPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{x:Static properties:Resources.LocNameInSystem}" />
+            <TextBlock Text="*" />
+        </StackPanel>
+        
+        <TextBox
+            Text="{Binding Path=Text}"
+            Name="TableSystemName"
+            Grid.Row="2"
+            Grid.Column="1" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Height="26" VerticalAlignment="Top">
+            <TextBlock Text="{x:Static properties:Resources.LocTableType}" />
+            <TextBlock Text="*" />
+        </StackPanel>
+        <TextBox 
+            IsEnabled="False" 
+            Text="{Binding Path=Type, Mode=OneWay, Converter={StaticResource EnumWrapperConverter}}"
+            Grid.Row="3" 
+            Grid.Column="1" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="4">
+            <TextBlock 
+                Name="TextBlockGeometryType" 
+                Text="{x:Static properties:Resources.LocGeomType}"
+                Visibility="{Binding Path=Type, 
+                                 Mode=OneWay, 
+                                 Converter={StaticResource PgPropertyExistsVisibilityConverter},
+                                 ConverterParameter=GeometryType}"/>
+            <TextBlock 
+                Text="*" 
+                Visibility="{Binding Path=Type,
+                                 Mode=OneWay,
+                                 Converter={StaticResource PgPropertyExistsVisibilityConverter},
+                                 ConverterParameter=GeometryType}"/>
+        </StackPanel>
+        <ComboBox 
+            Name="ComboBoxGeometryType" 
+            Grid.Row="4"
+            Grid.Column="1"
+            ItemsSource="{Binding Source={StaticResource GeometryTypeValues}}" 
+            DisplayMemberPath="Description"
+            SelectedItem="{Binding Path=GeomType, Converter={StaticResource EnumWrapperConverter}}"
+            IsEnabled="{Binding Path=IsNewTable}"
+            Visibility="{Binding Path=Type, 
+                                 Mode=OneWay, 
+                                 Converter={StaticResource PgPropertyExistsVisibilityConverter},
+                                 ConverterParameter=GeometryType}"/>
+        
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocCanAttachFiles}"
+            Grid.Row="5" />
+        <ComboBox
+            Grid.Row="5"
+            Grid.Column="1"
+            SelectedItem="{Binding Path=HasFiles,
+                Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocHasHistory}"
+            Grid.Row="12" />
+        <ComboBox Grid.Row="12" Grid.Column="1" SelectedItem="{Binding Path=HasHistory, Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocHidden}"
+            Grid.Row="13" />
+        <ComboBox Grid.Row="13" Grid.Column="1" SelectedItem="{Binding Path=IsHidden, Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocContainsStyles}"
+            Grid.Row="14" 
+            Visibility="{Binding Path=Type, 
+                                 Mode=OneWay, 
+                                 Converter={StaticResource PgPropertyExistsVisibilityConverter},
+                                 ConverterParameter=IsMapStyle}"/>
+        <ComboBox 
+            Grid.Row="14" 
+            Grid.Column="1" 
+            SelectedItem="{Binding Path=IsMapStyle, Converter={StaticResource BooleanYesNoConverter}}"
+            Visibility="{Binding Path=Type, 
+                                 Mode=OneWay, 
+                                 Converter={StaticResource PgPropertyExistsVisibilityConverter},
+                                 ConverterParameter=IsMapStyle}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />                
+            </ComboBox.Items>
+        </ComboBox>
+
+        <StackPanel VerticalAlignment="Bottom" Grid.Row="1000" Grid.ColumnSpan="1000" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button 
+                beh:CommandBehavior.Action="{Binding BindingGroupSaveAction}"
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.CommandParameter="{Binding ElementName=mapLayerPropertiesBindingGroup}"
+                Name="SaveButton"
+                MinWidth="80"
+                Content="{x:Static properties:Resources.LocSave}"
+                Padding="0,1,0,1"
+                Margin="3" />
+            <Button
+                beh:CommandBehavior.Action="{Binding BindingGroupCancelAction}"
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.CommandParameter="{Binding ElementName=mapLayerPropertiesBindingGroup}"
+                Name="CancelButton"
+                MinWidth="80"
+                Content="{x:Static properties:Resources.LocCancel}"
+                Padding="0,1,0,1"
+                Margin="3" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="sscSync.View.StyleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:view="clr-namespace:sscSync.View"
+             mc:Ignorable="d" >
+    <Grid Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <view:PointStyle 
+            Grid.Row="1">
+            <view:PointStyle.Style>
+                <Style TargetType="UserControl">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Style.Type, Mode=OneWay}" Value="Point">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </view:PointStyle.Style>
+        </view:PointStyle>
+
+        <view:LineStyle 
+            Grid.Row="1">
+            <view:LineStyle.Style>
+                <Style TargetType="UserControl">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Style.Type, Mode=OneWay}" Value="Line">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </view:LineStyle.Style>
+        </view:LineStyle>
+
+        <view:PolygonStyle
+            Grid.Row="1">
+            <view:PolygonStyle.Style>
+                <Style TargetType="UserControl">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Style.Type, Mode=OneWay}" Value="Polygon">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </view:PolygonStyle.Style>
+        </view:PolygonStyle>
+                
+        <view:BorderStyle />
+    </Grid>
+</UserControl>

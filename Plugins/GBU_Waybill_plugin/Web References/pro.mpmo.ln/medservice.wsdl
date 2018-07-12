@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="urn:DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="urn:DefaultNamespace" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:DefaultNamespace">
+      <xsd:element name="dateFormatReturn" type="xsd:string" />
+      <xsd:element name="getDateSepReturn" type="xsd:string" />
+      <xsd:element name="getTimeSepReturn" type="xsd:string" />
+      <xsd:element name="getWaybillDayCountReturn" type="xsd:int" />
+      <xsd:element name="unixtime" type="xsd:long" />
+      <xsd:complexType name="Waybill">
+        <xsd:sequence>
+          <xsd:element name="EDS" nillable="true" type="xsd:string" />
+          <xsd:element name="access" nillable="true" type="xsd:string" />
+          <xsd:element name="beforeAfter" nillable="true" type="xsd:string" />
+          <xsd:element name="employeeId" nillable="true" type="xsd:string" />
+          <xsd:element name="medicFullname" nillable="true" type="xsd:string" />
+          <xsd:element name="time" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="WaybillArray">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="impl:Waybill" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getWaybillsByTimeReturn" type="impl:WaybillArray" />
+      <xsd:element name="getEmloyeesCountReturn" type="xsd:int" />
+      <xsd:complexType name="apachesoap_VectorArray">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="apachesoap:Vector" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getEmployeesReturn" type="impl:apachesoap_VectorArray" />
+      <xsd:element name="employeeId" type="xsd:string" />
+      <xsd:complexType name="Employee">
+        <xsd:sequence>
+          <xsd:element name="birthday" nillable="true" type="xsd:date" />
+          <xsd:element name="employeeId" nillable="true" type="xsd:string" />
+          <xsd:element name="firstName" nillable="true" type="xsd:string" />
+          <xsd:element name="fullName" nillable="true" type="xsd:string" />
+          <xsd:element name="lastName" nillable="true" type="xsd:string" />
+          <xsd:element name="middleName" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getEmployeeByIdReturn" type="impl:Employee" />
+      <xsd:element name="index" type="xsd:int" />
+      <xsd:element name="getEmployeeByIndexReturn" type="impl:Employee" />
+      <xsd:element name="deleteEmployeeReturn" type="xsd:boolean" />
+      <xsd:element name="lastName" type="xsd:string" />
+      <xsd:element name="firstName" type="xsd:string" />
+      <xsd:element name="middleName" type="xsd:string" />
+      <xsd:element name="birthday" type="xsd:date" />
+      <xsd:element name="department" type="xsd:string" />
+      <xsd:element name="addEmployeeReturn" type="xsd:boolean" />
+      <xsd:complexType name="xsd_stringArray">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="fields" type="impl:xsd_stringArray" />
+      <xsd:element name="values" type="impl:xsd_stringArray" />
+      <xsd:element name="updateEmployeeReturn" type="xsd:boolean" />
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.apache.org/xml-soap">
+      <xsd:complexType name="Vector">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="xsd:anyType" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addEmployeeRequest">
+    <wsdl:part name="employeeId" element="impl:employeeId" />
+    <wsdl:part name="lastName" element="impl:lastName" />
+    <wsdl:part name="firstName" element="impl:firstName" />
+    <wsdl:part name="middleName" element="impl:middleName" />
+    <wsdl:part name="birthday" element="impl:birthday" />
+    <wsdl:part name="department" element="impl:department" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeesRequest" />
+  <wsdl:message name="dateFormatResponse">
+    <wsdl:part name="dateFormatReturn" element="impl:dateFormatReturn" />
+  </wsdl:message>
+  <wsdl:message name="dateFormatRequest" />
+  <wsdl:message name="addEmployeeResponse">
+    <wsdl:part name="addEmployeeReturn" element="impl:addEmployeeReturn" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeesResponse">
+    <wsdl:part name="getEmployeesReturn" element="impl:getEmployeesReturn" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByIdResponse">
+    <wsdl:part name="getEmployeeByIdReturn" element="impl:getEmployeeByIdReturn" />
+  </wsdl:message>
+  <wsdl:message name="deleteEmployeeRequest">
+    <wsdl:part name="employeeId" element="impl:employeeId" />
+  </wsdl:message>
+  <wsdl:message name="getDateSepRequest" />
+  <wsdl:message name="getEmloyeesCountResponse">
+    <wsdl:part name="getEmloyeesCountReturn" element="impl:getEmloyeesCountReturn" />
+  </wsdl:message>
+  <wsdl:message name="getTimeSepRequest" />
+  <wsdl:message name="getWaybillDayCountResponse">
+    <wsdl:part name="getWaybillDayCountReturn" element="impl:getWaybillDayCountReturn" />
+  </wsdl:message>
+  <wsdl:message name="getDateSepResponse">
+    <wsdl:part name="getDateSepReturn" element="impl:getDateSepReturn" />
+  </wsdl:message>
+  <wsdl:message name="getEmloyeesCountRequest" />
+  <wsdl:message name="deleteEmployeeResponse">
+    <wsdl:part name="deleteEmployeeReturn" element="impl:deleteEmployeeReturn" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByIdRequest">
+    <wsdl:part name="employeeId" element="impl:employeeId" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeResponse">
+    <wsdl:part name="updateEmployeeReturn" element="impl:updateEmployeeReturn" />
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeRequest">
+    <wsdl:part name="employeeId" element="impl:employeeId" />
+    <wsdl:part name="fields" element="impl:fields" />
+    <wsdl:part name="values" element="impl:values" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByIndexResponse">
+    <wsdl:part name="getEmployeeByIndexReturn" element="impl:getEmployeeByIndexReturn" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByIndexRequest">
+    <wsdl:part name="index" element="impl:index" />
+  </wsdl:message>
+  <wsdl:message name="getWaybillsByTimeRequest">
+    <wsdl:part name="unixtime" element="impl:unixtime" />
+  </wsdl:message>
+  <wsdl:message name="getWaybillsByTimeResponse">
+    <wsdl:part name="getWaybillsByTimeReturn" element="impl:getWaybillsByTimeReturn" />
+  </wsdl:message>
+  <wsdl:message name="getTimeSepResponse">
+    <wsdl:part name="getTimeSepReturn" element="impl:getTimeSepReturn" />
+  </wsdl:message>
+  <wsdl:message name="getWaybillDayCountRequest" />
+  <wsdl:portType name="MedService">
+    <wsdl:operation name="dateFormat">
+      <wsdl:input name="dateFormatRequest" message="impl:dateFormatRequest" />
+      <wsdl:output name="dateFormatResponse" message="impl:dateFormatResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDateSep">
+      <wsdl:input name="getDateSepRequest" message="impl:getDateSepRequest" />
+      <wsdl:output name="getDateSepResponse" message="impl:getDateSepResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTimeSep">
+      <wsdl:input name="getTimeSepRequest" message="impl:getTimeSepRequest" />
+      <wsdl:output name="getTimeSepResponse" message="impl:getTimeSepResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getWaybillDayCount">
+      <wsdl:input name="getWaybillDayCountRequest" message="impl:getWaybillDayCountRequest" />
+      <wsdl:output name="getWaybillDayCountResponse" message="impl:getWaybillDayCountResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getWaybillsByTime">
+      <wsdl:input name="getWaybillsByTimeRequest" message="impl:getWaybillsByTimeRequest" />
+      <wsdl:output name="getWaybillsByTimeResponse" message="impl:getWaybillsByTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmloyeesCount">
+      <wsdl:input name="getEmloyeesCountRequest" message="impl:getEmloyeesCountRequest" />
+      <wsdl:output name="getEmloyeesCountResponse" message="impl:getEmloyeesCountResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmployees">
+      <wsdl:input name="getEmployeesRequest" message="impl:getEmployeesRequest" />
+      <wsdl:output name="getEmployeesResponse" message="impl:getEmployeesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeById">
+      <wsdl:input name="getEmployeeByIdRequest" message="impl:getEmployeeByIdRequest" />
+      <wsdl:output name="getEmployeeByIdResponse" message="impl:getEmployeeByIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByIndex">
+      <wsdl:input name="getEmployeeByIndexRequest" message="impl:getEmployeeByIndexRequest" />
+      <wsdl:output name="getEmployeeByIndexResponse" message="impl:getEmployeeByIndexResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteEmployee">
+      <wsdl:input name="deleteEmployeeRequest" message="impl:deleteEmployeeRequest" />
+      <wsdl:output name="deleteEmployeeResponse" message="impl:deleteEmployeeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addEmployee">
+      <wsdl:input name="addEmployeeRequest" message="impl:addEmployeeRequest" />
+      <wsdl:output name="addEmployeeResponse" message="impl:addEmployeeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEmployee">
+      <wsdl:input name="updateEmployeeRequest" message="impl:updateEmployeeRequest" />
+      <wsdl:output name="updateEmployeeResponse" message="impl:updateEmployeeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DominoSoapBinding" type="impl:MedService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="dateFormat">
+      <wsdlsoap:operation soapAction="dateFormat" />
+      <wsdl:input name="dateFormatRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="dateFormatResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDateSep">
+      <wsdlsoap:operation soapAction="getDateSep" />
+      <wsdl:input name="getDateSepRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDateSepResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTimeSep">
+      <wsdlsoap:operation soapAction="getTimeSep" />
+      <wsdl:input name="getTimeSepRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTimeSepResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWaybillDayCount">
+      <wsdlsoap:operation soapAction="getWaybillDayCount" />
+      <wsdl:input name="getWaybillDayCountRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getWaybillDayCountResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWaybillsByTime">
+      <wsdlsoap:operation soapAction="getWaybillsByTime" />
+      <wsdl:input name="getWaybillsByTimeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getWaybillsByTimeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmloyeesCount">
+      <wsdlsoap:operation soapAction="getEmloyeesCount" />
+      <wsdl:input name="getEmloyeesCountRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEmloyeesCountResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployees">
+      <wsdlsoap:operation soapAction="getEmployees" />
+      <wsdl:input name="getEmployeesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEmployeesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeById">
+      <wsdlsoap:operation soapAction="getEmployeeById" />
+      <wsdl:input name="getEmployeeByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEmployeeByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByIndex">
+      <wsdlsoap:operation soapAction="getEmployeeByIndex" />
+      <wsdl:input name="getEmployeeByIndexRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getEmployeeByIndexResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEmployee">
+      <wsdlsoap:operation soapAction="deleteEmployee" />
+      <wsdl:input name="deleteEmployeeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteEmployeeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addEmployee">
+      <wsdlsoap:operation soapAction="addEmployee" />
+      <wsdl:input name="addEmployeeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addEmployeeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEmployee">
+      <wsdlsoap:operation soapAction="updateEmployee" />
+      <wsdl:input name="updateEmployeeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateEmployeeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MedServiceService">
+    <wsdl:port name="Domino" binding="impl:DominoSoapBinding">
+      <wsdlsoap:address location="http://ln.mpmo.pro:85/PMOMedicalBase/AvtoDorogi/Drivers.nsf/MedService?OpenWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

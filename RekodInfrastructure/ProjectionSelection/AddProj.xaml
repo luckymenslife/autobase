@@ -1,0 +1,37 @@
+﻿<Window x:Class="Rekod.ProjectionSelection.AddProj"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить проекцию" SizeToContent="Height" Width="550" MaxWidth="550" ResizeMode="NoResize" MaxHeight="600">
+    <Grid MinHeight="200">
+        <DockPanel>
+            <Grid Margin="5" DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="28"  />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="SRID" HorizontalContentAlignment="Left"></Label>
+                <TextBox Name="Srid" Grid.Row="1" Grid.Column="0" Margin="5" MaxLength="15"></TextBox>
+                <Label Grid.Row="0" Grid.Column="1" Content="Автор" HorizontalContentAlignment="Left"></Label>
+                <TextBox Name="Author" Grid.Row="1" Grid.Column="1" Margin="5" MaxLength="100"></TextBox>
+                <Label Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0" Content="Строка проекции"></Label>
+                <TextBox MaxHeight="280" Name="ProjString" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLines="20" MaxLength="2048"></TextBox>
+                <Label Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="0" Content="Выражение проекции"></Label>
+                <TextBox MaxHeight="84" Name="ProjExpr" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLines="10" MaxLength="500"></TextBox>
+                <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="100" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Name="testButton"  Content="Тест" Margin="5" Width="60" Click="testButton_Click"></Button>
+                    <Button Name="createButton" Content="Создание" Margin="5" Width="60" Click="createButton_Click"></Button>
+                    <Button Name="cancelButton" Content="Отмена" Margin="5" Width="60" Click="cancelButton_Click"></Button>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="Rekod.MapLayersItemInfo.View.MapLayersItemInfoV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             SnapsToDevicePixels="True"
+             RenderOptions.BitmapScalingMode="NearestNeighbor"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             UseLayoutRounding="True"
+             Name="MapLayersItemInfoVObject"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:props="clr-namespace:Rekod.Properties"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ChooseObjectsBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/SearchTextBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/AttributesStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TreeViewItem" BasedOn="{StaticResource TreeViewItemPlainStyle}">
+                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+            </Style>
+            <Style TargetType="{x:Type TreeView}">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Objects}">
+                            <HierarchicalDataTemplate.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </HierarchicalDataTemplate.Resources>
+                            <Border
+                                Style="{StaticResource InnerBorderFirstLevelStyle}">
+                                <Border.ContextMenu>
+                                    <ContextMenu
+                                        Padding="2">
+                                        <MenuItem
+                                            Name="OpenTableMenuItem"
+                                            Command="{Binding OpenTableCommand}"
+                                            Header="{x:Static props:Resources.Info_OpenTable}">
+                                            <MenuItem.Icon>
+                                                <Image 
+                                                    Margin="2"
+                                                    Width="20"
+                                                    Source="/Resources/object_List.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem 
+                                            Command="{Binding MakeEditableCommand}"
+                                            Height="{Binding ElementName=OpenTableMenuItem, Path=ActualHeight}"
+                                            Header="{x:Static props:Resources.Info_MakeEditable}" />
+                                        <MenuItem 
+                                            Command="{Binding ZoomToSelectedObjectsCommand}"
+                                            Header="{x:Static props:Resources.Tool_ZoomToSelObjects}">
+                                            <MenuItem.Icon>
+                                                <Image
+                                                    Margin="2"
+                                                    Width="20"
+                                                    Source="/Resources/ZoomToSelectObj.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem 
+                                            Command="{Binding ZoomToLayerCommand}"
+                                            Header="{x:Static props:Resources.Tool_ZoomToLayer}">
+                                            <MenuItem.Icon>
+                                                <Image
+                                                    Margin="2"
+                                                    Width="20"
+                                                    Source="/Resources/ZoomToLayer.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Border.ContextMenu>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton
+                                        Grid.Column="1"
+                                        IsChecked="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=TemplatedParent.IsExpanded}"
+                                        Style="{StaticResource ExpandCollapseToggleStyle}"
+                                        Margin="5, 0, 0, 0"
+                                        DockPanel.Dock="Right" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image UseLayoutRounding="True" VerticalAlignment="Center" Height="12" x:Name="TableImage" Margin="1, 1, 5, 1" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=Text}" />
+                                        <TextBlock VerticalAlignment="Center" Text=" (" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=TableType, Converter={StaticResource EnumWrapperConverter}}" />
+                                        <TextBlock VerticalAlignment="Center" Text=")" />
+                                        <TextBlock VerticalAlignment="Center" Text=" [" />
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Path=Objects.Count}" />
+                                        <TextBlock VerticalAlignment="Center" Text="]" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="Polygon">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Полигон.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="MultiPolygon">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Полигон.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="Line">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Линия.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="MultiLine">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Линия.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="Point">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Точка.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=GeomType}" Value="MultiPoint">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/Точка.png" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=TableType}" Value="BottomLayer">
+                                    <Setter TargetName="TableImage" Property="Source" Value="/Images/LayersManagerBottomLayer.png" />
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <Border
+                                        Style="{StaticResource InnerBorderSecondLevelStyle}"
+                                        Name="SecondLevelBorder">
+                                        <Border.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem 
+                                                    Header="{x:Static props:Resources.Info_OpenObject}"
+                                                    Command="{Binding OpenAttributesWindowCommand}">                                                    
+                                                </MenuItem>
+                                                <MenuItem 
+                                                    Command="{Binding SelectObjectCommand}"
+                                                    Header="{x:Static props:Resources.Info_Highlight}" />
+                                                <MenuItem 
+                                                    Command="{Binding ShowObjectCommand}"
+                                                    Header="{x:Static props:Resources.Info_Show}"/>
+                                            </ContextMenu>
+                                        </Border.ContextMenu>
+                                        <Border.InputBindings>
+                                            <MouseBinding 
+                                                Gesture="LeftDoubleClick" 
+                                                Command="{Binding OpenAttributesWindowCommand}" />
+                                        </Border.InputBindings>
+                                        <TextBlock Text="{Binding Path=Text}" />
+                                    </Border>
+                                </HierarchicalDataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>            
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox  
+            Margin="5, 5, 0, 5"
+            Background="LightGray"
+            MinHeight="26"
+            Style="{StaticResource SearchTextBoxStyle}"
+            beh:CommandBehavior.Event="TextChanged"
+            beh:CommandBehavior.Command="serv:ServiceClass.FilterItemsCommand">
+            <beh:CommandBehavior.CommandParameter>
+                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                    <Binding ElementName="InfoLayersTree" />
+                    <Binding Source="1:LayerName;" />
+                </MultiBinding>
+            </beh:CommandBehavior.CommandParameter>
+        </TextBox>
+
+        <TreeView
+            Margin="5, 0, 0, 5"
+            Grid.Row="2"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            Name="InfoLayersTree"
+            ItemsSource="{Binding Layers}">
+            <beh:CommandBehaviorCollection.Behaviors>
+                <beh:BehaviorBinding Command="{Binding MoveToObjectCommand}" Event="SelectedItemChanged" />
+            </beh:CommandBehaviorCollection.Behaviors>
+        </TreeView>
+        
+        <DockPanel
+            Margin="5, 5, 0, 5"
+            Grid.Row="3">
+            <Button
+                Command="{Binding HideWindowCommand}"
+                Margin="3, 3, 0, 3"
+                Content="{x:Static props:Resources.PgFullSearch_Close}"
+                DockPanel.Dock="Right" Width="73" />
+            <Button 
+                Command="{Binding FallbackValue={StaticResource EmptyCommand}, ElementName=InfoLayersTree, Path=SelectedItem.OpenAttributesWindowCommand}"
+                Margin="3"
+                Content="{x:Static props:Resources.PgFullSearch_Attributes}" 
+                DockPanel.Dock="Right" Width="73"/>
+            <StackPanel>
+                <CheckBox
+                    IsChecked="{Binding SelectObject}"
+                    VerticalAlignment="Center"
+                    Content="{x:Static props:Resources.Info_Highlight}">
+                </CheckBox>
+                <CheckBox
+                    IsChecked="{Binding MovingToObject}"
+                    VerticalAlignment="Center"
+                    Content="{x:Static props:Resources.PgFullSearch_MoveToObject}">
+                </CheckBox>
+            </StackPanel>
+        </DockPanel>
+        
+        <GridSplitter
+            Background="Transparent"
+            Width="4" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch"
+            Grid.Column="1" 
+            Grid.RowSpan="100" />
+
+        <!--Область списка Атрибутов-->
+        <ItemsControl
+            BorderBrush="Gray"
+            BorderThickness="1"
+            Margin="5"
+            Padding="5"
+            Grid.RowSpan="100"
+            HorizontalAlignment="Stretch"
+            Grid.Column="1"
+            x:Name="icAttributes"
+            ItemsSource="{Binding ElementName=InfoLayersTree, Path=SelectedItem.Attributes}"
+            Style="{DynamicResource sAttributesPanel}" />
+
+    </Grid>
+</UserControl>

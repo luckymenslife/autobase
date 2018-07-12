@@ -1,0 +1,3798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="OutsideDiapason" xml:space="preserve">
+    <value>Вне диапозона</value>
+  </data>
+  <data name="LocAllSupportedFormats" xml:space="preserve">
+    <value>Все поддерживаемые форматы</value>
+  </data>
+  <data name="PgAttributes_ErrorGeomConvert" xml:space="preserve">
+    <value>Не удалось преобразовать геометрию</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="object_rotate_left_on_deg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_on_deg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_sattelite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_sattelite.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="для_арсенала" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\для_арсенала.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Report_M_ErrorDesign" xml:space="preserve">
+    <value>Неправильная команда вызова дизайнера.</value>
+  </data>
+  <data name="LocCurrentPen" xml:space="preserve">
+    <value>Текущий карандаш</value>
+  </data>
+  <data name="login_errSerName" xml:space="preserve">
+    <value>Не введено название сервера</value>
+  </data>
+  <data name="ucTable_DeleteRowsHeader" xml:space="preserve">
+    <value>Удаление объектов</value>
+  </data>
+  <data name="PgGeomVRec_Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="PTC_Background" xml:space="preserve">
+    <value>Фона</value>
+  </data>
+  <data name="PrintSettingsFrm_PaperFormat_Random" xml:space="preserve">
+    <value>Произвольный</value>
+  </data>
+  <data name="AbsM.ERefType.None" xml:space="preserve">
+    <value>Нет связи</value>
+  </data>
+  <data name="mainFrm_errIncorrectLayerType" xml:space="preserve">
+    <value>Неправильный тип слоя</value>
+  </data>
+  <data name="WmMenu_File_PrintSettings" xml:space="preserve">
+    <value>Настройки печати…</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPoint" xml:space="preserve">
+    <value>Точки</value>
+  </data>
+  <data name="AdminFrm_WriteAllTables" xml:space="preserve">
+    <value>Разрешено редактирование всех таблиц</value>
+  </data>
+  <data name="LocPassword" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="userAddFrm_LoginReservedWord" xml:space="preserve">
+    <value>Указанный логин является зарезервированным словом! Поменяйте логин.</value>
+  </data>
+  <data name="WmMenu_Tools_HistoryWPF" xml:space="preserve">
+    <value>История изменений WPF…</value>
+  </data>
+  <data name="LocCanAttachFiles" xml:space="preserve">
+    <value>Прикрепляемые файлы</value>
+  </data>
+  <data name="AddEditRastr_EnterName" xml:space="preserve">
+    <value>Введите название растрового слоя</value>
+  </data>
+  <data name="PgM.EChangeColor.Background" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="LocPrecision" xml:space="preserve">
+    <value>Точность</value>
+  </data>
+  <data name="sloi1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_GeomValue" xml:space="preserve">
+    <value>Задано значение геометрии</value>
+  </data>
+  <data name="mainFrm_errorReportManager" xml:space="preserve">
+    <value>Ошибка при открытии менеджера отчетов</value>
+  </data>
+  <data name="delete2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocFileSaveImageForPrint" xml:space="preserve">
+    <value>Сохранить картинку для печати</value>
+  </data>
+  <data name="PgReg_RegisterScheme" xml:space="preserve">
+    <value>Регистрация схемы в базе данных</value>
+  </data>
+  <data name="LocLabelStyle" xml:space="preserve">
+    <value>Стиль подписи</value>
+  </data>
+  <data name="PgReg_ChoosePK" xml:space="preserve">
+    <value>Выберите поле первичного ключа</value>
+  </data>
+  <data name="DGBH_ErrorHeader" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="PgGeom.ESridTypes.WorldMercator" xml:space="preserve">
+    <value>(3395) World Mercator WGS 84</value>
+  </data>
+  <data name="PgFullSearch_SearchResult" xml:space="preserve">
+    <value>Результат поиска</value>
+  </data>
+  <data name="Tool_WorkSets" xml:space="preserve">
+    <value>Управление рабочими наборами</value>
+  </data>
+  <data name="layers_pg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_pg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocGroupBelong" xml:space="preserve">
+    <value>Принадлежность группе</value>
+  </data>
+  <data name="LIV_DeleteStyleLayerHeader" xml:space="preserve">
+    <value>Удаление оформления</value>
+  </data>
+  <data name="login_errIncorrectProxySettings" xml:space="preserve">
+    <value>Ошибка при применении настроек прокси-сервера</value>
+  </data>
+  <data name="LocNullColor" xml:space="preserve">
+    <value>Цвен нуля</value>
+  </data>
+  <data name="login_errNoDB" xml:space="preserve">
+    <value>Базы данных '</value>
+  </data>
+  <data name="WorkSets_V_MessageQuestion" xml:space="preserve">
+    <value>Вопрос...</value>
+  </data>
+  <data name="TLE_DeletingLayerAsk" xml:space="preserve">
+    <value>Вы действительно хотите удалить слой?</value>
+  </data>
+  <data name="DGBH_Polygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="LIV_Rastr_layer" xml:space="preserve">
+    <value>Растровые слои</value>
+  </data>
+  <data name="PgListUserRightsVM_MapLayers" xml:space="preserve">
+    <value>Тематические слои карты</value>
+  </data>
+  <data name="TLE_DeletingTable" xml:space="preserve">
+    <value>Удаление таблицы</value>
+  </data>
+  <data name="rastrovii_izobrageni9ya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rastrovii izobrageni9ya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToSelectObj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToSelectObj.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Report_VM_photoDateUpdate" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Report_VM_QuestionSave" xml:space="preserve">
+    <value>Сохранение</value>
+  </data>
+  <data name="TLE_ActionToTable" xml:space="preserve">
+    <value>Действия над таблицей</value>
+  </data>
+  <data name="Report_VM_geomCenter_y" xml:space="preserve">
+    <value>Геометрия: Центроид по Y</value>
+  </data>
+  <data name="AddEditRastr_ErrorExistFile" xml:space="preserve">
+    <value>Укажите существующий файл растрового слоя</value>
+  </data>
+  <data name="LocBeginOfInterval" xml:space="preserve">
+    <value>Начало интервала</value>
+  </data>
+  <data name="ExportProjSelection_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LIV_ErrorLoadLayer" xml:space="preserve">
+    <value>Невозможно загрузить слой</value>
+  </data>
+  <data name="LocFile" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="mainFrm_errGeometryShouldBeMulti" xml:space="preserve">
+    <value>Тип геометрии объекта должен быть мульти!</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.Degrees" xml:space="preserve">
+    <value>Градусы</value>
+  </data>
+  <data name="AbsM.ERefType.Reference" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="LIV_SavePositionLayer" xml:space="preserve">
+    <value>Вы действительно хотите запомнить положение слоев?</value>
+  </data>
+  <data name="PgFullSearch_Attributes" xml:space="preserve">
+    <value>Атрибутика</value>
+  </data>
+  <data name="AET_CreatingTable" xml:space="preserve">
+    <value>Создание таблицы</value>
+  </data>
+  <data name="Tool_LayerUp" xml:space="preserve">
+    <value>Перемещение слоя вверх</value>
+  </data>
+  <data name="FormTableData_CheckFrormatData" xml:space="preserve">
+    <value>Проверьте формат данных или обязательные для ввода поля!</value>
+  </data>
+  <data name="PgM.UserType.Admin" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="RstGrf_SridShouldNotBeEmpty" xml:space="preserve">
+    <value>Определение проекции не должно быть пустым</value>
+  </data>
+  <data name="mainFrm_Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="mainFrm_errMFileNFChange" xml:space="preserve">
+    <value>Файл карты не найден! Вы хотите указать файл? Иначе останется прежняя карта.</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser" xml:space="preserve">
+    <value>Нельзя удалять текущего пользователя!</value>
+  </data>
+  <data name="lupa__1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa -.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mes_Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="new_hollow_type_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_Continue" xml:space="preserve">
+    <value>В геометрии содержатся пустые объекты либо объекты с ошибками, которые будут удалены. Продолжить?</value>
+  </data>
+  <data name="AbsM.EFieldType.Geometry" xml:space="preserve">
+    <value>Геометрия</value>
+  </data>
+  <data name="IV_Preview" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="PrintV_PageWidth" xml:space="preserve">
+    <value>Ширина страницы</value>
+  </data>
+  <data name="DGBH_RecalcGeomNewProj" xml:space="preserve">
+    <value>Не удалось пересчитать координаты для новой проекции</value>
+  </data>
+  <data name="PgFullSearch_TableName" xml:space="preserve">
+    <value>Название таблицы</value>
+  </data>
+  <data name="CosAttributes_GeomExport" xml:space="preserve">
+    <value>Экспорт геометрии в…</value>
+  </data>
+  <data name="redaktor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redaktor.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InformationMessage_Header" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="Tool_AddInMapPoint" xml:space="preserve">
+    <value>Добавление точки на карту</value>
+  </data>
+  <data name="workset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\workset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_AddRectangle" xml:space="preserve">
+    <value>Добавление прямоугольника</value>
+  </data>
+  <data name="FormTableData_Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="WorkSets_V_AddWorkSet" xml:space="preserve">
+    <value>Добавить новый рабочий набор</value>
+  </data>
+  <data name="PgReg_NotMapLayer" xml:space="preserve">
+    <value>Не слой карты</value>
+  </data>
+  <data name="AdminFrm_NotWriteAllTable" xml:space="preserve">
+    <value>Запрещено редактирование всех таблиц</value>
+  </data>
+  <data name="AbsM.ETableType.Cosmetic" xml:space="preserve">
+    <value>Косметический слой</value>
+  </data>
+  <data name="selectpoly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectpoly.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LIV_ErrorDataForSort" xml:space="preserve">
+    <value>Неправильно получены данные для сортировки слоев</value>
+  </data>
+  <data name="LayersInfo_Plugin_toolStripButton" xml:space="preserve">
+    <value>Получение информации об объектах на карте</value>
+  </data>
+  <data name="Report_VM_photoFileName" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="DGBH_EnterInt" xml:space="preserve">
+    <value>Введите целое число</value>
+  </data>
+  <data name="ImportWindow_Status" xml:space="preserve">
+    <value>Загрyжено строк для предпросмотра: {0}  Строк всего: {1}</value>
+  </data>
+  <data name="Tool_MoveGeom" xml:space="preserve">
+    <value>Перемещение объектов</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_DataTable" xml:space="preserve">
+    <value>Данные таблицы "{0}"</value>
+  </data>
+  <data name="CosTableView_CosmeticLayer" xml:space="preserve">
+    <value>Косметический слой</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Info" xml:space="preserve">
+    <value>Панель "Информация"</value>
+  </data>
+  <data name="arrow_sans_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_sans_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocHidden" xml:space="preserve">
+    <value>Скрытая</value>
+  </data>
+  <data name="AEAtr_ReservedName" xml:space="preserve">
+    <value>Имя является зарезервированным.</value>
+  </data>
+  <data name="ucTable_DeleteAllRows" xml:space="preserve">
+    <value>Вы действительно хотите удалить все записи из данной таблицы?</value>
+  </data>
+  <data name="mainFrm_errObjID" xml:space="preserve">
+    <value>Ошибка получения идентификатора объекта!</value>
+  </data>
+  <data name="Слой_вниз" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вниз.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocSourceCosmetic" xml:space="preserve">
+    <value>Косметические слои</value>
+  </data>
+  <data name="LocSourceTable" xml:space="preserve">
+    <value>Таблица источник</value>
+  </data>
+  <data name="PrintV_PageSettings" xml:space="preserve">
+    <value>Настройки страницы</value>
+  </data>
+  <data name="dobavit_object" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\udalit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue_bg_for_panel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsPosFrm_DeleteLocation" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранную локацию?</value>
+  </data>
+  <data name="Tool_ZoomInRegion" xml:space="preserve">
+    <value>Приближение областью</value>
+  </data>
+  <data name="LocChangeOfColor" xml:space="preserve">
+    <value>Изменение цвета</value>
+  </data>
+  <data name="CMD_EnterFile" xml:space="preserve">
+    <value>Укажите файл</value>
+  </data>
+  <data name="InfoObjForm_object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="PgUserList_AdmUserRaght" xml:space="preserve">
+    <value>Администрирование прав пользователей</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layerInfo_OverAll" xml:space="preserve">
+    <value>По всем</value>
+  </data>
+  <data name="ExportQuestion_Title" xml:space="preserve">
+    <value>Сообщение выгрузки</value>
+  </data>
+  <data name="SSF_Title" xml:space="preserve">
+    <value>Сохранить рабочий набор</value>
+  </data>
+  <data name="CosAttributes_MvObjectIsNull" xml:space="preserve">
+    <value>Нет ссылки на объект карты</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Авторские права:</value>
+  </data>
+  <data name="Слой_вверх" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вверх.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReportEditor_V_AddReportAll" xml:space="preserve">
+    <value>Добавить общий отчет</value>
+  </data>
+  <data name="SSF_SetName" xml:space="preserve">
+    <value>Наименование рабочего набора</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutesSeconds" xml:space="preserve">
+    <value>Градусы, минуты, секунды</value>
+  </data>
+  <data name="PgReg_Views" xml:space="preserve">
+    <value>Представления</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить пустоту?</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteMes" xml:space="preserve">
+    <value>Удалить данный отчет?</value>
+  </data>
+  <data name="LocUseVisibilityBounds" xml:space="preserve">
+    <value>Исп-ть гр-цы видимости</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IV_UseIndex" xml:space="preserve">
+    <value>Использовать индекс при поиске</value>
+  </data>
+  <data name="Tool_DeleteObject" xml:space="preserve">
+    <value>Удаление объектов</value>
+  </data>
+  <data name="LocUseMethodOfUsing" xml:space="preserve">
+    <value>Способ подключения</value>
+  </data>
+  <data name="edit_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremeschenie1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_errImgSize" xml:space="preserve">
+    <value>Невозможно сформировать изображение такого размера</value>
+  </data>
+  <data name="LocAttributes" xml:space="preserve">
+    <value>Атрибуты</value>
+  </data>
+  <data name="FormTableData_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="mainFrm_filter" xml:space="preserve">
+    <value>Рисунок *.bmp|*.bmp|Рисунок *.jpg|*.jpg|Рисунок *.png|*.png</value>
+  </data>
+  <data name="LocHasHistory" xml:space="preserve">
+    <value>Вести историю</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Coords" xml:space="preserve">
+    <value>Панель "Координаты"</value>
+  </data>
+  <data name="LocLabelUseBounds" xml:space="preserve">
+    <value>Показывать в пределах</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeNewWorkSet" xml:space="preserve">
+    <value>Новый набор:</value>
+  </data>
+  <data name="AEAtr_ErrorCreateAtrField" xml:space="preserve">
+    <value>Ошибка создания атрибутивного поля!</value>
+  </data>
+  <data name="LIV_NotRightLayer" xml:space="preserve">
+    <value>У вас нет прав на редактирование данного слоя!</value>
+  </data>
+  <data name="LabelControl_InvalidExpression" xml:space="preserve">
+    <value>Вы используете недопустимое выражение</value>
+  </data>
+  <data name="RstGrf_OpenRaster" xml:space="preserve">
+    <value>Открыть растр</value>
+  </data>
+  <data name="LocDepartment" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="mainFrm_errSaveWhenGeometryIsNotMulti" xml:space="preserve">
+    <value>В данном слое нельзя сохранять объекты с несколькими геометриями.\nСохранить только первую геометрию в объекте?</value>
+  </data>
+  <data name="mainFrm_DBConFail" xml:space="preserve">
+    <value>Потеряно соединение с базой данных</value>
+  </data>
+  <data name="RstGrf_LayerCreated" xml:space="preserve">
+    <value>Слой "{0}" в системе успешно создан</value>
+  </data>
+  <data name="WorkSets_V_Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="PgGeomVRec_Info" xml:space="preserve">
+    <value>Инфо</value>
+  </data>
+  <data name="DGBH_ErrorSinglePolygon" xml:space="preserve">
+    <value>Вы не можете удалить единственный полигон</value>
+  </data>
+  <data name="PgReg_FieldTypeCantBeDefined" xml:space="preserve">
+    <value>Тип поля не может быть определен</value>
+  </data>
+  <data name="PgGeomVRec_RemoveLine" xml:space="preserve">
+    <value>Удалить линию</value>
+  </data>
+  <data name="kwalletmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kwalletmanager.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AEAtr_TableAttributesHeader" xml:space="preserve">
+    <value>Атрибуты таблиц</value>
+  </data>
+  <data name="arrow_up_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up_1.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkSets_M_ExceptionAccess" xml:space="preserve">
+    <value>Нет прав</value>
+  </data>
+  <data name="PgReg_MarkFields" xml:space="preserve">
+    <value>Отметьте поля которые нужно зарегистрировать</value>
+  </data>
+  <data name="HistoryFrom_ButtonFind" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="AET_AddLabel" xml:space="preserve">
+    <value>Добавление подписи</value>
+  </data>
+  <data name="FELC_DeletingFieldLabel" xml:space="preserve">
+    <value>Это поле используется для создания подписи слоя. Подпись будет скрыта.</value>
+  </data>
+  <data name="GC_Centroid" xml:space="preserve">
+    <value>Центроид</value>
+  </data>
+  <data name="WmMenu_Tools_RastrLayers" xml:space="preserve">
+    <value>Растровые слои…</value>
+  </data>
+  <data name="Tool_ClipByPolygon" xml:space="preserve">
+    <value>Обрезание геометрии полигоном</value>
+  </data>
+  <data name="peremeschenie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CosAttributes_Table" xml:space="preserve">
+    <value>Таблица</value>
+  </data>
+  <data name="DGBH_DeleteObjMessage" xml:space="preserve">
+    <value>Вы действительно хотите удалить объект?</value>
+  </data>
+  <data name="FormTableData_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="LabelControl_ErrorShowResult" xml:space="preserve">
+    <value>Предпросмотр невозможен.</value>
+  </data>
+  <data name="PrintSettingsFrm_Random" xml:space="preserve">
+    <value>Произвольное</value>
+  </data>
+  <data name="LocTables" xml:space="preserve">
+    <value>Таблицы</value>
+  </data>
+  <data name="MoveObject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoveObject.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintV_MapMode" xml:space="preserve">
+    <value>Изменение печатаемой области</value>
+  </data>
+  <data name="FormTableData_TableData" xml:space="preserve">
+    <value>Табличные данные</value>
+  </data>
+  <data name="AET_ChangeTable" xml:space="preserve">
+    <value>Поменяйте название таблицы в базе данных.</value>
+  </data>
+  <data name="Report_VM_geomType" xml:space="preserve">
+    <value>Геометрия: тип</value>
+  </data>
+  <data name="login_fFilter" xml:space="preserve">
+    <value>Файл конфигурации|*.aews; *.riws|Все файлы *.*| *.*</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.DateTime" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="PgGeomVRec_AddLine" xml:space="preserve">
+    <value>Добавить линию</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Управление_работами" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_работами.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocUserType" xml:space="preserve">
+    <value>Тип пользователя</value>
+  </data>
+  <data name="AbsM.ERefType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="Styles_Uniformly" xml:space="preserve">
+    <value>Единообразно</value>
+  </data>
+  <data name="LocExternalSource" xml:space="preserve">
+    <value>Внешний источник</value>
+  </data>
+  <data name="legend_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\legend-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_msgStWS" xml:space="preserve">
+    <value>Для входа в управление таблицами необходимо перейти в стандартный рабочий набор!</value>
+  </data>
+  <data name="instruments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instruments.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_col" xml:space="preserve">
+    <value>столбец</value>
+  </data>
+  <data name="FormTableData_RightEditable" xml:space="preserve">
+    <value>У вас нет прав на редактирование таблицы!</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryJoining" xml:space="preserve">
+    <value>Ошибка при объединении геометрии</value>
+  </data>
+  <data name="mainFrm_sqm" xml:space="preserve">
+    <value>кв.м.</value>
+  </data>
+  <data name="photo_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\photo_add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="workset1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\workset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocOpen" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="selectregion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectregion.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgM.UserType.User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="FormTableData_DeleteFileMes" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранный файл?</value>
+  </data>
+  <data name="FindBox2_Empty" xml:space="preserve">
+    <value>Пустое</value>
+  </data>
+  <data name="AddPointOnMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddPointOnMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FELC_CannotDeleteField" xml:space="preserve">
+    <value>Этот атрибут связан со следующими таблицами:
+{0}</value>
+  </data>
+  <data name="PrintV_Navigation" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="PTC_BordersAndLines" xml:space="preserve">
+    <value>Границ или линий</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertInt" xml:space="preserve">
+    <value>Не удается преобразовать в целое:</value>
+  </data>
+  <data name="LocLogin" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="PgListUserRightsVM_Intervals" xml:space="preserve">
+    <value>Интервалы</value>
+  </data>
+  <data name="PgM.EStyleType.interval" xml:space="preserve">
+    <value>По интервалу</value>
+  </data>
+  <data name="Stil_sloya_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stil sloya_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiLine" xml:space="preserve">
+    <value>Мультилиния</value>
+  </data>
+  <data name="Tool_AddInMapPolygon" xml:space="preserve">
+    <value>Добавление полигона на карту</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryAdding" xml:space="preserve">
+    <value>Ошибка добавления объекта</value>
+  </data>
+  <data name="LocGetTableRights" xml:space="preserve">
+    <value>Получить права на таблицу</value>
+  </data>
+  <data name="LocTypeRelation" xml:space="preserve">
+    <value>Тип связи с таблицей</value>
+  </data>
+  <data name="izmeritel_rastoyaniya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_stWorkset" xml:space="preserve">
+    <value>Стандартный рабочий набор</value>
+  </data>
+  <data name="reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionNo" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="LocInterval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="RstGrf_AddControlPoint" xml:space="preserve">
+    <value>Добавить контрольную точку</value>
+  </data>
+  <data name="PrintSettingsFrm_Good" xml:space="preserve">
+    <value>Хорошее (150 dpi)</value>
+  </data>
+  <data name="TLE_DeletingIntervalAsk" xml:space="preserve">
+    <value>Вы действительно хотите удалить интервал?</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPolygon" xml:space="preserve">
+    <value>Мультиполигон</value>
+  </data>
+  <data name="__minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\- minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ucTable_ErrorStructTable" xml:space="preserve">
+    <value>Ошибка загрузки структуры таблицы</value>
+  </data>
+  <data name="clip_image002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image002.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_view_columns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_view_columns.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_DeleteVertex" xml:space="preserve">
+    <value>Удаление узла</value>
+  </data>
+  <data name="Tool_SetDeleteStyle" xml:space="preserve">
+    <value>Удаление оформления слоя</value>
+  </data>
+  <data name="LocFringe" xml:space="preserve">
+    <value>Кайма</value>
+  </data>
+  <data name="ucTable_DeleteFilter" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранные фильтры?</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeEditWorkSet" xml:space="preserve">
+    <value>Редактировать набор:</value>
+  </data>
+  <data name="text1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PTC_Styles" xml:space="preserve">
+    <value>Стили</value>
+  </data>
+  <data name="AET_SaveTableRename" xml:space="preserve">
+    <value>Сохранить таблицу с именем "{0}"?</value>
+  </data>
+  <data name="LocBrush" xml:space="preserve">
+    <value>Кисть</value>
+  </data>
+  <data name="точка1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_setPos" xml:space="preserve">
+    <value>Положение установлено</value>
+  </data>
+  <data name="SHPUC_chbLoadGeom" xml:space="preserve">
+    <value>Загружать геомерию</value>
+  </data>
+  <data name="separateObj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\separateObj.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeomVRec_PreviewActiveObject" xml:space="preserve">
+    <value>Показывать активный объект</value>
+  </data>
+  <data name="LocHelpAbout" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="CheckObjects_Title" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="PTC_BasicElement" xml:space="preserve">
+    <value>Основного</value>
+  </data>
+  <data name="login_errAdStr" xml:space="preserve">
+    <value>Неправильно введена строка адреса</value>
+  </data>
+  <data name="LocDataTable" xml:space="preserve">
+    <value>Таблица с данными</value>
+  </data>
+  <data name="addNotEnabledXY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXY.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_ErrorInDataEntry" xml:space="preserve">
+    <value>Ошибка в воде данных</value>
+  </data>
+  <data name="PgReg_TableNotDescribed" xml:space="preserve">
+    <value>Таблица не описана в системе</value>
+  </data>
+  <data name="PgFullSearch_ChooseTables" xml:space="preserve">
+    <value>Выберите таблицы для поиска</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Произошла ошибка! Сообщение:</value>
+  </data>
+  <data name="WorkSets_V_DeleteWorkSet" xml:space="preserve">
+    <value>Удалить рабочий набор</value>
+  </data>
+  <data name="LocUseStyle" xml:space="preserve">
+    <value>Применять стиль</value>
+  </data>
+  <data name="PrintV_Orientation" xml:space="preserve">
+    <value>Ориентация</value>
+  </data>
+  <data name="mainFrm_msgBDConFail" xml:space="preserve">
+    <value>Соединение с базой данных было утеряно! Произвести повторное соединение? Иначе приложение будет закрыто!</value>
+  </data>
+  <data name="GF_NonexistentGroupTable" xml:space="preserve">
+    <value>Несуществующая группа или таблица</value>
+  </data>
+  <data name="new_hollow_type_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RstGrf_Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="HistoryClass_ErrorResotreDeletedObject" xml:space="preserve">
+    <value>Heвозможно восстановить атрибут удаленного объекта</value>
+  </data>
+  <data name="SRF_NameIsUsed" xml:space="preserve">
+    <value>Отчёт с таким именем уже существует.</value>
+  </data>
+  <data name="PluginSettingsForm_SavePlugin" xml:space="preserve">
+    <value>Настройки сохранены! Изменения вступят в силу после перезапуска приложения!</value>
+  </data>
+  <data name="WmMenu_Sources_ShowPanel" xml:space="preserve">
+    <value>Показать менеджер слоев</value>
+  </data>
+  <data name="LocApply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetEdit" xml:space="preserve">
+    <value>Неудалось изменить набор</value>
+  </data>
+  <data name="LocOpacity" xml:space="preserve">
+    <value>Прозрачность</value>
+  </data>
+  <data name="TLE_DeleteNoForever" xml:space="preserve">
+    <value>Таблица удалена, но еще может быть восстановлена.</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login_errConfNF" xml:space="preserve">
+    <value>Не найдена конфигурация!</value>
+  </data>
+  <data name="lupa_minus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintV_Fit" xml:space="preserve">
+    <value>Вписать в область печати</value>
+  </data>
+  <data name="arrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryClass_OperationSuccess" xml:space="preserve">
+    <value>Операция прошла успешно!</value>
+  </data>
+  <data name="PgReg_TablesLayersCatalogs" xml:space="preserve">
+    <value>Таблицы, слои, справочники…</value>
+  </data>
+  <data name="PgGeomVRec_Use" xml:space="preserve">
+    <value>Использовать</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupOther" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="LocCosmeticConfig" xml:space="preserve">
+    <value>Косметические слои</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertDate" xml:space="preserve">
+    <value>Не удается преобразовать в дату:</value>
+  </data>
+  <data name="WorkSets_M_DefaultWorkSetName" xml:space="preserve">
+    <value>Стандартный рабочий набор</value>
+  </data>
+  <data name="AET_RequiredParams" xml:space="preserve">
+    <value>Не введены обязательные параметры!</value>
+  </data>
+  <data name="CMD_Confirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="NotSelected3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotSelected3.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorArraySize" xml:space="preserve">
+    <value>Не правильный размер входного массива</value>
+  </data>
+  <data name="ruler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CMD_DeleteConfirm" xml:space="preserve">
+    <value>Удалить выбранную запись?</value>
+  </data>
+  <data name="LIV_Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="FormTableData_Text" xml:space="preserve">
+    <value>Кликните тут для удобного редактирования</value>
+  </data>
+  <data name="LocChooseLocale" xml:space="preserve">
+    <value>Выбрать локаль</value>
+  </data>
+  <data name="GC_Area" xml:space="preserve">
+    <value>Площадь (кв.м)</value>
+  </data>
+  <data name="Culture_M_CultureDefault" xml:space="preserve">
+    <value>Язык системы</value>
+  </data>
+  <data name="LocAllowed" xml:space="preserve">
+    <value>Разрешен</value>
+  </data>
+  <data name="LocDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ImportWindow_NotSelect" xml:space="preserve">
+    <value>Не выбран</value>
+  </data>
+  <data name="AbsM.EFieldType.Integer" xml:space="preserve">
+    <value>Целое</value>
+  </data>
+  <data name="LM_ErrorLayerLoad" xml:space="preserve">
+    <value>Ошибка загрузки слоя!</value>
+  </data>
+  <data name="DGBH_Editing" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="upload_logotip_cku22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_logotip_cku22.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_DateAndTime" xml:space="preserve">
+    <value>Дата+Время</value>
+  </data>
+  <data name="mainFrm_errProjFile" xml:space="preserve">
+    <value>Файл проекции не найден или не соответствует формату! Вы хотите указать расположение файла? Иначе программа будет закрыта!</value>
+  </data>
+  <data name="InterfaceClass_NoExistsObj" xml:space="preserve">
+    <value>Объект отсутствует в таблице</value>
+  </data>
+  <data name="CMD_SettingsProgram" xml:space="preserve">
+    <value>Настройка программы</value>
+  </data>
+  <data name="Tool_SymDifference" xml:space="preserve">
+    <value>Симметрическая разность геометрий</value>
+  </data>
+  <data name="userAddFrm_LoginExists" xml:space="preserve">
+    <value>Пользователь с таким логином уже зарегистрирован!</value>
+  </data>
+  <data name="AbsM.ETableType.MapLayer" xml:space="preserve">
+    <value>Слой карты</value>
+  </data>
+  <data name="LocMaxValue" xml:space="preserve">
+    <value>Макс. значение</value>
+  </data>
+  <data name="object_rotate_left_8086" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_8086.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_SelectLink" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="PgReg_DescriptionText" xml:space="preserve">
+    <value>Текст в описании</value>
+  </data>
+  <data name="FormTableData_Numeric" xml:space="preserve">
+    <value>Вещественное</value>
+  </data>
+  <data name="mainFrm_errProj" xml:space="preserve">
+    <value>Ошибка проекции</value>
+  </data>
+  <data name="ExportProjSelection_SelectTitle" xml:space="preserve">
+    <value>Выбор проекции</value>
+  </data>
+  <data name="mainFrm_errMOpen" xml:space="preserve">
+    <value>Ошибка открытия карты</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsToGeom" xml:space="preserve">
+    <value>Недостаточно точек для предпросмотра геометрии</value>
+  </data>
+  <data name="LocColor" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="WmMenu_Tools" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="LocOperand" xml:space="preserve">
+    <value>Операнд</value>
+  </data>
+  <data name="ExportQuestion_Status" xml:space="preserve">
+    <value>Загрyжено строк для предпросмотра: {0}  Строк всего: {1}</value>
+  </data>
+  <data name="TLE_DeletingTableAsk" xml:space="preserve">
+    <value>Вы действительно хотите удалить таблицу?</value>
+  </data>
+  <data name="WorkSets_V_ListBoxName" xml:space="preserve">
+    <value>Рабочие наборы</value>
+  </data>
+  <data name="agt_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabledXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryFrom_startDp_toolTip" xml:space="preserve">
+    <value>Дата начала</value>
+  </data>
+  <data name="ImportWindow_DownloadWizard" xml:space="preserve">
+    <value>Мастер загрузки</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="AdminFrm_ReadSomeTables" xml:space="preserve">
+    <value>Разрешен просмотр определенных таблиц</value>
+  </data>
+  <data name="edit_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgReg_PrimaryKey" xml:space="preserve">
+    <value>Поле ключ</value>
+  </data>
+  <data name="FELC_DeletingFields" xml:space="preserve">
+    <value>Удаление атрибута</value>
+  </data>
+  <data name="RstGrf_StartGeoreference" xml:space="preserve">
+    <value>Начать привязку растра</value>
+  </data>
+  <data name="LocNameInSystem" xml:space="preserve">
+    <value>Название в системе</value>
+  </data>
+  <data name="login_msgNoUser2" xml:space="preserve">
+    <value>не найден!</value>
+  </data>
+  <data name="РЕКОД_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\РЕКОД_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryState_Change" xml:space="preserve">
+    <value>Была изменена</value>
+  </data>
+  <data name="LocSourceField" xml:space="preserve">
+    <value>Поле источник для связи</value>
+  </data>
+  <data name="PTC_ErrorMaxMin" xml:space="preserve">
+    <value>Введенное Вами максимальное значение не превышает минимального значения.</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_FastStart" xml:space="preserve">
+    <value>Быстрый запуск...</value>
+  </data>
+  <data name="LocLabelOverlap" xml:space="preserve">
+    <value>Разрешить наложение</value>
+  </data>
+  <data name="LIV_Vmp_layer" xml:space="preserve">
+    <value>Слои подложки</value>
+  </data>
+  <data name="agt_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_forward.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeomVRec_Centroid" xml:space="preserve">
+    <value>Центроид</value>
+  </data>
+  <data name="HistoryForm_LoadPart" xml:space="preserve">
+    <value>Загрузить еще. Загружено {0} из {1} ({2}%)</value>
+  </data>
+  <data name="PgReg_DataType" xml:space="preserve">
+    <value>Тип данных</value>
+  </data>
+  <data name="_1279535710_view_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535710_view_16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocFont" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="FormTableData_SaveData" xml:space="preserve">
+    <value>Сохранение данных</value>
+  </data>
+  <data name="LocLabelOffset" xml:space="preserve">
+    <value>Смещение</value>
+  </data>
+  <data name="WmMenu_View" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="ErrorReadDataReader" xml:space="preserve">
+    <value>Ошибка при чтении _dataReader</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="ucTable_DeletingHeader" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
+  <data name="TLE_DeletingLayer" xml:space="preserve">
+    <value>Удаление слоя карты</value>
+  </data>
+  <data name="group_order_change" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_order_change.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Report_M_ErrorLoadListReport" xml:space="preserve">
+    <value>Не удалось загрузить список отчетов.</value>
+  </data>
+  <data name="ucTableNoRight" xml:space="preserve">
+    <value>У вас нет прав на редактирование таблицы!</value>
+  </data>
+  <data name="delete21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocActions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="videlit_obekt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ucTable_DeleteRows" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранные записи?</value>
+  </data>
+  <data name="login_errDBNS" xml:space="preserve">
+    <value>Не введено название базы данных</value>
+  </data>
+  <data name="addXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_FilterFile" xml:space="preserve">
+    <value>Файл изображение|*.jpg;*jpeg|Все файлы|*.*</value>
+  </data>
+  <data name="CouldNotExtractIcon" xml:space="preserve">
+    <value>Не удалось извлечь иконку</value>
+  </data>
+  <data name="of_text" xml:space="preserve">
+    <value>из</value>
+  </data>
+  <data name="LocEndOfInterval" xml:space="preserve">
+    <value>Конец интервала</value>
+  </data>
+  <data name="_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\+plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintV_Cancel" xml:space="preserve">
+    <value>Отмена </value>
+  </data>
+  <data name="PgListUserRightsVM_References" xml:space="preserve">
+    <value>Справочники </value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPolygon" xml:space="preserve">
+    <value>Не достаточно точек для отображения характеристик полигона</value>
+  </data>
+  <data name="Tool_ShowLayersList" xml:space="preserve">
+    <value>Управление слоями карты</value>
+  </data>
+  <data name="workLog_null_ex" xml:space="preserve">
+    <value>Ошибка передачи пустого параметра ex типа "Exception" в writeLogFile</value>
+  </data>
+  <data name="GC_CharacteristicsGeometry" xml:space="preserve">
+    <value>Характеристики геометрии</value>
+  </data>
+  <data name="LocRastrConfig" xml:space="preserve">
+    <value>Растровые слои</value>
+  </data>
+  <data name="PgReg_GeomField" xml:space="preserve">
+    <value>Поле геометрии</value>
+  </data>
+  <data name="LocStyles" xml:space="preserve">
+    <value>Стили</value>
+  </data>
+  <data name="Tool_ZoomOutRegion" xml:space="preserve">
+    <value>Отдаление областью</value>
+  </data>
+  <data name="HistoryForm_ColNameFields" xml:space="preserve">
+    <value>Поля</value>
+  </data>
+  <data name="LocGetUserRights" xml:space="preserve">
+    <value>Получить права пользователя</value>
+  </data>
+  <data name="HistoryForm_CountDate" xml:space="preserve">
+    <value>Количество дат:</value>
+  </data>
+  <data name="HistoryForm_ActualValue" xml:space="preserve">
+    <value>Актуальное значение</value>
+  </data>
+  <data name="autocad_icon_workset_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autocad_icon_workset_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_UnJoinGeometry" xml:space="preserve">
+    <value>Разгруппировка геометрии</value>
+  </data>
+  <data name="PgGeomVRec_Characteristics" xml:space="preserve">
+    <value>Характеристики геометрии</value>
+  </data>
+  <data name="LocOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ucTable_IncorretFilterFormat" xml:space="preserve">
+    <value>Некорректный формат данных в фильтре!</value>
+  </data>
+  <data name="DGBH_NotMatch" xml:space="preserve">
+    <value>Тип геометрии в файле не соответствует типу геометрии в таблице!</value>
+  </data>
+  <data name="ExcelImporter_RowNEmpty" xml:space="preserve">
+    <value>Строка {0} пуста</value>
+  </data>
+  <data name="login_erCnArg" xml:space="preserve">
+    <value>Отсутствует адрес сервера в строке соединения.</value>
+  </data>
+  <data name="Report_VM_geomCenter_x" xml:space="preserve">
+    <value>Геометрия: Центроид по X</value>
+  </data>
+  <data name="gtk_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_NotEnoughPoints" xml:space="preserve">
+    <value>Недостаточно точек для построения границы полигона №{0}</value>
+  </data>
+  <data name="ExcelUC_RangeWith" xml:space="preserve">
+    <value>Диапазон с</value>
+  </data>
+  <data name="LocGeomType" xml:space="preserve">
+    <value>Тип геометрии</value>
+  </data>
+  <data name="PrintV_Apply" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="FELC_Forever" xml:space="preserve">
+    <value>Безвозвратно</value>
+  </data>
+  <data name="PgFullSearch_Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="mainFrm_errSetPos" xml:space="preserve">
+    <value>Невозможно установить данное положение!</value>
+  </data>
+  <data name="LocChange" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="PgGeomVRec_AddPoint" xml:space="preserve">
+    <value>Добавить точку</value>
+  </data>
+  <data name="mainFrm_msgNoRights" xml:space="preserve">
+    <value>У Вас недостаточно прав на редактирование таблицы</value>
+  </data>
+  <data name="DGBH_OperSuccess" xml:space="preserve">
+    <value>Операция прошла успешно!</value>
+  </data>
+  <data name="LIV_ErrorType" xml:space="preserve">
+    <value>Такого типа не существует!</value>
+  </data>
+  <data name="LocFio" xml:space="preserve">
+    <value>ФИО</value>
+  </data>
+  <data name="ImportWindow_NotSelect1" xml:space="preserve">
+    <value>Не выбрана</value>
+  </data>
+  <data name="LIV_ObjectDelete" xml:space="preserve">
+    <value>Выбранный объект удален!</value>
+  </data>
+  <data name="AbsM.EGeomType.Hole" xml:space="preserve">
+    <value>Пустота</value>
+  </data>
+  <data name="DGBH_UnableDisplay" xml:space="preserve">
+    <value>\nНевозможно отобразить. Исправьте для продолжения</value>
+  </data>
+  <data name="mainFrm_msgMFile" xml:space="preserve">
+    <value>Укажите файл карты</value>
+  </data>
+  <data name="mainFrm_selectedOnlyOneObj" xml:space="preserve">
+    <value>Должен быть выбран только один объект!</value>
+  </data>
+  <data name="LocUseBuildPyramids" xml:space="preserve">
+    <value>Строить пирамиды</value>
+  </data>
+  <data name="HistoryClass_intervalValueField" xml:space="preserve">
+    <value>(значение из интервала)</value>
+  </data>
+  <data name="LocTools" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="PrintV_HorizCount" xml:space="preserve">
+    <value>Количество страниц по горизонтали</value>
+  </data>
+  <data name="AbsM.EFieldType.DateTime" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="CosAttributes_ShowInTable" xml:space="preserve">
+    <value>Показать в окне 'Данные таблицы'…</value>
+  </data>
+  <data name="peremechenie__uzla_new_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_EnterOnlyInteger" xml:space="preserve">
+    <value>Возможен ввод только целых чисел</value>
+  </data>
+  <data name="zoom_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_min.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExcelImporter_ColumnNEmpty" xml:space="preserve">
+    <value>Столбец {0} пуст</value>
+  </data>
+  <data name="reload_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_infLayerN" xml:space="preserve">
+    <value>Слой не включен!</value>
+  </data>
+  <data name="CosTableView_CopySelected" xml:space="preserve">
+    <value>Скопировать выделенные объекты</value>
+  </data>
+  <data name="КРИВАЯ1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocDisplay" xml:space="preserve">
+    <value>Отображать</value>
+  </data>
+  <data name="worksetstyleremove1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\worksetstyleremove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_ErrorActual" xml:space="preserve">
+    <value>Значение совпадает с актуальным</value>
+  </data>
+  <data name="MainFrm_SelectedObjNot" xml:space="preserve">
+    <value>Нет выбранного объекта</value>
+  </data>
+  <data name="HistoryForm_Empty" xml:space="preserve">
+    <value>Пусто</value>
+  </data>
+  <data name="FormTableData_NameFileDefault" xml:space="preserve">
+    <value>Названия по умолчанию</value>
+  </data>
+  <data name="PgGeomVRec_Count" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="LocNameInBase" xml:space="preserve">
+    <value>Название в базе</value>
+  </data>
+  <data name="PluginSettingsForm_tnPluginsSettings" xml:space="preserve">
+    <value>Настройка плагинов</value>
+  </data>
+  <data name="PgGeomVRec_RemovePoint" xml:space="preserve">
+    <value>Удалить точку</value>
+  </data>
+  <data name="LocYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="обновить" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\обновить.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Название продукта:</value>
+  </data>
+  <data name="WmMenu_Tools_LocationsReference" xml:space="preserve">
+    <value>Справочник локаций…</value>
+  </data>
+  <data name="Globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Globe.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocCatalog" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="AEAtr_NotPutName" xml:space="preserve">
+    <value>Не введено название атрибута в базе или в системе!</value>
+  </data>
+  <data name="LocCurrentBrush" xml:space="preserve">
+    <value>Текущая кисть</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="InterfaceClass_FindLinkError" xml:space="preserve">
+    <value>При доступе к данным были обнаружены следующие ошибки:</value>
+  </data>
+  <data name="PgAttributesGeom_TxtWarning" xml:space="preserve">
+    <value>Будет сохранен только текущий объект. Продолжить?</value>
+  </data>
+  <data name="LIV_NotOpenTable" xml:space="preserve">
+    <value>Невозможно открыть таблицу</value>
+  </data>
+  <data name="spisok_sloev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spisok sloev.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CosAttributes_TableIsNull" xml:space="preserve">
+    <value>Нет ссылки на таблицу</value>
+  </data>
+  <data name="userAddFrm_AccessRightAdded" xml:space="preserve">
+    <value>Права доступа добавлены!</value>
+  </data>
+  <data name="mainFrm_errWorkLayerNotEnabled" xml:space="preserve">
+    <value>Рабочий слой не включен</value>
+  </data>
+  <data name="Group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_RotateDegree" xml:space="preserve">
+    <value>Вращение объекта на заданный угол</value>
+  </data>
+  <data name="LocPostgreConfig" xml:space="preserve">
+    <value>Конфигурирование источников типа "PostgreSQL"</value>
+  </data>
+  <data name="PrintV_Print" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="FormTableData_Integer" xml:space="preserve">
+    <value>Целое</value>
+  </data>
+  <data name="DGBH_OneMoreNotNotEnough" xml:space="preserve">
+    <value>Недостаточно точек для предпросмотра полигона:\n Недостаточно точек в {0}-й полости</value>
+  </data>
+  <data name="HistoryForm_ShowOnlyChange" xml:space="preserve">
+    <value>Показать только с изменениями</value>
+  </data>
+  <data name="Tool_AddVertex" xml:space="preserve">
+    <value>Добавление узла</value>
+  </data>
+  <data name="LocLabelBoundMin" xml:space="preserve">
+    <value>Минимум, м</value>
+  </data>
+  <data name="PgFullSearch_Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="bg_selecteg_button1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_ShowActualState" xml:space="preserve">
+    <value>Показать актуальное состояние</value>
+  </data>
+  <data name="RasM.EConnectType.Gdal" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="HistoryForm_ColGeom" xml:space="preserve">
+    <value>Геометрия</value>
+  </data>
+  <data name="HistoryForm_Titel" xml:space="preserve">
+    <value>История изменений объектов</value>
+  </data>
+  <data name="FindBox2_Colmn" xml:space="preserve">
+    <value>Колонка</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForHole" xml:space="preserve">
+    <value>Недостаточно точек для построения {0}-й полости {1}-го полигона. Полость будет удалена\n</value>
+  </data>
+  <data name="left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryFrom_ButtonClear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="TLE_EntryTableInGroup" xml:space="preserve">
+    <value>Вхождение таблицы "{0}" в группы</value>
+  </data>
+  <data name="clip_image0021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image0021.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocNo" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="LocMinValueColor" xml:space="preserve">
+    <value>Цвет мин. зн.</value>
+  </data>
+  <data name="PrintSettingsFrm_Bad" xml:space="preserve">
+    <value>Плохое (75 dpi)</value>
+  </data>
+  <data name="ReportEditor_V_EditReport" xml:space="preserve">
+    <value>Редактировать отчет</value>
+  </data>
+  <data name="WmMenu_File_Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="PgGeomVRec_AddHole" xml:space="preserve">
+    <value>Добавить пустоту</value>
+  </data>
+  <data name="ReportEditor_V_AddReportTable" xml:space="preserve">
+    <value>Добавить отчет с таблицей</value>
+  </data>
+  <data name="LIV_CanNotGetLayer" xml:space="preserve">
+    <value>Невозможно получить слой</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPoint" xml:space="preserve">
+    <value>Не достаточно точек для отображения характеристик точки</value>
+  </data>
+  <data name="ImportWindow_StatusProcess" xml:space="preserve">
+    <value>Обработано объектов {0} из {1}</value>
+  </data>
+  <data name="Group1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkSets_V_Title" xml:space="preserve">
+    <value>Рабочие наборы</value>
+  </data>
+  <data name="CosTableView_RemoveAll" xml:space="preserve">
+    <value>Удалить все записи…</value>
+  </data>
+  <data name="ucTable_Export" xml:space="preserve">
+    <value>Экспорт данных</value>
+  </data>
+  <data name="DGBH_ProjNotInDB_EnterCorrect" xml:space="preserve">
+    <value>Такой проекции нет в базе. Введите корректную проекцию!</value>
+  </data>
+  <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgFullSearch_TableChoose" xml:space="preserve">
+    <value>Выбор таблиц</value>
+  </data>
+  <data name="PgGeomVRec_PreviewWholeGeometry" xml:space="preserve">
+    <value>Показывать всю геометрию</value>
+  </data>
+  <data name="LocWrite" xml:space="preserve">
+    <value>Запись</value>
+  </data>
+  <data name="PgGeomVRec_Down" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="Tool_LayerDown" xml:space="preserve">
+    <value>Перемещение слоя вниз</value>
+  </data>
+  <data name="LocResult" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="LocEdit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="TLE_DeletingCatalogAsk" xml:space="preserve">
+    <value>Вы действительно хотите удалить справочник?</value>
+  </data>
+  <data name="ConnectionIsBroken_Header" xml:space="preserve">
+    <value>Потеряно соединение с базой данных</value>
+  </data>
+  <data name="ExportError_NotSpecifiedProj" xml:space="preserve">
+    <value>Проекция не указана. Продолжить и использовать проекцию слоя?</value>
+  </data>
+  <data name="LabelControl_ShowResult" xml:space="preserve">
+    <value>Здесь отображается результирующая строка</value>
+  </data>
+  <data name="PrintV_Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="LocLabelParallel" xml:space="preserve">
+    <value>Располагать вдоль линий</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="SnapToPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToPoint.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_File_ExportPrint" xml:space="preserve">
+    <value>Экспорт изображения для печати…</value>
+  </data>
+  <data name="userAddFrm_UserNameEmty" xml:space="preserve">
+    <value>Не введено ФИО!</value>
+  </data>
+  <data name="LocFileExit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="ucTable_NoRowsSeleted" xml:space="preserve">
+    <value>Нет выбранных строк!</value>
+  </data>
+  <data name="gtk_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocNotIndexedFields" xml:space="preserve">
+    <value>Неиндексируемые поля</value>
+  </data>
+  <data name="LocUsers" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="LocBackgroundColor" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="EGO_DeletingGroup" xml:space="preserve">
+    <value>Удаление группы</value>
+  </data>
+  <data name="AET_TableNameFormat" xml:space="preserve">
+    <value>Название таблицы должно быть из латинских букв и цифр и начинаться с латинских буквы</value>
+  </data>
+  <data name="RstGrf_LayerNotCreatedGrfFile" xml:space="preserve">
+    <value>Слой в системе не создан, однако создан файл с геопривязкой:
+{0}</value>
+  </data>
+  <data name="AdminFrm_ReadAllTables" xml:space="preserve">
+    <value>Разрешен просмотр всех таблиц</value>
+  </data>
+  <data name="Pie_Chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pie_Chart.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_Sources_BaseLayers" xml:space="preserve">
+    <value>Базовые слои…</value>
+  </data>
+  <data name="HistoryClass_simpleValueField" xml:space="preserve">
+    <value>(поле со значением)</value>
+  </data>
+  <data name="RstGrf_PointsNum" xml:space="preserve">
+    <value>Количество точек</value>
+  </data>
+  <data name="ruler_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler_area.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_Data_UpdDics" xml:space="preserve">
+    <value>Обновить справочники</value>
+  </data>
+  <data name="RstGrf_TakeCoordsFromMap" xml:space="preserve">
+    <value>Взять координаты из карты для выделенной точки</value>
+  </data>
+  <data name="AbsM.ETableType.BottomLayer" xml:space="preserve">
+    <value>Слой подложки</value>
+  </data>
+  <data name="Tool_SelectPolygon" xml:space="preserve">
+    <value>Выбор объектов полигоном</value>
+  </data>
+  <data name="LocUserSets" xml:space="preserve">
+    <value>Рабочие наборы</value>
+  </data>
+  <data name="LIV_ObjectsDelete" xml:space="preserve">
+    <value>Выбранные объекты удалены!</value>
+  </data>
+  <data name="TLE_DeleteForever" xml:space="preserve">
+    <value>Таблица удалена безвозвратно!</value>
+  </data>
+  <data name="ITGF_DataTable" xml:space="preserve">
+    <value>Данные таблицы</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsTable" xml:space="preserve">
+    <value>Отчеты с таблицей</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetName" xml:space="preserve">
+    <value>Название набора не может быть пустым</value>
+  </data>
+  <data name="PosNameFrm_NullName" xml:space="preserve">
+    <value>Наименование не должно быть пустым.</value>
+  </data>
+  <data name="HistoryForm_Event" xml:space="preserve">
+    <value>Количество событий:</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetVisable" xml:space="preserve">
+    <value>Скрыть набор от других пользователей</value>
+  </data>
+  <data name="InformationMessage" xml:space="preserve">
+    <value>Информация! Сообщение:</value>
+  </data>
+  <data name="pri_vibore_instrumenta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_SelectUsers" xml:space="preserve">
+    <value>Выбор пользователей</value>
+  </data>
+  <data name="LocHelp" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="mainFrm_tData" xml:space="preserve">
+    <value>Данные таблицы "</value>
+  </data>
+  <data name="PageIsNotExists" xml:space="preserve">
+    <value>Нет такой страницы</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_SelectObject" xml:space="preserve">
+    <value>Панель инструментов "Выбор объектов"</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Название организации:</value>
+  </data>
+  <data name="mainFrm_mProjection" xml:space="preserve">
+    <value>) Проекция карты</value>
+  </data>
+  <data name="PgGeomVRec_UnableTransformGeom" xml:space="preserve">
+    <value>Не удалось преобразовать геометрию</value>
+  </data>
+  <data name="bg_selecteg_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_attributs" xml:space="preserve">
+    <value>Количество атрибутов:</value>
+  </data>
+  <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocDisplayMode" xml:space="preserve">
+    <value>Режимы показа</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="PgGeom.ESridTypes.Another" xml:space="preserve">
+    <value>Другая</value>
+  </data>
+  <data name="mainFrm_square" xml:space="preserve">
+    <value>Площадь:</value>
+  </data>
+  <data name="PgReg_NeedAdditionalFields" xml:space="preserve">
+    <value>Необходимо создать служебные атрибутивные поля для этой таблицы. Создать?</value>
+  </data>
+  <data name="LocHelpProgram" xml:space="preserve">
+    <value>Справка по работе с программой</value>
+  </data>
+  <data name="Tool_ZoomToLayer" xml:space="preserve">
+    <value>Вписывание слоя в экран</value>
+  </data>
+  <data name="LocExecute" xml:space="preserve">
+    <value>Выполнить</value>
+  </data>
+  <data name="LocBaseLayersConfig" xml:space="preserve">
+    <value>Базовые слои</value>
+  </data>
+  <data name="Report_VM_photoIdObj" xml:space="preserve">
+    <value>Идентификатор объекта</value>
+  </data>
+  <data name="worksetstyle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\worksetstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AbsM.ETableType.Data" xml:space="preserve">
+    <value>Таблица с данными</value>
+  </data>
+  <data name="EGO_groups" xml:space="preserve">
+    <value>групп</value>
+  </data>
+  <data name="mainFrm_errObjectGeometryIsNotRecognized" xml:space="preserve">
+    <value>Невозможно распознать геометрию объекта!</value>
+  </data>
+  <data name="NotImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\notimage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestoreStandard" xml:space="preserve">
+    <value>Вернуть стандартный вид панелей</value>
+  </data>
+  <data name="PgFullSearch_Title" xml:space="preserve">
+    <value>Поиск объектов</value>
+  </data>
+  <data name="peremechenie__uzla_new_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocUseGraphicUnits" xml:space="preserve">
+    <value>В единицах проекции</value>
+  </data>
+  <data name="FormTableData_StyleForm" xml:space="preserve">
+    <value>Стиль</value>
+  </data>
+  <data name="PgFullSearch_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="LocMaxScale" xml:space="preserve">
+    <value>Верхняя граница</value>
+  </data>
+  <data name="CosTableView_Label" xml:space="preserve">
+    <value>Подпись</value>
+  </data>
+  <data name="bd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bd.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="autocad_icon_addstyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autocad_icon_addstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_UserName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="HistoryForm_SelectTable" xml:space="preserve">
+    <value>Выбор таблиц</value>
+  </data>
+  <data name="AbsM.ETableType.Catalog" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="PrintV_CanvasMode" xml:space="preserve">
+    <value>Изменение полотна</value>
+  </data>
+  <data name="WmMenu_File_SaveImage" xml:space="preserve">
+    <value>Сохранить изображение…</value>
+  </data>
+  <data name="HistoryClass_MessageHeader" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="PrintV_PagesCount" xml:space="preserve">
+    <value>Количество страниц</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryEditing" xml:space="preserve">
+    <value>Ошибка при редактировании геометрии</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="PrintV_PagePrintableArea" xml:space="preserve">
+    <value>Размер печатаемой области</value>
+  </data>
+  <data name="Tool_Ruler" xml:space="preserve">
+    <value>Измерение расстояний</value>
+  </data>
+  <data name="LocIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="addNotEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgReg_ChooseGeomField" xml:space="preserve">
+    <value>У слоя карты должно быть выбрано поле геометрии</value>
+  </data>
+  <data name="izmeritel_rastoyaniya1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_MatchWithPrev" xml:space="preserve">
+    <value>Значение совпадает с предыдущим</value>
+  </data>
+  <data name="PrintV_PageHeight" xml:space="preserve">
+    <value>Высота страницы</value>
+  </data>
+  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled-11.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_errPrint" xml:space="preserve">
+    <value>Возникла ошибка при настройке печати:\r\n</value>
+  </data>
+  <data name="login_errNoDB2" xml:space="preserve">
+    <value>' не существует.</value>
+  </data>
+  <data name="HistoryForm_ColGeomWithValue" xml:space="preserve">
+    <value>Геометрия (поле со значением)</value>
+  </data>
+  <data name="CosAttributes_UseOwnStyle" xml:space="preserve">
+    <value>Использовать собственный стиль</value>
+  </data>
+  <data name="PgGeomVRec_Recalc" xml:space="preserve">
+    <value>Пересчитать</value>
+  </data>
+  <data name="AET_TurnHistory" xml:space="preserve">
+    <value>При выключении функции ведения истории будет удалена вся накопленная история по таблице!</value>
+  </data>
+  <data name="LocReadOnly" xml:space="preserve">
+    <value>Только для чтения</value>
+  </data>
+  <data name="new_lokalnii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new lokalnii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocTableType" xml:space="preserve">
+    <value>Тип таблицы</value>
+  </data>
+  <data name="ExportQuestion_btnNotUnloading" xml:space="preserve">
+    <value>Не выгружать</value>
+  </data>
+  <data name="LabelControl_Result" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="AET_ErrorBoundValue" xml:space="preserve">
+    <value>Нижняя граница видимости превышает верхнюю или равна ей!</value>
+  </data>
+  <data name="FELC_Fields" xml:space="preserve">
+    <value>атрибутов</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="LIV_SavePositionLayerHeader" xml:space="preserve">
+    <value>Фиксация положения слоев</value>
+  </data>
+  <data name="PgGeom.ESridTypes.LongLat" xml:space="preserve">
+    <value>(4326) Долгота/Широта WGS 84</value>
+  </data>
+  <data name="mainFrm_errGeometryTypesShouldMatch" xml:space="preserve">
+    <value>Тип геометрии объектов должен совпадать!</value>
+  </data>
+  <data name="Tool_JoinGeometry" xml:space="preserve">
+    <value>Группировка геометрии</value>
+  </data>
+  <data name="PrintV_Margins" xml:space="preserve">
+    <value>Отступы</value>
+  </data>
+  <data name="AbsM.EGeomType.Polygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="AET_AlreadyExistsTable" xml:space="preserve">
+    <value>Таблица с таким именем в базе уже существует.</value>
+  </data>
+  <data name="PgGeomVRec_ReallyWantDeletePoints" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранные точки?</value>
+  </data>
+  <data name="mainFrm_errNotFoundWorkObject" xml:space="preserve">
+    <value>Не найден рабочий объект</value>
+  </data>
+  <data name="PgReg_StyleCreation" xml:space="preserve">
+    <value>Создание стиля</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.MapLayer" xml:space="preserve">
+    <value>Слой карты</value>
+  </data>
+  <data name="UserSetsFrm_ErrorDeleteWorkSet" xml:space="preserve">
+    <value>Нельзя удалять используемый рабочий набор!</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteNo" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="userAddFrm_LoginExistsInDB" xml:space="preserve">
+    <value>Пользователь с таким логином существует в базе!</value>
+  </data>
+  <data name="WmMenu_Reports_OpenManager" xml:space="preserve">
+    <value>Открыть менеджер отчетов...</value>
+  </data>
+  <data name="PrintV_RightMargin" xml:space="preserve">
+    <value>Отступ от правой границы</value>
+  </data>
+  <data name="PgReg_GeomType" xml:space="preserve">
+    <value>Тип геометрии</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPolygon" xml:space="preserve">
+    <value>Показать этот полигон</value>
+  </data>
+  <data name="CMD_EnterNameOfProgram" xml:space="preserve">
+    <value>Введите название программы</value>
+  </data>
+  <data name="LIV_DeleteSelectedRow" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранную запись?</value>
+  </data>
+  <data name="GC_Perimetr" xml:space="preserve">
+    <value>Периметр (м)</value>
+  </data>
+  <data name="_struct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\struct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Users_in_Count" xml:space="preserve">
+    <value>Количество пользователей:</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestorePrevious" xml:space="preserve">
+    <value>Восстанавливать предыдущее положение панелей инструментов</value>
+  </data>
+  <data name="ExcelImporter_NotSpecifiedRange" xml:space="preserve">
+    <value>Неверно указан диапазон</value>
+  </data>
+  <data name="Selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selected.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeomVRec_Header" xml:space="preserve">
+    <value>Геометрия</value>
+  </data>
+  <data name="PgGeomVRec_PreviewNodes" xml:space="preserve">
+    <value>Показывать узлы</value>
+  </data>
+  <data name="PrintV_LeftMargin" xml:space="preserve">
+    <value>Отступ от левой границы</value>
+  </data>
+  <data name="EGO_DeleteGroup" xml:space="preserve">
+    <value>Вы действительно хотите удалить группу "{0}"?</value>
+  </data>
+  <data name="Tool_ZoomOut" xml:space="preserve">
+    <value>Отдаление</value>
+  </data>
+  <data name="videlit_obekt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SRF_EnterName" xml:space="preserve">
+    <value>Введите наименование отчета:</value>
+  </data>
+  <data name="HisotryClass_TableNotFound" xml:space="preserve">
+    <value>Таблица не найдена</value>
+  </data>
+  <data name="FindBox_Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="HistoryForm_TableName" xml:space="preserve">
+    <value>Название таблицы</value>
+  </data>
+  <data name="LocStructure" xml:space="preserve">
+    <value>Структура</value>
+  </data>
+  <data name="WmMenu_Tools_ManageTables" xml:space="preserve">
+    <value>Управление таблицами…</value>
+  </data>
+  <data name="Report_VM_photoPreview" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="lupa_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgReg_AttributeProps" xml:space="preserve">
+    <value>Свойства атрибута</value>
+  </data>
+  <data name="ReportEditor_V_AddReport" xml:space="preserve">
+    <value>Добавить отчет</value>
+  </data>
+  <data name="PgReg_ChooseTableType" xml:space="preserve">
+    <value>Выберите тип таблицы</value>
+  </data>
+  <data name="DeletingAuser" xml:space="preserve">
+    <value>Удаление пользователя</value>
+  </data>
+  <data name="login_msgNoConDB" xml:space="preserve">
+    <value>Отсутствует подключение к базе данных.</value>
+  </data>
+  <data name="LocSources" xml:space="preserve">
+    <value>Источники</value>
+  </data>
+  <data name="ucTable_NotLoaded" xml:space="preserve">
+    <value>Данные не загружены в связи с настройками таблицы</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsMeesage" xml:space="preserve">
+    <value>Недостаточно точек</value>
+  </data>
+  <data name="LocDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="izmeritel_rastoyaniya2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login_errNoUName" xml:space="preserve">
+    <value>Отсутствует имя пользователя.</value>
+  </data>
+  <data name="WmMenu_Help_Manual" xml:space="preserve">
+    <value>Справка по работе с программой...</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Версии</value>
+  </data>
+  <data name="LocSourcePostgre" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="LocShowSynchronisationPassword" xml:space="preserve">
+    <value>Показать пароль для синхронизации</value>
+  </data>
+  <data name="layers_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_base.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocValueField" xml:space="preserve">
+    <value>Поле значений</value>
+  </data>
+  <data name="PgReg_FieldRegistered" xml:space="preserve">
+    <value>Поле зарегистрировано</value>
+  </data>
+  <data name="LocCancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Report_VM_QuestionSaveReport" xml:space="preserve">
+    <value>Сохранить файл отчета?</value>
+  </data>
+  <data name="PgM.EChangeColor.LinesBounds" xml:space="preserve">
+    <value>Границы и линии</value>
+  </data>
+  <data name="DGBH_AppointNewProj" xml:space="preserve">
+    <value>\nПрисвоить новую проекцию без пересчета?</value>
+  </data>
+  <data name="COM_NoRightToTable" xml:space="preserve">
+    <value>-Нет прав на чтение на таблицу '{0}';</value>
+  </data>
+  <data name="WmMenu_Tools_Search" xml:space="preserve">
+    <value>Поиск…</value>
+  </data>
+  <data name="mainFrm_FileNF" xml:space="preserve">
+    <value>Не найден файл карты</value>
+  </data>
+  <data name="WmMenu_View_Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser_Header" xml:space="preserve">
+    <value>Удаление пользователя</value>
+  </data>
+  <data name="HistoryClass_ErrorGetValue" xml:space="preserve">
+    <value>(при получении значения возникла ошибка)</value>
+  </data>
+  <data name="КРИВАЯ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="autocad_icon_orderset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autocad_icon_orderset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Add" xml:space="preserve">
+    <value>Добавление</value>
+  </data>
+  <data name="PgGeomVRec_Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="div_with_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\div_with_line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryForm_ColValueUpTo" xml:space="preserve">
+    <value>Значение до</value>
+  </data>
+  <data name="RstGrf_PointNum" xml:space="preserve">
+    <value>Точка №{0}</value>
+  </data>
+  <data name="ExportQuestion_btnUnloadingwithoutGeom" xml:space="preserve">
+    <value>Выгрузить без геометрии</value>
+  </data>
+  <data name="PgFullSearch_Choose" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="FindBox2_IsNotEmpty" xml:space="preserve">
+    <value>Не пустое</value>
+  </data>
+  <data name="Tool_RotateMouse" xml:space="preserve">
+    <value>Вращение объекта мышью</value>
+  </data>
+  <data name="Report_VM_geomPerimeter" xml:space="preserve">
+    <value>Геометрия: Периметр (м)</value>
+  </data>
+  <data name="LocGrantActionRights" xml:space="preserve">
+    <value>Выделение прав на действия</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_WorkSets" xml:space="preserve">
+    <value>Панель "Управление рабочими наборами"</value>
+  </data>
+  <data name="FindBox2_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="AEAtr_NotSaveField" xml:space="preserve">
+    <value>Поле с данным именем не может быть сохранено!</value>
+  </data>
+  <data name="WmMenu_Tools_History" xml:space="preserve">
+    <value>История изменений…</value>
+  </data>
+  <data name="PgM.EStyleType.uniformly" xml:space="preserve">
+    <value>Единообразно</value>
+  </data>
+  <data name="PrintV_TopMargin" xml:space="preserve">
+    <value>Отступ от верхней границы</value>
+  </data>
+  <data name="CosAttributes_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="AbsM.EFieldType.Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="AEAtr_CreatingAttribute" xml:space="preserve">
+    <value>Создание атрибута</value>
+  </data>
+  <data name="AbsM.ETableType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="TLE_DeletingCatalog" xml:space="preserve">
+    <value>Удаление справочника</value>
+  </data>
+  <data name="PgReg_SystemNameAbsent" xml:space="preserve">
+    <value>Отсутствует название в системе</value>
+  </data>
+  <data name="Tool_Hand" xml:space="preserve">
+    <value>Перемещение</value>
+  </data>
+  <data name="ucTable_Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="LocGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="PgGeomVRec_Square" xml:space="preserve">
+    <value>Площадь (кв.м)</value>
+  </data>
+  <data name="LocLocalisationOnStartup" xml:space="preserve">
+    <value>Локализация при запуске</value>
+  </data>
+  <data name="gnome_mime_text_x_copying" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gnome-mime-text-x-copying.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="YouMustSelectUser" xml:space="preserve">
+    <value>Вы должны выбрать пользователя</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeApply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="LocFileSaveImage" xml:space="preserve">
+    <value>Сохранить картинку</value>
+  </data>
+  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AbsM.ETableType.View" xml:space="preserve">
+    <value>Представление</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPoint" xml:space="preserve">
+    <value>Показать эту точку</value>
+  </data>
+  <data name="PgReg_SystemNameNeeded" xml:space="preserve">
+    <value>Необходимо ввести название в системе</value>
+  </data>
+  <data name="WmMenu_Tools_BaseLayers" xml:space="preserve">
+    <value>Базовые слои…</value>
+  </data>
+  <data name="LocContainsStyles" xml:space="preserve">
+    <value>Содержит стили</value>
+  </data>
+  <data name="FindBox2_Contains" xml:space="preserve">
+    <value>Входит</value>
+  </data>
+  <data name="WmMenu_Tools_UserRights" xml:space="preserve">
+    <value>Администрирование прав пользователей…</value>
+  </data>
+  <data name="worksetstyleremove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\worksetstyleremove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1279535667_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535667_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PFC_EditingFields" xml:space="preserve">
+    <value>Редактирование атрибута</value>
+  </data>
+  <data name="PgListUserRightsVM_DataTables" xml:space="preserve">
+    <value>Таблицы с данными</value>
+  </data>
+  <data name="ImportWindow_ReadMe" xml:space="preserve">
+    <value>Сопоставьте колонки из файла колонкам из таблицы базы данных</value>
+  </data>
+  <data name="1downarrow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AET_ErrorCreatingHistory" xml:space="preserve">
+    <value>Произошла ошибка при создании истории!</value>
+  </data>
+  <data name="Tool_JoinIntersectGeometry" xml:space="preserve">
+    <value>Объединение пересекаемых геометрий</value>
+  </data>
+  <data name="arrow_sans_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_sans_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LIV_NotSelectedObj" xml:space="preserve">
+    <value>Не выбран объект!</value>
+  </data>
+  <data name="FormTableData_DeleteFile" xml:space="preserve">
+    <value>Удаление файла</value>
+  </data>
+  <data name="Tool_Select" xml:space="preserve">
+    <value>Выбор объектов</value>
+  </data>
+  <data name="FELC_CreatingFields" xml:space="preserve">
+    <value>Создание поля</value>
+  </data>
+  <data name="LocExpression" xml:space="preserve">
+    <value>Выражение</value>
+  </data>
+  <data name="ZoomToLayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToLayer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocArithmeticExpression" xml:space="preserve">
+    <value>Арифметическое выражение</value>
+  </data>
+  <data name="mainFrm_errFileFomat" xml:space="preserve">
+    <value>Файл проекции не соответствует формату!</value>
+  </data>
+  <data name="edit_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AEAtr_NotSelectType" xml:space="preserve">
+    <value>Не выбран тип данных!</value>
+  </data>
+  <data name="AEAtr_NameFormat" xml:space="preserve">
+    <value>Название поля должно быть из латинских букв и цифр и начинаться с латинских буквы</value>
+  </data>
+  <data name="LocSave" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="LabelStyle_ErrorConvert" xml:space="preserve">
+    <value>Ошибка приведения</value>
+  </data>
+  <data name="ExcelUC_List" xml:space="preserve">
+    <value>Лист</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsAll" xml:space="preserve">
+    <value>Общие отчеты</value>
+  </data>
+  <data name="NewPassword_PwdIsIncorrect" xml:space="preserve">
+    <value>Неправильно введен пароль</value>
+  </data>
+  <data name="CosTableView_Reload" xml:space="preserve">
+    <value>Обновить данные</value>
+  </data>
+  <data name="AbsM.ETableType.CommonType" xml:space="preserve">
+    <value>Общий тип</value>
+  </data>
+  <data name="RstGrf_Raster" xml:space="preserve">
+    <value>Растр</value>
+  </data>
+  <data name="Tool_OpenTable" xml:space="preserve">
+    <value>Таблица данных по слою</value>
+  </data>
+  <data name="DGBH_Line" xml:space="preserve">
+    <value>Линия</value>
+  </data>
+  <data name="DGBH_row" xml:space="preserve">
+    <value>строка</value>
+  </data>
+  <data name="a_c48d37de1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_c48d37de1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FindBox2_DoesNotContain" xml:space="preserve">
+    <value>Не входит</value>
+  </data>
+  <data name="PgGeomVRec_RemovePolygon" xml:space="preserve">
+    <value>Удалить полигон</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Plugins" xml:space="preserve">
+    <value>Панель "Плагины"</value>
+  </data>
+  <data name="delete_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsPosFrm_QuestionChangeLocation" xml:space="preserve">
+    <value>Вы действительно хотите изменить положение локации?</value>
+  </data>
+  <data name="PgReg_ChangesSaved" xml:space="preserve">
+    <value>Изменения сохранены</value>
+  </data>
+  <data name="GC_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="PluginSettingsForm_tnUserSettings" xml:space="preserve">
+    <value>Настройки пользователя</value>
+  </data>
+  <data name="PgReg_CreateNewScheme" xml:space="preserve">
+    <value>Создать новую схему</value>
+  </data>
+  <data name="LocUpdate" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Catalog" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="DGBH_ProjNotInDB" xml:space="preserve">
+    <value>Проекции {0} нет в базе. Нельзя использовать эту проекцию</value>
+  </data>
+  <data name="LocRead" xml:space="preserve">
+    <value>Чтение</value>
+  </data>
+  <data name="HistoryFrom_endDp_toolTip" xml:space="preserve">
+    <value>Дата окончания</value>
+  </data>
+  <data name="LocSettings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Report_VM_geomLength" xml:space="preserve">
+    <value>Геометрия: Длина (м)</value>
+  </data>
+  <data name="info_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Count_In_Status" xml:space="preserve">
+    <value>Количество:</value>
+  </data>
+  <data name="LocName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="GC_Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="LocUseDefaultMethodOfUsingRastr" xml:space="preserve">
+    <value>Стандартный</value>
+  </data>
+  <data name="ConnectionIsBroken_Message" xml:space="preserve">
+    <value>Соединение с базой данных было утеряно! Произвести повторное соединение? Иначе приложение будет закрыто!</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Map" xml:space="preserve">
+    <value>Панель инструментов "Карта"</value>
+  </data>
+  <data name="Tool_SetSaveLocation" xml:space="preserve">
+    <value>Сохранение положения слоев</value>
+  </data>
+  <data name="AbsM.EGeomType.None" xml:space="preserve">
+    <value>Без геометрии</value>
+  </data>
+  <data name="mainFrm_errFrmImg" xml:space="preserve">
+    <value>Ошибка при формировании изображения!</value>
+  </data>
+  <data name="mainFrm_errProjFileChange" xml:space="preserve">
+    <value>Файл проекции не найден или не соответствует формату! Вы хотите указать расположение файла? Иначе останется прежняя карта.</value>
+  </data>
+  <data name="LocReplace" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="LocMapLayer" xml:space="preserve">
+    <value>Слой карты</value>
+  </data>
+  <data name="Tool_PasteGeom" xml:space="preserve">
+    <value>Вставка геометрии</value>
+  </data>
+  <data name="LocSaveScaleError" xml:space="preserve">
+    <value>Минимальный масштаб не может быть больше максимального!</value>
+  </data>
+  <data name="PgReg_MapLayerHasGeom" xml:space="preserve">
+    <value>У слоя карты должен быть выбран тип геометрии</value>
+  </data>
+  <data name="PTC_BorderSymbol" xml:space="preserve">
+    <value>Каймы</value>
+  </data>
+  <data name="Report_VM_photoFileBody" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="Выбор_объекта" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReportEditor_V_Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="CosAttributes_GeomImport" xml:space="preserve">
+    <value>Импорт геометрии из…</value>
+  </data>
+  <data name="PgReg_Styles" xml:space="preserve">
+    <value>Стили</value>
+  </data>
+  <data name="HistoryForm_Groups" xml:space="preserve">
+    <value>Группы</value>
+  </data>
+  <data name="mainFrm_SelectedCount" xml:space="preserve">
+    <value>Выбрано объектов: {0}</value>
+  </data>
+  <data name="ГС_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ГС_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeomVRec_ProjectionNotExists" xml:space="preserve">
+    <value>Такой проекции нет в базе. Попробуйте другую</value>
+  </data>
+  <data name="TLE_TableStructure" xml:space="preserve">
+    <value>Структура таблицы</value>
+  </data>
+  <data name="LocCount" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="LM_ErorLoadStyleLabel" xml:space="preserve">
+    <value>Не удалось загрузить стиль подписи объектов:</value>
+  </data>
+  <data name="GF_ErrorCreateGroup" xml:space="preserve">
+    <value>У вас недостаточно прав для создания группы, обратитесь к администратору</value>
+  </data>
+  <data name="LIV_DeleteStyleLayer" xml:space="preserve">
+    <value>Вы действительно хотите удалить оформление для выбранного слоя?</value>
+  </data>
+  <data name="IV_Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="DPolygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="SHPUC_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="PgFullSearch_MoveToObject" xml:space="preserve">
+    <value>Перелет к объекту</value>
+  </data>
+  <data name="WmMenu_Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="LabelControl_Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Tool_MoveVertex" xml:space="preserve">
+    <value>Перемещение узла</value>
+  </data>
+  <data name="kfontview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kfontview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_copyObj" xml:space="preserve">
+    <value>Oбъекты скопированы</value>
+  </data>
+  <data name="AEAtr_SaveRenameField" xml:space="preserve">
+    <value>Поле с таким именем в базе уже существует. Сохранить поле с именем "{0}"?</value>
+  </data>
+  <data name="ErrorMessage_header" xml:space="preserve">
+    <value>Сообщение об ошибке!</value>
+  </data>
+  <data name="Tool_AddInMap" xml:space="preserve">
+    <value>Добавление объекта на карту</value>
+  </data>
+  <data name="PgGeomVRec_Editing" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPolygon" xml:space="preserve">
+    <value>Полигоны</value>
+  </data>
+  <data name="pan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pan.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PTC_NotRight" xml:space="preserve">
+    <value>Не правильно!</value>
+  </data>
+  <data name="LocView" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="LocPasswordEdit" xml:space="preserve">
+    <value>Редактировать пароль</value>
+  </data>
+  <data name="FilterViewModel_ExceptSource" xml:space="preserve">
+    <value>Необходимо указать источник</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.None" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="точка1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PFC_EditingFieldsAsk" xml:space="preserve">
+    <value>Вы действительно хотите изменить выбранный атрибут?</value>
+  </data>
+  <data name="WmMenu_Data_UpdMenu" xml:space="preserve">
+    <value>Обновить меню</value>
+  </data>
+  <data name="ExportDBF_Errors" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="LocGroups" xml:space="preserve">
+    <value>Группы</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionYes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="login_msgConfF" xml:space="preserve">
+    <value>Укажите файл конфигурации!</value>
+  </data>
+  <data name="DGBH_ErrorReplaceFile" xml:space="preserve">
+    <value>Система не может заменить уже существующий файл! Пожалуйста, укажите другое имя. Продолжить?</value>
+  </data>
+  <data name="Report_VM_geomArea" xml:space="preserve">
+    <value>Геометрия: Площадь (кв.м)</value>
+  </data>
+  <data name="PgGeomVRec_RemoveHole" xml:space="preserve">
+    <value>Удалить пустоту</value>
+  </data>
+  <data name="DGBH_WrongFormat" xml:space="preserve">
+    <value>Неправильный формат файла</value>
+  </data>
+  <data name="HistoryClass_ValueNotFound" xml:space="preserve">
+    <value>(значение не найдено)</value>
+  </data>
+  <data name="DGBH_Point" xml:space="preserve">
+    <value>Точка</value>
+  </data>
+  <data name="stock_snap_guides_9095" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_snap-guides_9095.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ucTable_inAll" xml:space="preserve">
+    <value>По всем</value>
+  </data>
+  <data name="PgGeomVRec_Projection" xml:space="preserve">
+    <value>Проекция</value>
+  </data>
+  <data name="PFC_AllFieldsFill" xml:space="preserve">
+    <value>Необходимо заполнить все поля!</value>
+  </data>
+  <data name="SRF_EmptyName" xml:space="preserve">
+    <value>Наименование не должно быть пустым</value>
+  </data>
+  <data name="DGBH_SelectObjForInputCoord" xml:space="preserve">
+    <value>Выберите объект который хотите заполнить координатами</value>
+  </data>
+  <data name="userAddFrm_errorSymbolInLogin" xml:space="preserve">
+    <value>Логин может содержать латинские буквы, цифры и должен начинаться с латинских букв!</value>
+  </data>
+  <data name="HistoryForm_restore_beffor" xml:space="preserve">
+    <value>Восстановить состояние до</value>
+  </data>
+  <data name="FormTableData_EnterOnlyNumeric" xml:space="preserve">
+    <value>Возможен ввод только вещественных чисел</value>
+  </data>
+  <data name="mainFrm_errBDUnav" xml:space="preserve">
+    <value>Данная таблица отсутствует или она недоступна для просмотра!</value>
+  </data>
+  <data name="savebaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\savebaw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_navedenii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_EditingLineObj" xml:space="preserve">
+    <value>линейного объекта</value>
+  </data>
+  <data name="CheckObjects_ColumnName" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Scale" xml:space="preserve">
+    <value>Панель "Масштаб карты"</value>
+  </data>
+  <data name="ReportEditor_V_AddReportObject" xml:space="preserve">
+    <value>Добавить отчет с текущим объектом</value>
+  </data>
+  <data name="HistoryState_NotChange" xml:space="preserve">
+    <value>Не менялась</value>
+  </data>
+  <data name="ImportWindow_Load" xml:space="preserve">
+    <value>Загружать</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutes" xml:space="preserve">
+    <value>Градусы, минуты</value>
+  </data>
+  <data name="pri_vibore_instrumenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FormTableData_Style" xml:space="preserve">
+    <value>Стиль...</value>
+  </data>
+  <data name="mainFrm_IDrecieved" xml:space="preserve">
+    <value>Идентификатор объекта получен</value>
+  </data>
+  <data name="DeleteUserQuetion" xml:space="preserve">
+    <value>Вы действительно хотите удалить пользователя?</value>
+  </data>
+  <data name="bridget" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bridget.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HistoryClass_ActualState" xml:space="preserve">
+    <value>Вы собираетесь восстановить актуальное на данный момент состояние объекта. Продолжить?</value>
+  </data>
+  <data name="PgM.EStyleType.range" xml:space="preserve">
+    <value>По диапазону</value>
+  </data>
+  <data name="mainFrm_errMFileNF" xml:space="preserve">
+    <value>Файл карты не найден! Вы хотите указать файл? Иначе программа будет закрыта.</value>
+  </data>
+  <data name="Tables_Count" xml:space="preserve">
+    <value>Количество таблиц:</value>
+  </data>
+  <data name="mainFrm_errSRIDNS" xml:space="preserve">
+    <value>Выбранный Вами SRID не имеет описания в базе данных!</value>
+  </data>
+  <data name="LocSize" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="reload_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_page.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AbsM.ERefType.Data" xml:space="preserve">
+    <value>Таблица с данными</value>
+  </data>
+  <data name="real1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\real1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IV_PleaseWait" xml:space="preserve">
+    <value>Это может занять несколько минут.</value>
+  </data>
+  <data name="pri_navedenii2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Edit" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="WmMenu_Help_About" xml:space="preserve">
+    <value>О программе...</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertNumeric" xml:space="preserve">
+    <value>Не удается преобразовать в дробное:</value>
+  </data>
+  <data name="ImportWindow_Download" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="RstGrf_SaveControlPoints" xml:space="preserve">
+    <value>Сохранить контрольные точки</value>
+  </data>
+  <data name="ReportEditor_V_OpenReport" xml:space="preserve">
+    <value>Открыть отчет</value>
+  </data>
+  <data name="HisotryForm_SelectTablesForSearch" xml:space="preserve">
+    <value>Выберите таблицы для поиска</value>
+  </data>
+  <data name="LIV_DB_layer" xml:space="preserve">
+    <value>Тематические слои</value>
+  </data>
+  <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_File_Print" xml:space="preserve">
+    <value>Печать…</value>
+  </data>
+  <data name="Площадь1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GF_OrderGroup" xml:space="preserve">
+    <value>Не удалось изменить порядок групп.</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Numeric" xml:space="preserve">
+    <value>Вещественное</value>
+  </data>
+  <data name="WmMenu_Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="PgReg_MapLayer" xml:space="preserve">
+    <value>Слой карты</value>
+  </data>
+  <data name="mainFrm_errSRIDINT" xml:space="preserve">
+    <value>SRID может быть только целым числом!</value>
+  </data>
+  <data name="LocSearch" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="reload_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_LayersList" xml:space="preserve">
+    <value>Панель управления слоями</value>
+  </data>
+  <data name="LIV_ErrorOpenTable" xml:space="preserve">
+    <value>Ошибка открытия таблицы</value>
+  </data>
+  <data name="FELC_UseCatalogs" xml:space="preserve">
+    <value>Использование справочников</value>
+  </data>
+  <data name="WmMenu_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="DGBH_CoordIncorrect" xml:space="preserve">
+    <value>Координаты некорректны!</value>
+  </data>
+  <data name="data_time1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\data_time1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocProperties" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="worksetstyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\worksetstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrintSettingsFrm_Excellent" xml:space="preserve">
+    <value>Отличное (300 dpi)</value>
+  </data>
+  <data name="mainFrm_NoCopyObj" xml:space="preserve">
+    <value>Нет скопированного объекта!</value>
+  </data>
+  <data name="Tool_ClipByMouse" xml:space="preserve">
+    <value>Обрезание геометрии указанием точек</value>
+  </data>
+  <data name="WorkSets_V_EditWorkSet" xml:space="preserve">
+    <value>Изменить рабочий набор</value>
+  </data>
+  <data name="ExcelUC_SpecifyRange" xml:space="preserve">
+    <value>Укажите диапазон</value>
+  </data>
+  <data name="Tool_MapPointInfo" xml:space="preserve">
+    <value>Информация по карте</value>
+  </data>
+  <data name="new_udalennii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new udalennii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocShowLabel" xml:space="preserve">
+    <value>Отображать подпись</value>
+  </data>
+  <data name="mainFrm_errNMultObj" xml:space="preserve">
+    <value>Невозможная операция для не мультиплощадного объекта!</value>
+  </data>
+  <data name="HistoryForm_restore_after" xml:space="preserve">
+    <value>Восстановить состояние после</value>
+  </data>
+  <data name="DGBH_ErrorSinglePoint" xml:space="preserve">
+    <value>Вы не можете удалить единственную точку</value>
+  </data>
+  <data name="PgM.EChangeColor.Fringe" xml:space="preserve">
+    <value>Кайма</value>
+  </data>
+  <data name="search1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PluginSettingsForm_CountPlugins" xml:space="preserve">
+    <value>Количество плагинов:</value>
+  </data>
+  <data name="ImporterHelper_ExceptFileName" xml:space="preserve">
+    <value>Входной файл имел неверный формат</value>
+  </data>
+  <data name="SettingsPosFrm_MastSelectLocation" xml:space="preserve">
+    <value>Необходимо выбрать локацию.</value>
+  </data>
+  <data name="HistoryClass_ErrorRestoreExistsObj" xml:space="preserve">
+    <value>Данный объект уже существует. Восстановить существующий объект нельзя</value>
+  </data>
+  <data name="PrintV_Landscape" xml:space="preserve">
+    <value>Альбомная</value>
+  </data>
+  <data name="FormTableData_Files1" xml:space="preserve">
+    <value>Файлов:</value>
+  </data>
+  <data name="RstGrf_Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="ExportProjSelection_SelectText" xml:space="preserve">
+    <value>Выберите проекцию файла для экспорта</value>
+  </data>
+  <data name="ucTable_FilterName" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Geometry" xml:space="preserve">
+    <value>Геометрия</value>
+  </data>
+  <data name="TLE_DeletingInterval" xml:space="preserve">
+    <value>Удаление интервала</value>
+  </data>
+  <data name="AET_NotRegScheme" xml:space="preserve">
+    <value>Нет ни одной зарегистрированной схемы!</value>
+  </data>
+  <data name="object_rotate_right_5106" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-right_5106.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AWT_EditLabel" xml:space="preserve">
+    <value>Редактирование подписи</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisLine" xml:space="preserve">
+    <value>Показать эту линию</value>
+  </data>
+  <data name="SHPExporter_ProcessObjCount" xml:space="preserve">
+    <value>Обработано объектов {0} из {1}</value>
+  </data>
+  <data name="peremechenie__uzla_new_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_Tools_CosmeticLayers" xml:space="preserve">
+    <value>Косметические слои...</value>
+  </data>
+  <data name="AdminFrm_NotReadAllTable" xml:space="preserve">
+    <value>Запрещен просмотр всех таблиц</value>
+  </data>
+  <data name="Mes_Delete" xml:space="preserve">
+    <value>Удаление</value>
+  </data>
+  <data name="mainFrm_mapOpenError" xml:space="preserve">
+    <value>Ошибка открытия карты</value>
+  </data>
+  <data name="AbsM.EGeomType.Line" xml:space="preserve">
+    <value>Линия</value>
+  </data>
+  <data name="HistoryCalss_RowNotFound" xml:space="preserve">
+    <value>Не найдена запись с данными</value>
+  </data>
+  <data name="AET_ErrorCreatingTable" xml:space="preserve">
+    <value>Произошла ошибка при создании таблицы</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Integer" xml:space="preserve">
+    <value>Целое</value>
+  </data>
+  <data name="Tool_AddInMapLine" xml:space="preserve">
+    <value>Добавление линии на карту</value>
+  </data>
+  <data name="LocPen" xml:space="preserve">
+    <value>Карандаш</value>
+  </data>
+  <data name="PgReg_LabelField" xml:space="preserve">
+    <value>Поле для подписи объектов</value>
+  </data>
+  <data name="PgGeomVRec_Adding" xml:space="preserve">
+    <value>Добавление</value>
+  </data>
+  <data name="layers_img" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_img.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="userAddFrm_UserNotSelected" xml:space="preserve">
+    <value>Пользователь не выбран!</value>
+  </data>
+  <data name="PgGeomVRec_Up" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="PgReg_SSCGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="lupa__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa +.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocUseGDALMethodOfUsingRastr" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="AET_MustBeProj" xml:space="preserve">
+    <value>Вы должны выбрать проекцию слоя карты!</value>
+  </data>
+  <data name="mainFrm_NotMatchGeomType" xml:space="preserve">
+    <value>Не совпадает тип геометрии!</value>
+  </data>
+  <data name="HistoryForm_TypeUser" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="mainFrm_emptyGeo" xml:space="preserve">
+    <value>Пустая геометрия!</value>
+  </data>
+  <data name="AET_PerformOperation" xml:space="preserve">
+    <value>Выполнить операцию?</value>
+  </data>
+  <data name="AEAtr_RenameInDB" xml:space="preserve">
+    <value>Поменяйте название поля в базе данных.</value>
+  </data>
+  <data name="PgReg_TableType" xml:space="preserve">
+    <value>Тип таблицы</value>
+  </data>
+  <data name="FormTableData_ErrorGeom" xml:space="preserve">
+    <value>Ошибки в геометрии</value>
+  </data>
+  <data name="WmMenu_Reports" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="SHPImporter_ExceptTypeGeom" xml:space="preserve">
+    <value>Тип геометрии в файле не соответствует типу геометрии в таблице!</value>
+  </data>
+  <data name="CosTableView_ObjectNotExists" xml:space="preserve">
+    <value>Этого объекта не существует</value>
+  </data>
+  <data name="PrintV_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="TLE_Attention" xml:space="preserve">
+    <value>Внимание! С этой таблицей связаны другие таблицы!</value>
+  </data>
+  <data name="ExportQuestion_StatusErrorUnloading" xml:space="preserve">
+    <value>Ошибка выгрузки</value>
+  </data>
+  <data name="WmMenu_Sources_RastrLayers" xml:space="preserve">
+    <value>Растровые слои…</value>
+  </data>
+  <data name="ucTable_ChangeProjection" xml:space="preserve">
+    <value>Вы хотите выбрать другую проекцию слоя?</value>
+  </data>
+  <data name="RstGrf_Title" xml:space="preserve">
+    <value>Геопривязка растра</value>
+  </data>
+  <data name="LocCreate" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="PanelGroup_tables" xml:space="preserve">
+    <value>таблиц</value>
+  </data>
+  <data name="LIV_ErrorSetVisible" xml:space="preserve">
+    <value>Не удалось изменить видимость слоя</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsObject" xml:space="preserve">
+    <value>Отчеты с текущим объектом</value>
+  </data>
+  <data name="deselect_objects" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deselect_objects.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="AbsM.EFieldType.Real" xml:space="preserve">
+    <value>Вещественное</value>
+  </data>
+  <data name="FELC_DeletingFieldStyle" xml:space="preserve">
+    <value>По этому полю определяется стиль таблицы.</value>
+  </data>
+  <data name="mainFrm_printStt" xml:space="preserve">
+    <value>Настройка печати</value>
+  </data>
+  <data name="WmMenu_Help_Licences" xml:space="preserve">
+    <value>Лицензионное соглашение компонентов ПО...</value>
+  </data>
+  <data name="HistoryForm_ValueIsSpecif" xml:space="preserve">
+    <value>Есть значение</value>
+  </data>
+  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocMinValue" xml:space="preserve">
+    <value>Мин. значение</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetAdd" xml:space="preserve">
+    <value>Неудалось добавить новый набор</value>
+  </data>
+  <data name="CosAttributes_Object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="LocClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ucTable_DeleteAllRowsConfirm" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="login_errWPass" xml:space="preserve">
+    <value>Неверный логин или пароль для пользователя '</value>
+  </data>
+  <data name="sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_errProjUs" xml:space="preserve">
+    <value>Данная проекция не может быть применена!</value>
+  </data>
+  <data name="PgFullSearch_Tables" xml:space="preserve">
+    <value>Таблицы</value>
+  </data>
+  <data name="blue_bg_for_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_FixForContinue" xml:space="preserve">
+    <value>Исправьте для продолжения</value>
+  </data>
+  <data name="PgReg_Photos" xml:space="preserve">
+    <value>Фотографии</value>
+  </data>
+  <data name="PgGeomVRec_Length" xml:space="preserve">
+    <value>Длина (м)</value>
+  </data>
+  <data name="HistoryClass_Confirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="mainFrm_setProjFile" xml:space="preserve">
+    <value>Укажите файл проекции</value>
+  </data>
+  <data name="Tool_SnapLine" xml:space="preserve">
+    <value>Режим прикрепления к ребрам</value>
+  </data>
+  <data name="lupa_minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportWindow_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="DGBH_EditingPolygonObj" xml:space="preserve">
+    <value>площадного объекта</value>
+  </data>
+  <data name="Площадь1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FELC_EditingField" xml:space="preserve">
+    <value>Редактирование поля</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Search" xml:space="preserve">
+    <value>Строка поиска объектов</value>
+  </data>
+  <data name="ChangesAreSaved" xml:space="preserve">
+    <value>Изменения сохранены!</value>
+  </data>
+  <data name="login_err" xml:space="preserve">
+    <value>Ошибка!</value>
+  </data>
+  <data name="Styles_Range" xml:space="preserve">
+    <value>Диапазон</value>
+  </data>
+  <data name="HistoryForm_ShowGeom" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.None" xml:space="preserve">
+    <value>Нет геометрии</value>
+  </data>
+  <data name="FormTableData_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="LocStyleField" xml:space="preserve">
+    <value>Поле стиля</value>
+  </data>
+  <data name="autocad_icon_workset" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autocad_icon_workset.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportWindow_Table" xml:space="preserve">
+    <value>Таблица</value>
+  </data>
+  <data name="TLE_SettingTable" xml:space="preserve">
+    <value>Настройка таблицы: "{0}"</value>
+  </data>
+  <data name="PgGeomVRec_Perimeter" xml:space="preserve">
+    <value>Периметр (м)</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiLinestring" xml:space="preserve">
+    <value>Линии</value>
+  </data>
+  <data name="LocMinScale" xml:space="preserve">
+    <value>Нижняя граница</value>
+  </data>
+  <data name="Tool_ZoomToSelObjects" xml:space="preserve">
+    <value>Вписывание объектов в экран</value>
+  </data>
+  <data name="FormTableData_Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="object_List" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object_List.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_DivWithLine" xml:space="preserve">
+    <value>Разрезание линий/полигонов линией</value>
+  </data>
+  <data name="PgGeomVRec_AddPolygon" xml:space="preserve">
+    <value>Добавить полигон</value>
+  </data>
+  <data name="int1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\int1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login_errWrFile" xml:space="preserve">
+    <value>Данный файл не является файлом конфигурации!</value>
+  </data>
+  <data name="SnapToLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToLine.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PgFullSearch_Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="NumberIsNotCorrest" xml:space="preserve">
+    <value>Неправильно указанно число</value>
+  </data>
+  <data name="FormTableData_SaveWithoutGeom" xml:space="preserve">
+    <value>Сохранить без геометрии?</value>
+  </data>
+  <data name="DBTG_TablesList" xml:space="preserve">
+    <value>Список таблиц</value>
+  </data>
+  <data name="PrintV_PrintProgress" xml:space="preserve">
+    <value>Печатается страница {0} из {1}</value>
+  </data>
+  <data name="DGBH_RecalGeometry" xml:space="preserve">
+    <value>Пересчет геометрии</value>
+  </data>
+  <data name="LocMaxValueColor" xml:space="preserve">
+    <value>Цвет макс. зн.</value>
+  </data>
+  <data name="LocCreateUserSet" xml:space="preserve">
+    <value>Создать рабочий набор</value>
+  </data>
+  <data name="HistoryForm_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="WmMenu_View_ToolBars" xml:space="preserve">
+    <value>Панель инструментов</value>
+  </data>
+  <data name="LocConfirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="reference" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reference.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_errRequest" xml:space="preserve">
+    <value>Невозможно обработать запрос!</value>
+  </data>
+  <data name="LabelControl_NotEmpty" xml:space="preserve">
+    <value>Выражение не должно быть пустым</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EnabledModes" xml:space="preserve">
+    <value>Панель "Включенные режимы"</value>
+  </data>
+  <data name="Tool_CopyGeom" xml:space="preserve">
+    <value>Копирование геометрии</value>
+  </data>
+  <data name="Tool_UpdLayersList" xml:space="preserve">
+    <value>Обновление данных на карте</value>
+  </data>
+  <data name="LocGrantRights" xml:space="preserve">
+    <value>Выделение прав</value>
+  </data>
+  <data name="WmMenu_Sources_PostgreSQL" xml:space="preserve">
+    <value>PostgreSQL…</value>
+  </data>
+  <data name="Tool_SnapPoint" xml:space="preserve">
+    <value>Режим прикрепления к узлам</value>
+  </data>
+  <data name="ExportProjSelection_Select" xml:space="preserve">
+    <value>Выбрать</value>
+  </data>
+  <data name="ImportWindow_NotSelectTableBD" xml:space="preserve">
+    <value>Не выбрана таблицa базы данных</value>
+  </data>
+  <data name="userAddFrm_LoginEmpty" xml:space="preserve">
+    <value>Не введен Логин!</value>
+  </data>
+  <data name="LocIndexedFields" xml:space="preserve">
+    <value>Индексируемые поля</value>
+  </data>
+  <data name="FindBox2_StartsWith" xml:space="preserve">
+    <value>Входит сначала</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessageHeader" xml:space="preserve">
+    <value>Удаление пустоты</value>
+  </data>
+  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ReportEditor_V_ListReport" xml:space="preserve">
+    <value>Список отчетов</value>
+  </data>
+  <data name="ReportEditor_V_DeleteReport" xml:space="preserve">
+    <value>Удалить отчет</value>
+  </data>
+  <data name="dobavit_obekt_na_videlenii_sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dobavit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layerInfo_LayerMap" xml:space="preserve">
+    <value>Слой карты: {0}</value>
+  </data>
+  <data name="DGBH_EditingPointObj" xml:space="preserve">
+    <value>точечного объекта</value>
+  </data>
+  <data name="AbsM.EGeomType.GeometryCollection" xml:space="preserve">
+    <value>Коллекция геометрий</value>
+  </data>
+  <data name="PgReg_TableProps" xml:space="preserve">
+    <value>Свойства таблицы</value>
+  </data>
+  <data name="HistoryForm_NotMatchWithPrev" xml:space="preserve">
+    <value>Значение не совпадает с предыдущим</value>
+  </data>
+  <data name="Tool_VertexEdit" xml:space="preserve">
+    <value>Редактирование нескольких узлов</value>
+  </data>
+  <data name="SHPExporter_LoadForPreview" xml:space="preserve">
+    <value>Загрyжено строк для предпросмотра: {0}</value>
+  </data>
+  <data name="WmMenu_View_Map_FitObject" xml:space="preserve">
+    <value>Вписывать объект при переходе к нему</value>
+  </data>
+  <data name="UserSetsFrm_NeedSelectedWorkSet" xml:space="preserve">
+    <value>Необходимо выбрать набор!</value>
+  </data>
+  <data name="RstGrf_LoadControlPoints" xml:space="preserve">
+    <value>Загрузить контрольные точки</value>
+  </data>
+  <data name="HIstory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HIstory.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_IntersectGeometry" xml:space="preserve">
+    <value>Пересечение геометрий</value>
+  </data>
+  <data name="AbsM.EGeomType.Point" xml:space="preserve">
+    <value>Точка</value>
+  </data>
+  <data name="PgGeomVRec_Invert" xml:space="preserve">
+    <value>Инверт Х,У</value>
+  </data>
+  <data name="AET_ConNotSave" xml:space="preserve">
+    <value>Таблица с данным именем не может быть сохранена!</value>
+  </data>
+  <data name="FilterViewModel_ExceptTableName" xml:space="preserve">
+    <value>Необходимо указать таблицу</value>
+  </data>
+  <data name="FormTableData_Reference" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="ExcelImporter_NotSelectedList" xml:space="preserve">
+    <value>Не выбран лист</value>
+  </data>
+  <data name="mainFrm_msgPicCS" xml:space="preserve">
+    <value>Не удалось сохранить изображение</value>
+  </data>
+  <data name="DBTG_ManagingGroups" xml:space="preserve">
+    <value>Управление группами</value>
+  </data>
+  <data name="PgReg_OnlyIntervals" xml:space="preserve">
+    <value>Стили могут содержать только интервалы и справочники</value>
+  </data>
+  <data name="HistoryClass_ErrorOnlyOne" xml:space="preserve">
+    <value>Найдена не одна запись с данными</value>
+  </data>
+  <data name="PrintV_Portrait" xml:space="preserve">
+    <value>Книжная</value>
+  </data>
+  <data name="CMD_NewProgram" xml:space="preserve">
+    <value>Новая программа</value>
+  </data>
+  <data name="find_fulltextsearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find_fulltextsearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rotate270anticlockwise3green_9632" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rotate270anticlockwise3green_9632.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportWindow_SelectField" xml:space="preserve">
+    <value>Выберите поле</value>
+  </data>
+  <data name="ImportWindow_LoadedSuccessfully" xml:space="preserve">
+    <value>Загрузка успешно завершена</value>
+  </data>
+  <data name="Управление_полями" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_полями.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PluginSettingsForm_tnProxySettings" xml:space="preserve">
+    <value>Настройки соединения</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditGeom" xml:space="preserve">
+    <value>Панель инструментов "Операции с геометрией"</value>
+  </data>
+  <data name="AbsM.EFieldType.Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="PgGeomVRec_PointsDeleting" xml:space="preserve">
+    <value>Удаление точек</value>
+  </data>
+  <data name="bg_gorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_gorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_FastStart" xml:space="preserve">
+    <value>Панель инструментов "Быстрый запуск"</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="HistoryForm_ErrorNoActual" xml:space="preserve">
+    <value>Значение не совпадает с актуальным</value>
+  </data>
+  <data name="DGBH_GeomAssignedDefaultValue" xml:space="preserve">
+    <value>Геометрия имеет неправильный формат. Объекту присвоена пустая геометрия</value>
+  </data>
+  <data name="1downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_ZoomIn" xml:space="preserve">
+    <value>Приближение</value>
+  </data>
+  <data name="PTC_ErrorNotSelectGeom" xml:space="preserve">
+    <value>Не выбрано поле геометрии</value>
+  </data>
+  <data name="PgGeomVRec_Assign" xml:space="preserve">
+    <value>Присвоить</value>
+  </data>
+  <data name="ReportEditor_V_Title" xml:space="preserve">
+    <value>Список отчетов</value>
+  </data>
+  <data name="copy_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_Tools_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="FormTableData_ValueIntervalsNotFoundBySaves" xml:space="preserve">
+    <value>Значение поля "{0}" не попало ни в один из интервалов</value>
+  </data>
+  <data name="GC_Length" xml:space="preserve">
+    <value>Длина (м)</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPoint" xml:space="preserve">
+    <value>Мультиточка</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_ProgramPlugins" xml:space="preserve">
+    <value>Наcтройки программы и плагинов...</value>
+  </data>
+  <data name="LocRights" xml:space="preserve">
+    <value>Права</value>
+  </data>
+  <data name="Tool_Unselect" xml:space="preserve">
+    <value>Снятие выделения</value>
+  </data>
+  <data name="HistoryForm_ValueIsNotSpecif" xml:space="preserve">
+    <value>Значение не задано</value>
+  </data>
+  <data name="PgGeomVRec_Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="CCT_Postfix" xml:space="preserve">
+    <value>копия</value>
+  </data>
+  <data name="obnovit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\obnovit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_Map_HideVMP" xml:space="preserve">
+    <value>Выключать слои подложки при включении растра</value>
+  </data>
+  <data name="RasM.EConnectType.Standard" xml:space="preserve">
+    <value>Стандартный</value>
+  </data>
+  <data name="mainFrm_errTableShouldNotBeEmpty" xml:space="preserve">
+    <value>Таблица не должна быть пустой</value>
+  </data>
+  <data name="Mes_Change" xml:space="preserve">
+    <value>Изменения</value>
+  </data>
+  <data name="Report_VM_LoadReport" xml:space="preserve">
+    <value>Таблица: {0}</value>
+  </data>
+  <data name="AET_MustBeGeom" xml:space="preserve">
+    <value>У слоя карты обязательно должна быть геометрия!</value>
+  </data>
+  <data name="LocAdd" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="stock_draw_rectangle_unfilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_draw_rectangle_unfilled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacLine" xml:space="preserve">
+    <value>Не достаточно точек для отображения характеристик линии</value>
+  </data>
+  <data name="LocSourceRastr" xml:space="preserve">
+    <value>Растровые слои</value>
+  </data>
+  <data name="ExportQuestion_MesExceptGeom" xml:space="preserve">
+    <value>В файле были найдены объекты с неверной геометрией</value>
+  </data>
+  <data name="Tool_SetChangeStyle" xml:space="preserve">
+    <value>Изменение оформления слоя</value>
+  </data>
+  <data name="DGBH_Empty" xml:space="preserve">
+    <value>Пустота</value>
+  </data>
+  <data name="NewPassword_PwdNotEmpty" xml:space="preserve">
+    <value>Пароль не может быть пустым</value>
+  </data>
+  <data name="PTC_TableIsNotLayer" xml:space="preserve">
+    <value>Таблица не является слоем карты!</value>
+  </data>
+  <data name="ArrowHeadDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowHeadDown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditObject" xml:space="preserve">
+    <value>Панель инструментов "Операции с объектами"</value>
+  </data>
+  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkSets_V_SwichWorkSet" xml:space="preserve">
+    <value>Перейти</value>
+  </data>
+  <data name="PgM.EChangeColor.Foreground" xml:space="preserve">
+    <value>Основной цвет</value>
+  </data>
+  <data name="LocProgramName" xml:space="preserve">
+    <value>Название програмы</value>
+  </data>
+  <data name="FELC_DeletingFieldAsk" xml:space="preserve">
+    <value>Вы действительно хотите удалить выбранный атрибут?</value>
+  </data>
+  <data name="PrintSettingsFrm_Landscape" xml:space="preserve">
+    <value>Альбомная</value>
+  </data>
+  <data name="LocSymbol" xml:space="preserve">
+    <value>Символ</value>
+  </data>
+  <data name="PrintV_BottomMargin" xml:space="preserve">
+    <value>Отступ от нижней границы</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupMy" xml:space="preserve">
+    <value>Мои</value>
+  </data>
+  <data name="Report_VM_KeyAliasFormat" xml:space="preserve">
+    <value>{0} (Значение)</value>
+  </data>
+  <data name="LocLabelEdit" xml:space="preserve">
+    <value>Редактирование подписи</value>
+  </data>
+  <data name="PgGeomVRec_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="PgM.EStyleType.directory" xml:space="preserve">
+    <value>По справочнику</value>
+  </data>
+  <data name="Plugins_Exception" xml:space="preserve">
+    <value>Ошибка загрузки плагина '{0}'</value>
+  </data>
+  <data name="lupa_plus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_растром" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление растром.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocIndex" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="PrintSettingsFrm_Portrait" xml:space="preserve">
+    <value>Книжная</value>
+  </data>
+  <data name="Tool_AddByCoords" xml:space="preserve">
+    <value>Добавление объекта по координатам</value>
+  </data>
+  <data name="mainFrm_sqMeasure" xml:space="preserve">
+    <value>Для замера площади удерживайте клавишу 'Shift'</value>
+  </data>
+  <data name="autocad_icon_delstyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\autocad_icon_delstyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tool_SelectRectangle" xml:space="preserve">
+    <value>Выбор объектов прямоугольником</value>
+  </data>
+  <data name="TLE_EditingTable" xml:space="preserve">
+    <value>Редактирование таблицы</value>
+  </data>
+  <data name="PgReg_TablesAndFields" xml:space="preserve">
+    <value>Таблицы и поля</value>
+  </data>
+  <data name="SHPExporter_Error" xml:space="preserve">
+    <value>ID={0} Ошибка={1} Геометрия={2}</value>
+  </data>
+  <data name="LocUserLoginWarning" xml:space="preserve">
+    <value>Логин может содержать латинские буквы, цифры и должен начинаться с латинских букв!</value>
+  </data>
+  <data name="LocGrantTableRights" xml:space="preserve">
+    <value>Выделение прав на таблицы</value>
+  </data>
+  <data name="sync-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sync-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LocLabelBoundMax" xml:space="preserve">
+    <value>Максимум, м</value>
+  </data>
+  <data name="PrintV_VertCount" xml:space="preserve">
+    <value>Количество страниц по вертикали</value>
+  </data>
+  <data name="WmMenu_File_ChooseVMP" xml:space="preserve">
+    <value>Выбрать файл подложки…</value>
+  </data>
+  <data name="PgReg_FixDb" xml:space="preserve">
+    <value>Ремонт БД</value>
+  </data>
+  <data name="PgReg_Title" xml:space="preserve">
+    <value>Регистрация таблиц</value>
+  </data>
+  <data name="AdminFrm_WriteSomeTables" xml:space="preserve">
+    <value>Разрешено редактирование определенных таблиц</value>
+  </data>
+  <data name="HistoryServices_ErrorGeomConvert" xml:space="preserve">
+    <value>Не удалось преобразовать геометрию</value>
+  </data>
+  <data name="LocScheme" xml:space="preserve">
+    <value>Схема</value>
+  </data>
+  <data name="LocLabels" xml:space="preserve">
+    <value>Подписи</value>
+  </data>
+  <data name="ImportWindow_NotSupportExtension" xml:space="preserve">
+    <value>Выбранный тип файла загрузчиком не поддерживается</value>
+  </data>
+  <data name="HistoryForm_ValueNotFound" xml:space="preserve">
+    <value>Значение не найдено</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionDeleteWorkSet" xml:space="preserve">
+    <value>Удалить данный набор?</value>
+  </data>
+  <data name="PgGeomVRec_ShowCharacteristics" xml:space="preserve">
+    <value>Показать характеристики</value>
+  </data>
+  <data name="COM_ConnAnNoExistsTable" xml:space="preserve">
+    <value>-Колонка '{0}' связана с удаленной таблицей;</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditableLayer" xml:space="preserve">
+    <value>Панель "Редактируемый слой"</value>
+  </data>
+  <data name="UserSetsFrm_Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="DGBH_ErrorSingleLine" xml:space="preserve">
+    <value>Вы не можете удалить единственную линию</value>
+  </data>
+  <data name="login_msgNoUser" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="SRF_WindowTitle" xml:space="preserve">
+    <value>Сохранить отчет</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForLine" xml:space="preserve">
+    <value>Недостаточно точек для построения линии №{0}</value>
+  </data>
+  <data name="RstGrf_PyramidsNotCreated" xml:space="preserve">
+    <value>Не удалось построить пирамиды</value>
+  </data>
+  <data name="AET_NameIsReserved" xml:space="preserve">
+    <value>Имя является зарезервированным.</value>
+  </data>
+  <data name="LocSourceBaseLayers" xml:space="preserve">
+    <value>Слои подложки</value>
+  </data>
+  <data name="SSF_NameIsUsed" xml:space="preserve">
+    <value>Рабочий набор с таким именем уже существует.</value>
+  </data>
+  <data name="HistoryClass_referenceValueField" xml:space="preserve">
+    <value>(значение из справочника)</value>
+  </data>
+  <data name="LocReset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="WmMenu_Sources" xml:space="preserve">
+    <value>Источники</value>
+  </data>
+  <data name="field_del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\field_del1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CosAttributes_TableWithoutPK" xml:space="preserve">
+    <value>В таблице нет первичного ключа</value>
+  </data>
+  <data name="RLM_ErrorSelectItem" xml:space="preserve">
+    <value>Выберите элемент для редактирования</value>
+  </data>
+  <data name="PrintV_Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="LocMinObjectSize" xml:space="preserve">
+    <value>Мин. размер объектов</value>
+  </data>
+  <data name="zoom_max" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_max.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainFrm_errorWhenOpenReport" xml:space="preserve">
+    <value>Ошибка при открытии отчета</value>
+  </data>
+  <data name="AEAtr_ErrorAllFieldHiden" xml:space="preserve">
+    <value>Таблица должна иметь не менее одного не скрытого атрибута. Если вы хотите скрыть все атрибуты таблицы, воспользуйтесь свойством 'скрытое' для таблицы</value>
+  </data>
+  <data name="HisotryForm_SelectUsersForSearch" xml:space="preserve">
+    <value>Выберите пользователей для поиска</value>
+  </data>
+  <data name="AbsM.ETableType.Rastr" xml:space="preserve">
+    <value>Растровый слой</value>
+  </data>
+  <data name="mainFrm_errWSRID" xml:space="preserve">
+    <value>Вы ввели неверный SRID!</value>
+  </data>
+  <data name="DGBH_PhotoWithoutCoords" xml:space="preserve">
+    <value>Фотография не имеет информации о координатах!</value>
+  </data>
+  <data name="HistoryForm_ValueAfter" xml:space="preserve">
+    <value>Значение после</value>
+  </data>
+  <data name="PgReg_SystemName" xml:space="preserve">
+    <value>Название в системе</value>
+  </data>
+  <data name="ReportEditor_V_QuestionDeleteMesTitle" xml:space="preserve">
+    <value>Удаление…</value>
+  </data>
+  <data name="HistoryForm_Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="ExcelUC_RangeBy" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="FindBox2_Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="HistoryServices_GeomNotFound" xml:space="preserve">
+    <value>Геометрия не найдена</value>
+  </data>
+  <data name="Styles_Layer_n" xml:space="preserve">
+    <value>Стиль слоя {0}</value>
+  </data>
+  <data name="WorkSets_VM_NewWorkSet" xml:space="preserve">
+    <value>Новый набор</value>
+  </data>
+  <data name="AddLineOnMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddLineOnMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddPolygonOnMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddPolygonOnMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_Map_ShowObjectForm" xml:space="preserve">
+    <value>Открывать окно атрибутики после создания объекта на карте</value>
+  </data>
+  <data name="Info_Attribute" xml:space="preserve">
+    <value>Атрибут</value>
+  </data>
+  <data name="Info_Highlight" xml:space="preserve">
+    <value>Выделить</value>
+  </data>
+  <data name="Info_ObjectsInfo" xml:space="preserve">
+    <value>Информация об объектах</value>
+  </data>
+  <data name="Info_OpenObject" xml:space="preserve">
+    <value>Открыть окно атрибутики</value>
+  </data>
+  <data name="Info_Show" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="Loc_CosmeticLayer" xml:space="preserve">
+    <value>Косметический слой</value>
+  </data>
+  <data name="Print_FitMap" xml:space="preserve">
+    <value>Вписать карту в выделенную область</value>
+  </data>
+  <data name="Print_Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="Print_PrintSelected" xml:space="preserve">
+    <value>Распечатать выделенные страницы</value>
+  </data>
+  <data name="Print_SaveSelected" xml:space="preserve">
+    <value>Сохранить выделенные страницы</value>
+  </data>
+  <data name="Print_SelectionMode" xml:space="preserve">
+    <value>Режим выделения</value>
+  </data>
+  <data name="Print_UpdateExtent" xml:space="preserve">
+    <value>Обновить экстент из карты</value>
+  </data>
+  <data name="Search_ChooseTables" xml:space="preserve">
+    <value>Выбрать таблицы для поиска</value>
+  </data>
+  <data name="WinMain_CurrentWorkset" xml:space="preserve">
+    <value>Текущий рабочий набор</value>
+  </data>
+  <data name="WinMain_EditableLayer" xml:space="preserve">
+    <value>Редактируемый слой</value>
+  </data>
+  <data name="WinMain_InformationPanel" xml:space="preserve">
+    <value>Панель для вывода информации</value>
+  </data>
+  <data name="WinMain_Projection" xml:space="preserve">
+    <value>Проекция</value>
+  </data>
+  <data name="WinMain_Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="WinMain_SearchBar" xml:space="preserve">
+    <value>Строка поиска</value>
+  </data>
+  <data name="Info_MakeEditable" xml:space="preserve">
+    <value>Сделать редактируемым</value>
+  </data>
+  <data name="Info_OpenTable" xml:space="preserve">
+    <value>Открыть таблицу</value>
+  </data>
+</root>

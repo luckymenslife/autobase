@@ -1,0 +1,68 @@
+﻿<Window x:Class="Rekod.ProjectionSelection.ExportProjSelectionV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prop="clr-namespace:Rekod.Properties"
+        xmlns:serv="clr-namespace:Rekod.Services"
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        Title="{x:Static prop:Resources.ExportProjSelection_SelectTitle}"
+        SizeToContent="Height" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static prop:Resources.ExportProjSelection_SelectText}" Margin="5"/>
+        <ComboBox 
+            Grid.Row="1"
+            IsEditable="True"            
+            Margin="5,0"
+            ItemsSource="{Binding ProjList}"
+            SelectedItem="{Binding SelectedProjection}"
+            DisplayMemberPath="DisplayedText"
+            Name="ProjComboBox"
+            beh:CommandBehavior.Event="SelectionChanged"
+            beh:CommandBehavior.Command="serv:ServiceClass.FilterComboboxCommand"
+            beh:CommandBehavior.CommandParameter="{Binding ElementName=ProjComboBox}"
+            beh:CommandBehavior.ExtraParameter="Srid+Srtext">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+        <TextBox Text="{Binding ElementName=ProjComboBox, Path=Text, UpdateSourceTrigger=PropertyChanged}"
+                 Visibility="Collapsed"
+                 beh:CommandBehavior.Event="TextChanged"
+                 beh:CommandBehavior.Command="serv:ServiceClass.FilterComboboxCommand"
+                 beh:CommandBehavior.CommandParameter="{Binding ElementName=ProjComboBox}"
+                 beh:CommandBehavior.ExtraParameter="Srid+Srtext"
+                 />
+        <StackPanel 
+            Margin="0,5"
+            Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Right" Width="154">
+            <Button 
+                Name="btnSelect"
+                Content="{x:Static prop:Resources.ExportProjSelection_Select}" 
+                Margin="3" Width="70"
+                IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProjection}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button 
+                Content="{x:Static prop:Resources.ExportProjSelection_Cancel}"
+                Margin="3" Width="70"
+                IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

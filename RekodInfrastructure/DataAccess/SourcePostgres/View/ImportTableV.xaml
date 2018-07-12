@@ -1,0 +1,303 @@
+﻿<Window x:Class="Rekod.DataAccess.SourcePostgres.View.ImportTableV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:Rekod.Properties"
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+        xmlns:absm="clr-namespace:Rekod.DataAccess.AbstractSource.Model"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Импорт таблицы" Height="500" Width="750" Icon="/rekod_infrastructure;component/Resources/Globe.ico" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="GeometryTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="absm:EGeomType" />
+                
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="FieldTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="absm:EFieldType" />
+                <conf:EnumCollection>
+                    <absm:EFieldType>Geometry</absm:EFieldType>
+                </conf:EnumCollection>
+                <sys:Boolean>False</sys:Boolean>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!--Свойства таблицы-->
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static properties:Resources.ImportWindow_File}" FontWeight="Bold" Margin="3"
+                       VerticalAlignment="Center"
+                       Grid.Row="0" Grid.Column="0"/>
+            <TextBlock Text="{Binding FileName}" Margin="3" Name="inputFileTb" IsEnabled="False"
+                       Grid.Row="0" Grid.Column="1"/>
+
+            <TextBlock Text="{x:Static properties:Resources.LocScheme}" FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="1" Grid.Column="0"/>
+            <ComboBox  Margin="3" Name="schemeCb" 
+                       ItemsSource="{Binding SchemeNames}" SelectedItem="{Binding Scheme, UpdateSourceTrigger=PropertyChanged}"
+                       Grid.Row="1" Grid.Column="1"/>
+
+            <TextBlock Text="{x:Static properties:Resources.LocNameInSystem}" 
+                       FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="3" Grid.Column="0"/>
+            <TextBox Text="{Binding NameSystem}" 
+                     Margin="3" Name="nameSystemTb" 
+                     Grid.Row="3" Grid.Column="1"/>
+
+            <TextBlock Text="{x:Static properties:Resources.LocNameInBase}" 
+                       FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="2" Grid.Column="0"/>
+            <DockPanel
+                LastChildFill="True" 
+                Margin="3"
+                Grid.Row="2"
+                Grid.Column="1">
+                <ToggleButton
+                    DockPanel.Dock="Right"
+                    IsChecked="False"
+                    ToolTip="{x:Static properties:Resources.LocEdit}"
+                    Name="EditBaseNameCheckBox"
+                    VerticalAlignment="Center"
+                    >
+                    <Image Width="20" Height="20" >
+                        <Image.Style>
+                            <Style>
+                                <Setter Property="Image.Source" Value="/rekod_infrastructure;component/Images/edit_unchecked.png"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}" Value="True">
+                                        <Setter Property="Image.Source" Value="/rekod_infrastructure;component/Images/edit_checked.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </ToggleButton>
+                <TextBox
+                    beh:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=nameSystemTb}"
+                    beh:CopyTranslitBehavior.CheckString="True"
+                    beh:CopyTranslitBehavior.UseTranslit="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                    IsEnabled="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}"
+                    Name="nameBase"
+                    Text="{Binding Path=NameDB, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+            </DockPanel>
+
+            <TextBlock Text="{x:Static properties:Resources.LocTableType}" 
+                       FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="4" Grid.Column="0"/>
+            <ComboBox  Margin="3" Name="tableTypeCb" 
+                       ItemsSource="{Binding TableTypes}" 
+                       DisplayMemberPath="Key" SelectedValuePath="Value"
+                       SelectedValue="{Binding TableType, UpdateSourceTrigger=PropertyChanged}"
+                       Grid.Row="4" Grid.Column="1"/>
+
+            <TextBlock Text="{x:Static properties:Resources.LocGeomType}" 
+                       FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="5" Grid.Column="0"
+                       Visibility="{Binding NeedGeometry, Converter={StaticResource BooleanVisibilityConverter}}"/>
+            <ComboBox  Margin="3" Name="geomTypeCb" 
+                       ItemsSource="{Binding Source={StaticResource GeometryTypeValues}}" 
+                       DisplayMemberPath="Description"
+                       SelectedItem="{Binding Path=GeomType, Converter={StaticResource EnumWrapperConverter}}"
+                       Grid.Row="5" Grid.Column="1"
+                       Visibility="{Binding NeedGeometry, Converter={StaticResource BooleanVisibilityConverter}}"/>
+
+            <TextBlock Text="{x:Static properties:Resources.LocGroup}" 
+                       FontWeight="Bold" Margin="3" 
+                       VerticalAlignment="Center"
+                       Grid.Row="6" Grid.Column="0"
+                       Visibility="{Binding NeedGroup, Converter={StaticResource BooleanVisibilityConverter}}"/>
+            <ComboBox  Margin="3" Name="groupCb" 
+                       ItemsSource="{Binding Groups}" 
+                       DisplayMemberPath="name"
+                       SelectedItem="{Binding Path=Group}"
+                       Grid.Row="6" Grid.Column="1"
+                       Visibility="{Binding NeedGroup, Converter={StaticResource BooleanVisibilityConverter}}"/>
+
+        </Grid>
+        
+        <!--Предпросмотр данных и названия полей-->
+        <DataGrid Name="importGrid" Grid.Row="1" 
+                  AutoGenerateColumns="True" 
+                  beh:CommandBehavior.Event="Loaded"
+                  beh:CommandBehavior.Command="{Binding ResizeColumnsCommand}"
+                  beh:CommandBehavior.CommandParameter="{Binding ElementName=importGrid}"
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" 
+                  CanUserReorderColumns="False"
+                  IsReadOnly="True" 
+                  Margin="6,10,6,5"
+                  ItemsSource="{Binding DataTable, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                <Grid>
+                                    <StackPanel Name="HeaderStackPanel">
+                                        <StackPanel.Style>
+                                            <Style TargetType="{x:Type StackPanel}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="StackPanel.DataContext" Value="{x:Null}" >
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>
+
+                                        <CheckBox
+                                                IsChecked="{Binding LoadField}"
+                                                Name="LoadField"
+                                                Content="Загружать"
+                                                Margin="3,0,3,0">
+                                        </CheckBox>
+                                        <!--<TextBox
+                                                IsEnabled="{Binding ElementName=LoadField, Path=IsChecked}"
+                                                Name="headerDBName" 
+                                                Text="{Binding ElementName=cp, Path=Content, Mode=OneTime}"
+                                                ToolTip="{x:Static properties:Resources.LocNameInBase}"
+                                                BorderBrush="LightGray"/>-->
+                                        <TextBox
+                                                IsEnabled="{Binding ElementName=LoadField, Path=IsChecked}"
+                                                Name="headerSystemName" 
+                                                ToolTip="{x:Static properties:Resources.LocNameInSystem}"
+                                                BorderBrush="LightGray"/>
+                                        <DockPanel 
+                                            IsEnabled="{Binding ElementName=LoadField, Path=IsChecked}"
+                                            LastChildFill="True">
+                                            <ToggleButton
+                                                DockPanel.Dock="Right"
+                                                IsChecked="False"
+                                                ToolTip="{x:Static properties:Resources.LocEdit}"
+                                                Name="EditFieldBaseNameCheckBox"
+                                                VerticalAlignment="Center"
+                                                Background="Transparent">
+                                                <Image Width="15" Height="15" >
+                                                    <Image.Style>
+                                                        <Style>
+                                                            <Setter Property="Image.Source" Value="/rekod_infrastructure;component/Images/edit_unchecked.png"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}" Value="True">
+                                                                    <Setter Property="Image.Source" Value="/rekod_infrastructure;component/Images/edit_checked.png"/>                                                                    
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                            </ToggleButton>
+                                            <TextBox
+                                                beh:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=headerSystemName}"
+                                                beh:CopyTranslitBehavior.CheckString="True"
+                                                beh:CopyTranslitBehavior.UseTranslit="{Binding ElementName=EditFieldBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                                                IsEnabled="{Binding ElementName=EditFieldBaseNameCheckBox, Path=IsChecked}"
+                                                Name="headerDBName"  BorderBrush="LightGray"
+                                                ToolTip="{x:Static properties:Resources.LocNameInBase}"/>
+                                        </DockPanel>
+                                        <ComboBox  
+                                                IsEnabled="{Binding ElementName=LoadField, Path=IsChecked}"
+                                                Name="headerFieldTypeCb" 
+                                                ToolTip="{x:Static properties:Resources.LocType}"
+                                                ItemsSource="{Binding Source={StaticResource FieldTypeValues}}" 
+                                                DisplayMemberPath="Description"
+                                                Grid.Row="5" Grid.Column="1"/>
+                                    </StackPanel>
+                                    <!--</DataGridHeaderBorder>-->
+                                    <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left">
+                                        <Thumb.Style>
+                                            <Style TargetType="{x:Type Thumb}">
+                                                <Setter Property="Width" Value="8"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Cursor" Value="SizeWE"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
+                                    <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right">
+                                        <Thumb.Style>
+                                            <Style TargetType="{x:Type Thumb}">
+                                                <Setter Property="Width" Value="8"/>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Cursor" Value="SizeWE"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Thumb.Style>
+                                    </Thumb>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+        </DataGrid>
+
+        <DockPanel Grid.Row="2">
+            <Button Content="{x:Static properties:Resources.LocCancel}" 
+                    Width="80" Margin="5" DockPanel.Dock="Right"
+                    IsCancel="True"
+                    IsEnabled="{Binding CanLoad, Mode=OneWay}"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding ElementName=importGrid}"/>
+            <Button Content="{x:Static properties:Resources.LocCreate}"                     
+                    Width="80" Margin="5" DockPanel.Dock="Right"
+                    IsDefault="True"
+                    IsEnabled="{Binding CanLoad, Mode=OneWay}"
+                    Command="{Binding CreateCommand}"
+                    CommandParameter="{Binding ElementName=importGrid}"/>
+            <StackPanel 
+                DockPanel.Dock="Left" 
+                Orientation="Horizontal" 
+                VerticalAlignment="Center" 
+                Margin="5">
+                <TextBlock Text="Загрyжено строк для предпросмотра: " />
+                <TextBlock Text="{Binding ElementName=importGrid, Path=Items.Count}" />
+                <TextBlock Text="  Строк всего: " />
+                <TextBlock Text="{Binding RowCount, Mode=OneWay}" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

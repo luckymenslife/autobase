@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Rekod.DataAccess.TableManager.View.DeleteSourceV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <Border
+        BorderBrush="Black"
+        BorderThickness="1"
+        Padding="3"
+        Background="LightGray">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <ComboBox 
+                beh:OnLoadedSelectFirstBehavior.SelectFirstOnLoaded="True"
+                Name="SourcesBox"
+                ItemsSource="{Binding DataRepositories}"
+                MinWidth="200"
+                Margin="2"
+                DisplayMemberPath="Text">
+            </ComboBox>
+            
+            <Button
+                Margin="0, 2, 2, 2"
+                Grid.Column="1"
+                Padding="0"
+                Command="{Binding DeleteSourceCommand}"
+                CommandParameter="{Binding ElementName=SourcesBox, Path=SelectedItem}">
+                <Image
+                    Margin="0"
+                    Width="17"
+                    Height="17"
+                    Source="/Resources/delete.png" />
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

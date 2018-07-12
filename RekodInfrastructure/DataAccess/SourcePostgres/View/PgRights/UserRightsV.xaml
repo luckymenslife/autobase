@@ -1,0 +1,249 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.PgRights.UserRightsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"             
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pgm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             Name="TableActionsRights"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             IsEnabled="{Binding Converter={StaticResource ObjectOfTypeConverter}, ConverterParameter=Rekod.DataAccess.SourcePostgres.Model.PgTableBaseM}"
+             d:DesignWidth="375" d:DesignHeight="266">
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/rekod_infrastructure;component/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid
+                DataContext="{Binding Path=UsersRights}"
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Слить права-->
+        <GroupBox
+                Padding="2, 0, 2, 0"
+                Margin="0, 0, 0, 3"
+                Header="{x:Static properties:Resources.LocGetTableRights}"  >
+            <StackPanel>
+                <ComboBox 
+                    Name="ReplaceRightsTableBox"
+                    Margin="0,3,0,5"
+                    DisplayMemberPath="NameText"
+                    ItemsSource="{Binding Path=Source.Tables}"
+                    SelectedItem="{Binding Path=TableToReplaceWith}"                    
+                    IsEditable="True"
+                    IsReadOnly="True"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton
+                            Name="ReplaceRightsRadioButton" 
+                            IsChecked="True"
+                            GroupName="ReplaceAction" 
+                            Content="{x:Static properties:Resources.LocReplace}" />
+                    <RadioButton
+                            Grid.Row="1"
+                            Name="AddRightsRadioButton"
+                            GroupName="ReplaceAction" 
+                            Content="{x:Static properties:Resources.LocAdd}" />
+                    <Button 
+                            Grid.Column="1"
+                            Grid.RowSpan="2"
+                            Content="{x:Static properties:Resources.LocExecute}" 
+                            Command="{Binding Path=MergeTableRightsCommand}"
+                            CommandParameter="{Binding ElementName=ReplaceRightsRadioButton, Path=IsChecked}"
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom">
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <!--Фильтр-->
+        <TextBox
+                    beh:CommandBehavior.Event="TextChanged"
+                    beh:CommandBehavior.Command="serv:ServiceClass.FilterTablesCommand"
+                    beh:CommandBehavior.CommandParameter="{Binding ElementName=RightsGrid, Path=ItemsSource}"
+                    beh:CommandBehavior.ExtraParameter="UserFullName+UserLogin"
+                    Margin="0, 0, 0, 3" Grid.Row="1"
+                    Style="{StaticResource SearchTextBoxStyle}"/>
+
+        <!--Таблица прав-->
+        <DataGrid 
+                    Grid.Row="2"
+                    AutoGenerateColumns="False" 
+                    Name="RightsGrid"
+			        CanUserAddRows="False" 
+                    CanUserDeleteRows="False" 
+                    VerticalGridLinesBrush="#FFF0F0F0" 
+                    HeadersVisibility="Column"
+                    HorizontalGridLinesBrush="#FFF0F0F0" 
+                    SelectionMode="Single"
+                    ItemsSource="{Binding Path=Rights}">
+            <DataGrid.Resources>
+                <serv:BindingProxy Data="{Binding}" x:Key="BindingProxy"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <!--Name column-->
+                <DataGridTextColumn 
+                                Header="{x:Static properties:Resources.LocFio}" 
+                                Width="*"
+                                Binding="{Binding Path=User.NameFull, Mode=OneWay}"/>
+                <!--Login column-->
+                <DataGridTextColumn 
+                                Header="{x:Static properties:Resources.LocLogin}" 
+                                Width="*"
+                                Binding="{Binding Path=User.Login, Mode=OneWay}"/>
+                <!--Read column-->
+                <DataGridTextColumn 
+                                Width="77" 
+                                CanUserResize="False">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                            Text="{x:Static properties:Resources.LocRead}" 
+                                            VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <CheckBox
+                                            IsChecked="{Binding Source={StaticResource BindingProxy}, Path=Data.CanAllRead, 
+                                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" 
+                                            HorizontalAlignment="Right"
+                                            x:Name="CanAllReadComboBox"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <CheckBox 
+                                                        IsChecked="{Binding CanRead, Mode=TwoWay, NotifyOnSourceUpdated=True,
+                                                            UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}"
+                                                        x:Name="CanUserReadComboBox" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <!--Write column-->
+                <DataGridTextColumn Width="77" CanUserResize="False">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    
+                                    
+                                            Text="{x:Static properties:Resources.LocWrite}" 
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"/>
+                                <CheckBox
+                                            IsChecked="{Binding Source={StaticResource BindingProxy}, Path=Data.CanAllWrite, 
+                                                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" HorizontalAlignment="Right"
+                                            x:Name="CanAllWriteComboBox"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <CheckBox
+                                                        IsChecked="{Binding CanWrite, Mode=TwoWay, NotifyOnSourceUpdated=True,
+                                                            UpdateSourceTrigger=PropertyChanged, NotifyOnTargetUpdated=True}" 
+                                                        x:Name="CanUserWriteComboBox" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Кнопки сохранить/обновить-->
+        <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Margin="0,3, 0,0"
+                        Grid.Row="3">
+            <Button 
+                            Height="23" 
+                            MinWidth="90" 
+                            Margin="0,0,5,0"
+                            Command="{Binding SaveChangesCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/save5.png"/>-->
+                        <TextBlock
+                                    Text="{x:Static properties:Resources.LocSave}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button 
+                            Height="23" 
+                            MinWidth="90"
+                            Command="{Binding ReloadCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/reload_2.png"/>-->
+                        <TextBlock Text="{x:Static properties:Resources.LocUpdate}"  VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

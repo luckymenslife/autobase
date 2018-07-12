@@ -1,0 +1,497 @@
+﻿<Window x:Class="Rekod.DataAccess.SourcePostgres.View.History.PgHistoryV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hist="clr-namespace:Rekod.DataAccess.SourcePostgres.View.History"
+        xmlns:histm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model.PgHistory"
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        xmlns:att="clr-namespace:Rekod.AttachedProperties"
+        xmlns:serv="clr-namespace:Rekod.Services"
+        xmlns:properties="clr-namespace:Rekod.Properties" 
+        Title="{x:Static properties:Resources.HistoryForm_Titel}"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        beh:EventCommandBindableBehavior.BindableCommand="{Binding Path=ClearGeometryCommand}"
+        Name="HistoryWindow"
+        mc:Ignorable="d"
+        MinHeight="276"
+        MinWidth="847" d:DesignWidth="961" d:DesignHeight="637" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/HistoryStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/AttributesStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275" MinWidth="200" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" MinWidth="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="258*" />
+            <RowDefinition Height="27" />
+            <RowDefinition Height="23" />
+        </Grid.RowDefinitions>
+
+        <DatePicker
+            Name="startDp" 
+            ToolTip="{x:Static properties:Resources.HistoryFrom_startDp_toolTip}"
+            Text="{x:Static properties:Resources.HistoryFrom_startDp_toolTip}"
+            Height="25" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top"
+            Width="150" 
+            Margin="6,7,0,0"
+            BorderBrush="{Binding DateBrush}"
+            SelectedDate="{Binding Path=DateFrom}">
+        </DatePicker>
+        <DatePicker
+            Name="endDp" 
+            ToolTip="{x:Static properties:Resources.HistoryFrom_endDp_toolTip}"
+            Text="{x:Static properties:Resources.HistoryFrom_endDp_toolTip}"
+            Height="25" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="150"
+            Margin="6,38,0,0"
+            BorderBrush="{Binding DateBrush}"
+            SelectedDate="{Binding Path=DateTo}"/>
+
+        <ListBox 
+            ItemContainerStyle="{StaticResource TransparentHighlightStyle}"
+            Name="TablesBox"
+            Grid.ColumnSpan="3"
+            Height="23"
+            Margin="162,9,357,0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            ToolTip="{x:Static properties:Resources.HisotryForm_SelectTablesForSearch}"
+            ItemsSource="{Binding ElementName=HistoryWindow, Path=DataContext.Tables}"
+            Style="{StaticResource ResourceKey=ChooseObjectsBox}"
+            DataContext="{Binding Path=ChooseTablesCommand}">
+        </ListBox>
+        <ListBox 
+            ItemContainerStyle="{StaticResource TransparentHighlightStyle}"
+            Name="UsersBox"
+            Grid.ColumnSpan="3"
+            Height="23"
+            Margin="162,39,357,0" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            ToolTip="{x:Static properties:Resources.HisotryForm_SelectUsersForSearch}"
+            ItemsSource="{Binding ElementName=HistoryWindow, Path=DataContext.Users}"
+            Style="{StaticResource ResourceKey=ChooseObjectsBox}"
+            DataContext="{Binding Path=ChooseUsersCommand}">
+        </ListBox>
+
+        <Button 
+            Content="{x:Static properties:Resources.HistoryFrom_ButtonClear}"
+            Grid.Column="2" 
+            Height="23" 
+            HorizontalAlignment="Right" 
+            Margin="0,8,276,0"
+            Name="ClearButton"
+            VerticalAlignment="Top"
+            Width="75" 
+            Command="{Binding ClearUsersAndTablesCommand}"/>
+        <Button 
+            Content="{x:Static properties:Resources.HistoryFrom_ButtonFind}"
+            Grid.Column="2" 
+            Height="23" 
+            HorizontalAlignment="Right"
+            Margin="0,39,276,0" 
+            Name="SearchButton" 
+            VerticalAlignment="Top"
+            Width="75" 
+            Command="{Binding LoadDatesCommand}"/>
+        <CheckBox 
+            Content="{x:Static properties:Resources.HistoryForm_ShowOnlyChange}"
+            Grid.Column="2" 
+            Height="16" 
+            HorizontalAlignment="Right"
+            Margin="0,15,20,0"
+            Width="230"
+            Name="ShowChangedAttributesBox" 
+            VerticalAlignment="Top" 
+            IsChecked="{Binding Path=ShowChanges}"/>
+        <CheckBox
+            Content="{x:Static properties:Resources.HistoryForm_ShowActualState}"
+            Grid.Column="2" 
+            Height="16" 
+            HorizontalAlignment="Right"
+            Margin="0,46,20,0"
+            Width="230"
+            Name="ShowActualValuesBox"
+            VerticalAlignment="Top" 
+            IsChecked="True" />
+
+        <TreeView
+            Grid.Row="1" 
+            Name="DatesEventsTreeView" 
+            Margin="6,0,0,0"
+            ItemsSource="{Binding Path=Dates}"
+            beh:EventCommandBindableBehavior.BindableCommand="{Binding LoadAssociatedDataCommand}">
+        </TreeView>
+
+        <DataGrid 
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,0,6,0" 
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False" 
+            CanUserReorderColumns="False" 
+            CanUserSortColumns="False"
+            Name="AttributesGrid"            
+            SelectionUnit="FullRow" 
+            SelectionMode="Single"            
+            RowHeaderWidth="17"
+            beh:DataGridColumnVisibilityBehavior.ColumnToHide="{Binding ElementName=ActualValuesColumn}"
+            beh:DataGridColumnVisibilityBehavior.CheckBoxToBind="{Binding ElementName=ShowActualValuesBox}"
+            DataContext="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem}"
+            ItemsSource="{Binding Path=Attributes}">
+            <DataGrid.Resources>
+                <serv:BindingProxy Data="{Binding}" x:Key="BindingProxy"/>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=ParentEvent.ParentHistoryDate.ParentPgHistoryVM.ShowChanges}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=ParentEvent.ParentHistoryDate.ParentPgHistoryVM.ShowChanges}" Value="True" />
+                                <Condition Binding="{Binding Path=HasChanges}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox 
+                            IsChecked="{Binding Source={StaticResource BindingProxy}, Path=Data.RestoreAllValues, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox 
+                                Margin="3"
+                                IsChecked="{Binding Path=RestoreValues, UpdateSourceTrigger=PropertyChanged}"
+                                />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static properties:Resources.HistoryForm_ColNameFields}" Width="*" Binding="{Binding Path=Field.Text}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border
+                                            Background="LightGray"
+                                            Name="FieldNameBackgroundBorder">
+                                            <TextBlock
+                                            Padding="3, 1, 0, 0"
+                                            Name="tb"
+                                            Text="{Binding Path=Field.Text}" 
+                                            Foreground="Black" 
+                                            TextWrapping="Wrap"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                                <Setter Property="Background" TargetName="tb" 
+														Value="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"/>
+                                                <Setter Property="Foreground" TargetName="tb" Value="White"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding Path=IsGeomField}" Value="True">
+                                                <Setter TargetName="tb" Property="Text" Value="Геометрия" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=Field.RefType}" Value="Data">
+                                                <Setter TargetName="FieldNameBackgroundBorder" Property="Background" Value="LightGreen" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=Field.RefType}" Value="Reference">
+                                                <Setter TargetName="FieldNameBackgroundBorder" Property="Background" Value="LightGreen" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=Field.RefType}" Value="Interval">
+                                                <Setter TargetName="FieldNameBackgroundBorder" Property="Background" Value="LightBlue" />
+                                            </DataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="{x:Static properties:Resources.HistoryForm_ColValueUpTo}" Width="*" Binding="{Binding Path=BeforeValue}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.Resources>
+                                                <Style TargetType="Control" x:Key="DataContextNullDisabledStyle">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="DataContext" Value="{x:Null}">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Resources>
+                                            <ContentControl
+                                                Style="{StaticResource DataContextNullDisabledStyle}"
+                                                VerticalAlignment="Center"
+                                                Name="ValueControl"
+                                                DataContext="{Binding Path=BeforeValue}"
+                                                Template="{StaticResource sAttribute}" />
+                                            <Border
+                                                Background="#00FF00"
+                                                Name="GeomControl"
+                                                Visibility="Collapsed">
+                                                <StackPanel
+                                                    VerticalAlignment="Center">
+                                                    <TextBlock 
+                                                        Name="HasValueBlock"
+                                                        Margin="3, 2, 2, 2"
+                                                        Foreground="Black"
+                                                        Text="{x:Static properties:Resources.HistoryForm_ValueIsSpecif}" />
+                                                    <CheckBox 
+                                                        Margin="3, 0, 2, 2"
+                                                        Content="{x:Static properties:Resources.HistoryForm_ShowGeom}"
+                                                        IsChecked="{Binding Path=ShowBeforeGeom, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Path=HasBeforeValue}" Value="False">
+                                                <Setter TargetName="HasValueBlock" Property="Text" Value="Нет значения" />
+                                                <Setter TargetName="GeomControl" Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsGeomField}" Value="True">
+                                                <Setter TargetName="GeomControl" Property="Visibility" Value="Visible" />
+                                                <Setter TargetName="ValueControl" Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="{x:Static properties:Resources.HistoryForm_ValueAfter}" Width="*" Binding="{Binding Path=AfterValue}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border Name="ContentBorder">
+                                            <Grid>
+                                                <ContentControl
+                                                    VerticalAlignment="Center"
+                                                    Name="ValueControl"
+                                                    DataContext="{Binding Path=AfterValue}"
+                                                    Template="{StaticResource sAttribute}"/>
+                                                <Border
+                                                    Background="#007fff"
+                                                    Name="GeomControl"
+                                                    Visibility="Collapsed">
+                                                    <StackPanel
+                                                        VerticalAlignment="Center">
+                                                        <TextBlock 
+                                                            Margin="3, 2, 2, 2"
+                                                            Name="HasValueBlock"
+                                                            Foreground="Black"
+                                                            Text="{x:Static properties:Resources.HistoryForm_ValueIsSpecif}" />
+                                                        <CheckBox 
+                                                            Margin="3, 0, 2, 2"
+                                                            Content="{x:Static properties:Resources.HistoryForm_ShowGeom}"
+                                                            IsChecked="{Binding Path=ShowAfterGeom, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Path=AfterValueHasChanged}" Value="True">
+                                                <Setter TargetName="ContentBorder" Property="BorderBrush" Value="Red" />
+                                                <Setter TargetName="ContentBorder" Property="BorderThickness" Value="1" />
+                                                <Setter TargetName="ContentBorder" Property="Margin" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsGeomField}" Value="True">
+                                                <Setter TargetName="GeomControl" Property="Visibility" Value="Visible" />
+                                                <Setter TargetName="ValueControl" Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=HasAfterValue}" Value="False">
+                                                <Setter TargetName="HasValueBlock" Property="Text" Value="{x:Static properties:Resources.HistoryForm_ValueIsNotSpecif}" />
+                                                <Setter TargetName="GeomControl" Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn 
+                    Header="{x:Static properties:Resources.HistoryForm_ActualValue}" 
+                    x:Name="ActualValuesColumn"
+                    Width="*">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border Name="ContentBorder">
+                                            <Grid>
+                                                <ContentControl
+                                                    VerticalAlignment="Center"
+                                                    Name="ValueControl"
+                                                    DataContext="{Binding Path=ActualValue}"
+                                                    Template="{StaticResource sAttribute}"/>
+                                                <Border
+                                                    Background="#C8A18E"
+                                                    Name="GeomControl"
+                                                    Visibility="Collapsed">
+                                                    <StackPanel
+                                                        VerticalAlignment="Center">
+                                                        <TextBlock
+                                                            Margin="3, 2, 2, 2"
+                                                            Foreground="Black"
+                                                            Name="HasValueBlock"
+                                                            Text="{x:Static properties:Resources.HistoryForm_ValueIsSpecif}" />
+                                                        <CheckBox 
+                                                            Margin="3, 0, 2, 2"
+                                                            Content="{x:Static properties:Resources.HistoryForm_ShowGeom}"
+                                                            IsChecked="{Binding Path=ShowActualGeom, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Path=ActualValueHasChanged}" Value="True">
+                                                <Setter TargetName="ContentBorder" Property="BorderBrush" Value="Red" />
+                                                <Setter TargetName="ContentBorder" Property="BorderThickness" Value="1" />
+                                                <Setter TargetName="ContentBorder" Property="Margin" Value="1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsGeomField}" Value="True">
+                                                <Setter TargetName="GeomControl" Property="Visibility" Value="Visible" />
+                                                <Setter TargetName="ValueControl" Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=HasActualValue}" Value="False">
+                                                <Setter TargetName="HasValueBlock" Property="Text" Value="{x:Static properties:Resources.HistoryForm_ValueIsNotSpecif}" />
+                                                <Setter TargetName="GeomControl" Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StatusBar BorderThickness="0, 1, 0, 0" BorderBrush="Gray" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" >
+            <StackPanel 
+                Margin="0"
+                VerticalAlignment="Stretch"
+                Orientation="Horizontal">
+                <TextBlock Text="{x:Static properties:Resources.HistoryForm_CountDate}" VerticalAlignment="Center"/>
+                <TextBlock TextBlock.FontWeight="Bold" Text="{Binding Path=Dates.Count}" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel
+                Margin="0">
+                <ContentControl
+                    Margin="0"
+                    DataContext="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem.Events}">
+                    <ContentControl.Template>
+                        <ControlTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
+                                <TextBlock Text="{x:Static properties:Resources.HistoryForm_Event}" VerticalAlignment="Center"/>
+                                <TextBlock TextBlock.FontWeight="Bold" VerticalAlignment="Center" Text="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem.Events.Count}" />
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="DataContext" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ContentControl.Template>
+                </ContentControl>
+                <ContentControl
+                    Margin="0"
+                    DataContext="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem.ParentHistoryDate.Events}">
+                    <ContentControl.Template>
+                        <ControlTemplate>
+                            <StackPanel VerticalAlignment="Stretch" Orientation="Horizontal">
+                                <TextBlock Text="{x:Static properties:Resources.HistoryForm_Event}"  VerticalAlignment="Center"/>
+                                <TextBlock TextBlock.FontWeight="Bold" Text="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem.ParentHistoryDate.Events.Count}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="DataContext" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ContentControl.Template>
+                </ContentControl>
+            </StackPanel>
+            <StackPanel 
+                Margin="0"
+                VerticalAlignment="Stretch"
+                att:FrameworkElementIsVisible.IsVisible="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem, Converter={StaticResource ObjectOfTypeConverter}, ConverterParameter=Rekod.DataAccess.SourcePostgres.Model.PgHistory.PgHistoryEvent}"
+                Orientation="Horizontal">
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Text="{x:Static properties:Resources.HistoryForm_attributs}"/>
+                <TextBlock
+                    TextBlock.FontWeight="Bold"
+                    VerticalAlignment="Center"
+                    Text="{Binding ElementName=AttributesGrid, Path=Items.Count}" />
+            </StackPanel>
+        </StatusBar>
+
+        <GridSplitter 
+            Grid.Column="1"
+            Grid.Row="1" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch" />
+        <StackPanel 
+            HorizontalAlignment="Right"
+            Grid.Column="2"
+            Grid.Row="2" 
+            Orientation="Horizontal">
+            <Button 
+                Name="RepairBeforeValuesButton"
+                Content="{x:Static properties:Resources.HistoryForm_restore_beffor}"
+                Margin="0,2,6,2"
+                Command="{Binding Path=RestoreBeforeValuesCommand}"
+                CommandParameter="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem}">
+            </Button>
+            <Button 
+                Name="RepairAfterValuesButton"
+                Content="{x:Static properties:Resources.HistoryForm_restore_after}"
+                Margin="0,2,6,2"
+                Command="{Binding Path=RestoreAfterValuesCommand}"
+                CommandParameter="{Binding ElementName=DatesEventsTreeView, Path=SelectedItem}">
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</Window>

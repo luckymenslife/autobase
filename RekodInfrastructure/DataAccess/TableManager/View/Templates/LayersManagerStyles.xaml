@@ -1,0 +1,224 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Rekod.DataAccess.TableManager.View.Templates.LayersManagerStyles"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:v="clr-namespace:Rekod.DataAccess.TableManager.View">
+    
+    <SolidColorBrush x:Key="CommonLayerBackgrondBrush" Color="#DDCCCCD5" />
+    <SolidColorBrush x:Key="BottomLayerBackgrondBrush" Color="#DDCCD5CC" />
+    <SolidColorBrush x:Key="RastrLayerBackgrondBrush" Color="#DDD5CCCC" />
+
+    <DataTemplate
+        x:Key="LayerTemplate">
+        <Border
+            Name="ChildItem" 
+            Margin="0, 0, 0, 0" 
+            Height="28" 
+            HorizontalAlignment="Stretch"
+            Padding="1"
+            BorderBrush="{StaticResource CommonLayerBackgrondBrush}"
+            BorderThickness="1"
+            Background="{StaticResource CommonLayerBackgrondBrush}">
+            
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem 
+                        Header="Показать настройки" 
+                        Command="{Binding ShowSettingsCommand, FallbackValue={StaticResource EmptyCommand}}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}" >
+                        <MenuItem.Icon>
+                            <Image
+                                Source="/rekod_infrastructure;component/Resources/cog.png"
+                                Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                        Header="Открыть таблицу" 
+                        Command="{Binding Path=Source.OpenTableCommand, FallbackValue={StaticResource EmptyCommand}}"
+                        CommandParameter="{Binding}">
+                        <MenuItem.Icon>
+                            <Image
+                                Source="/rekod_infrastructure;component/Resources/tablichnii dannii.png"
+                                Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                        Header="Добавить объект" 
+                        Command="{Binding Path=Source.CreateObjectCommand, FallbackValue={StaticResource EmptyCommand}}"
+                        CommandParameter="{Binding}" >
+                        <MenuItem.Icon>
+                            <Image 
+                                Source="/rekod_infrastructure;component/Resources/addNotEnabledXYNew.png"
+                                Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem 
+                        Header="Добавить объект на карте" 
+                        Command="{Binding Path=Source.CreateObjectInMapCommand, FallbackValue={StaticResource EmptyCommand}}"
+                        CommandParameter="{Binding}" >
+                        <MenuItem.Icon>
+                            <Image
+                                Source="/rekod_infrastructure;component/Resources/addNotEnabled.png"
+                                Width="20"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>    
+            </Border.ContextMenu>
+            
+            <Grid ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" MinWidth="36"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="1"
+                    Focusable="False" 
+                    IsChecked="{Binding IsVisible}"
+                    VerticalAlignment="Center"
+                    Checked="BindedObjectStateChanged"/>
+
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Grid.Column="2">
+
+                    <Button
+                        Command="{Binding ShowSettingsCommand}"
+                        CommandParameter="{Binding  ElementName=LayerImage}">
+                        <Image 
+                            SnapsToDevicePixels="False"
+                            Name="LayerImage"
+                            Margin="5, 0, 5, 0"
+                            Height="13" />
+                        <Button.Template>
+                            <ControlTemplate>
+                                <ContentPresenter Content="{TemplateBinding Button.Content}"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Image
+                        SnapsToDevicePixels="False" 
+                        Visibility="Collapsed"
+                        Name="ReadOnlyImage" 
+                        Margin="0, 0, 5, 0"  
+                        Height="14" 
+                        Source="/rekod_infrastructure;component/Images/readonly.png"/>
+                </StackPanel>
+
+                <TextBlock Name="LayerNameBlock" 
+                    VerticalAlignment="Center" 
+                    TextTrimming="CharacterEllipsis" 
+                    Grid.Column="3"
+                    Text="{Binding Path=Text}" />
+
+                <Image 
+                    Name="ViewImage"
+                    Visibility="Collapsed" 
+                    Margin="3, 0, 3, 0" 
+                    ToolTip="Пользовательское представление"
+                    Width="15" 
+                    Height="15" 
+                    Grid.Column="4" 
+                    Source="/rekod_infrastructure;component/Images/LayersManagerView.png" />
+
+                <StackPanel 
+                    Orientation="Horizontal"    
+                    Grid.Column="5" 
+                    VerticalAlignment="Center"
+                    Name="VisibleLayerToolBox"
+                    Visibility="Collapsed">
+                    <CheckBox 
+                        Name="IsSelectableCheckBox" 
+                        IsChecked="{Binding IsSelectable}" 
+                        BorderBrush="RosyBrown" 
+                        Focusable="False" 
+                        Margin="5, 0, 0, 0"
+                        Checked="BindedObjectStateChanged">
+                        <CheckBox.Template>
+                            <ControlTemplate>
+                                <Image ToolTip="Включить выбираемость слоя" Name="CheckBoxImage" Height="16" Source="/rekod_infrastructure;component/Images/select_unchecked.png"/>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="CheckBox.IsChecked" Value="True">
+                                        <Setter TargetName="CheckBoxImage" Property="Source" Value="/rekod_infrastructure;component/Images/select_checked.png" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Border
+                        ></Border>
+                    <CheckBox 
+                        Name="IsEditableCheckBox" 
+                        IsChecked="{Binding IsEditable}" 
+                        BorderBrush="RosyBrown" 
+                        Focusable="False" 
+                        Margin="5, 0, 15, 0"
+                        Checked="BindedObjectStateChanged">
+                        <CheckBox.Template>
+                            <ControlTemplate>
+                                <Image ToolTip="Включить редактируемость слоя" Name="CheckBoxImage" Height="16" Source="/rekod_infrastructure;component/Images/edit_unchecked.png"/>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="CheckBox.IsChecked" Value="True">
+                                        <Setter TargetName="CheckBoxImage" Property="Source" Value="/rekod_infrastructure;component/Images/edit_checked.png" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsSelected}" Value="True">
+                <!--<Setter TargetName="ChildItem" Property="Background" Value="LightBlue" />-->
+                <Setter TargetName="ChildItem" Property="TextBlock.Foreground" Value="Blue" />
+                <Setter TargetName="ChildItem" Property="BorderBrush" Value="Blue" />
+            </DataTrigger>
+            
+            <Trigger SourceName="LayerNameBlock" Property="v:TextBlockService.IsTextTrimmed" Value="True">
+                <Setter TargetName="LayerNameBlock" Property="ToolTip" Value="{Binding ElementName=LayerNameBlock, Path=Text}" />
+            </Trigger>
+
+            <DataTrigger Binding="{Binding Path=Type}" Value="MapLayer">
+                <Setter TargetName="VisibleLayerToolBox" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Type}" Value="MapLayer" />
+                    <Condition Binding="{Binding Path=UserAccess}" Value="Read" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="ReadOnlyImage" Property="Visibility" Value="Visible" />
+            </MultiDataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Type}" Value="BottomLayer">
+                <Setter TargetName="VisibleLayerToolBox" Property="Visibility" Value="Visible" />
+                <Setter TargetName="IsEditableCheckBox" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="LayerImage" Property="Source" Value="/rekod_infrastructure;component/Images/LayersManagerBottomLayer.png" />
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Path=Type}" Value="Rastr">
+                <Setter TargetName="LayerImage" Property="Source" Value="/rekod_infrastructure;component/Images/LayersManagerRastr.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=GeomType}" Value="Line">
+                <Setter TargetName="LayerImage" Property="Source" Value="/rekod_infrastructure;component/Images/LayersManagerLine.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=GeomType}" Value="Point">
+                <Setter TargetName="LayerImage" Property="Source" Value="/rekod_infrastructure;component/Images/LayersManagerPoint.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=GeomType}" Value="Polygon">
+                <Setter TargetName="LayerImage" Property="Source" Value="/rekod_infrastructure;component/Images/LayersManagerPolygon.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=IsVisible}" Value="False">
+                <Setter TargetName="VisibleLayerToolBox" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ChildItem" Property="Background" Value="#FF99BBAA" />
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,399 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+             xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             xmlns:map="clr-namespace:GBU_Waybill_plugin.MTClasses.Tasks.WinForms"
+             x:Class="GBU_Waybill_plugin.MTClasses.Tasks.Views.CreateTasksV"
+             mc:Ignorable="d"
+             d:DesignHeight="720"
+             d:DesignWidth="1024"
+             MinWidth="1024"
+             Background="#eef2f5">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/TasksStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style BasedOn="{StaticResource NormalLabelStyle}"
+                   TargetType="{x:Type Label}" />
+
+            <Style BasedOn="{StaticResource DataGridStyle}"
+                   TargetType="{x:Type DataGrid}" />
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="30*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+              Margin="10,10,5,10"
+              Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Выбрать маршрут"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Style="{StaticResource TitleLabelStyle}"
+                   Margin="5,5,5,0"
+                   Padding="0,5" />
+
+            <Grid Margin="5"
+                  Grid.Row="1"
+                  Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Начало"
+                       FontSize="14"
+                       Grid.Column="0"
+                       Padding="0,5" />
+
+                <xctk:DateTimePicker Grid.Column="1"
+                                     Value="{Binding BeginDate}"
+                                     ShowButtonSpinner="False"
+                                     FontSize="14"
+                                     Template="{StaticResource DateTimePickerTemplate}" />
+
+            </Grid>
+
+            <Grid Margin="5"
+                  Grid.Row="2"
+                  Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Конец"
+                       FontSize="14"
+                       Grid.Column="0"
+                       Padding="0,5" />
+
+                <xctk:DateTimePicker Grid.Column="1"
+                                     ShowButtonSpinner="False"
+                                     Value="{Binding EndDate}"
+                                     FontSize="14"
+                                     Template="{StaticResource DateTimePickerTemplate}" />
+            </Grid>
+
+            <ComboBox HorizontalAlignment="Stretch"
+                      Grid.Column="0"
+                      Grid.Row="3"
+                      Margin="5"
+                      Style="{DynamicResource ComboBoxNextStyle}"
+                      ItemsSource="{Binding Groups}"
+                      DisplayMemberPath="Name"
+                      SelectedItem="{Binding SelectedGroup}"
+                      FontSize="14"
+                      VerticalContentAlignment="Center" />
+
+            <xctk:WatermarkTextBox Grid.Row="4"
+                                   Margin="5"
+                                   VerticalContentAlignment="Center"
+                                   Padding="10,0"
+                                   Watermark="Поиск"
+                                   FontSize="14"
+                                   Text="{Binding FindOdhsText, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <TabControl Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        Margin="5,5">
+                <TabItem Header="{Binding RouteTabName}" 
+                         FontSize="12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid ItemsSource="{Binding FindOdhs}"
+                                  SelectionMode="Single"
+                                  Grid.Row="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id"
+                                        Visibility="Collapsed"
+                                        Binding="{Binding Id}">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell"
+                                    BasedOn="{StaticResource DataGridCellStyle}">
+                                            <Setter Property="ToolTip"
+                                        Value="{Binding Id}" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridCheckBoxColumn Width="30"
+                                            Binding="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Наименование"
+                                        IsReadOnly="True"
+                                        Width="*"
+                                        Binding="{Binding Name}">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell"
+                                    BasedOn="{StaticResource DataGridCellStyle}">
+                                            <Setter Property="ToolTip"
+                                        Value="{Binding Name}" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Label Content="{Binding CountOdh}"
+                               Margin="5,0"
+                               Style="{StaticResource StatusLabelStyle}"
+                               Grid.Row="1"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="{Binding ZoneTabName}"
+                         FontSize="12">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid ItemsSource="{Binding FindZones}"
+                                SelectionMode="Single"
+                                  Grid.Row="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id"
+                                        Visibility="Collapsed"
+                                        Binding="{Binding Id}">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell"
+                                    BasedOn="{StaticResource DataGridCellStyle}">
+                                            <Setter Property="ToolTip"
+                                        Value="{Binding Id}" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridCheckBoxColumn Width="30"
+                                            Binding="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
+                                <DataGridTextColumn Header="Наименование"
+                                        IsReadOnly="True"
+                                        Width="*"
+                                        Binding="{Binding Name}">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell"
+                                    BasedOn="{StaticResource DataGridCellStyle}">
+                                            <Setter Property="ToolTip"
+                                        Value="{Binding Name}" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Label Content="{Binding CountZones}"
+                               Margin="5,0"
+                               Style="{StaticResource StatusLabelStyle}"
+                               Grid.Row="1"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+     
+            <WindowsFormsHost Name="windowsFormsHost1" Grid.Row="7">
+                <map:MapUc Name="mapUc"/>
+            </WindowsFormsHost>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Margin="5,10"
+              Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Выбрать тип работы"
+                   Grid.Row="0"
+                   Style="{StaticResource TitleLabelStyle}"
+                   Margin="5,5,5,0"
+                   Padding="0,5" />
+
+            <xctk:WatermarkTextBox Grid.Row="1"
+                                   Margin="5,5"
+                                   VerticalContentAlignment="Center"
+                                   Padding="10,0"
+                                   Watermark="Поиск"
+                                   FontSize="14"
+                                   Text="{Binding FindWorkTypesText, UpdateSourceTrigger=PropertyChanged}" />
+
+            <DataGrid Grid.Row="2"
+                      Margin="5,5"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      AutoGenerateColumns="False"
+                      VerticalScrollBarVisibility="Auto"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding FindWorkTypes}"
+                      SelectedItem="{Binding SelectedWorkType}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Типы заданий"
+                                        IsReadOnly="True"
+                                        Width="*"
+                                        Binding="{Binding Name}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell"
+                                   BasedOn="{StaticResource DataGridCellStyle}">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding Name}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="ТС"
+                                        IsReadOnly="True"
+                                        Width="40"
+                                        Binding="{Binding CarsCount}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell"
+                                   BasedOn="{StaticResource DataGridCellStyle}">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding CarsCount}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="{Binding CountWorkTypes}"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   Margin="5,0"
+                   Style="{StaticResource StatusLabelStyle}" />
+
+        </Grid>
+
+        <Grid Grid.Column="2"
+              Margin="5,10,10,10"
+              Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41" />
+                <RowDefinition Height="41" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Выбрать исполнителя"
+                   Grid.Row="0"
+                   Style="{StaticResource TitleLabelStyle}"
+                   Margin="5,5,5,0"
+                   Padding="0,5" />
+
+            <xctk:WatermarkTextBox Grid.Row="1"
+                                   Margin="5,5"
+                                   VerticalContentAlignment="Center"
+                                   Padding="10,0"
+                                   Watermark="Поиск"
+                                   FontSize="14"
+                                   Text="{Binding FindCarsText, UpdateSourceTrigger=PropertyChanged}" />
+
+            <DataGrid Grid.Row="2"
+                      Margin="5,5"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      AutoGenerateColumns="False"
+                      VerticalScrollBarVisibility="Auto"
+                      SelectionMode="Single"
+                      ItemsSource="{Binding FindCars}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id"
+                                        Visibility="Collapsed"
+                                        Binding="{Binding Id}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell"
+                                   BasedOn="{StaticResource DataGridCellStyle}">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding Id}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn Width="30"
+                                            Header=" "
+                                            Binding="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Header="Гос. Номер"
+                                        IsReadOnly="True"
+                                        Width="*"
+                                        Binding="{Binding GosNomer}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell"
+                                   BasedOn="{StaticResource DataGridCellStyle}">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding GosNomer}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Гар. Номер"
+                                        IsReadOnly="True"
+                                        Width="*"
+                                        Binding="{Binding GarNomer}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell"
+                                   BasedOn="{StaticResource DataGridCellStyle}">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding GarNomer}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="{Binding CountCars}"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   Margin="5,0"
+                   Style="{StaticResource StatusLabelStyle}" />
+        </Grid>
+        <Button Grid.Column="2"
+                Grid.Row="1"
+                Content="Image Test"
+                Visibility="Collapsed"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,0,130,0"
+                Width="90"
+                Height="30"
+                Template="{DynamicResource ButtonSaveControlTemplate}"
+                Foreground="White"
+                FontWeight="Medium"
+                Command="{Binding SaveImageCmd}"/>
+        <Button Grid.Column="2"
+                Grid.Row="1"
+                Content="Сохранить"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="25,0"
+                Width="90"
+                Height="30"
+                Template="{DynamicResource ButtonSaveControlTemplate}"
+                Foreground="White"
+                FontWeight="Medium"
+                Command="{Binding CreateTasksCmd}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,197 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.CaptionStyleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:val="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ValidationRules"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Grid" x:Key="nullDataContextStyle">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid 
+        Name="GridWithBindingGroup"
+        Style="{StaticResource nullDataContextStyle}">
+        <beh:CommandBehaviorCollection.Behaviors>
+            <beh:BehaviorBinding Event="Loaded" Action="{Binding BindingGroupLoadedAction}" CommandParameter="{Binding ElementName=ControlBindingGroup}" />
+            <beh:BehaviorBinding Event="System.Windows.Controls.Validation.ErrorEvent" Action="{Binding BindingGroupErrorAction}" />
+        </beh:CommandBehaviorCollection.Behaviors>
+        <Grid.BindingGroup>
+            <BindingGroup x:Name="ControlBindingGroup" NotifyOnValidationError="True">
+                <BindingGroup.ValidationRules>
+                    <val:CaptionStyleValidationRule />
+                </BindingGroup.ValidationRules>
+            </BindingGroup>
+        </Grid.BindingGroup>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox 
+            Header="{x:Static properties:Resources.LocFont}"
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Padding="5"
+            IsEnabled="{Binding ElementName=CheckBoxUseLabelStyle, Path=IsChecked}">
+            <StackPanel>
+                <DockPanel LastChildFill="True">
+                    <Rectangle 
+                        beh:ColorChooseBehavior.ChooseColor="True"
+                        MinWidth="30" 
+                        DockPanel.Dock="Right" 
+                        Stroke="Gray">
+                        <Rectangle.Fill>
+                            <SolidColorBrush 
+                                Color="{Binding Path=LabelFontColor, 
+                                                Mode=TwoWay,
+                                                Converter={StaticResource PgIntColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBox 
+                        Text="{Binding LabelFontSize}" 
+                        IsReadOnly="True" 
+                        Grid.Column="2" 
+                        DockPanel.Dock="Right" 
+                        MinWidth="30"
+                        Margin="2, 0, 2, 0" 
+                        Name="TextBoxFontSize"/>
+
+                    <Button 
+                        Grid.Column="1" 
+                        Content="..."  
+                        DockPanel.Dock="Right" 
+                        MinWidth="30" 
+                        Margin="2, 0, 0, 0"
+                        Name="ButtonFontDialog">
+                        <beh:CommandBehaviorCollection.Behaviors>
+                            <beh:BehaviorBinding Action="{Binding FontDialogAction}" Event="Click">
+                                <beh:BehaviorBinding.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                        <MultiBinding.Bindings>
+                                            <Binding ElementName="TextBoxFontName" />
+                                            <Binding ElementName="TextBoxFontSize" />
+                                        </MultiBinding.Bindings>
+                                    </MultiBinding>
+                                </beh:BehaviorBinding.CommandParameter>
+                            </beh:BehaviorBinding>
+                        </beh:CommandBehaviorCollection.Behaviors>
+                    </Button>
+                    <TextBox MinWidth="180" 
+                             Text="{Binding LabelFontName}" 
+                             IsReadOnly="True" 
+                             Name="TextBoxFontName"/>
+                </DockPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding Path=LabelUseGraphicUnits}" Margin="0, 5, 5, 5" VerticalAlignment="Center"
+                              Content="{x:Static properties:Resources.LocUseGraphicUnits}"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox 
+            Header="{x:Static properties:Resources.LocFringe}" 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2" 
+            Padding="5"
+            IsEnabled="{Binding ElementName=CheckBoxUseLabelStyle, Path=IsChecked}">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <CheckBox IsChecked="{Binding Path=LabelShowFrame}" Margin="0, 5, 5, 5" VerticalAlignment="Center"
+                              Content="{x:Static properties:Resources.LocDisplay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <TextBlock
+                        Text="{x:Static properties:Resources.LocColor}"
+                        Margin="5" 
+                        VerticalAlignment="Center"/>
+                    <Rectangle 
+                        beh:ColorChooseBehavior.ChooseColor="True"
+                        MinWidth="30" 
+                        DockPanel.Dock="Right" 
+                        Stroke="Gray">
+                        <Rectangle.Fill>
+                            <SolidColorBrush 
+                                Color="{Binding Path=LabelFrameColor, 
+                                                Mode=TwoWay, 
+                                                Converter={StaticResource PgIntColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox 
+            Header="{x:Static properties:Resources.LocDisplayMode}"
+            Grid.Row="3" 
+            Grid.ColumnSpan="2" 
+            Padding="5"
+            IsEnabled="{Binding ElementName=CheckBoxUseLabelStyle, Path=IsChecked}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <CheckBox IsChecked="{Binding Path=LabelParallel}" Margin="0, 5, 5, 5" VerticalAlignment="Center"
+                              Content="{x:Static properties:Resources.LocLabelParallel}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <CheckBox IsChecked="{Binding Path=LabelOverlap}" Margin="0, 5, 5, 5" VerticalAlignment="Center"
+                              Content="{x:Static properties:Resources.LocLabelOverlap}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <CheckBox 
+                        Name="CheckBoxUseBounds"
+                        Content="{x:Static properties:Resources.LocLabelUseBounds}"
+                        IsChecked="{Binding Path=LabelUseBounds}" 
+                        Margin="0, 5, 5, 5" 
+                        VerticalAlignment="Center"/>
+                </StackPanel>
+                <DockPanel LastChildFill="True">
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocLabelBoundMin}"
+                        Margin="0, 5, 5, 5" 
+                        VerticalAlignment="Center" 
+                        DockPanel.Dock="Left" 
+                        MinWidth="90"/>
+                    <TextBox 
+                        Margin="5" 
+                        VerticalAlignment="Center" 
+                        Text="{Binding Path=LabelMinScale,
+                                        ValidatesOnExceptions=True, 
+                                        ValidatesOnDataErrors=True}"
+                        IsEnabled="{Binding ElementName=CheckBoxUseBounds, Path=IsChecked}"/>
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocLabelBoundMax}"
+                        Margin="0, 5, 5, 5" 
+                        VerticalAlignment="Center" 
+                        DockPanel.Dock="Left" 
+                        MinWidth="90"/>
+                    <TextBox 
+                        Margin="5" 
+                        VerticalAlignment="Center" 
+                        Text="{Binding Path=LabelMaxScale,
+                                        ValidatesOnExceptions=True, 
+                                        ValidatesOnDataErrors=True}"
+                        IsEnabled="{Binding ElementName=CheckBoxUseBounds, Path=IsChecked}" />
+                </DockPanel>
+                <DockPanel LastChildFill="True">
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocLabelOffset}"
+                        Margin="0, 5, 5, 5" 
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left" 
+                        MinWidth="90"/>
+                    <TextBox Margin="5" VerticalAlignment="Center" Text="{Binding Path=LabelOffset}"/>
+                </DockPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

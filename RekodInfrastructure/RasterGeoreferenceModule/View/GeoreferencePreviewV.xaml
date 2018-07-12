@@ -1,0 +1,546 @@
+﻿<Window x:Class="DeepZoom.TestOverview.View.GeoreferencePreviewV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dz="clr-namespace:DeepZoom.Controls;assembly=DeepZoom"
+        xmlns:conv="clr-namespace:Rekod.Converters"
+        xmlns:pgav="clr-namespace:Rekod.DataAccess.SourcePostgres.View.PgAttributes"
+        xmlns:pgatt="clr-namespace:Rekod.DataAccess.SourcePostgres.ViewModel.PgAttributes"
+        xmlns:cont="clr-namespace:Rekod.Controls"
+        xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        xmlns:props="clr-namespace:Rekod.Properties"
+        xmlns:serv="clr-namespace:Rekod.Services"
+        RenderOptions.BitmapScalingMode="NearestNeighbor"
+        SnapsToDevicePixels="True"
+        TextBlock.Foreground="#FF4D4D4D"
+        Name="PreviewWindowControl"
+        UseLayoutRounding="True"
+        Title="{Binding Title}"
+        Height="800" 
+        Width="1000">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UtilityStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="#FF4D4D4D"/>
+            <Style TargetType="{x:Type DataGrid}" x:Key="CoordsGridStyle">
+                <Setter Property="RowHeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock 
+                                    Padding="3, 0, 0, 0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Path=Header}"
+                                    MinWidth="25" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="ItemsSource" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Trigger>
+                    <DataTrigger Binding="{Binding ElementName=PreviewWindowControl, Path=DataContext.TileSource.GDALOverviewsM.LinkedPoints.Count}"  Value="0">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type StackPanel}" x:Key="DataContextNullCollapsedStyle">
+                <Style.Triggers>
+                    <Trigger Property="DataContext" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Trigger>
+                    <DataTrigger Binding="{Binding LinkedPoints.Count}" Value="0">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <ObjectDataProvider 
+                    MethodName="GetEnumValues"
+                    ObjectType="{x:Type conf:ObjectProviderValues}"
+                    x:Key="CoordsViewTypes">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="pgatt:ECoordsViewType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <Style TargetType="{x:Type ToggleButton}" x:Key="SridChangeButtonStyle">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border
+                                Name="MainBorder"
+                                BorderThickness="1"
+                                BorderBrush="Gray"
+                                Background="Transparent"
+                                Padding="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
+                                        VerticalAlignment="Center"
+                                        Margin="3, 0, 2, 0"
+                                        Text="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM.CurrentSrid}" />
+                                    <Path
+                                        x:Name="ExpandPath"
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Center" 
+                                        Margin="4"
+                                        Fill="Black"
+                                        Data="M 0 4 L 4 8 L 8 4 Z" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="DiasDataGridCellStyle" TargetType="DataGridCell">
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                            <Border TextBlock.Foreground="#FF4D4D4D" Background="{TemplateBinding Background}" Name="RowBorder">
+                                <ContentPresenter Margin="5, 3" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <serv:BindingProxy Data="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM}" x:Key="BindingPointsProxy" />
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MaxHeight="300" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Menu
+            TextBlock.Foreground="#FF4D4D4D"
+            Padding="2"
+            Grid.ColumnSpan="10">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="WhiteSmoke" Offset="0.086"/>
+                    <GradientStop Color="#FFE6E6E6" Offset="0.943"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem 
+                Header="{x:Static props:Resources.LocFile}">
+                <MenuItem 
+                    Command="{Binding OpenRastrCommand}">
+                    <MenuItem.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_OpenRaster}" /><Run Text="..." /></TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem 
+                    Command="{Binding LoadControlPointsCommand}">
+                    <MenuItem.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_LoadControlPoints}" /><Run Text="..." /></TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem 
+                    Command="{Binding SaveControlPointsCommand}">
+                    <MenuItem.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_SaveControlPoints}" /><Run Text="..." /></TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <ToolBar
+            Grid.ColumnSpan="10"
+            Grid.Row="1">
+            <ToolBar.Resources>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToolBar.Resources>
+            <ToggleButton 
+                ToolTipService.ShowOnDisabled="True"
+                Margin="2"
+                Name="AddPointsModeButton"
+                IsChecked="{Binding PointsAddMode}"
+                ToolTip="{x:Static props:Resources.RstGrf_AddControlPoint}">
+                <Image Source="../Images/add-point.png" Width="16" />
+            </ToggleButton>
+            <ToggleButton
+                ToolTipService.ShowOnDisabled="True"
+                Margin="2"
+                ToolTip="{x:Static props:Resources.RstGrf_TakeCoordsFromMap}"
+                IsChecked="{Binding GetCoordsFromMap}">
+                <Image Source="../Images/xy.png" Width="16" />
+            </ToggleButton>
+            <Button
+                ToolTipService.ShowOnDisabled="True"
+                Margin="2"
+                Command="{Binding StartGeolinkCommand}"
+                Name="CreateGeolinkButton"
+                ToolTip="{x:Static props:Resources.RstGrf_StartGeoreference}">
+                <Image Source="../Images/start-2.png" Width="16" />
+            </Button>
+        </ToolBar>
+        
+        <Canvas
+            IsHitTestVisible="False"
+            Grid.Row="2"
+            Width="{Binding ElementName=DeepZoomControl, Path=ActualWidth}"
+            Height="{Binding ElementName=DeepZoomControl, Path=ActualHeight}"
+            ClipToBounds="True"
+            Panel.ZIndex="100">
+
+            <ItemsControl
+                ItemsSource="{Binding Path=TileSource.GDALOverviewsM.LinkedPoints}"
+                Canvas.Left="{Binding ElementName=DeepZoomControl, Path=Offset.X}"
+                Canvas.Top="{Binding ElementName=DeepZoomControl, Path=Offset.Y}"
+                Width="{Binding Path=TileSource.GDALOverviewsM.ImageWidth}"
+                Height="{Binding Path=TileSource.GDALOverviewsM.ImageHeight}"
+                Panel.ZIndex="100"
+                IsHitTestVisible="True"
+                Grid.Row="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas 
+                            ClipToBounds="False">                            
+                        </Canvas>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Canvas>
+                            <Path Name="PathOutside" HorizontalAlignment="Left" Height="36"  Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="28" StrokeThickness="0">
+                                <Path.Fill>
+                                    <LinearGradientBrush EndPoint="0.51,0.024" StartPoint="0.498,0.987">
+                                        <GradientStop Color="#FFF64F4F" Offset="0.039"/>
+                                        <GradientStop Color="#FFFFB7B7" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Path.Fill>
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure IsClosed="True" StartPoint="49.75,0.5">
+                                            <BezierSegment IsSmoothJoin="True" Point3="99,49.7500037954312" Point2="99,22.5499783718225" Point1="76.9500254236086,0.5"/>
+                                            <BezierSegment Point3="49.4999999999998,132.666666666666" Point2="52.1875,132.666666666666" Point1="99,83.083128231173"/>
+                                            <BezierSegment IsSmoothJoin="True" Point3="0.5,49.7499962045688" Point2="0.500000000000002,85.7497882749646" Point1="47,132.666666666666"/>
+                                            <BezierSegment Point3="49.75,0.5" Point2="22.5499745763914,0.5" Point1="0.499999999999998,22.5499726786758"/>
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Path Name="PathInside" Fill="#FFD94A4A" HorizontalAlignment="Left" Height="11" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="11" StrokeThickness="0" RenderTransformOrigin="-1.354,-0.779" Canvas.Left="8.5" Canvas.Top="7.582" >
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure IsClosed="True" StartPoint="29.8510101139546,0.500000012944444">
+                                            <BezierSegment IsSmoothJoin="True" Point3="0.500000012944444,29.8510101139546" Point2="0.500000012944444,13.6408946041508" Point1="13.6408946041508,0.500000012944444"/>
+                                            <BezierSegment Point3="29.8510101139546,59.2020202149647" Point2="13.6408946041508,59.2020202149647" Point1="0.500000012944444,46.0611294191896"/>
+                                            <BezierSegment IsSmoothJoin="True" Point3="59.2020202149647,29.8510101139546" Point2="59.2020202149647,46.0611218283273" Point1="46.0611294191896,59.2020202149647"/>
+                                            <BezierSegment Point3="29.8510101139546,0.500000012944444" Point2="46.0611294191896,0.500000012944444" Point1="59.2020202149647,13.6408908087196"/>
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                            <Canvas.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform X="-14" Y="-36" />
+                                    <ScaleTransform 
+                                        CenterX="0.5"
+                                        CenterY="1"
+                                        ScaleX="{Binding ElementName=DeepZoomControl, Path=Scale, Converter={StaticResource InverseValueConverter}}" 
+                                        ScaleY="{Binding ElementName=DeepZoomControl, Path=Scale, Converter={StaticResource InverseValueConverter}}" />
+                                </TransformGroup>
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="PathOutside" Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.51,0.024" StartPoint="0.498,0.987">
+                                            <GradientStop Color="#FF0097CC" Offset="0.167"/>
+                                            <GradientStop Color="#FF259ED1" Offset="0.234"/>
+                                            <GradientStop Color="#FF7EC7EC" Offset="0.673"/>
+                                            <GradientStop Color="#FFA5DDFA" Offset="0.987"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PathInside" Property="Fill" Value="#FF0074AD"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left" Value="{Binding Path=RastrX}" />
+                        <Setter Property="Canvas.Top" Value="{Binding Path=RastrY}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.LayoutTransform>
+                    <ScaleTransform 
+                        ScaleX="{Binding ElementName=DeepZoomControl, Path=Scale}"
+                        ScaleY="{Binding ElementName=DeepZoomControl, Path=Scale}" />
+                </ItemsControl.LayoutTransform>
+            </ItemsControl>            
+        </Canvas>
+        
+        <Border
+            Grid.ColumnSpan="10"
+            Grid.Row="2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="White">
+            <Border.Resources>
+                <Style TargetType="{x:Type dz:MultiScaleImage}">
+                    <Style.Triggers>
+                        <Trigger Property="Source" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Resources>
+            <dz:MultiScaleImage
+                x:Name="DeepZoomControl">
+            </dz:MultiScaleImage>
+        </Border>
+        
+        <GridSplitter
+            Margin="-2, 0, 0, 0"
+            Grid.ColumnSpan="10"
+            Height="4"
+            Panel.ZIndex="10"
+            Grid.Row="2"
+            Background="Transparent"
+            Foreground="Transparent"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            Visibility="{Binding ElementName=ControlPointsGrid, Path=Visibility}"/>
+
+        <DataGrid
+            CellStyle="{StaticResource DiasDataGridCellStyle}"
+            TextBlock.Foreground="#FF4D4D4D"
+            SnapsToDevicePixels="True"
+		    VerticalGridLinesBrush="#FFE0E0E0"
+		    HorizontalGridLinesBrush="#FFE0E0E0"
+            HeadersVisibility="All"
+            Style="{StaticResource CoordsGridStyle}"
+            Name="ControlPointsGrid"
+            Margin="0, 0, 0, 0"
+            BorderBrush="LightGray"
+            BorderThickness="0, 1, 0, 0"
+            Grid.Row="3"
+            CanUserAddRows="False"
+            SelectionMode="Single"
+            CanUserDeleteRows="True"
+            AutoGenerateColumns="False"
+            beh:DataGridBehavior.RowNumbers="True"
+            ItemsSource="{Binding Path=TileSource.GDALOverviewsM.LinkedPoints}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Padding" Value="6, 5" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFF4EBB8" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="#FF4D4D4D"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF4D4D4D" />
+                    </Style.Resources>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#88F4EBB8" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox
+                            IsChecked="{Binding Source={StaticResource BindingPointsProxy}, Path=Data.AllPointsActive}"
+                            Opacity="0.7" 
+                            ToolTip="Включить все точки" 
+                            VerticalAlignment="Center"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox 
+                                Opacity="0.7"
+                                ToolTip="Включить эту точку"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding IsActive, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding RastrX}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_Raster}"/><Run Text=" X"/></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding RastrY}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_Raster}"/><Run Text=" Y"/></TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    Width="Auto">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_Map}"/><Run Text=" X"/></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border
+                                x:Name="CoordBorder"
+                                BorderBrush="Transparent"
+                                BorderThickness="1">
+                                <cont:GeographyTextBox
+                                    Foreground="#FF4D4D4D"
+                                    VerticalAlignment="Center"
+                                    CoordType="Longitude"
+                                    IsWgsProjection="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM.IsWgsProjection}"
+                                    CoordsViewType="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM.CurrentCoordsViewType}"
+                                    Coordinate="{Binding MapX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    x:Name="CoordBox"
+                                    Padding="0"
+                                    Margin="0"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    IsReadOnly="False"
+                                    HorizontalAlignment="Stretch" />
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CoordBox, Path=HasError}" Value="True">
+                                    <Setter TargetName="CoordBorder" Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    Width="Auto">
+                    <DataGridTemplateColumn.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_Map}"/><Run Text=" Y"/></TextBlock>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border
+                                x:Name="CoordBorder"
+                                BorderBrush="Transparent"
+                                BorderThickness="1">
+                                <cont:GeographyTextBox
+                                    Foreground="#FF4D4D4D"
+                                    VerticalAlignment="Center"
+                                    CoordType="Latitude"
+                                    IsWgsProjection="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM.IsWgsProjection}"
+                                    CoordsViewType="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM.CurrentCoordsViewType}"
+                                    Coordinate="{Binding MapY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    x:Name="CoordBox"
+                                    Background="Transparent"
+                                    Margin="0"
+                                    Padding="0"
+                                    BorderThickness="0"
+                                    IsReadOnly="False"
+                                    HorizontalAlignment="Stretch" />
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CoordBox, Path=HasError}" Value="True">
+                                    <Setter TargetName="CoordBorder" Property="BorderBrush" Value="Red" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{x:Static props:Resources.RstGrf_Name}" Width="*" Binding="{Binding Name}">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StatusBar
+            BorderBrush="DimGray"
+            BorderThickness="0, 1, 0, 0"
+            HorizontalContentAlignment="Right"
+            HorizontalAlignment="Stretch"
+            Grid.Row="4">
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="WhiteSmoke" Offset="0.124"/>
+                    <GradientStop Color="#FFECECEC" Offset="0.93"/>
+                </LinearGradientBrush>
+            </StatusBar.Background>
+            <StatusBarItem
+                HorizontalAlignment="Stretch"
+                Padding="0">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel 
+                        TextBlock.Foreground="#FF4D4D4D"
+                        Margin="5, 3, 3, 3"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding ElementName=ControlPointsGrid, Path=Visibility}"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"><Run Text="{x:Static props:Resources.RstGrf_PointsNum}"/><Run Text=": "/></TextBlock>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=ControlPointsGrid, Path=Items.Count}" />
+                    </StackPanel>
+                </StackPanel>
+            </StatusBarItem>
+
+            <StatusBarItem
+                Padding="1"
+                HorizontalAlignment="Right">
+                <StackPanel
+                    TextBlock.Foreground="#FF4D4D4D"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource DataContextNullCollapsedStyle}"
+                    DataContext="{Binding ElementName=DeepZoomControl, Path=Source.GDALOverviewsM}"
+                    Name="ProjectionHost"
+                    Orientation="Horizontal">
+                    <Border             
+                        Style="{StaticResource SeparatorBorder}"/>
+                    <TextBlock 
+                        Margin="5, 3, 0, 3"
+                        VerticalAlignment="Center"
+                        Text="{x:Static props:Resources.PgGeomVRec_Projection}" />
+                    <TextBlock VerticalAlignment="Center" Text=": " />
+                    <ToggleButton
+                        x:Name="SridChangeButton"
+                        VerticalContentAlignment="Center"
+                        Margin="2"
+                        IsChecked="{Binding ElementName=SridChangePopup, Path=IsOpen, Mode=TwoWay}"
+                        Style="{StaticResource SridChangeButtonStyle}">
+                    </ToggleButton>
+                    <Popup
+                        PopupAnimation="Slide"
+                        x:Name="SridChangePopup"
+                        AllowsTransparency="True"
+                        PlacementTarget="{Binding ElementName=SridChangeButton}"
+                        StaysOpen="False"
+                        Placement="Bottom">
+                        <pgav:GeomRecalcV />
+                    </Popup>
+                    <ComboBox
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding IsWgsProjection, Converter={StaticResource BooleanVisibilityConverter}}"
+                        Margin="2"
+                        ItemsSource="{Binding Source={StaticResource CoordsViewTypes}}"
+                        SelectedItem="{Binding CurrentCoordsViewType, Converter={StaticResource EnumWrapperConverter}, Mode=TwoWay}">
+                    </ComboBox>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="POLY001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY001.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY002.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY003.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY004.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY005.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY006" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY006.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY007" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY007.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY008" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY008.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY009" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY009.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY010" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY010.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY011.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY012.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY013.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY014" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY014.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY015" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY015.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY016" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY016.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY017" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY017.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY018" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY018.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY019" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY019.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY020" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY020.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY021.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY022.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY023.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY024.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY025" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY025.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY026" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY026.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY027.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY028" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY028.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY029" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY029.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY030" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY030.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY031" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY031.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY032" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY032.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY033" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY033.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY034" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY034.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY035" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY035.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY036" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY036.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY037" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY037.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY038" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY038.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY039.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY040" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY040.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY041" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY041.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY042" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY042.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY043" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY043.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY044" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY044.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY045" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY045.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY046" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY046.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY047" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY047.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY048" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY048.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY049" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY049.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY050" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY050.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY051" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY051.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY052" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY052.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY053" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY053.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY054" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY054.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY055" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY055.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY056" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY056.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY057" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY057.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY058" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY058.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY059" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY059.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY060" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY060.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY061" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY061.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY062" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY062.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY063" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY063.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY064" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY064.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY065" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY065.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY066" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY066.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY067" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY067.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY068" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY068.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY069" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY069.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY070" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY070.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY071" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY071.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY072" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY072.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY073" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY073.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY074" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY074.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY075" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY075.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY076" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY076.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY077" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY077.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY078" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY078.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY079" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY079.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY080" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY080.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY081" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY081.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY082" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY082.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY083" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY083.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY084" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY084.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY085" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY085.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY086" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY086.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY087" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY087.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY088" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY088.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY089" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY089.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY090" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY090.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY091" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY091.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY092" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY092.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY093" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY093.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY094" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY094.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY095" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY095.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY096" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY096.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY097" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY097.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY098" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY098.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY099" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY099.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY100.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY101" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY101.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY102" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY102.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY103" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY103.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY104" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY104.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY105" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY105.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY106" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY106.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY107" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY107.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY108" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY108.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY109" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY109.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY110" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY110.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY111" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY111.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY112" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY112.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY113" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY113.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY114" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY114.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY115" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY115.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY116" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY116.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY117" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY117.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY118" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY118.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY119" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY119.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY120" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY120.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY121" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY121.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY122" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY122.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY123" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY123.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY124" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY124.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY125" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY125.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY126" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY126.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY127" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY127.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY128.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY129" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY129.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY130" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY130.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY131" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY131.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY132" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY132.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY133" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY133.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY134" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY134.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY135" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY135.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY136" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY136.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY137" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY137.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY138" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY138.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY139" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY139.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY140" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY140.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY141" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY141.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY142" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY142.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY143" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY143.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY144" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY144.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY145" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY145.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY146" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY146.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY147" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY147.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY148" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY148.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY149" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY149.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY150" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY150.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY151" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY151.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY152" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY152.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY153" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY153.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY154" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY154.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY155" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY155.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY156" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY156.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY157" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY157.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY158" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY158.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY159" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY159.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY160" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY160.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY161.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY162" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY162.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY163" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY163.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY164" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY164.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY165" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY165.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY166" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY166.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY167" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY167.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY168" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY168.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY169" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY169.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY170" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY170.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY171" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY171.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="POLY172" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Poly\POLY172.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

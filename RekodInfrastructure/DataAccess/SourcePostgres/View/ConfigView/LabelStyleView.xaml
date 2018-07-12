@@ -1,0 +1,334 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.LabelStyleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pgvr="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ValidationRules"
+             xmlns:view="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+        </Style>               
+    </UserControl.Resources>
+
+
+    <!--Validation.Error="LabelStyleGrid_Error"
+        Loaded="LabelStyleGrid_Loaded"-->
+    <Grid
+        DataContext="{Binding Path=LabelStyle}"
+        Name="LabelStyleGrid">
+      
+        <beh:CommandBehaviorCollection.Behaviors>
+            <beh:BehaviorBinding
+                Event="Loaded"
+                Action="{Binding BindingGroupLoadedAction}" 
+                CommandParameter="{Binding ElementName=labelStyleBindingGroup}" />
+            <beh:BehaviorBinding
+                Event="System.Windows.Controls.Validation.ErrorEvent"
+                Action="{Binding BindingGroupErrorAction}" 
+                CommandParameter="{Binding ElementName=labelStyleBindingGroup}" />
+        </beh:CommandBehaviorCollection.Behaviors>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+       
+        <Grid.BindingGroup>
+            <BindingGroup x:Name="labelStyleBindingGroup" NotifyOnValidationError="True">
+                <BindingGroup.ValidationRules>
+                    <pgvr:MapLayerLabelStyleValidationRule />
+                </BindingGroup.ValidationRules>
+            </BindingGroup>
+        </Grid.BindingGroup>
+        
+        <TabControl Style="{x:Null}">
+            <TabItem 
+                Header="{x:Static properties:Resources.LocLabelEdit}"
+                Style="{x:Null}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <CheckBox IsChecked="{Binding Path=LabelShowLabel}" Margin="5" VerticalAlignment="Center" Name="ShowLabelCheckBox"/>
+                        <TextBlock 
+                            Text="{x:Static properties:Resources.LocShowLabel}"
+                            Margin="5"
+                            VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel IsEnabled="{Binding ElementName=ShowLabelCheckBox, Path=IsChecked}">
+                        <GroupBox
+                            Header="{x:Static properties:Resources.LocResult}"
+                            Padding="6">
+                            <DockPanel LastChildFill="True" >
+                                <Button 
+                                    DockPanel.Dock="Right" 
+                                    Width="23" 
+                                    Margin="2, 0, 2, 0" 
+                                    Name="PreviewButton"
+                                    beh:CommandBehavior.Event="Click"
+                                    beh:CommandBehavior.Action="{Binding PreviewAction}"
+                                    beh:CommandBehavior.CommandParameter="{Binding ElementName=TextBoxLabelExpression, Path=Text}">
+                                    <Image
+                                        Source="/Images/preview.png"/>
+                                </Button>
+                                <Button DockPanel.Dock="Right" Width="23" Height="23" Margin="2, 0, 0, 0" 
+                                        Name="ClearButton">
+                                    <Image ToolTip="Очистить" Source="/Images/brush.png" Height="30"/>
+                                    <beh:CommandBehaviorCollection.Behaviors>
+                                        <beh:BehaviorBinding Action="{Binding ClearAction}" Event="Click">
+                                            <beh:BehaviorBinding.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                    <MultiBinding.Bindings>
+                                                        <Binding ElementName="TextBoxLabelExpression" />
+                                                    </MultiBinding.Bindings>
+                                                </MultiBinding>
+                                            </beh:BehaviorBinding.CommandParameter>
+                                        </beh:BehaviorBinding>
+                                    </beh:CommandBehaviorCollection.Behaviors>                                   
+                                </Button>
+                                <TextBox 
+                                    IsReadOnly="False"
+                                    Text="{Binding Path=LableMask, Converter={StaticResource PgLabelMaskConverter}}" 
+                                    Name="TextBoxLabelExpression"/>
+                            </DockPanel>
+                        </GroupBox>
+                        <DockPanel LastChildFill="True" Margin="6">
+                            <TextBlock
+                                Text="{x:Static properties:Resources.LocAdd}"
+                                DockPanel.Dock="Left"
+                                Margin="7, 0, 0, 0" 
+                                VerticalAlignment="Center" />
+                            <Button 
+                                DockPanel.Dock="Right" 
+                                Width="23" 
+                                Margin="0, 0, 7, 0" 
+                                Name="AttachButton">
+                                <Image 
+                                    Width="15"
+                                    Source="/Resources/1downarrow.png" />
+                                <beh:CommandBehaviorCollection.Behaviors>
+                                    <beh:BehaviorBinding Action="{Binding AttachAction}" Event="Click">
+                                        <beh:BehaviorBinding.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                <Binding ElementName="TextBoxLabelExpression" />
+                                                <Binding ElementName="ComboBoxAttachWith" />
+                                            </MultiBinding>
+                                        </beh:BehaviorBinding.CommandParameter>
+                                    </beh:BehaviorBinding>
+                                </beh:CommandBehaviorCollection.Behaviors>
+                            </Button>
+                            <ComboBox 
+                                Margin="8, 0, 2, 0" 
+                                IsEditable="True"
+                                Name="ComboBoxAttachWith"
+                                ItemsSource="{Binding 
+                                                RelativeSource={RelativeSource
+                                                                    Mode=FindAncestor,
+                                                                    AncestorType=UserControl,
+                                                                    AncestorLevel=1},
+                                                Path=DataContext.Fields}" 
+                                DisplayMemberPath="Text"/>
+                        </DockPanel>
+                        <GroupBox
+                            Header="{x:Static properties:Resources.LocArithmeticExpression}">
+                            <StackPanel>
+                                <DockPanel LastChildFill="True" Margin="6">
+                                    <TextBlock  
+                                        Text="{x:Static properties:Resources.LocExpression}"
+                                        DockPanel.Dock="Left" 
+                                        MinWidth="65"/>
+                                    
+                                    <Button 
+                                        DockPanel.Dock="Right" 
+                                        Width="23" 
+                                        Name="AttachWithArithExprButton">
+                                        <Image 
+                                            Width="15"
+                                            Source="/Resources/1downarrow.png" />
+                                        <beh:CommandBehaviorCollection.Behaviors>
+                                            <beh:BehaviorBinding Action="{Binding AttachWithArithExprAction}" Event="Click">
+                                                <beh:BehaviorBinding.CommandParameter>
+                                                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                        <Binding ElementName="TextBoxLabelExpression" />
+                                                        <Binding ElementName="TextBoxArithmeticExpression" />
+                                                    </MultiBinding>
+                                                </beh:BehaviorBinding.CommandParameter>
+                                            </beh:BehaviorBinding>
+                                        </beh:CommandBehaviorCollection.Behaviors>                                       
+                                    </Button>
+                                    <TextBox  
+                                        Margin="10, 0, 2, 0" 
+                                        Name="TextBoxArithmeticExpression"/>
+                                </DockPanel>
+                                <DockPanel LastChildFill="True" Margin="6">
+                                    <TextBlock 
+                                        Text="{x:Static properties:Resources.LocOperand}"
+                                        DockPanel.Dock="Left" 
+                                        MinWidth="65"/>
+                                    <Button
+                                        DockPanel.Dock="Right" 
+                                        Width="14" 
+                                        Name="OperandOperationButton" >
+                                        <beh:CommandBehaviorCollection.Behaviors>
+                                            <beh:BehaviorBinding Action="{Binding OperandOperationAction}" Event="Click">
+                                                <beh:BehaviorBinding.CommandParameter>
+                                                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                        <Binding ElementName="OperandOperationButton" />
+                                                    </MultiBinding>
+                                                </beh:BehaviorBinding.CommandParameter>
+                                            </beh:BehaviorBinding>
+                                        </beh:CommandBehaviorCollection.Behaviors>
+                                        <Button.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="+ (Сложить)" Name="MenuItemAdd">
+                                                    <beh:CommandBehaviorCollection.Behaviors>
+                                                        <beh:BehaviorBinding Action="{Binding MenuItemOperationAction}" Event="Click">
+                                                            <beh:BehaviorBinding.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                                    <Binding ElementName="MenuItemAdd" />
+                                                                    <Binding ElementName="MenuItemSubstract" />
+                                                                    <Binding ElementName="MenuItemMultiply" />
+                                                                    <Binding ElementName="MenuItemDivide" />
+                                                                    <Binding ElementName="TextBoxArithmeticExpression" />
+                                                                    <Binding ElementName="ComboBoxOperand" />
+                                                                </MultiBinding>
+                                                            </beh:BehaviorBinding.CommandParameter>
+                                                        </beh:BehaviorBinding>
+                                                    </beh:CommandBehaviorCollection.Behaviors>
+                                                </MenuItem>
+                                                <MenuItem Header="- (Вычесть)" Name="MenuItemSubstract">
+                                                    <beh:CommandBehaviorCollection.Behaviors>
+                                                        <beh:BehaviorBinding Action="{Binding MenuItemOperationAction}" Event="Click">
+                                                            <beh:BehaviorBinding.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                                    <Binding ElementName="MenuItemAdd" />
+                                                                    <Binding ElementName="MenuItemSubstract" />
+                                                                    <Binding ElementName="MenuItemMultiply" />
+                                                                    <Binding ElementName="MenuItemDivide" />
+                                                                    <Binding ElementName="TextBoxArithmeticExpression" />
+                                                                    <Binding ElementName="ComboBoxOperand" />
+                                                                </MultiBinding>
+                                                            </beh:BehaviorBinding.CommandParameter>
+                                                        </beh:BehaviorBinding>
+                                                    </beh:CommandBehaviorCollection.Behaviors>
+                                                </MenuItem>
+                                                <MenuItem Header="* (Умножить)" Name="MenuItemMultiply">
+                                                    <beh:CommandBehaviorCollection.Behaviors>
+                                                        <beh:BehaviorBinding Action="{Binding MenuItemOperationAction}" Event="Click">
+                                                            <beh:BehaviorBinding.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                                    <Binding ElementName="MenuItemAdd" />
+                                                                    <Binding ElementName="MenuItemSubstract" />
+                                                                    <Binding ElementName="MenuItemMultiply" />
+                                                                    <Binding ElementName="MenuItemDivide" />
+                                                                    <Binding ElementName="TextBoxArithmeticExpression" />
+                                                                    <Binding ElementName="ComboBoxOperand" />
+                                                                </MultiBinding>
+                                                            </beh:BehaviorBinding.CommandParameter>
+                                                        </beh:BehaviorBinding>
+                                                    </beh:CommandBehaviorCollection.Behaviors>
+                                                </MenuItem>
+                                                <MenuItem Header="/ (Разделить)" Name="MenuItemDivide">
+                                                    <beh:CommandBehaviorCollection.Behaviors>
+                                                        <beh:BehaviorBinding Action="{Binding MenuItemOperationAction}" Event="Click">
+                                                            <beh:BehaviorBinding.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                                    <Binding ElementName="MenuItemAdd" />
+                                                                    <Binding ElementName="MenuItemSubstract" />
+                                                                    <Binding ElementName="MenuItemMultiply" />
+                                                                    <Binding ElementName="MenuItemDivide" />
+                                                                    <Binding ElementName="TextBoxArithmeticExpression" />
+                                                                    <Binding ElementName="ComboBoxOperand" />
+                                                                </MultiBinding>
+                                                            </beh:BehaviorBinding.CommandParameter>
+                                                        </beh:BehaviorBinding>
+                                                    </beh:CommandBehaviorCollection.Behaviors>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
+                                        <Image 
+                                            Source="/Resources/ArrowHeadDown.png" />
+                                    </Button>
+                                    <Button 
+                                        DockPanel.Dock="Right" 
+                                        Width="23" 
+                                        Name="AttachWithOperandButton">
+                                        <Image 
+                                            Width="15"
+                                            Source="/Resources/1downarrow.png" />
+                                        <beh:CommandBehaviorCollection.Behaviors>
+                                            <beh:BehaviorBinding Action="{Binding AttachWithOperandAction}" Event="Click">
+                                                <beh:BehaviorBinding.CommandParameter>
+                                                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                                        <Binding ElementName="TextBoxArithmeticExpression" />
+                                                        <Binding ElementName="ComboBoxOperand" />
+                                                    </MultiBinding>
+                                                </beh:BehaviorBinding.CommandParameter>
+                                            </beh:BehaviorBinding>
+                                        </beh:CommandBehaviorCollection.Behaviors>
+                                    </Button>
+                                    <ComboBox 
+                                        Margin="10, 0, 2, 0" 
+                                        IsEditable="True"
+                                        ItemsSource="{Binding 
+                                                RelativeSource={RelativeSource
+                                                                    Mode=FindAncestor,
+                                                                    AncestorType=UserControl,
+                                                                    AncestorLevel=1},
+                                                Path=DataContext.Fields}" 
+                                        DisplayMemberPath="Text"
+                                        Name="ComboBoxOperand" />
+                                </DockPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <TextBlock 
+                            Text="{x:Static properties:Resources.LocHelp}"
+                            Margin="7" 
+                            Foreground="Blue" 
+                            TextDecorations="Underline"
+                            Name="HelpLink"
+                            beh:CommandBehavior.Action="{Binding ShowHelpAction}"
+                            beh:CommandBehavior.Event="MouseDown">
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem 
+                Header="{x:Static properties:Resources.LocLabelStyle}"
+                Style="{x:Null}">
+                <view:CaptionStyleView />
+            </TabItem>
+        </TabControl>
+
+        <StackPanel VerticalAlignment="Bottom" Grid.Row="1000" Grid.ColumnSpan="1000" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.Action="{Binding BindingGroupSaveAction}"
+                Name="SaveButton" 
+                MinWidth="80" 
+                Content="{x:Static properties:Resources.LocSave}"
+                Padding="0,1,0,1"
+                Margin="3">
+                <beh:CommandBehavior.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                        <Binding ElementName="labelStyleBindingGroup" />
+                        <Binding ElementName="TextBoxLabelExpression" />
+                    </MultiBinding>
+                </beh:CommandBehavior.CommandParameter>
+            </Button>
+            
+            <Button
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.Action="{Binding BindingGroupCancelAction}"
+                beh:CommandBehavior.CommandParameter="{Binding ElementName=labelStyleBindingGroup}"
+                Name="CancelButton" 
+                MinWidth="80" 
+                Content="{x:Static properties:Resources.LocCancel}"
+                Padding="0,1,0,1"
+                Margin="3" />
+        </StackPanel>
+    </Grid>
+</UserControl>

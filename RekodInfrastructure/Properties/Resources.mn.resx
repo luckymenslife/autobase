@@ -1,0 +1,3726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="new_hollow_type_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bridget" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bridget.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videlit_obekt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="КРИВАЯ1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ГС_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ГС_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="savebaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\savebaw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deselect_objects" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deselect_objects.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sloi1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Group1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="РЕКОД_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\РЕКОД_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HIstory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HIstory.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="data_time1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\data_time1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_right_5106" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-right_5106.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="точка1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="__minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\- minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_selecteg_button1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kfontview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kfontview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowHeadDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowHeadDown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_page.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="obnovit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\obnovit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="legend_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\legend-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1downarrow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instruments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instruments.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabledXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selected.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videlit_obekt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_struct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\struct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1279535710_view_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535710_view_16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotSelected3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotSelected3.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_navedenii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dobavit_obekt_na_videlenii_sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dobavit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_hollow_type_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue_bg_for_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stock_snap_guides_9095" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_snap-guides_9095.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="обновить" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\обновить.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bd.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_vibore_instrumenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_c48d37de1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_c48d37de1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_img" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_img.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremeschenie1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MoveObject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoveObject.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="real1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\real1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Площадь1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Выбор_объекта" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_sattelite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_sattelite.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_работами" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_работами.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\+plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_selecteg_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_view_columns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_view_columns.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_plus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_min.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwalletmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kwalletmanager.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="selectpoly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectpoly.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Слой_вниз" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вниз.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_left_8086" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_8086.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="КРИВАЯ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stil_sloya_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stil sloya_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_полями" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_полями.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_left_on_deg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_on_deg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruler_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler_area.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="agt_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spisok_sloev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spisok sloev.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_logotip_cku22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_logotip_cku22.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gnome_mime_text_x_copying" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gnome-mime-text-x-copying.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="для_арсенала" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\для_арсенала.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled-11.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="field_del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\field_del1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_base.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clip_image002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image002.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clip_image0021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image0021.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_pg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_pg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="int1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\int1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremeschenie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rastrovii_izobrageni9ya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rastrovii izobrageni9ya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_minus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gtk_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rotate270anticlockwise3green_9632" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rotate270anticlockwise3green_9632.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reference" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reference.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gtk_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1279535667_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535667_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_lokalnii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new lokalnii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa +.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa__1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa -.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="photo_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\photo_add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stock_draw_rectangle_unfilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_draw_rectangle_unfilled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabledXY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXY.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="точка1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Площадь1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_vibore_instrumenta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redaktor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redaktor.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dobavit_object" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\udalit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_navedenii2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_udalennii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new udalennii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_растром" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление растром.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="agt_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_forward.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_max" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_max.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue_bg_for_panel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_gorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_gorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pan.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_up_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up_1.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_order_change" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_order_change.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Слой_вверх" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вверх.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="selectregion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectregion.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToLayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToLayer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToSelectObj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToSelectObj.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapToLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToLine.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapToPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToPoint.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Globe.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pie_Chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pie_Chart.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Программын тухай</value>
+  </data>
+  <data name="AbsM.EFieldType.Date" xml:space="preserve">
+    <value>Он, сар, өдөр</value>
+  </data>
+  <data name="AbsM.EFieldType.DateTime" xml:space="preserve">
+    <value>Он, сар, өдөр, цаг</value>
+  </data>
+  <data name="AbsM.EFieldType.Geometry" xml:space="preserve">
+    <value>Геометр</value>
+  </data>
+  <data name="AbsM.EFieldType.Integer" xml:space="preserve">
+    <value>Бүхэл</value>
+  </data>
+  <data name="AbsM.EFieldType.Real" xml:space="preserve">
+    <value>Бодит  </value>
+  </data>
+  <data name="AbsM.EFieldType.Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="AbsM.EGeomType.Line" xml:space="preserve">
+    <value>Шулуун</value>
+  </data>
+  <data name="AbsM.EGeomType.None" xml:space="preserve">
+    <value>Геометргүй</value>
+  </data>
+  <data name="AbsM.EGeomType.Point" xml:space="preserve">
+    <value>Цэг</value>
+  </data>
+  <data name="AbsM.EGeomType.Polygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="AbsM.ERefType.Data" xml:space="preserve">
+    <value>Мэдээний хүснэгт</value>
+  </data>
+  <data name="AbsM.ERefType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="AbsM.ERefType.None" xml:space="preserve">
+    <value>Холболт байхгүй</value>
+  </data>
+  <data name="AbsM.ERefType.Reference" xml:space="preserve">
+    <value>Лавлах</value>
+  </data>
+  <data name="AbsM.ETableType.BottomLayer" xml:space="preserve">
+    <value>Доод давхрага</value>
+  </data>
+  <data name="AbsM.ETableType.Catalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="AbsM.ETableType.CommonType" xml:space="preserve">
+    <value>Ерөнхий төрөл</value>
+  </data>
+  <data name="AbsM.ETableType.Data" xml:space="preserve">
+    <value>Мэдээний хүснэгт</value>
+  </data>
+  <data name="AbsM.ETableType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="AbsM.ETableType.MapLayer" xml:space="preserve">
+    <value>Зургийн давхрага</value>
+  </data>
+  <data name="AbsM.ETableType.Rastr" xml:space="preserve">
+    <value>Растер давхрага</value>
+  </data>
+  <data name="AbsM.ETableType.View" xml:space="preserve">
+    <value>Харах</value>
+  </data>
+  <data name="AddEditRastr_EnterName" xml:space="preserve">
+    <value>Растер давхрагын нэрийг оруулна уу</value>
+  </data>
+  <data name="AddEditRastr_ErrorExistFile" xml:space="preserve">
+    <value>Байгаа растер  файлыг заана уу</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser" xml:space="preserve">
+    <value>Идэвхтэй хэрэглэгчийг устгах боломжгүй</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser_Header" xml:space="preserve">
+    <value>Хэрэглэгчийг устгах</value>
+  </data>
+  <data name="AdminFrm_NotReadAllTable" xml:space="preserve">
+    <value>Бүх хүснэгтийг харахыг хориглоно</value>
+  </data>
+  <data name="AdminFrm_NotWriteAllTable" xml:space="preserve">
+    <value>Бүх хүснэгтийг засварлахыг хориглоно</value>
+  </data>
+  <data name="AdminFrm_ReadAllTables" xml:space="preserve">
+    <value>Бүх хүснэгтийг харахыг зөвшөөрнө</value>
+  </data>
+  <data name="AdminFrm_ReadSomeTables" xml:space="preserve">
+    <value>Тодорхой хүснэгтийг харахыг зөвшөөрнө</value>
+  </data>
+  <data name="AdminFrm_WriteAllTables" xml:space="preserve">
+    <value>Бүх хүснэгтийг засварлахыг зөвшөөрнө</value>
+  </data>
+  <data name="AdminFrm_WriteSomeTables" xml:space="preserve">
+    <value>Тодорхой хүснэгтийг засварлахыг зөвшөөрнө</value>
+  </data>
+  <data name="AEAtr_CreatingAttribute" xml:space="preserve">
+    <value>Аттрибут үүсгэх</value>
+  </data>
+  <data name="AEAtr_ErrorAllFieldHiden" xml:space="preserve">
+    <value>ХҮснэгт хамгийн багадаа нэг далд аттрибуттай байна. Хэрэв та хүснэгтийн бүх аттрибутыг далдлахыг хүсвэл 'hidden' товчийг дарна уу </value>
+  </data>
+  <data name="AEAtr_ErrorCreateAtrField" xml:space="preserve">
+    <value>Аттрибут талбар үүсгэх алдаа</value>
+  </data>
+  <data name="AEAtr_NameFormat" xml:space="preserve">
+    <value>Талбарын нэр латин үсэг ба тоо агуулж, үсгээр эхлэнэ</value>
+  </data>
+  <data name="AEAtr_NotPutName" xml:space="preserve">
+    <value>Өгөгдлийн сан дахь, эсвэл систем дэх атрибутын нэр оруулаагүй байна</value>
+  </data>
+  <data name="AEAtr_NotSaveField" xml:space="preserve">
+    <value>Ийм нэртэй талбар хадгалагдах боломжгүй байна</value>
+  </data>
+  <data name="AEAtr_NotSelectType" xml:space="preserve">
+    <value>Талбарын төрөл сонгогдоогүй байна</value>
+  </data>
+  <data name="AEAtr_RenameInDB" xml:space="preserve">
+    <value>Өгөгдлийн сан дахь талбарын нэрийг сольно уу</value>
+  </data>
+  <data name="AEAtr_ReservedName" xml:space="preserve">
+    <value>Нэрийг нөөцөнд авсан байна</value>
+  </data>
+  <data name="AEAtr_SaveRenameField" xml:space="preserve">
+    <value>Ижит нэртэй талбар өгөгдлийн санд байна. {0} нэртэй талбарыг хадгалах уу</value>
+  </data>
+  <data name="AEAtr_TableAttributesHeader" xml:space="preserve">
+    <value>Хүснэгтийн аттрибут</value>
+  </data>
+  <data name="AET_AddLabel" xml:space="preserve">
+    <value>Ул бичвэр нэмэх</value>
+  </data>
+  <data name="AET_AlreadyExistsTable" xml:space="preserve">
+    <value>Ижил нэртэй хүснэгт мэдээний базад байна</value>
+  </data>
+  <data name="AET_ChangeTable" xml:space="preserve">
+    <value>Өгөгдлийн сан дахь хүснэгтийн нэрийг сольно уу</value>
+  </data>
+  <data name="AET_ConNotSave" xml:space="preserve">
+    <value>Өгөгдсөн нэртэй хүснэгт хадгалагдах боломжгүй</value>
+  </data>
+  <data name="AET_CreatingTable" xml:space="preserve">
+    <value>Хүснэгт үүсгэх</value>
+  </data>
+  <data name="AET_ErrorBoundValue" xml:space="preserve">
+    <value>Үзүүлэх хэсгийн доод хязгаар дээд хязгаараас их, эсвэл ижил байна!</value>
+  </data>
+  <data name="AET_ErrorCreatingHistory" xml:space="preserve">
+    <value>Түүх үүсгэх үед алдаа гарлаа</value>
+  </data>
+  <data name="AET_ErrorCreatingTable" xml:space="preserve">
+    <value>Хүснэгт үүсгэх үед алдаа гарлаа</value>
+  </data>
+  <data name="AET_MustBeGeom" xml:space="preserve">
+    <value>Зургийн давхрага геомтетртэй байх ёстой</value>
+  </data>
+  <data name="AET_NameIsReserved" xml:space="preserve">
+    <value>Нэрийг нөөцөнд авсан байна</value>
+  </data>
+  <data name="AET_NotRegScheme" xml:space="preserve">
+    <value>Бүртгэгдсэн бүдүүвч байхгүй байна</value>
+  </data>
+  <data name="AET_PerformOperation" xml:space="preserve">
+    <value>Үйлдлийг хийх үү</value>
+  </data>
+  <data name="AET_RequiredParams" xml:space="preserve">
+    <value>Шаардагдах параметруудыг оруулна уу</value>
+  </data>
+  <data name="AET_SaveTableRename" xml:space="preserve">
+    <value>{0} нэртэй хүснэгтийг хадгалах уу?</value>
+  </data>
+  <data name="AET_TableNameFormat" xml:space="preserve">
+    <value>Хүснэгтийн нэр латин үсэг, тоо агуулж, үсгээр эхэлнэ</value>
+  </data>
+  <data name="AET_TurnHistory" xml:space="preserve">
+    <value>Бичлэг хадгалах функцийг хаахад хүснэгтийн тухай бүх бичвэрүүд устана</value>
+  </data>
+  <data name="AWT_EditLabel" xml:space="preserve">
+    <value>Ул бичвэрийг засварлах</value>
+  </data>
+  <data name="CCT_Postfix" xml:space="preserve">
+    <value>Хувьлах</value>
+  </data>
+  <data name="ChangesAreSaved" xml:space="preserve">
+    <value>Өөрчлөлтийг хадгаллаа</value>
+  </data>
+  <data name="CheckObjects_ColumnName" xml:space="preserve">
+    <value>Сонгох</value>
+  </data>
+  <data name="CheckObjects_Title" xml:space="preserve">
+    <value>Шүүлтүүр</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Байгууллагын нэр:</value>
+  </data>
+  <data name="ConnectionIsBroken_Header" xml:space="preserve">
+    <value>Өгөгдлийн сантай холбоо тасарсан байна</value>
+  </data>
+  <data name="ConnectionIsBroken_Message" xml:space="preserve">
+    <value>Өгөгдлийн сантай холбоо тасарсан байна. Дахин холбогдох уу, эсвэл хаагдана</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Зохиогчийн эрх:</value>
+  </data>
+  <data name="CouldNotExtractIcon" xml:space="preserve">
+    <value>Шигтгээ зургийг задалж болохгүй байна.</value>
+  </data>
+  <data name="Count_In_Status" xml:space="preserve">
+    <value>Тоо:</value>
+  </data>
+  <data name="DBTG_ManagingGroups" xml:space="preserve">
+    <value>Бүлгийг зохицуулах</value>
+  </data>
+  <data name="DBTG_TablesList" xml:space="preserve">
+    <value>Хүснэгтийн Жагсаалт</value>
+  </data>
+  <data name="DeleteUserQuetion" xml:space="preserve">
+    <value>Хэрэглэгчийг үнэхээр устгах уу</value>
+  </data>
+  <data name="DeletingAuser" xml:space="preserve">
+    <value>Хэрэглэгчийг устгах</value>
+  </data>
+  <data name="DGBH_AppointNewProj" xml:space="preserve">
+    <value>Дахин бодолтгүйгээр шинэ тустгаг оноох уу</value>
+  </data>
+  <data name="DGBH_col" xml:space="preserve">
+    <value>Багана</value>
+  </data>
+  <data name="DGBH_CoordIncorrect" xml:space="preserve">
+    <value>Солбицол буруу байна</value>
+  </data>
+  <data name="DGBH_DeleteObjMessage" xml:space="preserve">
+    <value>Объектийг үнэхээр устгах уу</value>
+  </data>
+  <data name="DGBH_Editing" xml:space="preserve">
+    <value>Засварлах</value>
+  </data>
+  <data name="DGBH_EditingLineObj" xml:space="preserve">
+    <value>Шулуун объект</value>
+  </data>
+  <data name="DGBH_EditingPointObj" xml:space="preserve">
+    <value>Цэгэн объект</value>
+  </data>
+  <data name="DGBH_EditingPolygonObj" xml:space="preserve">
+    <value>Полигон объект</value>
+  </data>
+  <data name="DGBH_Empty" xml:space="preserve">
+    <value>Хоосон зай</value>
+  </data>
+  <data name="DGBH_EnterInt" xml:space="preserve">
+    <value>Бүхэл тоо оруулна уу</value>
+  </data>
+  <data name="DGBH_ErrorHeader" xml:space="preserve">
+    <value>Алдаа</value>
+  </data>
+  <data name="DGBH_ErrorInDataEntry" xml:space="preserve">
+    <value>Мэдээ оруулах алдаа</value>
+  </data>
+  <data name="DGBH_ErrorReplaceFile" xml:space="preserve">
+    <value>Байгаа файлыг систем сольж чадахгүй байна. Өөр нэр оруулна уу. Үргэлжлүүлэх үү</value>
+  </data>
+  <data name="DGBH_ErrorSingleLine" xml:space="preserve">
+    <value>Нэг шулууныг устгах боломжгүй</value>
+  </data>
+  <data name="DGBH_ErrorSinglePoint" xml:space="preserve">
+    <value>Нэг цэгийг устгах боломжгүй</value>
+  </data>
+  <data name="DGBH_ErrorSinglePolygon" xml:space="preserve">
+    <value>Дан полигоныг устгах боломжгүй</value>
+  </data>
+  <data name="DGBH_FixForContinue" xml:space="preserve">
+    <value>Үргэлжлүүлэхийн тулд зас</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessage" xml:space="preserve">
+    <value>Та хоосон зайг үнэхээр устгах уу</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessageHeader" xml:space="preserve">
+    <value>Хоосон зайг арилгах</value>
+  </data>
+  <data name="DGBH_Line" xml:space="preserve">
+    <value>Шулуун</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacLine" xml:space="preserve">
+    <value>Шулууны шинж чанарыг харуулахад цэг хүрэлцэхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPoint" xml:space="preserve">
+    <value>Цэгийн шинж чанарыг харуулахад цэг хүрэлцэхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPolygon" xml:space="preserve">
+    <value>Полигоны шинж чанарыг харуулахад цэг хүрэлцэхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughPoints" xml:space="preserve">
+    <value> Полигоны хилийг байгуулахад цэг хүрэлцэхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForHole" xml:space="preserve">
+    <value>№{1} полигоны №{0} орон зайг байгуулахад  хангалттай цэг байхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForLine" xml:space="preserve">
+    <value>Шулуун №{0} -ийг байгуулах хангалттай цэг байхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsMeesage" xml:space="preserve">
+    <value>Хангалттай цэг байхгүй байна</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsToGeom" xml:space="preserve">
+    <value>Геометрийг урьдчилж харахад цэг хүрэлцэхгүй байна</value>
+  </data>
+  <data name="DGBH_NotMatch" xml:space="preserve">
+    <value>Файл дахь геометр хүснэгт дэх геометртэй таарахгүй байна</value>
+  </data>
+  <data name="DGBH_OneMoreNotNotEnough" xml:space="preserve">
+    <value>Полигоныг урьдчилж харахад хангалттай цэг байхгүй байна. {0} нд хангалттай цэг байхгүй байна</value>
+  </data>
+  <data name="DGBH_OperSuccess" xml:space="preserve">
+    <value>Үйлдэл амжилттай боллоо.</value>
+  </data>
+  <data name="DGBH_PhotoWithoutCoords" xml:space="preserve">
+    <value>Фото зураг солбицлын мэдээ агуулаагүй байна</value>
+  </data>
+  <data name="DGBH_Point" xml:space="preserve">
+    <value>Цэг</value>
+  </data>
+  <data name="DGBH_Polygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="DGBH_ProjNotInDB" xml:space="preserve">
+    <value>Тусгаг {0} өгөгдлийн санд байхгүй байна. Та энэ тусгагыг ашиглах боломжгүй</value>
+  </data>
+  <data name="DGBH_ProjNotInDB_EnterCorrect" xml:space="preserve">
+    <value>Энэ тусгаг өгөгдлийн санд байхгүй байна. Зөв тусгагыг оруулна уу</value>
+  </data>
+  <data name="DGBH_RecalcGeomNewProj" xml:space="preserve">
+    <value>Шинэ тусгагын солбицлыг бодож чадсангүй</value>
+  </data>
+  <data name="DGBH_RecalGeometry" xml:space="preserve">
+    <value>Геометрийг дахин бодох</value>
+  </data>
+  <data name="DGBH_row" xml:space="preserve">
+    <value>Мөр </value>
+  </data>
+  <data name="DGBH_SelectObjForInputCoord" xml:space="preserve">
+    <value>Солбицол оруулах объектийг сонгоно уу</value>
+  </data>
+  <data name="DGBH_UnableDisplay" xml:space="preserve">
+    <value>Харуулах боломжгүй байна. Цааш үргэлжлүүлэхийн тулд засна уу</value>
+  </data>
+  <data name="DGBH_WrongFormat" xml:space="preserve">
+    <value>Файлын формат буруу</value>
+  </data>
+  <data name="DPolygon" xml:space="preserve">
+    <value>Полигон</value>
+  </data>
+  <data name="EGO_DeleteGroup" xml:space="preserve">
+    <value>Та {0} бүлгийг устгах уу? </value>
+  </data>
+  <data name="EGO_DeletingGroup" xml:space="preserve">
+    <value>Бүлгийг устгах</value>
+  </data>
+  <data name="EGO_groups" xml:space="preserve">
+    <value>Бүлгүүд</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Алдаа</value>
+  </data>
+  <data name="ErrorArraySize" xml:space="preserve">
+    <value>Оролтын массивын хэмжээ буруу байна</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>Алдаа гарлаа! Мессэж:</value>
+  </data>
+  <data name="ErrorMessage_header" xml:space="preserve">
+    <value>Алдааны мессэж</value>
+  </data>
+  <data name="ErrorReadDataReader" xml:space="preserve">
+    <value>Унших алдаа</value>
+  </data>
+  <data name="ExcelImporter_ColumnNEmpty" xml:space="preserve">
+    <value>Багана {0} хоосон байна</value>
+  </data>
+  <data name="ExcelImporter_NotSelectedList" xml:space="preserve">
+    <value>Жагсаалт сонгогдоогүй байна</value>
+  </data>
+  <data name="ExcelImporter_NotSpecifiedRange" xml:space="preserve">
+    <value>Заагдсан диапазон буруу байна</value>
+  </data>
+  <data name="ExcelImporter_RowNEmpty" xml:space="preserve">
+    <value>Мөр {0} хоосон байна</value>
+  </data>
+  <data name="ExcelUC_List" xml:space="preserve">
+    <value>Жагсаалт</value>
+  </data>
+  <data name="ExcelUC_RangeBy" xml:space="preserve">
+    <value>хүртэл</value>
+  </data>
+  <data name="ExcelUC_RangeWith" xml:space="preserve">
+    <value> - ээс</value>
+  </data>
+  <data name="ExcelUC_SpecifyRange" xml:space="preserve">
+    <value>Диапазоныг (хамрах хүрээ) заана уу</value>
+  </data>
+  <data name="ExportDBF_Errors" xml:space="preserve">
+    <value>Алдаанууд</value>
+  </data>
+  <data name="ExportQuestion_btnNotUnloading" xml:space="preserve">
+    <value>Экспорт хийхгүй</value>
+  </data>
+  <data name="ExportQuestion_btnUnloadingwithoutGeom" xml:space="preserve">
+    <value>Геометргүйгээр экспортлох</value>
+  </data>
+  <data name="ExportQuestion_MesExceptGeom" xml:space="preserve">
+    <value>Файлд буруу геометртэй объектууд олдлоо</value>
+  </data>
+  <data name="ExportQuestion_Status" xml:space="preserve">
+    <value>Урьдчилж харахаар ачаалсан мөр: {0} Нийт мөр: {1}</value>
+  </data>
+  <data name="ExportQuestion_StatusErrorUnloading" xml:space="preserve">
+    <value>Експортлох алдаа</value>
+  </data>
+  <data name="ExportQuestion_Title" xml:space="preserve">
+    <value>Експортлох мэдээлэл</value>
+  </data>
+  <data name="FELC_CreatingFields" xml:space="preserve">
+    <value>Талбар үүсгэх</value>
+  </data>
+  <data name="FELC_DeletingFieldAsk" xml:space="preserve">
+    <value>Сонгосон аттрибутыг устгах уу</value>
+  </data>
+  <data name="FELC_DeletingFields" xml:space="preserve">
+    <value>Аттрибутыг устгах</value>
+  </data>
+  <data name="FELC_EditingField" xml:space="preserve">
+    <value>Талбарыг засварлах</value>
+  </data>
+  <data name="FELC_Fields" xml:space="preserve">
+    <value>Аттрибутууд</value>
+  </data>
+  <data name="FELC_Forever" xml:space="preserve">
+    <value>Буцалтгүй</value>
+  </data>
+  <data name="FELC_UseCatalogs" xml:space="preserve">
+    <value>Каталогуудын хэрэглээ</value>
+  </data>
+  <data name="FilterViewModel_ExceptSource" xml:space="preserve">
+    <value>Эх сурвалжийг заах хэрэгтэй</value>
+  </data>
+  <data name="FilterViewModel_ExceptTableName" xml:space="preserve">
+    <value>Хүснэгтийг заах хэрэгтэй</value>
+  </data>
+  <data name="FindBox2_Colmn" xml:space="preserve">
+    <value>Багана</value>
+  </data>
+  <data name="FindBox2_Contains" xml:space="preserve">
+    <value>Агуулсан</value>
+  </data>
+  <data name="FindBox2_DoesNotContain" xml:space="preserve">
+    <value>Агуулаагүй</value>
+  </data>
+  <data name="FindBox2_Empty" xml:space="preserve">
+    <value>Хоосон </value>
+  </data>
+  <data name="FindBox2_IsNotEmpty" xml:space="preserve">
+    <value>Хоосон биш</value>
+  </data>
+  <data name="FindBox2_StartsWith" xml:space="preserve">
+    <value> -ээр эхлэх</value>
+  </data>
+  <data name="FindBox2_Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="FindBox2_Type" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="FindBox_Find" xml:space="preserve">
+    <value>Олох</value>
+  </data>
+  <data name="FormTableData_Cancel" xml:space="preserve">
+    <value>Цуцлах</value>
+  </data>
+  <data name="FormTableData_CheckFrormatData" xml:space="preserve">
+    <value>Мэдээний форматыг шалга!</value>
+  </data>
+  <data name="FormTableData_DataTable" xml:space="preserve">
+    <value>Мэдээний хүснэгт "{0}"</value>
+  </data>
+  <data name="FormTableData_Date" xml:space="preserve">
+    <value>Он, сар</value>
+  </data>
+  <data name="FormTableData_DateAndTime" xml:space="preserve">
+    <value>Он, сар, цаг</value>
+  </data>
+  <data name="FormTableData_DeleteFile" xml:space="preserve">
+    <value>Файлыг устгах</value>
+  </data>
+  <data name="FormTableData_DeleteFileMes" xml:space="preserve">
+    <value>Сонгосон файлыг устгах уу</value>
+  </data>
+  <data name="FormTableData_EnterOnlyInteger" xml:space="preserve">
+    <value>Зөвхөн бүхэл тоо оруулах боломжтой</value>
+  </data>
+  <data name="FormTableData_EnterOnlyNumeric" xml:space="preserve">
+    <value>Зөвхөн бодит тоо оруулах боломжтой</value>
+  </data>
+  <data name="FormTableData_ErrorGeom" xml:space="preserve">
+    <value>Геометрийн алдаа</value>
+  </data>
+  <data name="FormTableData_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="FormTableData_Files" xml:space="preserve">
+    <value>Файлууд</value>
+  </data>
+  <data name="FormTableData_Files1" xml:space="preserve">
+    <value>Файлууд:</value>
+  </data>
+  <data name="FormTableData_FilterFile" xml:space="preserve">
+    <value>Зургын файл |*.jpg;*jpeg| Бүх файлууд: |*.*</value>
+  </data>
+  <data name="FormTableData_Integer" xml:space="preserve">
+    <value>Бүхэл тоо</value>
+  </data>
+  <data name="FormTableData_NameFileDefault" xml:space="preserve">
+    <value>Өгөгдмөл нэр</value>
+  </data>
+  <data name="FormTableData_Numeric" xml:space="preserve">
+    <value>Тоо</value>
+  </data>
+  <data name="FormTableData_Reference" xml:space="preserve">
+    <value>Лавлах</value>
+  </data>
+  <data name="FormTableData_RightEditable" xml:space="preserve">
+    <value>Та хүснэгтийг засварлах боломжгүй</value>
+  </data>
+  <data name="FormTableData_Save" xml:space="preserve">
+    <value>Хадгалах</value>
+  </data>
+  <data name="FormTableData_SaveData" xml:space="preserve">
+    <value>Мэдээг хадгалах</value>
+  </data>
+  <data name="FormTableData_SaveWithoutGeom" xml:space="preserve">
+    <value>Геометргүйгээр хадгалах уу</value>
+  </data>
+  <data name="FormTableData_Style" xml:space="preserve">
+    <value>Хэлбэр ...</value>
+  </data>
+  <data name="FormTableData_StyleForm" xml:space="preserve">
+    <value>Хэлбэр</value>
+  </data>
+  <data name="FormTableData_TableData" xml:space="preserve">
+    <value>Мэдээний хүснэгт</value>
+  </data>
+  <data name="FormTableData_Text" xml:space="preserve">
+    <value>Тухтай засварлахын тулд энд дарна уу</value>
+  </data>
+  <data name="FormTableData_ValueIntervalsNotFoundBySaves" xml:space="preserve">
+    <value>Талбар {0}-ийн  утга аль ч интервалаас олдсонгүй</value>
+  </data>
+  <data name="GC_Area" xml:space="preserve">
+    <value>Талбай (кв.м)</value>
+  </data>
+  <data name="GC_Centroid" xml:space="preserve">
+    <value>Центроид</value>
+  </data>
+  <data name="GC_CharacteristicsGeometry" xml:space="preserve">
+    <value>Геометрийн шинж чанарууд</value>
+  </data>
+  <data name="GC_Copy" xml:space="preserve">
+    <value>Хувьлах</value>
+  </data>
+  <data name="GC_Length" xml:space="preserve">
+    <value>Урт (м)</value>
+  </data>
+  <data name="GC_Perimetr" xml:space="preserve">
+    <value>Периметр (м)</value>
+  </data>
+  <data name="GC_Type" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="GF_ErrorCreateGroup" xml:space="preserve">
+    <value>Та бүлэг үүсгэх эрхгүй байна, администратортай холбоо барина уу</value>
+  </data>
+  <data name="GF_NonexistentGroupTable" xml:space="preserve">
+    <value>Байхгүй бүлэг эсвэл хүснэгт</value>
+  </data>
+  <data name="GF_OrderGroup" xml:space="preserve">
+    <value>Бүлгийн дарааллыг сольж чадсангүй</value>
+  </data>
+  <data name="HisotryClass_TableNotFound" xml:space="preserve">
+    <value>Хүснэгт олдсонгүй</value>
+  </data>
+  <data name="HisotryForm_SelectTablesForSearch" xml:space="preserve">
+    <value>Хайх хүснэгтийг сонгоно уу</value>
+  </data>
+  <data name="HisotryForm_SelectUsersForSearch" xml:space="preserve">
+    <value>Хайх хэрэглэгчийг сонгоно уу</value>
+  </data>
+  <data name="HistoryCalss_RowNotFound" xml:space="preserve">
+    <value>Мэдээ олдсонгүй</value>
+  </data>
+  <data name="HistoryClass_ActualState" xml:space="preserve">
+    <value>Та объектийн жинхэнэ төлөв байдлыг сэргээх гэж байна. Үргэлжлүүлэх үү</value>
+  </data>
+  <data name="HistoryClass_Confirmation" xml:space="preserve">
+    <value>Бататгах</value>
+  </data>
+  <data name="HistoryClass_ErrorGetValue" xml:space="preserve">
+    <value>Утга оруулах үед алдаа гарлаа</value>
+  </data>
+  <data name="HistoryClass_ErrorOnlyOne" xml:space="preserve">
+    <value>Нэг ч өгөгдөл олдсонгүй</value>
+  </data>
+  <data name="HistoryClass_ErrorResotreDeletedObject" xml:space="preserve">
+    <value>Устгагдсан объектийн аттрибутыг сэргээх боломжгүй</value>
+  </data>
+  <data name="HistoryClass_ErrorRestoreExistsObj" xml:space="preserve">
+    <value>Объектийг оруулсан байна. Оруулсан объектийг сэргээх боломжгүй</value>
+  </data>
+  <data name="HistoryClass_intervalValueField" xml:space="preserve">
+    <value>(Интервалаас оруулсан утга)</value>
+  </data>
+  <data name="HistoryClass_MessageHeader" xml:space="preserve">
+    <value>Мессэж</value>
+  </data>
+  <data name="HistoryClass_OperationSuccess" xml:space="preserve">
+    <value>Үйлдэл амжилттай боллоо.</value>
+  </data>
+  <data name="HistoryClass_referenceValueField" xml:space="preserve">
+    <value>(лавлахаас оруулсан утга)</value>
+  </data>
+  <data name="HistoryClass_simpleValueField" xml:space="preserve">
+    <value>(Талбарт утга оруулсан байна)</value>
+  </data>
+  <data name="HistoryClass_ValueNotFound" xml:space="preserve">
+    <value>(Утга олдсонгүй)</value>
+  </data>
+  <data name="HistoryForm_ActualValue" xml:space="preserve">
+    <value>Жинхэнэ утга</value>
+  </data>
+  <data name="HistoryForm_attributs" xml:space="preserve">
+    <value>Аттрибутын тоо</value>
+  </data>
+  <data name="HistoryForm_ColGeom" xml:space="preserve">
+    <value>Геометр</value>
+  </data>
+  <data name="HistoryForm_ColGeomWithValue" xml:space="preserve">
+    <value>Геометр (утга агуулсан талбар)</value>
+  </data>
+  <data name="HistoryForm_ColNameFields" xml:space="preserve">
+    <value>Талбарууд</value>
+  </data>
+  <data name="HistoryForm_ColValueUpTo" xml:space="preserve">
+    <value>...Хүртэл утга</value>
+  </data>
+  <data name="HistoryForm_CountDate" xml:space="preserve">
+    <value>Огнооны тоо:</value>
+  </data>
+  <data name="HistoryForm_Empty" xml:space="preserve">
+    <value>Хоосон</value>
+  </data>
+  <data name="HistoryForm_ErrorActual" xml:space="preserve">
+    <value>Жинхэнэ утгатай таарч байна</value>
+  </data>
+  <data name="HistoryForm_ErrorNoActual" xml:space="preserve">
+    <value>Жинхэнэ утгатай нийцэхгүй байна</value>
+  </data>
+  <data name="HistoryForm_Event" xml:space="preserve">
+    <value>Үйл явдлын тоо:</value>
+  </data>
+  <data name="HistoryForm_GeomValue" xml:space="preserve">
+    <value>Геометрийн утга хоосон биш байна</value>
+  </data>
+  <data name="HistoryForm_Groups" xml:space="preserve">
+    <value>Бүлгүүд</value>
+  </data>
+  <data name="HistoryForm_LoadPart" xml:space="preserve">
+    <value>Дахиад татах. {1} ({2}%) -ээс {0}-ийг татлаа</value>
+  </data>
+  <data name="HistoryForm_Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="HistoryForm_MatchWithPrev" xml:space="preserve">
+    <value>Өмнөх утгатай ижил байна</value>
+  </data>
+  <data name="HistoryForm_NotMatchWithPrev" xml:space="preserve">
+    <value>Өмнөх утгатай нийцэхгүй байна</value>
+  </data>
+  <data name="HistoryForm_restore_beffor" xml:space="preserve">
+    <value>Нөхцөл байдлыг дараах хүртэлээр сэргээх</value>
+  </data>
+  <data name="HistoryForm_restore_after" xml:space="preserve">
+    <value>Нөхцөл байдлыг дараахаас хойшоор сэргээх</value>
+  </data>
+  <data name="HistoryForm_SelectLink" xml:space="preserve">
+    <value>Сонгох</value>
+  </data>
+  <data name="HistoryForm_SelectTable" xml:space="preserve">
+    <value>Хүснэгтийг сонгох</value>
+  </data>
+  <data name="HistoryForm_SelectUsers" xml:space="preserve">
+    <value>Хэрэглэгчийг сонгох</value>
+  </data>
+  <data name="HistoryForm_ShowActualState" xml:space="preserve">
+    <value>Бодит байдлыг харуул</value>
+  </data>
+  <data name="HistoryForm_ShowGeom" xml:space="preserve">
+    <value>Харуул</value>
+  </data>
+  <data name="HistoryForm_ShowOnlyChange" xml:space="preserve">
+    <value>Зөвхөн өөрчлөлттэйг харуул</value>
+  </data>
+  <data name="HistoryForm_TableName" xml:space="preserve">
+    <value>Хүснэгтийн нэр</value>
+  </data>
+  <data name="HistoryForm_Titel" xml:space="preserve">
+    <value>Объектийг өөрчилсөн замнал</value>
+  </data>
+  <data name="HistoryForm_Type" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="HistoryForm_TypeUser" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="HistoryForm_UserName" xml:space="preserve">
+    <value>Хэрэглэгчийн нэр</value>
+  </data>
+  <data name="HistoryForm_ValueAfter" xml:space="preserve">
+    <value>...хойших утга</value>
+  </data>
+  <data name="HistoryForm_ValueIsNotSpecif" xml:space="preserve">
+    <value>Утгыг заагаагүй байна</value>
+  </data>
+  <data name="HistoryForm_ValueIsSpecif" xml:space="preserve">
+    <value>Утгыг заасан байна</value>
+  </data>
+  <data name="HistoryForm_ValueNotFound" xml:space="preserve">
+    <value>Утга олдсонгүй</value>
+  </data>
+  <data name="HistoryFrom_ButtonClear" xml:space="preserve">
+    <value>Цэвэрлэх</value>
+  </data>
+  <data name="HistoryFrom_ButtonFind" xml:space="preserve">
+    <value>Олох</value>
+  </data>
+  <data name="HistoryFrom_endDp_toolTip" xml:space="preserve">
+    <value>Дуусах огноо</value>
+  </data>
+  <data name="HistoryFrom_startDp_toolTip" xml:space="preserve">
+    <value>Эхлэх огноо</value>
+  </data>
+  <data name="HistoryServices_ErrorGeomConvert" xml:space="preserve">
+    <value>Геометрийн хөрвүүлэлт амжилтгүй боллоо</value>
+  </data>
+  <data name="HistoryServices_GeomNotFound" xml:space="preserve">
+    <value>Геометр олдсонгүй</value>
+  </data>
+  <data name="HistoryState_Change" xml:space="preserve">
+    <value>Өөрчлөгдсөн</value>
+  </data>
+  <data name="HistoryState_NotChange" xml:space="preserve">
+    <value>Өөрчлөгдсөнгүй</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertDate" xml:space="preserve">
+    <value>Огноо руу хөрвүүлэх боломжгүй:</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertInt" xml:space="preserve">
+    <value>Бүхэлрүү хөрвүүлэх боломжгүй:</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertNumeric" xml:space="preserve">
+    <value>Бутархайруу хөрвүүлэх боломжгүй:</value>
+  </data>
+  <data name="ImporterHelper_ExceptFileName" xml:space="preserve">
+    <value>Оруулах файл буруу өргөтгөлтэй байна</value>
+  </data>
+  <data name="ImportWindow_Download" xml:space="preserve">
+    <value>Татаж авах</value>
+  </data>
+  <data name="ImportWindow_DownloadWizard" xml:space="preserve">
+    <value>Татаж авах асуулга</value>
+  </data>
+  <data name="ImportWindow_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="ImportWindow_Load" xml:space="preserve">
+    <value>Ачаал</value>
+  </data>
+  <data name="ImportWindow_LoadedSuccessfully" xml:space="preserve">
+    <value>Ачаалал амжилттай боллоо</value>
+  </data>
+  <data name="ImportWindow_NotSelect" xml:space="preserve">
+    <value>Сонгогдоогүй</value>
+  </data>
+  <data name="ImportWindow_NotSelect1" xml:space="preserve">
+    <value>Сонгогдоогүй</value>
+  </data>
+  <data name="ImportWindow_NotSelectTableBD" xml:space="preserve">
+    <value>Өгөгдлийн сангийн хүснэгт сонгогдоогүй байна</value>
+  </data>
+  <data name="ImportWindow_NotSupportExtension" xml:space="preserve">
+    <value>Сонгосон файлын төрөл ачаалагчаар дэмжэгдэггүй</value>
+  </data>
+  <data name="ImportWindow_ReadMe" xml:space="preserve">
+    <value>Файл дахь баганыг өгөгдлийн сангийн хүснэгтэн дэхь баганатай харьцуул</value>
+  </data>
+  <data name="ImportWindow_SelectField" xml:space="preserve">
+    <value>Талбарыг сонго</value>
+  </data>
+  <data name="ImportWindow_Status" xml:space="preserve">
+    <value>Урьдчилж харахаар ачаалагдсан мөрнүүд: {0} Нийт мөр: {1}</value>
+  </data>
+  <data name="ImportWindow_StatusProcess" xml:space="preserve">
+    <value>  {1} -ээс {0} объект боловсруулагдлаа</value>
+  </data>
+  <data name="ImportWindow_Table" xml:space="preserve">
+    <value>Хүснэгт</value>
+  </data>
+  <data name="InfoObjForm_object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="InformationMessage" xml:space="preserve">
+    <value>Мэдээлэл! Мессеж:</value>
+  </data>
+  <data name="InformationMessage_Header" xml:space="preserve">
+    <value>Мэдээлэл</value>
+  </data>
+  <data name="ITGF_DataTable" xml:space="preserve">
+    <value>Мэдээний хүснэгт</value>
+  </data>
+  <data name="LabelControl_ErrorShowResult" xml:space="preserve">
+    <value>Урьдчилж харах боломжгүй.  Энэ давхрагын хүснэгтэд  нэг ч бичлэг байхгүй байж магадгүй</value>
+  </data>
+  <data name="LabelControl_Help" xml:space="preserve">
+    <value>Тусламж</value>
+  </data>
+  <data name="LabelControl_InvalidExpression" xml:space="preserve">
+    <value>Та буруу илэрхийлэл ашиглаж байна</value>
+  </data>
+  <data name="LabelControl_NotEmpty" xml:space="preserve">
+    <value>Илэрхийлэл хоосон байж болохгүй</value>
+  </data>
+  <data name="LabelControl_Result" xml:space="preserve">
+    <value>Үр дүн</value>
+  </data>
+  <data name="LabelControl_ShowResult" xml:space="preserve">
+    <value>Үр дүнгийн талбар</value>
+  </data>
+  <data name="LabelStyle_ErrorConvert" xml:space="preserve">
+    <value>Хөрвүүлэлтийн алдаа</value>
+  </data>
+  <data name="layerInfo_LayerMap" xml:space="preserve">
+    <value>Зургийн давхрага: {0}</value>
+  </data>
+  <data name="layerInfo_OverAll" xml:space="preserve">
+    <value>Бүгдээр нь</value>
+  </data>
+  <data name="LayersInfo_Plugin_toolStripButton" xml:space="preserve">
+    <value>Зураг дээрх объектийн тухай мэдээлэл авах</value>
+  </data>
+  <data name="LIV_CanNotGetLayer" xml:space="preserve">
+    <value>Давхрагыг авах боломжгүй</value>
+  </data>
+  <data name="LIV_DB_layer" xml:space="preserve">
+    <value>Сэдэвчилсэн давхрагууд</value>
+  </data>
+  <data name="LIV_DeleteSelectedRow" xml:space="preserve">
+    <value>Сонгосон мөрийг арилгах уу?</value>
+  </data>
+  <data name="LIV_DeleteStyleLayer" xml:space="preserve">
+    <value>Сонгосон давхрагын хэлбэрийг устгах уу</value>
+  </data>
+  <data name="LIV_DeleteStyleLayerHeader" xml:space="preserve">
+    <value>Хэлбэрийг устгах</value>
+  </data>
+  <data name="LIV_ErrorDataForSort" xml:space="preserve">
+    <value>Давхрагыг төрөлжүүлэх мэдээ буруу </value>
+  </data>
+  <data name="LIV_ErrorLoadLayer" xml:space="preserve">
+    <value>Давхрага ачаалах боломжгүй</value>
+  </data>
+  <data name="LIV_ErrorOpenTable" xml:space="preserve">
+    <value>Хүснэгт нээх алдаа</value>
+  </data>
+  <data name="LIV_ErrorSetVisible" xml:space="preserve">
+    <value>Давхрагын үзэгдэлт өөрчлөгдөөгүй</value>
+  </data>
+  <data name="LIV_ErrorType" xml:space="preserve">
+    <value>Ийм төрөл байхгүй</value>
+  </data>
+  <data name="LIV_Find" xml:space="preserve">
+    <value>Олох</value>
+  </data>
+  <data name="LIV_NotOpenTable" xml:space="preserve">
+    <value>Хүснэгтийг нээх боломжгүй байна</value>
+  </data>
+  <data name="LIV_NotRightLayer" xml:space="preserve">
+    <value>Та давхрагыг засварлах эрхгүй байна</value>
+  </data>
+  <data name="LIV_NotSelectedObj" xml:space="preserve">
+    <value>Объект сонгогдоогүй байна</value>
+  </data>
+  <data name="LIV_ObjectDelete" xml:space="preserve">
+    <value>Сонгосон объект устгагдсан</value>
+  </data>
+  <data name="LIV_ObjectsDelete" xml:space="preserve">
+    <value>Сонгосон объектууд устгагдсан</value>
+  </data>
+  <data name="LIV_Rastr_layer" xml:space="preserve">
+    <value>Растер давхрагууд</value>
+  </data>
+  <data name="LIV_SavePositionLayer" xml:space="preserve">
+    <value>Давхрагын байрлалын хадгалахыг үнэхээр хүсэж байна уу</value>
+  </data>
+  <data name="LIV_SavePositionLayerHeader" xml:space="preserve">
+    <value>Давхрагын байрлалыг хадгалах</value>
+  </data>
+  <data name="LIV_Vmp_layer" xml:space="preserve">
+    <value>Дэвсгэр зургийн давхрага</value>
+  </data>
+  <data name="LM_ErorLoadStyleLabel" xml:space="preserve">
+    <value>Объектийн ул бичвэрийн хэлбэрийг ачаалж чадсангүй:</value>
+  </data>
+  <data name="LM_ErrorLayerLoad" xml:space="preserve">
+    <value>Давхрага ачаалах алдаа</value>
+  </data>
+  <data name="LocAdd" xml:space="preserve">
+    <value>Нэмэх</value>
+  </data>
+  <data name="LocArithmeticExpression" xml:space="preserve">
+    <value>Арифметик илэрхийлэл</value>
+  </data>
+  <data name="LocAttributes" xml:space="preserve">
+    <value>Атрибутууд</value>
+  </data>
+  <data name="LocBackgroundColor" xml:space="preserve">
+    <value>Ар фоны өнгө</value>
+  </data>
+  <data name="LocBeginOfInterval" xml:space="preserve">
+    <value>Интервалын эхлэл</value>
+  </data>
+  <data name="LocCanAttachFiles" xml:space="preserve">
+    <value>Хавсаргасан файл</value>
+  </data>
+  <data name="LocCancel" xml:space="preserve">
+    <value>Цуцлах</value>
+  </data>
+  <data name="LocCatalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="LocChangeOfColor" xml:space="preserve">
+    <value>Өнгө солих</value>
+  </data>
+  <data name="LocChooseLocale" xml:space="preserve">
+    <value>Локалийг сонгох</value>
+  </data>
+  <data name="LocColor" xml:space="preserve">
+    <value>Өнгө</value>
+  </data>
+  <data name="LocContainsStyles" xml:space="preserve">
+    <value>Агуулсан хэлбэрүүд</value>
+  </data>
+  <data name="LocCount" xml:space="preserve">
+    <value>Тоо</value>
+  </data>
+  <data name="LocCreateUserSet" xml:space="preserve">
+    <value>Ажлын багц үүсгэх</value>
+  </data>
+  <data name="LocCurrentBrush" xml:space="preserve">
+    <value>Ашиглаж буй багс</value>
+  </data>
+  <data name="LocCurrentPen" xml:space="preserve">
+    <value>Ашиглаж буй харандаа </value>
+  </data>
+  <data name="LocDataTable" xml:space="preserve">
+    <value>Мэдээний хүснэгт</value>
+  </data>
+  <data name="LocDelete" xml:space="preserve">
+    <value>Устгах</value>
+  </data>
+  <data name="LocDepartment" xml:space="preserve">
+    <value>Хэсэг</value>
+  </data>
+  <data name="LocDescription" xml:space="preserve">
+    <value>Тайлбар</value>
+  </data>
+  <data name="LocDisplay" xml:space="preserve">
+    <value>Дэлгэцэнд үзүүлэх</value>
+  </data>
+  <data name="LocDisplayMode" xml:space="preserve">
+    <value>Дүрслэх горимууд</value>
+  </data>
+  <data name="LocEdit" xml:space="preserve">
+    <value>Засварлах</value>
+  </data>
+  <data name="LocEndOfInterval" xml:space="preserve">
+    <value>Интервалын төгсгөл</value>
+  </data>
+  <data name="LocExecute" xml:space="preserve">
+    <value>Гүйцэтгэх</value>
+  </data>
+  <data name="LocExpression" xml:space="preserve">
+    <value>Илэрхийлэл  </value>
+  </data>
+  <data name="LocExternalSource" xml:space="preserve">
+    <value>Гадны эх үүсвэр</value>
+  </data>
+  <data name="LocFile" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="LocFileExit" xml:space="preserve">
+    <value>Гарах</value>
+  </data>
+  <data name="LocFileSaveImage" xml:space="preserve">
+    <value>Зургийг хадгалах</value>
+  </data>
+  <data name="LocFileSaveImageForPrint" xml:space="preserve">
+    <value>Зургийг хэвлэхээр хадгалах</value>
+  </data>
+  <data name="LocFio" xml:space="preserve">
+    <value>Нэр</value>
+  </data>
+  <data name="LocFont" xml:space="preserve">
+    <value>Фонт</value>
+  </data>
+  <data name="LocFringe" xml:space="preserve">
+    <value>Хүрээ</value>
+  </data>
+  <data name="LocGeomType" xml:space="preserve">
+    <value>Геометрийн төрөл</value>
+  </data>
+  <data name="LocGetUserRights" xml:space="preserve">
+    <value>Хэрэглэгчийн эрх авах</value>
+  </data>
+  <data name="LocGrantRights" xml:space="preserve">
+    <value>Эрх олгох</value>
+  </data>
+  <data name="LocGroupBelong" xml:space="preserve">
+    <value>Бүлгэд хамаарах</value>
+  </data>
+  <data name="LocGroups" xml:space="preserve">
+    <value>Бүлгүүд</value>
+  </data>
+  <data name="LocHasHistory" xml:space="preserve">
+    <value>Ажлын түүх хөтлөх</value>
+  </data>
+  <data name="LocHelp" xml:space="preserve">
+    <value>Тусламж</value>
+  </data>
+  <data name="LocHelpAbout" xml:space="preserve">
+    <value>Программын тухай</value>
+  </data>
+  <data name="LocHelpProgram" xml:space="preserve">
+    <value>Программынг ашиглах тусламж</value>
+  </data>
+  <data name="LocHidden" xml:space="preserve">
+    <value>Далдалсан</value>
+  </data>
+  <data name="LocInterval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="LocIsVisible" xml:space="preserve">
+    <value>Үзэгдэх</value>
+  </data>
+  <data name="LocLabelBoundMax" xml:space="preserve">
+    <value>Максимум, м</value>
+  </data>
+  <data name="LocLabelBoundMin" xml:space="preserve">
+    <value>Минимум, м</value>
+  </data>
+  <data name="LocLabelEdit" xml:space="preserve">
+    <value>Ул бичвэрийг засварлах</value>
+  </data>
+  <data name="LocLabelOffset" xml:space="preserve">
+    <value>Шилжилт</value>
+  </data>
+  <data name="LocLabelOverlap" xml:space="preserve">
+    <value>Давхардуулахыг зөвшөөрөх</value>
+  </data>
+  <data name="LocLabelParallel" xml:space="preserve">
+    <value>Шугамын дагуу дүрслэх байрлуулах</value>
+  </data>
+  <data name="LocLabels" xml:space="preserve">
+    <value>Ул бичвэр</value>
+  </data>
+  <data name="LocLabelStyle" xml:space="preserve">
+    <value>Ул бичвэрийн хэлбэр</value>
+  </data>
+  <data name="LocLabelUseBounds" xml:space="preserve">
+    <value>Хүрээнд дүрслэх</value>
+  </data>
+  <data name="LocLocalisationOnStartup" xml:space="preserve">
+    <value>Эхлэх үеийн байршуулалт</value>
+  </data>
+  <data name="LocLogin" xml:space="preserve">
+    <value>Логин </value>
+  </data>
+  <data name="LocMapLayer" xml:space="preserve">
+    <value>Зургийн давхрага</value>
+  </data>
+  <data name="LocMaxScale" xml:space="preserve">
+    <value>Хамгийн том масштаб</value>
+  </data>
+  <data name="LocMaxValue" xml:space="preserve">
+    <value>Макс. Утга</value>
+  </data>
+  <data name="LocMaxValueColor" xml:space="preserve">
+    <value>Максимум утгын өнгө</value>
+  </data>
+  <data name="LocMinObjectSize" xml:space="preserve">
+    <value>Объектийн минимум Хэмжээ</value>
+  </data>
+  <data name="LocMinScale" xml:space="preserve">
+    <value>Хамгийн жижиг масштаб</value>
+  </data>
+  <data name="LocMinValue" xml:space="preserve">
+    <value>Мин. утга</value>
+  </data>
+  <data name="LocMinValueColor" xml:space="preserve">
+    <value>Мин. утгын өнгө</value>
+  </data>
+  <data name="LocName" xml:space="preserve">
+    <value>Нэр</value>
+  </data>
+  <data name="LocNameInBase" xml:space="preserve">
+    <value>Суурь дахь нэр</value>
+  </data>
+  <data name="LocNameInSystem" xml:space="preserve">
+    <value>Систем дэх нэр</value>
+  </data>
+  <data name="LocNo" xml:space="preserve">
+    <value>Үгүй</value>
+  </data>
+  <data name="LocNullColor" xml:space="preserve">
+    <value>Тэгийн өнгө</value>
+  </data>
+  <data name="LocOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LocOperand" xml:space="preserve">
+    <value>Операнд</value>
+  </data>
+  <data name="LocPasswordEdit" xml:space="preserve">
+    <value>Нууц үгийг засварлах</value>
+  </data>
+  <data name="LocPrecision" xml:space="preserve">
+    <value>Нарийвчлал</value>
+  </data>
+  <data name="LocProgramName" xml:space="preserve">
+    <value>Программын нэр</value>
+  </data>
+  <data name="LocProperties" xml:space="preserve">
+    <value>Шинж</value>
+  </data>
+  <data name="LocRastrConfig" xml:space="preserve">
+    <value>Растер давхрагын  эх тохируулга</value>
+  </data>
+  <data name="LocRead" xml:space="preserve">
+    <value>Унших</value>
+  </data>
+  <data name="LocReadOnly" xml:space="preserve">
+    <value>Зөвхөн унших</value>
+  </data>
+  <data name="LocReplace" xml:space="preserve">
+    <value>Солих</value>
+  </data>
+  <data name="LocResult" xml:space="preserve">
+    <value>Үр дүн</value>
+  </data>
+  <data name="LocRights" xml:space="preserve">
+    <value>Эрх</value>
+  </data>
+  <data name="LocSave" xml:space="preserve">
+    <value>Хадгалах</value>
+  </data>
+  <data name="LocScheme" xml:space="preserve">
+    <value>Бүдүүвч</value>
+  </data>
+  <data name="LocSearch" xml:space="preserve">
+    <value>Хайх</value>
+  </data>
+  <data name="LocSettings" xml:space="preserve">
+    <value>Тохиргоо</value>
+  </data>
+  <data name="LocShowLabel" xml:space="preserve">
+    <value>Ул бичвэрийг харуулах</value>
+  </data>
+  <data name="LocShowSynchronisationPassword" xml:space="preserve">
+    <value>Синхронжуулах нууц үгийг харуулах</value>
+  </data>
+  <data name="LocSize" xml:space="preserve">
+    <value>Хэмжээ</value>
+  </data>
+  <data name="LocSourceBaseLayers" xml:space="preserve">
+    <value>Суурь давхрага</value>
+  </data>
+  <data name="LocSourceField" xml:space="preserve">
+    <value>Холболтын эх талбар</value>
+  </data>
+  <data name="LocSourcePostgre" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="LocSourceRastr" xml:space="preserve">
+    <value>Растер давхрагууд</value>
+  </data>
+  <data name="LocSources" xml:space="preserve">
+    <value>Эх сурвалж</value>
+  </data>
+  <data name="LocSourceTable" xml:space="preserve">
+    <value>Эх хүснэгт</value>
+  </data>
+  <data name="LocStructure" xml:space="preserve">
+    <value>Бүтэц</value>
+  </data>
+  <data name="LocStyleField" xml:space="preserve">
+    <value>Хэлбэрийн талбар</value>
+  </data>
+  <data name="LocStyles" xml:space="preserve">
+    <value>Хэлбэрүүд</value>
+  </data>
+  <data name="LocSymbol" xml:space="preserve">
+    <value>Тэмдэглэгээ</value>
+  </data>
+  <data name="LocTables" xml:space="preserve">
+    <value>Хүснэгт</value>
+  </data>
+  <data name="LocTableType" xml:space="preserve">
+    <value>Хүснэгтийн төрөл</value>
+  </data>
+  <data name="LocTools" xml:space="preserve">
+    <value>Багаж</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>Төрөл</value>
+  </data>
+  <data name="LocTypeRelation" xml:space="preserve">
+    <value>Хүснэгтийн хамаарлын төрөл</value>
+  </data>
+  <data name="LocUpdate" xml:space="preserve">
+    <value>Шинэчлэх</value>
+  </data>
+  <data name="LocUseGraphicUnits" xml:space="preserve">
+    <value>Зургийн нэгж</value>
+  </data>
+  <data name="LocUsers" xml:space="preserve">
+    <value>Хэрэглэгчид</value>
+  </data>
+  <data name="LocUserSets" xml:space="preserve">
+    <value>Багцын төрөл</value>
+  </data>
+  <data name="LocUserType" xml:space="preserve">
+    <value>Хэрэглэгчийг төрөл</value>
+  </data>
+  <data name="LocUseStyle" xml:space="preserve">
+    <value>Хэлбэрийг ашиглах</value>
+  </data>
+  <data name="LocUseVisibilityBounds" xml:space="preserve">
+    <value>Харах хязгаарыг ашиглах</value>
+  </data>
+  <data name="LocValueField" xml:space="preserve">
+    <value>Утгын талбар</value>
+  </data>
+  <data name="LocView" xml:space="preserve">
+    <value>Харах</value>
+  </data>
+  <data name="LocWrite" xml:space="preserve">
+    <value>Бичих</value>
+  </data>
+  <data name="LocYes" xml:space="preserve">
+    <value>Тийм</value>
+  </data>
+  <data name="login_erCnArg" xml:space="preserve">
+    <value>Холболтын мөрөнд серверийн хаяг байхгүй байна</value>
+  </data>
+  <data name="login_err" xml:space="preserve">
+    <value>Алдаа</value>
+  </data>
+  <data name="login_errAdStr" xml:space="preserve">
+    <value>Хаягийн мөрөнд буруу тэмдэгт байна</value>
+  </data>
+  <data name="login_errConfNF" xml:space="preserve">
+    <value>Тохиргоо байхгүй байна</value>
+  </data>
+  <data name="login_errDBNS" xml:space="preserve">
+    <value>Өгөгдлийн сангийн нэрийг оруулаагүй байна</value>
+  </data>
+  <data name="login_errNoDB" xml:space="preserve">
+    <value>Өгөгдлийн сан</value>
+  </data>
+  <data name="login_errNoDB2" xml:space="preserve">
+    <value>   ' байхгүй</value>
+  </data>
+  <data name="login_errNoUName" xml:space="preserve">
+    <value>Хэрэглэгчийн нэрийг оруулаагүй байна!</value>
+  </data>
+  <data name="login_errSerName" xml:space="preserve">
+    <value>Серверийн нэр буруу байна</value>
+  </data>
+  <data name="login_errWPass" xml:space="preserve">
+    <value>Хэрэглэгчийн нэр эсвэл нууц үг буруу байна</value>
+  </data>
+  <data name="login_errWrFile" xml:space="preserve">
+    <value>Энэ тохируулгын файл биш байна</value>
+  </data>
+  <data name="login_fFilter" xml:space="preserve">
+    <value>Тохируулгын файл |*.aews; *.riws| Бүх файлууд *.*| *.*</value>
+  </data>
+  <data name="login_msgConfF" xml:space="preserve">
+    <value>Тохируулгын файлыг сонго</value>
+  </data>
+  <data name="login_msgNoConDB" xml:space="preserve">
+    <value>Өгөгдлийн сантай холбоо байхгүй</value>
+  </data>
+  <data name="login_msgNoUser" xml:space="preserve">
+    <value>Хэрэглэгч</value>
+  </data>
+  <data name="login_msgNoUser2" xml:space="preserve">
+    <value>Олдсонгүй</value>
+  </data>
+  <data name="mainFrm_DBConFail" xml:space="preserve">
+    <value>Өгөгдлийн сантай холбоо тасарлаа!  </value>
+  </data>
+  <data name="mainFrm_emptyGeo" xml:space="preserve">
+    <value>Хоосон геометр</value>
+  </data>
+  <data name="mainFrm_errBDUnav" xml:space="preserve">
+    <value>Хүснэгт байхгүй эсвэл харах боломжгүй байна</value>
+  </data>
+  <data name="mainFrm_errFileFomat" xml:space="preserve">
+    <value>Тусгагын файл буруу форматтай байна!</value>
+  </data>
+  <data name="mainFrm_errFrmImg" xml:space="preserve">
+    <value>Дүрс үүсгэх алдаа!</value>
+  </data>
+  <data name="mainFrm_errImgSize" xml:space="preserve">
+    <value>Өгөгдсөн хэмжээгээр дүрс үүсгэх боломжгүй</value>
+  </data>
+  <data name="mainFrm_errMFileNF" xml:space="preserve">
+    <value>Зургийн файл олдсонгүй эсвэл формат нь буруу байна. Файлыг заах бол "YES", гарах бол "NO" дарна уу</value>
+  </data>
+  <data name="mainFrm_errMOpen" xml:space="preserve">
+    <value>Зураг нээх алдаа</value>
+  </data>
+  <data name="mainFrm_errNMultObj" xml:space="preserve">
+    <value>Олон талбайт объектэд тохирохгүй үйлдэл</value>
+  </data>
+  <data name="mainFrm_errObjID" xml:space="preserve">
+    <value>Объектийн ID-г авах алдаа</value>
+  </data>
+  <data name="mainFrm_errPrint" xml:space="preserve">
+    <value>Хэвлэх тохиргооны алдаа </value>
+  </data>
+  <data name="mainFrm_errProj" xml:space="preserve">
+    <value>Тусгагын алдаа</value>
+  </data>
+  <data name="mainFrm_errProjFile" xml:space="preserve">
+    <value>Тусгагын файл олдсонгүй эсвэл формат нь буруу байна. Файлыг заах бол "OK", гарах бол "NO" дарна уу</value>
+  </data>
+  <data name="mainFrm_errProjUs" xml:space="preserve">
+    <value>Энэ тусгагыг ашиглах боломжгүй</value>
+  </data>
+  <data name="mainFrm_errRequest" xml:space="preserve">
+    <value>Захиалгыг боловсруулах боломжгүй байна</value>
+  </data>
+  <data name="mainFrm_errSetPos" xml:space="preserve">
+    <value>Байрлалын тохиргоо боломжгүй байна</value>
+  </data>
+  <data name="mainFrm_errSRIDINT" xml:space="preserve">
+    <value>SRID зөвхөн бүхэл тоо байна</value>
+  </data>
+  <data name="mainFrm_errSRIDNS" xml:space="preserve">
+    <value>Мэдээний базад сонгосон SRID-ийн тайлбайр байхгүй байна</value>
+  </data>
+  <data name="mainFrm_errWSRID" xml:space="preserve">
+    <value>SRID буруу байна</value>
+  </data>
+  <data name="mainFrm_FileNF" xml:space="preserve">
+    <value>Зургийн файл олдсонгүй</value>
+  </data>
+  <data name="mainFrm_filter" xml:space="preserve">
+    <value>Зураг *.bmp|*.bmp|Зураг *.jpg|*.jpg|Зураг *.png|*.png</value>
+  </data>
+  <data name="mainFrm_IDrecieved" xml:space="preserve">
+    <value>Объектийн ID-г авлаа</value>
+  </data>
+  <data name="mainFrm_infLayerN" xml:space="preserve">
+    <value>Давхрага идэвхжээгүй байна!</value>
+  </data>
+  <data name="mainFrm_Info" xml:space="preserve">
+    <value>Мэдээлэл</value>
+  </data>
+  <data name="mainFrm_mapOpenError" xml:space="preserve">
+    <value>Зураг нээх алдаа</value>
+  </data>
+  <data name="mainFrm_mProjection" xml:space="preserve">
+    <value>Зургийн тусгаг</value>
+  </data>
+  <data name="mainFrm_msgBDConFail" xml:space="preserve">
+    <value>Өгөгдлийн сантай холбоо тасарлаа! Холбоог сэргээх үү? Үгүй бол програм хаагдах болно.</value>
+  </data>
+  <data name="mainFrm_msgMFile" xml:space="preserve">
+    <value>Зургийн файлыг заана уу</value>
+  </data>
+  <data name="mainFrm_msgNoRights" xml:space="preserve">
+    <value>Хүснэгтийг засварлах эрх байхгүй байна</value>
+  </data>
+  <data name="mainFrm_msgPicCS" xml:space="preserve">
+    <value>Зураг хадгалагдаагүй байна</value>
+  </data>
+  <data name="mainFrm_msgStWS" xml:space="preserve">
+    <value>Зөвхөн стандарт ажлын багцийг ашиглах үед хүснэгттэй ажиллах боломжтой</value>
+  </data>
+  <data name="mainFrm_printStt" xml:space="preserve">
+    <value>Хэвлэх тохиргоо</value>
+  </data>
+  <data name="mainFrm_setPos" xml:space="preserve">
+    <value>Байрлал тогтоогдсон байна</value>
+  </data>
+  <data name="mainFrm_setProjFile" xml:space="preserve">
+    <value>Файлын тусгагыг заана уу</value>
+  </data>
+  <data name="mainFrm_sqm" xml:space="preserve">
+    <value>кв.м.</value>
+  </data>
+  <data name="mainFrm_sqMeasure" xml:space="preserve">
+    <value>Талбайг хэмжихдээ 'Shift'  товчийг дарна</value>
+  </data>
+  <data name="mainFrm_square" xml:space="preserve">
+    <value>Талбай</value>
+  </data>
+  <data name="mainFrm_stWorkset" xml:space="preserve">
+    <value>Стандарт ажлын багц</value>
+  </data>
+  <data name="mainFrm_tData" xml:space="preserve">
+    <value>Хүснэгтийн мэдээ "</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Мэдээлэл</value>
+  </data>
+  <data name="Mes_Change" xml:space="preserve">
+    <value>Өөрчлөлт</value>
+  </data>
+  <data name="Mes_Delete" xml:space="preserve">
+    <value>Устгах</value>
+  </data>
+  <data name="Mes_Error" xml:space="preserve">
+    <value>Алдаа</value>
+  </data>
+  <data name="NewPassword_PwdIsIncorrect" xml:space="preserve">
+    <value>Нууц үг буруу байна</value>
+  </data>
+  <data name="NewPassword_PwdNotEmpty" xml:space="preserve">
+    <value>Нууц үгийн хэсэг хоосон байж болохгүй</value>
+  </data>
+  <data name="NumberIsNotCorrest" xml:space="preserve">
+    <value>Тоог буруу заасан байна</value>
+  </data>
+  <data name="of_text" xml:space="preserve">
+    <value>аас</value>
+  </data>
+  <data name="OutsideDiapason" xml:space="preserve">
+    <value>Хэмжээнээс гадагш</value>
+  </data>
+  <data name="PageIsNotExists" xml:space="preserve">
+    <value>Ийм хуудас байхгүй</value>
+  </data>
+  <data name="PanelGroup_tables" xml:space="preserve">
+    <value>Хүснэгт</value>
+  </data>
+  <data name="PFC_AllFieldsFill" xml:space="preserve">
+    <value>Бүх талбарыг бөглөх хэрэгтэй!</value>
+  </data>
+  <data name="PgM.EChangeColor.Background" xml:space="preserve">
+    <value>Арын фон</value>
+  </data>
+  <data name="PgM.EChangeColor.Foreground" xml:space="preserve">
+    <value>Үндсэн өнгө</value>
+  </data>
+  <data name="PgM.EChangeColor.Fringe" xml:space="preserve">
+    <value>Хүрээ</value>
+  </data>
+  <data name="PgM.EChangeColor.LinesBounds" xml:space="preserve">
+    <value>Хил ба шулуун</value>
+  </data>
+  <data name="PgM.EStyleType.directory" xml:space="preserve">
+    <value>Каталогоор</value>
+  </data>
+  <data name="PgM.EStyleType.interval" xml:space="preserve">
+    <value>Интервалаар</value>
+  </data>
+  <data name="PgM.EStyleType.range" xml:space="preserve">
+    <value>Хязгаараар</value>
+  </data>
+  <data name="PgM.EStyleType.uniformly" xml:space="preserve">
+    <value>Жигд</value>
+  </data>
+  <data name="PluginSettingsForm_CountPlugins" xml:space="preserve">
+    <value>Залгаасын тоо:</value>
+  </data>
+  <data name="PluginSettingsForm_SavePlugin" xml:space="preserve">
+    <value>Тохиргоо хадгалагдлаа! Програмыг дахин эхлүүлэхэд өөрчлөлтүүд идэвхжинэ</value>
+  </data>
+  <data name="Plugins_Exception" xml:space="preserve">
+    <value>Залгаас ачаалах алдаа {0}'</value>
+  </data>
+  <data name="PosNameFrm_NullName" xml:space="preserve">
+    <value>Нэрийн талбар хоосон байж болохгүй</value>
+  </data>
+  <data name="PrintSettingsFrm_Bad" xml:space="preserve">
+    <value>Муу (75dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Excellent" xml:space="preserve">
+    <value>Маш сайн (300 dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Good" xml:space="preserve">
+    <value>Сайн (150 dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Landscape" xml:space="preserve">
+    <value>Хэвтээ</value>
+  </data>
+  <data name="PrintSettingsFrm_PaperFormat_Random" xml:space="preserve">
+    <value>Дурын </value>
+  </data>
+  <data name="PrintSettingsFrm_Portrait" xml:space="preserve">
+    <value>Босоо</value>
+  </data>
+  <data name="PrintSettingsFrm_Random" xml:space="preserve">
+    <value>Дурын </value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Бүтээгдэхүүний нэр:</value>
+  </data>
+  <data name="PTC_Background" xml:space="preserve">
+    <value>Ар тал /фон</value>
+  </data>
+  <data name="PTC_BasicElement" xml:space="preserve">
+    <value>Үндсэн</value>
+  </data>
+  <data name="PTC_BordersAndLines" xml:space="preserve">
+    <value>Хил ба шулуун</value>
+  </data>
+  <data name="PTC_BorderSymbol" xml:space="preserve">
+    <value>Хүрээ</value>
+  </data>
+  <data name="PTC_ErrorMaxMin" xml:space="preserve">
+    <value>Максимум утга минимум утгаас илүү байх ёстой</value>
+  </data>
+  <data name="PTC_ErrorNotSelectGeom" xml:space="preserve">
+    <value>Геометрийн талбар сонгогдоогүй байна</value>
+  </data>
+  <data name="PTC_NotRight" xml:space="preserve">
+    <value>Буруу!</value>
+  </data>
+  <data name="PTC_Styles" xml:space="preserve">
+    <value>Хэлбэрүүд</value>
+  </data>
+  <data name="PTC_TableIsNotLayer" xml:space="preserve">
+    <value>Хүснэгт зургийн давхрага биш!</value>
+  </data>
+  <data name="RLM_ErrorSelectItem" xml:space="preserve">
+    <value>Засвар хийх зүйлийг сонгох</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Сонгох</value>
+  </data>
+  <data name="SettingsPosFrm_DeleteLocation" xml:space="preserve">
+    <value>Сонгосон байрлалыг устгахдаа үнэхээр итгэлтэй байна уу?</value>
+  </data>
+  <data name="SettingsPosFrm_MastSelectLocation" xml:space="preserve">
+    <value>Байрлалаа сонгох хэрэгтэй</value>
+  </data>
+  <data name="SettingsPosFrm_QuestionChangeLocation" xml:space="preserve">
+    <value>Байрлалаа өөрчлөхөд итгэлтэй байна уу?</value>
+  </data>
+  <data name="SHPExporter_Error" xml:space="preserve">
+    <value>ID = {0} алдаа ={1} Геометр ={2}</value>
+  </data>
+  <data name="SHPExporter_LoadForPreview" xml:space="preserve">
+    <value>Урьдчилж харахаар мөрнүүд ачааллаа {0}</value>
+  </data>
+  <data name="SHPExporter_ProcessObjCount" xml:space="preserve">
+    <value> {0} -ээс {1} объект боловсрууллаа</value>
+  </data>
+  <data name="SHPImporter_ExceptTypeGeom" xml:space="preserve">
+    <value>Файл дахь геометр хүснэгт дэх геометртэй таарахгүй байна</value>
+  </data>
+  <data name="SHPUC_chbLoadGeom" xml:space="preserve">
+    <value>Геометрийг ачаал</value>
+  </data>
+  <data name="SHPUC_Settings" xml:space="preserve">
+    <value>Тохиргоо</value>
+  </data>
+  <data name="Styles_Layer_n" xml:space="preserve">
+    <value>Давхрагын хэлбэр</value>
+  </data>
+  <data name="Styles_Range" xml:space="preserve">
+    <value>Хэмжээ</value>
+  </data>
+  <data name="Styles_Uniformly" xml:space="preserve">
+    <value>Жигд</value>
+  </data>
+  <data name="Tables_Count" xml:space="preserve">
+    <value>Хүснэгтийн тоо</value>
+  </data>
+  <data name="TLE_ActionToTable" xml:space="preserve">
+    <value>Хүснэгтэнд үйлдэл хийх</value>
+  </data>
+  <data name="TLE_Attention" xml:space="preserve">
+    <value>Анхаар!Энэ хүснэгт өөр хүснэгтэд хамаарч байна!</value>
+  </data>
+  <data name="TLE_DeleteForever" xml:space="preserve">
+    <value>Хүснэгт сэргээж болохгүйгээр устгагдсан</value>
+  </data>
+  <data name="TLE_DeleteNoForever" xml:space="preserve">
+    <value>Хүснэгт устгагдсан, гэвч сэргээж болно</value>
+  </data>
+  <data name="TLE_DeletingCatalog" xml:space="preserve">
+    <value>Каталогийг устгах</value>
+  </data>
+  <data name="TLE_DeletingCatalogAsk" xml:space="preserve">
+    <value>Каталогийг арилгах уу?</value>
+  </data>
+  <data name="TLE_DeletingInterval" xml:space="preserve">
+    <value>Интервалыг устгах</value>
+  </data>
+  <data name="TLE_DeletingIntervalAsk" xml:space="preserve">
+    <value>Интервалыг арилгах уу?</value>
+  </data>
+  <data name="TLE_DeletingLayer" xml:space="preserve">
+    <value>Зургийн давхрагыг устгах</value>
+  </data>
+  <data name="TLE_DeletingLayerAsk" xml:space="preserve">
+    <value>Давхрагыг арилгах уу?</value>
+  </data>
+  <data name="TLE_DeletingTable" xml:space="preserve">
+    <value>Хүснэгтийг устгах</value>
+  </data>
+  <data name="TLE_DeletingTableAsk" xml:space="preserve">
+    <value>Хүснэгтийг арилгах уу?</value>
+  </data>
+  <data name="TLE_EditingTable" xml:space="preserve">
+    <value>Хүснэгтийг засварлах</value>
+  </data>
+  <data name="TLE_EntryTableInGroup" xml:space="preserve">
+    <value>Бүлгүүдэд орох хүснэгт "{0}"</value>
+  </data>
+  <data name="TLE_SettingTable" xml:space="preserve">
+    <value>Хүснэгтийн тохиргоо: "{0}"</value>
+  </data>
+  <data name="TLE_TableStructure" xml:space="preserve">
+    <value>Хүснэгтийн бүтэц</value>
+  </data>
+  <data name="ucTableNoRight" xml:space="preserve">
+    <value>Та хүснэгтийг засах эрхгүй байна !</value>
+  </data>
+  <data name="ucTable_DeleteAllRows" xml:space="preserve">
+    <value>энэ хүснэгтээс бүх бичлэгийг устгах уу</value>
+  </data>
+  <data name="ucTable_DeleteAllRowsConfirm" xml:space="preserve">
+    <value>Бататгах</value>
+  </data>
+  <data name="ucTable_DeleteFilter" xml:space="preserve">
+    <value>Сонгосон шүүлтүүрийг арилгах уу?</value>
+  </data>
+  <data name="ucTable_DeleteRows" xml:space="preserve">
+    <value>Сонгосон мөрийг арилгах уу?( Та сонгосон мөрийг арилгахыг үнэхээр хүсч байна уу?)</value>
+  </data>
+  <data name="ucTable_DeleteRowsHeader" xml:space="preserve">
+    <value>Объектийг устгах</value>
+  </data>
+  <data name="ucTable_DeletingHeader" xml:space="preserve">
+    <value>Устгаж байна</value>
+  </data>
+  <data name="ucTable_ErrorStructTable" xml:space="preserve">
+    <value>Хүснэгтийн бүтцийг ачаалах алдаа</value>
+  </data>
+  <data name="ucTable_Filter" xml:space="preserve">
+    <value>Шүүлтүүр </value>
+  </data>
+  <data name="ucTable_FilterName" xml:space="preserve">
+    <value>Нэр</value>
+  </data>
+  <data name="ucTable_inAll" xml:space="preserve">
+    <value>Бүгдээр нь</value>
+  </data>
+  <data name="ucTable_IncorretFilterFormat" xml:space="preserve">
+    <value>Шүүлтүүр дэх мэдээний формат буруу байна!</value>
+  </data>
+  <data name="ucTable_NoRowsSeleted" xml:space="preserve">
+    <value>Мөр сонгогдоогүй байна! </value>
+  </data>
+  <data name="ucTable_NotLoaded" xml:space="preserve">
+    <value>Хүснэгтийн тохиргооны улмаас мэдээ ачаалагдсангүй</value>
+  </data>
+  <data name="userAddFrm_AccessRightAdded" xml:space="preserve">
+    <value>Хандах зөвшөөрөл нэмэгдлээ! </value>
+  </data>
+  <data name="userAddFrm_errorSymbolInLogin" xml:space="preserve">
+    <value>Хэрэглэгчийн нэр латин үсэг, тоо агуулах бөгөөд заавал үсгээр эхлэх ёстой</value>
+  </data>
+  <data name="userAddFrm_LoginEmpty" xml:space="preserve">
+    <value>Логин хэсэг хоосон байна!</value>
+  </data>
+  <data name="userAddFrm_LoginReservedWord" xml:space="preserve">
+    <value>Энэ нэрийг ашигласан байна! Өөр нэр оруулна уу.</value>
+  </data>
+  <data name="userAddFrm_UserNameEmty" xml:space="preserve">
+    <value>Хэрэглэгчийн нэрийн талбар хоосон байна!</value>
+  </data>
+  <data name="userAddFrm_UserNotSelected" xml:space="preserve">
+    <value>Хэрэглэгч сонгогдоогүй байна!</value>
+  </data>
+  <data name="UserSetsFrm_Error" xml:space="preserve">
+    <value>Алдаа</value>
+  </data>
+  <data name="UserSetsFrm_ErrorDeleteWorkSet" xml:space="preserve">
+    <value>Хэрэглэж байгаа багцыг устгах боломжгүй!</value>
+  </data>
+  <data name="UserSetsFrm_NeedSelectedWorkSet" xml:space="preserve">
+    <value>Та багцаа сонгох хэрэгтэй!</value>
+  </data>
+  <data name="Users_in_Count" xml:space="preserve">
+    <value>Хэрэглэгчийн тоо:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Хувилбар:</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Хувилбарууд</value>
+  </data>
+  <data name="workLog_null_ex" xml:space="preserve">
+    <value>Параметр хоосон байж болохгүй</value>
+  </data>
+  <data name="YouMustSelectUser" xml:space="preserve">
+    <value>Та хэрэглэгчийг сонгох хэрэгтэй</value>
+  </data>
+  <data name="COM_ConnAnNoExistsTable" xml:space="preserve">
+    <value>{0}' багана нь устгагдсан хүснэгттэй холбоотой;</value>
+  </data>
+  <data name="COM_NoRightToTable" xml:space="preserve">
+    <value>{0}' хүснэгтийг унших эрхгүй;</value>
+  </data>
+  <data name="InterfaceClass_FindLinkError" xml:space="preserve">
+    <value>Мэдээ рүү хандахад дараах алдаанууд илэрсэн:</value>
+  </data>
+  <data name="InterfaceClass_NoExistsObj" xml:space="preserve">
+    <value>Объект хүснэгтэнд байхгүй байна</value>
+  </data>
+  <data name="LocActions" xml:space="preserve">
+    <value>Үйлдлүүд</value>
+  </data>
+  <data name="LocAllowed" xml:space="preserve">
+    <value>Зөвшөөрөгдсөн</value>
+  </data>
+  <data name="LocAllSupportedFormats" xml:space="preserve">
+    <value>Бүх дэмжигдсэн форматууд</value>
+  </data>
+  <data name="LocBaseLayersConfig" xml:space="preserve">
+    <value>Суурь давхаргуудын тохируулга</value>
+  </data>
+  <data name="LocGetTableRights" xml:space="preserve">
+    <value>Хүснэгтийн эрх авах</value>
+  </data>
+  <data name="LocGrantActionRights" xml:space="preserve">
+    <value>Үйлдлийн эрх олгох</value>
+  </data>
+  <data name="LocGrantTableRights" xml:space="preserve">
+    <value>Хүснэгтийн эрх олгох</value>
+  </data>
+  <data name="LocPostgreConfig" xml:space="preserve">
+    <value>PostgreSQL төрлийн эх үүсвэрийн тохируулга</value>
+  </data>
+  <data name="LocSaveScaleError" xml:space="preserve">
+    <value>Минимум масштаб нь максимум масштабаасаа том байж болохгүй!</value>
+  </data>
+  <data name="LocUserLoginWarning" xml:space="preserve">
+    <value>Хэрэглэгчийн нэр латин үсэг, тоо агуулах бөгөөд заавал үсгээр эхлэх ёстой</value>
+  </data>
+  <data name="PgFullSearch_Attributes" xml:space="preserve">
+    <value>Атрибут</value>
+  </data>
+  <data name="PgFullSearch_Choose" xml:space="preserve">
+    <value>Сонгох</value>
+  </data>
+  <data name="PgFullSearch_ChooseTables" xml:space="preserve">
+    <value>Хайх хүснэгтийг сонгоно уу</value>
+  </data>
+  <data name="PgFullSearch_Clear" xml:space="preserve">
+    <value>Цэвэрлэх</value>
+  </data>
+  <data name="PgFullSearch_Close" xml:space="preserve">
+    <value>Хаах</value>
+  </data>
+  <data name="PgFullSearch_Filter" xml:space="preserve">
+    <value>Шүүлтүүр </value>
+  </data>
+  <data name="PgFullSearch_MoveToObject" xml:space="preserve">
+    <value>Объект руу очих</value>
+  </data>
+  <data name="PgFullSearch_Search" xml:space="preserve">
+    <value>Хайх</value>
+  </data>
+  <data name="PgFullSearch_SearchResult" xml:space="preserve">
+    <value>Хайлтын үр дүн</value>
+  </data>
+  <data name="PgFullSearch_Tables" xml:space="preserve">
+    <value>Хүснэгтүүд</value>
+  </data>
+  <data name="PgFullSearch_Title" xml:space="preserve">
+    <value>Объектууд хайх</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteMes" xml:space="preserve">
+    <value>Тайланг устгах уу?</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteNo" xml:space="preserve">
+    <value>Үгүй</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteYes" xml:space="preserve">
+    <value>Тийм</value>
+  </data>
+  <data name="ReportEditor_V_AddReport" xml:space="preserve">
+    <value>Тайлан нэмэх</value>
+  </data>
+  <data name="ReportEditor_V_AddReportAll" xml:space="preserve">
+    <value>Ерөнхий тайлан нэмэх</value>
+  </data>
+  <data name="ReportEditor_V_AddReportObject" xml:space="preserve">
+    <value>Сонгосон объекттой тайлан нэмэх </value>
+  </data>
+  <data name="ReportEditor_V_AddReportTable" xml:space="preserve">
+    <value>Хүснэгттэй тайланг нэмэх</value>
+  </data>
+  <data name="ReportEditor_V_DeleteReport" xml:space="preserve">
+    <value>Тайланг устгах</value>
+  </data>
+  <data name="ReportEditor_V_EditReport" xml:space="preserve">
+    <value>Тайланг засварлах</value>
+  </data>
+  <data name="ReportEditor_V_Find" xml:space="preserve">
+    <value>Олох</value>
+  </data>
+  <data name="ReportEditor_V_ListReport" xml:space="preserve">
+    <value>Тайлангуудын жагсаалт</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsAll" xml:space="preserve">
+    <value>Ерөнхий тайлангууд</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsObject" xml:space="preserve">
+    <value>Сонгосон объектийнн тайлангууд</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsTable" xml:space="preserve">
+    <value>Хүснэгттэй тайлангууд</value>
+  </data>
+  <data name="ReportEditor_V_OpenReport" xml:space="preserve">
+    <value>Тайланг нээх</value>
+  </data>
+  <data name="ReportEditor_V_QuestionDeleteMesTitle" xml:space="preserve">
+    <value>Устгалт…</value>
+  </data>
+  <data name="ReportEditor_V_Title" xml:space="preserve">
+    <value>Тайлангуудын жагсаалт</value>
+  </data>
+  <data name="Report_M_ErrorDesign" xml:space="preserve">
+    <value>Дизайнерийн комманд буруу дуудах</value>
+  </data>
+  <data name="Report_M_ErrorLoadListReport" xml:space="preserve">
+    <value>Тайлангуудын жагсаалтыг ачаалж чадсангүй</value>
+  </data>
+  <data name="Report_VM_geomArea" xml:space="preserve">
+    <value>Геометр: Талбай (кв.м)</value>
+  </data>
+  <data name="Report_VM_geomCenter_x" xml:space="preserve">
+    <value>Геометр: X Центроид </value>
+  </data>
+  <data name="Report_VM_geomCenter_y" xml:space="preserve">
+    <value>Геометр: Y Центроид </value>
+  </data>
+  <data name="Report_VM_geomLength" xml:space="preserve">
+    <value>Геометр: Урт (м)</value>
+  </data>
+  <data name="Report_VM_geomPerimeter" xml:space="preserve">
+    <value>Геометр: Периметр (м)</value>
+  </data>
+  <data name="Report_VM_geomType" xml:space="preserve">
+    <value>Геометр: төрөл</value>
+  </data>
+  <data name="Report_VM_LoadReport" xml:space="preserve">
+    <value>Хүснэгт: {0}</value>
+  </data>
+  <data name="Report_VM_photoDateUpdate" xml:space="preserve">
+    <value>Сүүлд өөрчлөгдсөн огноо</value>
+  </data>
+  <data name="Report_VM_photoFileBody" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="Report_VM_photoFileName" xml:space="preserve">
+    <value>Файлын нэр</value>
+  </data>
+  <data name="Report_VM_photoIdObj" xml:space="preserve">
+    <value>Объектийн ID</value>
+  </data>
+  <data name="Report_VM_photoPreview" xml:space="preserve">
+    <value>Урьдчилж харах</value>
+  </data>
+  <data name="Report_VM_QuestionSave" xml:space="preserve">
+    <value>Хадгалалт</value>
+  </data>
+  <data name="Report_VM_QuestionSaveReport" xml:space="preserve">
+    <value>Тайлангийн файлыг хадгалах уу?</value>
+  </data>
+  <data name="userAddFrm_LoginExists" xml:space="preserve">
+    <value>Энэ логин өмнө нь бүртгэгдсэн байна</value>
+  </data>
+  <data name="userAddFrm_LoginExistsInDB" xml:space="preserve">
+    <value>Энэ логин мэдээллийн санд байна</value>
+  </data>
+  <data name="WorkSets_M_DefaultWorkSetName" xml:space="preserve">
+    <value>Стандарт ажлын багц</value>
+  </data>
+  <data name="WorkSets_M_ExceptionAccess" xml:space="preserve">
+    <value>Эрх байхгүй</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetAdd" xml:space="preserve">
+    <value>Шинээр ажлын багц нэмэж чадсангүй</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetEdit" xml:space="preserve">
+    <value>Ажлын багц өөрчилж чадсангүй</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetName" xml:space="preserve">
+    <value>Ажлын багцын нэр хоосон байж болохгүй</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionDeleteWorkSet" xml:space="preserve">
+    <value>Энэ ажлын багцыг устгах уу?</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionNo" xml:space="preserve">
+    <value>Үгүй</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionYes" xml:space="preserve">
+    <value>Тийм</value>
+  </data>
+  <data name="WorkSets_VM_NewWorkSet" xml:space="preserve">
+    <value>Шинэ ажлын багц</value>
+  </data>
+  <data name="WorkSets_V_AddWorkSet" xml:space="preserve">
+    <value>Шинээр ажлын багц нэмэх</value>
+  </data>
+  <data name="WorkSets_V_DeleteWorkSet" xml:space="preserve">
+    <value>Ажлын багц устгах</value>
+  </data>
+  <data name="WorkSets_V_EditWorkSet" xml:space="preserve">
+    <value>Ажлын багц өөрчлөх</value>
+  </data>
+  <data name="WorkSets_V_Find" xml:space="preserve">
+    <value>Олох</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupMy" xml:space="preserve">
+    <value>Миний</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupOther" xml:space="preserve">
+    <value>Бүх</value>
+  </data>
+  <data name="WorkSets_V_ListBoxName" xml:space="preserve">
+    <value>ажлын багц</value>
+  </data>
+  <data name="WorkSets_V_MessageQuestion" xml:space="preserve">
+    <value>Асуулт…</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeApply" xml:space="preserve">
+    <value>Хэрэглэх</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeEditWorkSet" xml:space="preserve">
+    <value>Ажлын багц засварлах:</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeNewWorkSet" xml:space="preserve">
+    <value>Шинэ ажлын багц:</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetName" xml:space="preserve">
+    <value>Нэр</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetVisable" xml:space="preserve">
+    <value>Ажлын багцыг бусад хэрэглэгчдээс нуух</value>
+  </data>
+  <data name="WorkSets_V_SwichWorkSet" xml:space="preserve">
+    <value>Шилжих</value>
+  </data>
+  <data name="WorkSets_V_Title" xml:space="preserve">
+    <value>ажлын багц</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.Degrees" xml:space="preserve">
+    <value>Градус</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutes" xml:space="preserve">
+    <value>Градус, минут</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutesSeconds" xml:space="preserve">
+    <value>Градус, минут, секунд</value>
+  </data>
+  <data name="PgGeom.ESridTypes.Another" xml:space="preserve">
+    <value>Ондоо</value>
+  </data>
+  <data name="PgGeom.ESridTypes.LongLat" xml:space="preserve">
+    <value>(4326) Уртраг/Өргөрөг WGS 84</value>
+  </data>
+  <data name="PgGeom.ESridTypes.WorldMercator" xml:space="preserve">
+    <value>(3395) Дэлхийн Меркатор WGS 84</value>
+  </data>
+  <data name="AbsM.EGeomType.GeometryCollection" xml:space="preserve">
+    <value>Геометрийн цуглуулга</value>
+  </data>
+  <data name="AbsM.EGeomType.Hole" xml:space="preserve">
+    <value>Хоосон зай</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiLine" xml:space="preserve">
+    <value>Олон шулуун</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPoint" xml:space="preserve">
+    <value>Олон цэг</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPolygon" xml:space="preserve">
+    <value>Олон полигон</value>
+  </data>
+  <data name="PgGeomVRec_Adding" xml:space="preserve">
+    <value>Нэмэлт</value>
+  </data>
+  <data name="PgGeomVRec_Assign" xml:space="preserve">
+    <value>Оноох</value>
+  </data>
+  <data name="PgGeomVRec_Count" xml:space="preserve">
+    <value>Тоо</value>
+  </data>
+  <data name="PgGeomVRec_Down" xml:space="preserve">
+    <value>Доошоо</value>
+  </data>
+  <data name="PgGeomVRec_Editing" xml:space="preserve">
+    <value>Засварлах</value>
+  </data>
+  <data name="PgGeomVRec_Header" xml:space="preserve">
+    <value>Геометр</value>
+  </data>
+  <data name="PgGeomVRec_Info" xml:space="preserve">
+    <value>Инфо</value>
+  </data>
+  <data name="PgGeomVRec_Invert" xml:space="preserve">
+    <value>Инверт Х,У</value>
+  </data>
+  <data name="PgGeomVRec_PreviewActiveObject" xml:space="preserve">
+    <value>Идэвхжсэн объектийг харуулах</value>
+  </data>
+  <data name="PgGeomVRec_PreviewNodes" xml:space="preserve">
+    <value>Зангилааг харуулах</value>
+  </data>
+  <data name="PgGeomVRec_PreviewWholeGeometry" xml:space="preserve">
+    <value>Бүх геометрийг харуулах</value>
+  </data>
+  <data name="PgGeomVRec_Projection" xml:space="preserve">
+    <value>Тусгаг</value>
+  </data>
+  <data name="PgGeomVRec_Recalc" xml:space="preserve">
+    <value>Дахин тооцоолох</value>
+  </data>
+  <data name="PgGeomVRec_Remove" xml:space="preserve">
+    <value>Устгах</value>
+  </data>
+  <data name="PgGeomVRec_Up" xml:space="preserve">
+    <value>Дээшээ</value>
+  </data>
+  <data name="PgGeomVRec_Use" xml:space="preserve">
+    <value>Ашиглах</value>
+  </data>
+  <data name="PgGeomVRec_Add" xml:space="preserve">
+    <value>Нэмэх</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Add" xml:space="preserve">
+    <value>Нэмэлт</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Edit" xml:space="preserve">
+    <value>Засварлах</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.None" xml:space="preserve">
+    <value>Байхгүй</value>
+  </data>
+  <data name="PgGeomVRec_AddHole" xml:space="preserve">
+    <value>Хоосон зай нэмэх</value>
+  </data>
+  <data name="PgGeomVRec_AddLine" xml:space="preserve">
+    <value>Шулуун нэмэх</value>
+  </data>
+  <data name="PgGeomVRec_AddPoint" xml:space="preserve">
+    <value>Цэг нэмэх</value>
+  </data>
+  <data name="PgGeomVRec_AddPolygon" xml:space="preserve">
+    <value>Полигон нэмэх</value>
+  </data>
+  <data name="PgGeomVRec_Centroid" xml:space="preserve">
+    <value>Центроид</value>
+  </data>
+  <data name="PgGeomVRec_Characteristics" xml:space="preserve">
+    <value>Геометрийн шинж чанарууд</value>
+  </data>
+  <data name="PgGeomVRec_Copy" xml:space="preserve">
+    <value>Хувьлах</value>
+  </data>
+  <data name="PgGeomVRec_Length" xml:space="preserve">
+    <value>Урт (м)</value>
+  </data>
+  <data name="PgGeomVRec_Perimeter" xml:space="preserve">
+    <value>Периметр (м)</value>
+  </data>
+  <data name="PgGeomVRec_PointsDeleting" xml:space="preserve">
+    <value>Цэг устгах</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisLine" xml:space="preserve">
+    <value>Энэ шулууныг үзүүлэх</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPoint" xml:space="preserve">
+    <value>Энэ цэгийг үзүүлэх</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPolygon" xml:space="preserve">
+    <value>Энэ полигоныг үзүүлэх</value>
+  </data>
+  <data name="PgGeomVRec_ProjectionNotExists" xml:space="preserve">
+    <value>Ийм тусгаг мэдээний санд алга. Ондоог үз</value>
+  </data>
+  <data name="PgGeomVRec_ReallyWantDeletePoints" xml:space="preserve">
+    <value>Сонгосон цэгүүдийг та үнэхээр устгамаар байна уу?</value>
+  </data>
+  <data name="PgGeomVRec_RemoveHole" xml:space="preserve">
+    <value>Хоосон зайг устгах</value>
+  </data>
+  <data name="PgGeomVRec_RemoveLine" xml:space="preserve">
+    <value>Шулууныг устгах</value>
+  </data>
+  <data name="PgGeomVRec_RemovePoint" xml:space="preserve">
+    <value>Цэгийг устгах</value>
+  </data>
+  <data name="PgGeomVRec_RemovePolygon" xml:space="preserve">
+    <value>Полигоныг устгах</value>
+  </data>
+  <data name="PgGeomVRec_ShowCharacteristics" xml:space="preserve">
+    <value>Шинж чанарыг харуул</value>
+  </data>
+  <data name="PgGeomVRec_Square" xml:space="preserve">
+    <value>Талбай (кв.м)</value>
+  </data>
+  <data name="PgGeomVRec_Type" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="PgGeomVRec_UnableTransformGeom" xml:space="preserve">
+    <value>Геометрийг хөрвүүлэлт амжилтгүй боллоо</value>
+  </data>
+  <data name="PgFullSearch_TableChoose" xml:space="preserve">
+    <value>Хүснэгтийг сонгох</value>
+  </data>
+  <data name="PgFullSearch_TableName" xml:space="preserve">
+    <value>Хүснэгтийн нэр</value>
+  </data>
+  <data name="PrintV_Apply" xml:space="preserve">
+    <value>Хэрэглэх</value>
+  </data>
+  <data name="PrintV_BottomMargin" xml:space="preserve">
+    <value>Хэвлэх доод хязгаар</value>
+  </data>
+  <data name="PrintV_Cancel" xml:space="preserve">
+    <value>Цуцлах</value>
+  </data>
+  <data name="PrintV_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="PrintV_Fit" xml:space="preserve">
+    <value>Хэвлэх хүрээнд багтаах</value>
+  </data>
+  <data name="PrintV_Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="PrintV_HorizCount" xml:space="preserve">
+    <value>Хэвтээгээр хуудаснуудыг тоолбол</value>
+  </data>
+  <data name="PrintV_Landscape" xml:space="preserve">
+    <value>Хэвтээ</value>
+  </data>
+  <data name="PrintV_LeftMargin" xml:space="preserve">
+    <value>Хэвлэх зүүн хязгаар</value>
+  </data>
+  <data name="PrintV_Margins" xml:space="preserve">
+    <value>Хэвлэх хязгаарууд</value>
+  </data>
+  <data name="PrintV_Navigation" xml:space="preserve">
+    <value>Навигаци</value>
+  </data>
+  <data name="PrintV_Orientation" xml:space="preserve">
+    <value>Хэвлэх чиг</value>
+  </data>
+  <data name="PrintV_PageHeight" xml:space="preserve">
+    <value>Хуудасны өндөр</value>
+  </data>
+  <data name="PrintV_PagePrintableArea" xml:space="preserve">
+    <value>Хуудасны хэвлэх хэсэг</value>
+  </data>
+  <data name="PrintV_PagesCount" xml:space="preserve">
+    <value>Хуудасны тоо</value>
+  </data>
+  <data name="PrintV_PageSettings" xml:space="preserve">
+    <value>Хуудасны тохиргоо</value>
+  </data>
+  <data name="PrintV_PageWidth" xml:space="preserve">
+    <value>Хуудасны өргөн</value>
+  </data>
+  <data name="PrintV_Portrait" xml:space="preserve">
+    <value>Босоо</value>
+  </data>
+  <data name="PrintV_Print" xml:space="preserve">
+    <value>Хэвлэх</value>
+  </data>
+  <data name="PrintV_PrintProgress" xml:space="preserve">
+    <value>{1} хуудаснаас {0} хэвлэгдэж байна</value>
+  </data>
+  <data name="PrintV_RightMargin" xml:space="preserve">
+    <value>Хэвлэх баруун хязгаар</value>
+  </data>
+  <data name="PrintV_Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="PrintV_TopMargin" xml:space="preserve">
+    <value>Хэвлэх дээд хязгаар</value>
+  </data>
+  <data name="PrintV_VertCount" xml:space="preserve">
+    <value>Босоогоор хуудаснуудыг тоолбол</value>
+  </data>
+  <data name="CMD_Confirmation" xml:space="preserve">
+    <value>Бататгах</value>
+  </data>
+  <data name="CMD_DeleteConfirm" xml:space="preserve">
+    <value>Сонгосон бичлэгийг устгах уу?</value>
+  </data>
+  <data name="CMD_EnterFile" xml:space="preserve">
+    <value>Файлыг заах</value>
+  </data>
+  <data name="CMD_EnterNameOfProgram" xml:space="preserve">
+    <value>Программын нэрийг оруулна уу</value>
+  </data>
+  <data name="CMD_NewProgram" xml:space="preserve">
+    <value>Шинэ программ</value>
+  </data>
+  <data name="CMD_SettingsProgram" xml:space="preserve">
+    <value>Программын тохиргоо</value>
+  </data>
+  <data name="PgUserList_AdmUserRaght" xml:space="preserve">
+    <value>Хэрэглэгчийн эрхийг хянан зохицуулах</value>
+  </data>
+  <data name="PgListUserRightsVM_DataTables" xml:space="preserve">
+    <value>Мэдээний хүснэгтүүд</value>
+  </data>
+  <data name="PgListUserRightsVM_Intervals" xml:space="preserve">
+    <value>Интервалууд</value>
+  </data>
+  <data name="PgListUserRightsVM_MapLayers" xml:space="preserve">
+    <value>Зургийн сэдэвчилсэн давхаргууд</value>
+  </data>
+  <data name="PgListUserRightsVM_References" xml:space="preserve">
+    <value>Лавлахууд</value>
+  </data>
+  <data name="mainFrm_copyObj" xml:space="preserve">
+    <value>Объектууд хувилагдсан</value>
+  </data>
+  <data name="mainFrm_errorReportManager" xml:space="preserve">
+    <value>Тайлан зохицуулагчийг нээхэд гарах алдаа</value>
+  </data>
+  <data name="mainFrm_errorWhenOpenReport" xml:space="preserve">
+    <value>Тайлан нээхэд гарах алдаа</value>
+  </data>
+  <data name="mainFrm_NoCopyObj" xml:space="preserve">
+    <value>Хувилагдсан объект алга!</value>
+  </data>
+  <data name="mainFrm_NotMatchGeomType" xml:space="preserve">
+    <value>Геометрийн төрөл нь таарахгүй байна!</value>
+  </data>
+  <data name="MainFrm_SelectedObjNot" xml:space="preserve">
+    <value>Сонгосон объект алга</value>
+  </data>
+  <data name="mainFrm_selectedOnlyOneObj" xml:space="preserve">
+    <value>Зөвхөн нэг л объект сонгох ёстой!</value>
+  </data>
+  <data name="LocConfirmation" xml:space="preserve">
+    <value>Бататгах</value>
+  </data>
+  <data name="LocPassword" xml:space="preserve">
+    <value>Нууц үг</value>
+  </data>
+  <data name="LocIndex" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="LocIndexedFields" xml:space="preserve">
+    <value>Индексжсэн талбарууд</value>
+  </data>
+  <data name="LocCreate" xml:space="preserve">
+    <value>Үүсгэх</value>
+  </data>
+  <data name="LocNotIndexedFields" xml:space="preserve">
+    <value>Индексжээгүй талбарууд</value>
+  </data>
+  <data name="PrintV_CanvasMode" xml:space="preserve">
+    <value>Канвас горим</value>
+  </data>
+  <data name="PrintV_MapMode" xml:space="preserve">
+    <value>Газрын зургийн горим</value>
+  </data>
+  <data name="DGBH_GeomAssignedDefaultValue" xml:space="preserve">
+    <value>Геометрийн формат нь буруу. Объектод хоосон геометр ашигласан </value>
+  </data>
+  <data name="mainFrm_SelectedCount" xml:space="preserve">
+    <value>Сонгосон объектууд: {0}</value>
+  </data>
+  <data name="AET_MustBeProj" xml:space="preserve">
+    <value>Та давхаргын тусгаг аа сонгох ёстой!</value>
+  </data>
+  <data name="mainFrm_errMFileNFChange" xml:space="preserve">
+    <value>Зургийн файл нь олдсонгүй! Та файл аа зааж өгөх үү? Эс бөгөөс өмнөх зураг үлдэнэ.</value>
+  </data>
+  <data name="mainFrm_errProjFileChange" xml:space="preserve">
+    <value>Тусгагийн файл нь олдсонгүй эсвэл формат нь тохирохгүй байна! Та файлын байршлыг зааж өгөх үү? Эс бөгөөс өмнөх зураг үлдэнэ.</value>
+  </data>
+  <data name="SRF_EnterName" xml:space="preserve">
+    <value>Тайлангийн нэрийг оруул:</value>
+  </data>
+  <data name="SRF_WindowTitle" xml:space="preserve">
+    <value>Тайланг хадгалах</value>
+  </data>
+  <data name="SRF_NameIsUsed" xml:space="preserve">
+    <value>Тайлангийн ийм нэрийг өмнө нь хэрэглэжээ</value>
+  </data>
+  <data name="SRF_EmptyName" xml:space="preserve">
+    <value>Нэр бичих хэсэг хоосон байж болохгүй</value>
+  </data>
+  <data name="IV_Clear" xml:space="preserve">
+    <value>Цэвэрлэх</value>
+  </data>
+  <data name="IV_Preview" xml:space="preserve">
+    <value>Урьдчилан харах</value>
+  </data>
+  <data name="IV_UseIndex" xml:space="preserve">
+    <value>Хайхдаа индекс ашиглах</value>
+  </data>
+  <data name="IV_PleaseWait" xml:space="preserve">
+    <value>Тус үйлдэл нь хэдэн минут болж магадгүй.</value>
+  </data>
+  <data name="LocApply" xml:space="preserve">
+    <value>Хэрэглэх</value>
+  </data>
+  <data name="Tool_AddByCoords" xml:space="preserve">
+    <value>Объектийг солбицлоор нь нэмэх</value>
+  </data>
+  <data name="Tool_AddInMap" xml:space="preserve">
+    <value>Обьектийг газрын зураг дээр нэмэх</value>
+  </data>
+  <data name="Tool_AddRectangle" xml:space="preserve">
+    <value>Тэгш өнцөгт нэмэх</value>
+  </data>
+  <data name="Tool_AddVertex" xml:space="preserve">
+    <value>Зангилаа цэг нэмэх</value>
+  </data>
+  <data name="Tool_ClipByMouse" xml:space="preserve">
+    <value>Геометрийг хулганаар огтлох</value>
+  </data>
+  <data name="Tool_ClipByPolygon" xml:space="preserve">
+    <value>Геометрийг полигоноор огтлох</value>
+  </data>
+  <data name="Tool_CopyGeom" xml:space="preserve">
+    <value>Геометрийг хувьлах</value>
+  </data>
+  <data name="Tool_DeleteObject" xml:space="preserve">
+    <value>Объектийг устгах</value>
+  </data>
+  <data name="Tool_DeleteVertex" xml:space="preserve">
+    <value>Зангилаа цэг устгах</value>
+  </data>
+  <data name="Tool_Hand" xml:space="preserve">
+    <value>Гараар шилжих</value>
+  </data>
+  <data name="Tool_JoinGeometry" xml:space="preserve">
+    <value>Геометрүүдийг нэгтгэх</value>
+  </data>
+  <data name="Tool_LayerDown" xml:space="preserve">
+    <value>Давхаргыг доош зөөх</value>
+  </data>
+  <data name="Tool_LayerUp" xml:space="preserve">
+    <value>Давхаргыг дээш зөөх</value>
+  </data>
+  <data name="Tool_MapPointInfo" xml:space="preserve">
+    <value>Зураг дээрх объектийн тухай мэдээлэл авах</value>
+  </data>
+  <data name="Tool_MoveGeom" xml:space="preserve">
+    <value>Объектийг зөөх</value>
+  </data>
+  <data name="Tool_MoveVertex" xml:space="preserve">
+    <value>Зангилааг зөөх</value>
+  </data>
+  <data name="Tool_OpenTable" xml:space="preserve">
+    <value>Хүснэгт нээх</value>
+  </data>
+  <data name="Tool_PasteGeom" xml:space="preserve">
+    <value>Хувьлах геометрийг буулгах</value>
+  </data>
+  <data name="Tool_RotateDegree" xml:space="preserve">
+    <value>Өгөгдсөн өнцгөөр объектийг эргүүлэх</value>
+  </data>
+  <data name="Tool_RotateMouse" xml:space="preserve">
+    <value>Обьектийг хулганаар эргүүлэх</value>
+  </data>
+  <data name="Tool_Ruler" xml:space="preserve">
+    <value>Зай хэмжих</value>
+  </data>
+  <data name="Tool_Select" xml:space="preserve">
+    <value>Сонгох горим</value>
+  </data>
+  <data name="Tool_SelectPolygon" xml:space="preserve">
+    <value>Обьектийг полигоноор сонгох</value>
+  </data>
+  <data name="Tool_SelectRectangle" xml:space="preserve">
+    <value>Обьектийг тэгш өнцөгтөөр сонгох</value>
+  </data>
+  <data name="Tool_SetChangeStyle" xml:space="preserve">
+    <value>Ажлын багцаар давхаргын хэлбэрийг өөрчлөх</value>
+  </data>
+  <data name="Tool_SetDeleteStyle" xml:space="preserve">
+    <value>Ажлын багцаар давхаргын хэлбэрийг устгах</value>
+  </data>
+  <data name="Tool_SetSaveLocation" xml:space="preserve">
+    <value>Ажлын багцаар давхаргын байрлалыг хадгалах</value>
+  </data>
+  <data name="Tool_ShowLayersList" xml:space="preserve">
+    <value>Давхаргуудын жагсаалтыг харуул</value>
+  </data>
+  <data name="Tool_SnapLine" xml:space="preserve">
+    <value>Шулуунд бэхлэх</value>
+  </data>
+  <data name="Tool_SnapPoint" xml:space="preserve">
+    <value>Цэгэнд бэхлэх</value>
+  </data>
+  <data name="Tool_Unselect" xml:space="preserve">
+    <value>Сонголтыг цуцлах</value>
+  </data>
+  <data name="Tool_UpdLayersList" xml:space="preserve">
+    <value>Давхаргуудын жагсаалтыг шинэчлэх</value>
+  </data>
+  <data name="Tool_VertexEdit" xml:space="preserve">
+    <value>Хэдэн зангилаа цэгүүдийг засварлах</value>
+  </data>
+  <data name="Tool_WorkSets" xml:space="preserve">
+    <value>Ажлын багцын удирдлага</value>
+  </data>
+  <data name="Tool_ZoomIn" xml:space="preserve">
+    <value>Ойртуулж томруулах</value>
+  </data>
+  <data name="Tool_ZoomInRegion" xml:space="preserve">
+    <value>Тэгш өнцөгтөөр ойртуулах</value>
+  </data>
+  <data name="Tool_ZoomOut" xml:space="preserve">
+    <value>Холдуулж жижигрүүлэх</value>
+  </data>
+  <data name="Tool_ZoomOutRegion" xml:space="preserve">
+    <value>Тэгш өнцөгтөөр холдуулах</value>
+  </data>
+  <data name="Tool_ZoomToLayer" xml:space="preserve">
+    <value>Давхарга руу ойртох</value>
+  </data>
+  <data name="Tool_ZoomToSelObjects" xml:space="preserve">
+    <value>Сонгосон объектууд руу ойртох</value>
+  </data>
+  <data name="WmMenu_Data" xml:space="preserve">
+    <value>Мэдээ</value>
+  </data>
+  <data name="WmMenu_Data_UpdMenu" xml:space="preserve">
+    <value>Цэсийг шинэчлэх</value>
+  </data>
+  <data name="WmMenu_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="WmMenu_File_ChooseVMP" xml:space="preserve">
+    <value>Доод давхаргын VMP файл сонгох</value>
+  </data>
+  <data name="WmMenu_File_Exit" xml:space="preserve">
+    <value>Гарах</value>
+  </data>
+  <data name="WmMenu_File_ExportPrint" xml:space="preserve">
+    <value>Зураг хэвлэхийн тулд экспортлох</value>
+  </data>
+  <data name="WmMenu_File_Print" xml:space="preserve">
+    <value>Хэвлэх...</value>
+  </data>
+  <data name="WmMenu_File_PrintSettings" xml:space="preserve">
+    <value>Хэвлэх тохиргоо...</value>
+  </data>
+  <data name="WmMenu_File_SaveImage" xml:space="preserve">
+    <value>Зураг хадгалах...</value>
+  </data>
+  <data name="WmMenu_Help" xml:space="preserve">
+    <value>Тусламж</value>
+  </data>
+  <data name="WmMenu_Help_About" xml:space="preserve">
+    <value>Программын тухай...</value>
+  </data>
+  <data name="WmMenu_Help_Licences" xml:space="preserve">
+    <value>Программ хангамжийн бүрэлдэхүүний лиценз</value>
+  </data>
+  <data name="WmMenu_Help_Manual" xml:space="preserve">
+    <value>Гарын авлага…</value>
+  </data>
+  <data name="WmMenu_Reports" xml:space="preserve">
+    <value>Тайлангууд</value>
+  </data>
+  <data name="WmMenu_Reports_OpenManager" xml:space="preserve">
+    <value>Тайлан зохицуулагчийг нээх</value>
+  </data>
+  <data name="WmMenu_Sources" xml:space="preserve">
+    <value>Эх сурвалж</value>
+  </data>
+  <data name="WmMenu_Sources_BaseLayers" xml:space="preserve">
+    <value>Суурь давхаргууд…</value>
+  </data>
+  <data name="WmMenu_Sources_PostgreSQL" xml:space="preserve">
+    <value>PostgreSQL…</value>
+  </data>
+  <data name="WmMenu_Sources_RastrLayers" xml:space="preserve">
+    <value>Растер давхрагууд...</value>
+  </data>
+  <data name="WmMenu_Sources_ShowPanel" xml:space="preserve">
+    <value>Давхаргуудын зохицуулагчийг үзүүлэх</value>
+  </data>
+  <data name="WmMenu_Tools" xml:space="preserve">
+    <value>Багаж</value>
+  </data>
+  <data name="WmMenu_Tools_BaseLayers" xml:space="preserve">
+    <value>Суурь давхаргууд…</value>
+  </data>
+  <data name="WmMenu_Tools_History" xml:space="preserve">
+    <value>Өөрчлөлтийн түүх…</value>
+  </data>
+  <data name="WmMenu_Tools_HistoryWPF" xml:space="preserve">
+    <value>WPF өөрчлөлтийн түүх</value>
+  </data>
+  <data name="WmMenu_Tools_LocationsReference" xml:space="preserve">
+    <value>Байршлын лавлах</value>
+  </data>
+  <data name="WmMenu_Tools_ManageTables" xml:space="preserve">
+    <value>Хүснэгтийг зохицуулах…</value>
+  </data>
+  <data name="WmMenu_Tools_RastrLayers" xml:space="preserve">
+    <value>Растер давхрагууд...</value>
+  </data>
+  <data name="WmMenu_Tools_Search" xml:space="preserve">
+    <value>Хайх...</value>
+  </data>
+  <data name="WmMenu_Tools_Settings" xml:space="preserve">
+    <value>Тохиргоо</value>
+  </data>
+  <data name="WmMenu_Tools_UserRights" xml:space="preserve">
+    <value>Хэрэглэгчийн эрхийг хянан зохицуулах…</value>
+  </data>
+  <data name="WmMenu_View" xml:space="preserve">
+    <value>Харах</value>
+  </data>
+  <data name="WmMenu_View_Map" xml:space="preserve">
+    <value>Газрын зураг</value>
+  </data>
+  <data name="WmMenu_View_ToolBars" xml:space="preserve">
+    <value>Багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_FastStart" xml:space="preserve">
+    <value>Хурдан эхлэх...</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_ProgramPlugins" xml:space="preserve">
+    <value>Программ болон плагиний тохиргоо</value>
+  </data>
+  <data name="WmMenu_View_Map_FitObject" xml:space="preserve">
+    <value>Объект руу шилжихэд түүнийг цонхонд багтаах</value>
+  </data>
+  <data name="WmMenu_View_Map_HideVMP" xml:space="preserve">
+    <value>Растер-г нээх үед доод давхаргыг нуух</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Coords" xml:space="preserve">
+    <value>"Солбицлууд" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditableLayer" xml:space="preserve">
+    <value>"Засвалагдахуйц давхарга" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditGeom" xml:space="preserve">
+    <value>"Геометрийн ажилбар" багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditObject" xml:space="preserve">
+    <value>"Объектийн ажилбар" багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EnabledModes" xml:space="preserve">
+    <value>"Идэвхжүүлсэн горимууд" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_FastStart" xml:space="preserve">
+    <value>"Хурдан эхлэх" багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Info" xml:space="preserve">
+    <value>"Мэдээлэл" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_LayersList" xml:space="preserve">
+    <value>Давхарга удирдах зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Map" xml:space="preserve">
+    <value>"Газрын зураг" багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Plugins" xml:space="preserve">
+    <value>"Плагинууд" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestorePrevious" xml:space="preserve">
+    <value>Багажийн зурвасуудын өмнөх байрлалыг сэргээх</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestoreStandard" xml:space="preserve">
+    <value>Багажийн зурвасуудын стандарт байрлалыг сэргээх</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Scale" xml:space="preserve">
+    <value>"Зургийн масштаб" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Search" xml:space="preserve">
+    <value>"Хурдан хайлт" зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_SelectObject" xml:space="preserve">
+    <value>"Объект сонгох" багажийн зурвас</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_WorkSets" xml:space="preserve">
+    <value>"Ажлын багцын удирдлага" зурвас</value>
+  </data>
+  <data name="FELC_CannotDeleteField" xml:space="preserve">
+    <value>Энэ аттрибут нь дараах хүснэгтүүдтэй холбоотой:
+{0}</value>
+  </data>
+  <data name="FELC_DeletingFieldLabel" xml:space="preserve">
+    <value>Энэ талбарыг давхаргын ул бичвэр үүсгэхэд ашигласан. Ул бичвэр нууцлагдана.</value>
+  </data>
+  <data name="FELC_DeletingFieldStyle" xml:space="preserve">
+    <value>Энэ талбараар хүснэгтийн хэлбэрийг тодорхойлдог.</value>
+  </data>
+  <data name="LocClose" xml:space="preserve">
+    <value>Хаах</value>
+  </data>
+  <data name="LocOpen" xml:space="preserve">
+    <value>Нээх</value>
+  </data>
+  <data name="PFC_EditingFields" xml:space="preserve">
+    <value>Талбар засварлах</value>
+  </data>
+  <data name="PFC_EditingFieldsAsk" xml:space="preserve">
+    <value>Та үнэхээр сонгосон атрибутыг өөрчлөхийг хүсэж байна уу?</value>
+  </data>
+  <data name="SSF_NameIsUsed" xml:space="preserve">
+    <value>Ийм нэртэй ажлын багц өмнө нь бүртгэгдсэн.</value>
+  </data>
+  <data name="SSF_SetName" xml:space="preserve">
+    <value>Ажлын багцийн нэрлэлт</value>
+  </data>
+  <data name="SSF_Title" xml:space="preserve">
+    <value>Ажлын багц хадгалах</value>
+  </data>
+  <data name="LocUseBuildPyramids" xml:space="preserve">
+    <value>Пирамид босгох</value>
+  </data>
+  <data name="LocUseDefaultMethodOfUsingRastr" xml:space="preserve">
+    <value>Өгөгдмөл</value>
+  </data>
+  <data name="LocUseGDALMethodOfUsingRastr" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="LocUseMethodOfUsing" xml:space="preserve">
+    <value>Ашиглалтын арга</value>
+  </data>
+  <data name="RasM.EConnectType.Gdal" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="RasM.EConnectType.Standard" xml:space="preserve">
+    <value>Стандарт</value>
+  </data>
+  <data name="ucTable_ChangeProjection" xml:space="preserve">
+    <value>Та давхаргын тусгагийг өөрчлөхийг хүсэж байна уу?</value>
+  </data>
+  <data name="ucTable_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="LocChange" xml:space="preserve">
+    <value>Өөрчлөх</value>
+  </data>
+  <data name="FormTableData_Continue" xml:space="preserve">
+    <value>Геометр нь цаашид устгахуйц хоосон эсвэл алдаатай объектуудыг агуулж байна. Үргэлжлүүлэх үү?</value>
+  </data>
+  <data name="PgAttributesGeom_TxtWarning" xml:space="preserve">
+    <value>Зөвхөн ашиглаж буй объект л хадгалагдана. Үргэлжлүүлэх үү?</value>
+  </data>
+  <data name="ExportError_NotSpecifiedProj" xml:space="preserve">
+    <value>Тусгаг нь заагдаагүй байна. Давхаргын тусгагийг ашиглаад үргэлжлүүлэх үү?</value>
+  </data>
+  <data name="ExportProjSelection_Select" xml:space="preserve">
+    <value>Сонгох</value>
+  </data>
+  <data name="ExportProjSelection_SelectText" xml:space="preserve">
+    <value>Экспортлох файлын тусгагийг сонгоно уу</value>
+  </data>
+  <data name="ExportProjSelection_SelectTitle" xml:space="preserve">
+    <value>Тусгагийн сонголт</value>
+  </data>
+  <data name="ExportProjSelection_Cancel" xml:space="preserve">
+    <value>Цуцлах</value>
+  </data>
+  <data name="Tool_DivWithLine" xml:space="preserve">
+    <value>Шулуун ашиглан шулуун/полигон зүсэж хуваах</value>
+  </data>
+  <data name="PgM.UserType.Admin" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="PgM.UserType.User" xml:space="preserve">
+    <value>Хэрэглэгч</value>
+  </data>
+  <data name="Tool_UnJoinGeometry" xml:space="preserve">
+    <value>Геометрүүдийн бүлгийг задлах</value>
+  </data>
+  <data name="LocGroup" xml:space="preserve">
+    <value>Бүлэг</value>
+  </data>
+  <data name="PluginSettingsForm_tnPluginsSettings" xml:space="preserve">
+    <value>Плагинуудын тохиргоо</value>
+  </data>
+  <data name="PluginSettingsForm_tnUserSettings" xml:space="preserve">
+    <value>Хэрэглэгчийн тохиргоо</value>
+  </data>
+  <data name="PluginSettingsForm_tnProxySettings" xml:space="preserve">
+    <value>Холболтын proxy тохиргоо</value>
+  </data>
+  <data name="Report_VM_KeyAliasFormat" xml:space="preserve">
+    <value>{0} (Утга)</value>
+  </data>
+  <data name="PgAttributes_ErrorGeomConvert" xml:space="preserve">
+    <value>Геометрийг хөрвүүлэлт амжилтгүй боллоо</value>
+  </data>
+  <data name="LocReset" xml:space="preserve">
+    <value>Дахин сэргээх</value>
+  </data>
+  <data name="WmMenu_Tools_CosmeticLayers" xml:space="preserve">
+    <value>Гадна өнгөн давхаргууд…</value>
+  </data>
+  <data name="LocCosmeticConfig" xml:space="preserve">
+    <value>Гадна өнгөн давхаргуудын тохируулга</value>
+  </data>
+  <data name="LocSourceCosmetic" xml:space="preserve">
+    <value>Гадна өнгөн давхаргууд</value>
+  </data>
+  <data name="LocOpacity" xml:space="preserve">
+    <value>Тунгалаг чанар</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Date" xml:space="preserve">
+    <value>Он, сар, өдөр</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.DateTime" xml:space="preserve">
+    <value>Он, сар, өдөр, цаг</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Geometry" xml:space="preserve">
+    <value>Геометр</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Integer" xml:space="preserve">
+    <value>Бүхэл</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Numeric" xml:space="preserve">
+    <value>Цифр</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiLinestring" xml:space="preserve">
+    <value>Шулуунууд </value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPoint" xml:space="preserve">
+    <value>Цэгүүд</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPolygon" xml:space="preserve">
+    <value>Полигонууд</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.None" xml:space="preserve">
+    <value>Геометр байхгүй</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Catalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Data" xml:space="preserve">
+    <value>Мэдээ</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Interval" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.MapLayer" xml:space="preserve">
+    <value>Зургийн давхрага</value>
+  </data>
+  <data name="WmMenu_Data_UpdDics" xml:space="preserve">
+    <value>Каталог шинэчлэх</value>
+  </data>
+  <data name="Tool_AddInMapLine" xml:space="preserve">
+    <value>Газрын зурагт шулуун нэмэх</value>
+  </data>
+  <data name="Tool_AddInMapPoint" xml:space="preserve">
+    <value>Газрын зурагт цэг нэмэх</value>
+  </data>
+  <data name="Tool_AddInMapPolygon" xml:space="preserve">
+    <value>Газрын зурагт полигон нэмэх</value>
+  </data>
+  <data name="Tool_IntersectGeometry" xml:space="preserve">
+    <value>Геометрүүдийг огтлолцлоор нь хуваах</value>
+  </data>
+  <data name="Tool_JoinIntersectGeometry" xml:space="preserve">
+    <value>Огтлолцлоор хуваагдсан геометрүүдийг нэгтгэх</value>
+  </data>
+  <data name="Tool_SymDifference" xml:space="preserve">
+    <value>Геометрүүдийн тэгш хэмт ялгаа</value>
+  </data>
+  <data name="CosTableView_CopySelected" xml:space="preserve">
+    <value>Сонгогдсон объектуудыг хувьлах</value>
+  </data>
+  <data name="CosTableView_CosmeticLayer" xml:space="preserve">
+    <value>Гадна өнгөн давхаргууд</value>
+  </data>
+  <data name="CosTableView_Label" xml:space="preserve">
+    <value>Ул бичвэр</value>
+  </data>
+  <data name="CosTableView_ObjectNotExists" xml:space="preserve">
+    <value>Ийм объект алга</value>
+  </data>
+  <data name="CosTableView_Reload" xml:space="preserve">
+    <value>Мэдээг ахин ачаалах</value>
+  </data>
+  <data name="CosTableView_RemoveAll" xml:space="preserve">
+    <value>Бүх бичлэгийг устгах</value>
+  </data>
+  <data name="LocBrush" xml:space="preserve">
+    <value>Багс</value>
+  </data>
+  <data name="LocPen" xml:space="preserve">
+    <value>Харандаа</value>
+  </data>
+  <data name="CosAttributes_GeomExport" xml:space="preserve">
+    <value>Геометрийг дараах руу экспортлох…</value>
+  </data>
+  <data name="CosAttributes_GeomImport" xml:space="preserve">
+    <value>Дараахаас геометр импортлох...</value>
+  </data>
+  <data name="CosAttributes_ShowInTable" xml:space="preserve">
+    <value>Мэдээний Хүснэгт'-д харуул...</value>
+  </data>
+  <data name="CosAttributes_UseOwnStyle" xml:space="preserve">
+    <value>Өөрийн хэлбэрийг ашиглах</value>
+  </data>
+  <data name="CosAttributes_MvObjectIsNull" xml:space="preserve">
+    <value>Зураг дээрх объектийн ишлэл алга</value>
+  </data>
+  <data name="CosAttributes_Object" xml:space="preserve">
+    <value>Объект</value>
+  </data>
+  <data name="CosAttributes_Table" xml:space="preserve">
+    <value>Хүснэгт</value>
+  </data>
+  <data name="CosAttributes_TableIsNull" xml:space="preserve">
+    <value>Хүснэгтийн ишлэл алга</value>
+  </data>
+  <data name="CosAttributes_TableWithoutPK" xml:space="preserve">
+    <value>Хүснэгтэд анхдагч түлхүүр алга</value>
+  </data>
+  <data name="CosAttributes_Type" xml:space="preserve">
+    <value>Төрөл </value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryAdding" xml:space="preserve">
+    <value>Геометр нэмэхэд алдаа гарсан</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryEditing" xml:space="preserve">
+    <value>Геометр засварлахад алдаа гарсан</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryJoining" xml:space="preserve">
+    <value>Геометр нэгтгэхэд алдаа гарсан</value>
+  </data>
+  <data name="mainFrm_errGeometryShouldBeMulti" xml:space="preserve">
+    <value>Объектийн геометрийн төрөл нь олон байх ёстой!</value>
+  </data>
+  <data name="mainFrm_errGeometryTypesShouldMatch" xml:space="preserve">
+    <value>Объектуудын геометрийн төрөл нь адил байх ёстой!</value>
+  </data>
+  <data name="mainFrm_errIncorrectLayerType" xml:space="preserve">
+    <value>Буруу давхаргын төрөл</value>
+  </data>
+  <data name="mainFrm_errNotFoundWorkObject" xml:space="preserve">
+    <value>Ажлын объект олдсонгүй</value>
+  </data>
+  <data name="mainFrm_errObjectGeometryIsNotRecognized" xml:space="preserve">
+    <value>Объектийн геометр танигдсангүй</value>
+  </data>
+  <data name="mainFrm_errSaveWhenGeometryIsNotMulti" xml:space="preserve">
+    <value>Энэ давхаргад олон геометртэй объектуудыг хадгалж болохгүй.\nОбъектийн зөвхөн эхний геометрийг хадгалах уу?</value>
+  </data>
+  <data name="mainFrm_errTableShouldNotBeEmpty" xml:space="preserve">
+    <value>Хүснэгт хоосон байж болохгүй</value>
+  </data>
+  <data name="mainFrm_errWorkLayerNotEnabled" xml:space="preserve">
+    <value>Ажлын давхарга идэвхжээгүй байна</value>
+  </data>
+  <data name="PgReg_AttributeProps" xml:space="preserve">
+    <value>Атрибут шинж чанарууд</value>
+  </data>
+  <data name="PgReg_ChangesSaved" xml:space="preserve">
+    <value>Өөрчлөлт хадгалагдсан</value>
+  </data>
+  <data name="PgReg_ChooseGeomField" xml:space="preserve">
+    <value>Зургийн давхаргын геометрийн талбар сонгогдсон байх ёстой</value>
+  </data>
+  <data name="PgReg_ChoosePK" xml:space="preserve">
+    <value>Анхдагч түлхүүрийн талбарыг сонго</value>
+  </data>
+  <data name="PgReg_ChooseTableType" xml:space="preserve">
+    <value>Хүснэгтийн төрлийг сонго</value>
+  </data>
+  <data name="PgReg_CreateNewScheme" xml:space="preserve">
+    <value>Шинэ схем үүсгэх</value>
+  </data>
+  <data name="PgReg_DataType" xml:space="preserve">
+    <value>Мэдээний төрөл</value>
+  </data>
+  <data name="PgReg_DescriptionText" xml:space="preserve">
+    <value>Тайлбар текст</value>
+  </data>
+  <data name="PgReg_FieldRegistered" xml:space="preserve">
+    <value>Талбар бүртгэгдсэн байна</value>
+  </data>
+  <data name="PgReg_FieldTypeCantBeDefined" xml:space="preserve">
+    <value>Талбарын төрөл нь тодорхойлогддоггүй</value>
+  </data>
+  <data name="PgReg_FixDb" xml:space="preserve">
+    <value>Өгөгдлийн санг засварлах</value>
+  </data>
+  <data name="PgReg_GeomField" xml:space="preserve">
+    <value>Геометрийн талбар</value>
+  </data>
+  <data name="PgReg_GeomType" xml:space="preserve">
+    <value>Геометрийн төрөл</value>
+  </data>
+  <data name="PgReg_MapLayer" xml:space="preserve">
+    <value>Зургийн давхрага</value>
+  </data>
+  <data name="PgReg_MapLayerHasGeom" xml:space="preserve">
+    <value>Зургийн давхаргын геометрийн төрлийг та сонгох ёстой</value>
+  </data>
+  <data name="PgReg_MarkFields" xml:space="preserve">
+    <value>Бүртгэх талбаруудыг тэмдэглэнэ үү</value>
+  </data>
+  <data name="PgReg_NeedAdditionalFields" xml:space="preserve">
+    <value>Энэ хүснэгтэнд нэмэлт ажлын талбаруудыг үүсгэх хэрэгтэй. Үргэлжлүүлэх үү?</value>
+  </data>
+  <data name="PgReg_NotMapLayer" xml:space="preserve">
+    <value>Газрын зургийн давхарга биш</value>
+  </data>
+  <data name="PgReg_OnlyIntervals" xml:space="preserve">
+    <value>Зөвхөн интервал болон каталогууд хэлбэр агуулна</value>
+  </data>
+  <data name="PgReg_Photos" xml:space="preserve">
+    <value>Фото зургууд</value>
+  </data>
+  <data name="PgReg_PrimaryKey" xml:space="preserve">
+    <value>Анхдагч түлхүүрийн талбар</value>
+  </data>
+  <data name="PgReg_RegisterScheme" xml:space="preserve">
+    <value>Өгөгдлийн санд схем бүртгэх</value>
+  </data>
+  <data name="PgReg_SSCGroup" xml:space="preserve">
+    <value>Бүлэг</value>
+  </data>
+  <data name="PgReg_StyleCreation" xml:space="preserve">
+    <value>Хэлбэр бүтээх</value>
+  </data>
+  <data name="PgReg_Styles" xml:space="preserve">
+    <value>Хэлбэрүүд</value>
+  </data>
+  <data name="PgReg_SystemName" xml:space="preserve">
+    <value>Систем дэх нэр</value>
+  </data>
+  <data name="PgReg_SystemNameAbsent" xml:space="preserve">
+    <value>Систем дэх нэр алга</value>
+  </data>
+  <data name="PgReg_SystemNameNeeded" xml:space="preserve">
+    <value>Систем дэх нэрийг оруул</value>
+  </data>
+  <data name="PgReg_TableNotDescribed" xml:space="preserve">
+    <value>Энэ хүснэгт системд тодорхойлогдоогүй байна</value>
+  </data>
+  <data name="PgReg_TableProps" xml:space="preserve">
+    <value>Хүснэгтийн шинж чанар</value>
+  </data>
+  <data name="PgReg_TablesAndFields" xml:space="preserve">
+    <value>Хүснэгтүүд ба талбарууд</value>
+  </data>
+  <data name="PgReg_TablesLayersCatalogs" xml:space="preserve">
+    <value>Хүснэгтүүд, давхаргууд, каталогууд…</value>
+  </data>
+  <data name="PgReg_TableType" xml:space="preserve">
+    <value>Хүснэгтийн төрөл</value>
+  </data>
+  <data name="PgReg_Title" xml:space="preserve">
+    <value>Хүснэгтийн бүртгэл</value>
+  </data>
+  <data name="PgReg_Views" xml:space="preserve">
+    <value>Төсөөлөл</value>
+  </data>
+  <data name="RstGrf_AddControlPoint" xml:space="preserve">
+    <value>Хяналтын цэг нэмэх</value>
+  </data>
+  <data name="RstGrf_LayerCreated" xml:space="preserve">
+    <value>Давхарга "{0}" нь системд амжилттай үүсэв</value>
+  </data>
+  <data name="RstGrf_LayerNotCreatedGrfFile" xml:space="preserve">
+    <value>Давхарга үүсээгүй ч солбицлын холбоостой файл үүссэн:
+{0}</value>
+  </data>
+  <data name="RstGrf_LoadControlPoints" xml:space="preserve">
+    <value>Хяналтын цэгүүдийг ачаалах</value>
+  </data>
+  <data name="RstGrf_Map" xml:space="preserve">
+    <value>Газрын зураг</value>
+  </data>
+  <data name="RstGrf_Name" xml:space="preserve">
+    <value>Нэр</value>
+  </data>
+  <data name="RstGrf_OpenRaster" xml:space="preserve">
+    <value>Растерийг нээх</value>
+  </data>
+  <data name="RstGrf_PointNum" xml:space="preserve">
+    <value>Цэг №{0}</value>
+  </data>
+  <data name="RstGrf_PointsNum" xml:space="preserve">
+    <value>Цэгүүдийн дугаар</value>
+  </data>
+  <data name="RstGrf_PyramidsNotCreated" xml:space="preserve">
+    <value>Пирамид босгох боломжгүй байна</value>
+  </data>
+  <data name="RstGrf_Raster" xml:space="preserve">
+    <value>Растер</value>
+  </data>
+  <data name="RstGrf_SaveControlPoints" xml:space="preserve">
+    <value>Хяналтын цэгүүдийг хадгалах</value>
+  </data>
+  <data name="RstGrf_SridShouldNotBeEmpty" xml:space="preserve">
+    <value>Тусгагийн тодорхойлол нь хоосон байх ёсгүй</value>
+  </data>
+  <data name="RstGrf_StartGeoreference" xml:space="preserve">
+    <value>Солбицол холболтыг эхлэх</value>
+  </data>
+  <data name="RstGrf_TakeCoordsFromMap" xml:space="preserve">
+    <value>Сонгосон цэгийн солбицлыг газрын зургаас авах</value>
+  </data>
+  <data name="RstGrf_Title" xml:space="preserve">
+    <value>Растерын солбицол холболт</value>
+  </data>
+  <data name="login_errIncorrectProxySettings" xml:space="preserve">
+    <value>Прокси-серверийн тохиргоог хийхэд гарсан алдаа</value>
+  </data>
+  <data name="AbsM.ETableType.Cosmetic" xml:space="preserve">
+    <value>Гадна өнгөн давхаргууд</value>
+  </data>
+  <data name="WmMenu_View_Map_ShowObjectForm" xml:space="preserve">
+    <value>Газрын зурган дээр объект үүсгэсний дараа атрибут цонхыг нээх</value>
+  </data>
+  <data name="Culture_M_CultureDefault" xml:space="preserve">
+    <value>Системийн хэл</value>
+  </data>
+  <data name="Info_Attribute" xml:space="preserve">
+    <value>Атрибут</value>
+  </data>
+  <data name="Info_Highlight" xml:space="preserve">
+    <value>Тодруулах</value>
+  </data>
+  <data name="Info_ObjectsInfo" xml:space="preserve">
+    <value>Обьектуудын мэдээлэл</value>
+  </data>
+  <data name="Info_OpenObject" xml:space="preserve">
+    <value>Атрибутын цонх нээх</value>
+  </data>
+  <data name="Info_Show" xml:space="preserve">
+    <value>Үзүүлэх</value>
+  </data>
+  <data name="Loc_CosmeticLayer" xml:space="preserve">
+    <value>Гадна өнгөн давхарга</value>
+  </data>
+  <data name="Print_FitMap" xml:space="preserve">
+    <value>Тодруулсан талбайд зураг оруулах</value>
+  </data>
+  <data name="Print_Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="Print_PrintSelected" xml:space="preserve">
+    <value>Тодруулсан хуудсуудыг хэвлэх</value>
+  </data>
+  <data name="Print_SaveSelected" xml:space="preserve">
+    <value>Тодруулсан хуудсуудыг хадгалах</value>
+  </data>
+  <data name="Print_SelectionMode" xml:space="preserve">
+    <value>Тодруулах горим</value>
+  </data>
+  <data name="Print_UpdateExtent" xml:space="preserve">
+    <value>Зургийн экстентийг шинэчлэх</value>
+  </data>
+  <data name="Search_ChooseTables" xml:space="preserve">
+    <value>Хайлтанд зориулж хүснэгтүүд сонгох</value>
+  </data>
+  <data name="WinMain_CurrentWorkset" xml:space="preserve">
+    <value>Ашиглаж буй ажлын багц</value>
+  </data>
+  <data name="WinMain_EditableLayer" xml:space="preserve">
+    <value>Засварлагдахуйц давхарга</value>
+  </data>
+  <data name="WinMain_InformationPanel" xml:space="preserve">
+    <value>Мэдээлэл гаралтын зурвас</value>
+  </data>
+  <data name="WinMain_Projection" xml:space="preserve">
+    <value>Тусгаг</value>
+  </data>
+  <data name="WinMain_Scale" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="WinMain_SearchBar" xml:space="preserve">
+    <value>Хайлтын талбар</value>
+  </data>
+  <data name="Info_MakeEditable" xml:space="preserve">
+    <value>Засварлагддаг хийх</value>
+  </data>
+  <data name="Info_OpenTable" xml:space="preserve">
+    <value>Хүснэгт нээх</value>
+  </data>
+</root>

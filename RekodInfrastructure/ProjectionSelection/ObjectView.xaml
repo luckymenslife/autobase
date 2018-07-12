@@ -1,0 +1,43 @@
+﻿<Window x:Class="Rekod.ProjectionSelection.ObjectView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Информация о проекции" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        Closed="Window_Closed" 
+        MinWidth="300" Width="600" 
+        ResizeMode="NoResize" 
+        SizeToContent="Height" 
+        Icon="/rekod_infrastructure;component/Globe.ico" 
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <DockPanel VerticalAlignment="Top">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button  HorizontalAlignment="Right" Name="getProjBtn" Content="Выбрать" Width="65" Click="getProjBtn_Click" Margin="5"></Button>
+                <Button  HorizontalAlignment="Right" Name="saveBtn" Content="Сохранить" Width="65" Click="saveBtn_Click" Margin="5" Visibility="Collapsed"></Button>
+                <Button  HorizontalAlignment="Right" Name="cancelBtn" Content="Отмена" Width="65" Click="cancelBtn_Click" Margin="5"></Button>
+            </StackPanel>
+            <DataGrid IsReadOnly="True" DockPanel.Dock="Top" 
+                         Name="dataGrid1" VerticalAlignment="Stretch" 
+                         Margin="5,5,5,10" HorizontalAlignment="Stretch" 
+                         SelectionMode="Single" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="SRID" Binding="{Binding Path=srid}" MinWidth="50" x:Name="srid" />
+                    <DataGridTextColumn Header="Автор" Binding="{Binding Path=auth_name}" MinWidth="50" x:Name="auth_name" />
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="0.2*" x:Name="name" />
+                    <DataGridTextColumn Header="Зона" Binding="{Binding Path=Location}" Width="0.3*" x:Name="location" />
+                    <DataGridCheckBoxColumn Header="Системная" Binding="{Binding Path=sys_proj}" MinWidth="70" x:Name="sys_proj" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <GroupBox DockPanel.Dock="Top" VerticalAlignment="Top">
+                <DockPanel VerticalAlignment="Top">
+                    <RichTextBox DockPanel.Dock="Bottom" Name="richTextBox2" IsReadOnly="True" 
+                                 DataContext="{Binding}" Margin="5" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" />
+                    <Label DockPanel.Dock="Bottom" Content="Выражение проекции" VerticalAlignment="Top"></Label>
+                    <Label DockPanel.Dock="Top" Content="Строка проекции"></Label>
+                    <RichTextBox DockPanel.Dock="Top" Name="richTextBox1" IsReadOnly="True" DataContext="{Binding}" 
+                                 Margin="5" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+                </DockPanel>
+            </GroupBox>
+        </DockPanel>
+    </Grid>
+</Window>

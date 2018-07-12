@@ -1,0 +1,3247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{119AAAA6-27AC-4B06-9B6F-C791D157686F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rekod</RootNamespace>
+    <AssemblyName>rekod_infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ApplicationIcon>Globe.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>
+    </StartupObject>
+    <SignManifests>false</SignManifests>
+    <ManifestCertificateThumbprint>66553F931D602288CB5DEB81D3310210EC8DD4E1</ManifestCertificateThumbprint>
+    <ManifestKeyFile>RekodInfrastructura_TemporaryKey.pfx</ManifestKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.5.5.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;dbg</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;rls</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'GS|x86'">
+    <OutputPath>..\bin\GS\</OutputPath>
+    <DefineConstants>TRACE;gs</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Arsenal|x86'">
+    <OutputPath>..\bin\Arsenal\</OutputPath>
+    <DefineConstants>TRACE;ars</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Arsenal mobile|x86'">
+    <OutputPath>..\bin\Arsenal mobile\</OutputPath>
+    <DefineConstants>TRACE;ars</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'kznik|x86'">
+    <OutputPath>..\bin\kznik\</OutputPath>
+    <DefineConstants>TRACE;gs</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'UNIDO|x86'">
+    <OutputPath>..\bin\UNIDO\</OutputPath>
+    <DefineConstants>TRACE;gs</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <WarningLevel>2</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.mvMapLib, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\AxInterop.mvMapLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DeepZoom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\DeepZoom.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifMetadata, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\ExifMetadata.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=2013.1.9.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\FastReport.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2013.1.9.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\FastReport.Bars.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2013.1.9.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\FastReport.Editor.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastReport.Postgres">
+      <HintPath>..\Data\FastReport.Postgres.dll</HintPath>
+    </Reference>
+    <Reference Include="gdalconst_csharp, Version=1.0.5122.29787, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MVActiveX\gdalconst_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=1.0.4704.32537, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MVActiveX\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.mvMapLib, Version=0.7.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\Data\Interop.mvMapLib.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Data\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Data\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.92, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="OFFICE, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\Data\OFFICE.DLL</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=1.0.4704.32537, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MVActiveX\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="osr_csharp, Version=1.0.4704.32536, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>MVActiveX\osr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="RESTLib">
+      <HintPath>..\Data\RESTLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\Data\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\Data\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Data\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app.xaml.cs">
+      <DependentUpon>app.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AttachedProperties\CursorHelper.cs" />
+    <Compile Include="AttachedProperties\DragAndDrop.cs" />
+    <Compile Include="AttachedProperties\FrameworkElementIsVisible.cs" />
+    <Compile Include="AttachedProperties\propDataGrid.cs" />
+    <Compile Include="AttachedProperties\SyncMultiSelectListBox.cs" />
+    <Compile Include="Behaviors\CancelUncheckOnClickBehavior.cs" />
+    <Compile Include="Behaviors\MultiSelectorBehaviours.cs" />
+    <Compile Include="Behaviors\WindowHideOnCloseBehavior.cs" />
+    <Compile Include="Classes\NameValue.cs" />
+    <Compile Include="Classes\Singleton.cs" />
+    <Compile Include="Classes\SSC.cs" />
+    <Compile Include="Controls\DropDownButton.cs" />
+    <Compile Include="Converters\CollectionViewConverter.cs" />
+    <Compile Include="Converters\InverseValueConverter.cs" />
+    <Compile Include="Converters\NullEmptyVisibilityConverter.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\FieldM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\IAttributeM.cs" />
+    <Compile Include="DBInfoEdit\ViewModel\GridViewSettingVM.cs" />
+    <Compile Include="DBInfoEdit\View\GridViewSettingWindow.xaml.cs">
+      <DependentUpon>GridViewSettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtensionMethods\OgrGeometryExtension.cs" />
+    <Compile Include="Properties\Resources.mn.Designer.cs">
+      <DependentUpon>Resources.mn.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Services\Encrypting.cs" />
+    <Compile Include="Services\OgrService.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosTableViewFilterM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosTableViewFiltersM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\ITableViewFilterM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\ViewModel\CosmeticTableViewFilterVM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\ViewModel\CosmeticTableViewVM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\CosmeticTableViewV.xaml.cs">
+      <DependentUpon>CosmeticTableViewV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\PgCachedStylesManager.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosmeticAttributes\CosmeticAttributeM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosmeticFieldM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosmeticObjectM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\Model\CosmeticTableBaseM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\ViewModel\CosmeticAttributes\CosmeticAttributesListVM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\ViewModel\CosmeticAttributes\CosmeticAttributesVM.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\CosmeticLayerV.xaml.cs">
+      <DependentUpon>CosmeticLayerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceCosmetic\PassThroughConverter.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\CosmeticRepositoryV.xaml.cs">
+      <DependentUpon>CosmeticRepositoryV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceCosmetic\View\DefaultStyleView.xaml.cs">
+      <DependentUpon>DefaultStyleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceCosmetic\View\ValidationRules\CosmeticPropertiesValidationRule.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\ValidationRules\DefaultStyleValidationRule.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\CosmeticAttributes\CosmeticAttributesV.xaml.cs">
+      <DependentUpon>CosmeticAttributesV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceCosmetic\View\ValidationRules\DefaultStylePointValidationRule.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\ValidationRules\DefaultStylePolygonValidationRule.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\View\ValidationRules\DefaultStyleLineValidationRule.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\Converters\DbDataTypeToSystemTypeConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\Model\RFieldM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\Model\RSchemeM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\Model\RTableM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\Model\RTableTypeM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\ViewModel\RTableRegistrationVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RFieldV.xaml.cs">
+      <DependentUpon>RFieldV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RTableRegistrationV.xaml.cs">
+      <DependentUpon>RTableRegistrationV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RTableV.xaml.cs">
+      <DependentUpon>RTableV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\TableTypeRightsVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\CaptionStyleView.xaml.cs">
+      <DependentUpon>CaptionStyleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\History\ChooseTB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\ActionUsersRightsV.xaml.cs">
+      <DependentUpon>ActionUsersRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ImportTableV.xaml.cs">
+      <DependentUpon>ImportTableV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\CaptionStyleValidationRule.cs" />
+    <Compile Include="DataAccess\SourceRastr\Model\IRastrXml.cs" />
+    <Compile Include="DataAccess\SourceRastr\Model\TMSRastrM.cs" />
+    <Compile Include="DataAccess\SourceRastr\Model\TWMSRastrM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\AdminRightsV.xaml.cs">
+      <DependentUpon>AdminRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\PgListActionUserRightsV.xaml.cs">
+      <DependentUpon>PgListActionUserRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\PgListTableRightsV.xaml.cs">
+      <DependentUpon>PgListTableRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\PgListUserRightsV.xaml.cs">
+      <DependentUpon>PgListUserRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\TableRightsV.xaml.cs">
+      <DependentUpon>TableRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\TableTree.xaml.cs">
+      <DependentUpon>TableTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRights\UserRightsV.xaml.cs">
+      <DependentUpon>UserRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceRastr\View\Behaviors\ConnectTypeBuildPyramidsBehavior.cs" />
+    <Compile Include="DataAccess\SourceRastr\View\Behaviors\FileExtensionConnectTypeBehavior.cs" />
+    <Compile Include="DataAccess\SourceCosmetic\ViewModel\CosmeticDataRepositoryVM.cs" />
+    <Compile Include="DBHistory\ChooseTB.cs" />
+    <Compile Include="DBTablesEdit\SyncController.cs" />
+    <Compile Include="ExtraFunctions\XmlWork.cs" />
+    <Compile Include="FastReportClasses\SaveReportFrm.xaml.cs">
+      <DependentUpon>SaveReportFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpFiles\LicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpFiles\LicenseForm.Designer.cs">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapFunctions\MainMapClass.cs" />
+    <Compile Include="MapFunctions\ProxyParameters.cs" />
+    <Compile Include="Classes\Culture_M.cs" />
+    <Compile Include="MapLayersItemInfo\Model\AttributeInfo.cs" />
+    <Compile Include="MapLayersItemInfo\Model\LayerInfo.cs" />
+    <Compile Include="MapLayersItemInfo\Model\ObjectInfo.cs" />
+    <Compile Include="MapLayersItemInfo\ViewModel\MapLayersItemInfoVM.cs" />
+    <Compile Include="MapLayersItemInfo\View\MapLayersItemInfoV.xaml.cs">
+      <DependentUpon>MapLayersItemInfoV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintModule\Behaviors\OnDoubleClickEditBehavior.cs" />
+    <Compile Include="PrintModule\ViewModel\SaveSelectedPagesWindowVM.cs" />
+    <Compile Include="PrintModule\View\SaveSelectedPagesWindow.xaml.cs">
+      <DependentUpon>SaveSelectedPagesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectionSelection\View\ExportProjSelectionV.xaml.cs">
+      <DependentUpon>ExportProjSelectionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectionSelection\ViewModel\ExportProjSelectionVM.cs" />
+    <Compile Include="ProjectionSelection\SelectProjectionDialog.cs" />
+    <Compile Include="RasterGeoreferenceModule\Model\GDALOverviewsM.cs" />
+    <Compile Include="RasterGeoreferenceModule\Model\GDALOverviewsTileSource.cs" />
+    <Compile Include="RasterGeoreferenceModule\Model\LinkedPointM.cs" />
+    <Compile Include="RasterGeoreferenceModule\ViewModel\GeoreferencePreviewVM.cs" />
+    <Compile Include="RasterGeoreferenceModule\View\GeoreferencePreviewV.xaml.cs">
+      <DependentUpon>GeoreferencePreviewV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\SettingsDB\SettingsDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingsDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\SettingsFile\DataBase_M.cs" />
+    <Compile Include="Repository\SettingsFile\LocalParametr_M.cs" />
+    <Compile Include="PluginSettings\LocalSettings\ProxySettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluginSettings\LocalSettings\ProxySettingsControl.Designer.cs">
+      <DependentUpon>ProxySettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectionSelection\AddProj.xaml.cs" />
+    <Compile Include="ProjectionSelection\AddProjTestDialog.xaml.cs" />
+    <Compile Include="ProjectionSelection\MainWindow.xaml.cs" />
+    <Compile Include="ProjectionSelection\ObjectView.xaml.cs" />
+    <Compile Include="ProjectionSelection\Model\Projection.cs" />
+    <Compile Include="ProjectionSelection\View\SelectProjectionV.xaml.cs">
+      <DependentUpon>SelectProjectionV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectionSelection\ViewModel\SelectProjectionVM.cs" />
+    <Compile Include="Repository\SettingsFile\ProxyParametrs_M.cs" />
+    <Compile Include="Repository\SettingsFile\RastrXml_M.cs" />
+    <Compile Include="Repository\SettingsXML.cs" />
+    <Compile Include="Services\SQLiteCopyPaste.cs" />
+    <Compile Include="Services\TypeResourceAttribute.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\BehaviorBinding.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\CommandBehaviorCollection.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\CommandEventParameter.cs" />
+    <Compile Include="Behaviors\ColorChooseBehavior.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\CommandBehavior.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\CommandBehaviorBinding.cs" />
+    <Compile Include="Behaviors\AttachedCommandBehavior\EventHandlerGenerator.cs" />
+    <Compile Include="Behaviors\CopyTranslitBehavior.cs" />
+    <Compile Include="Behaviors\DataGridBehavior.cs" />
+    <Compile Include="Behaviors\DataGridColumnVisibilityBehavior.cs" />
+    <Compile Include="Behaviors\EventCommandBindableBehavior.cs" />
+    <Compile Include="Behaviors\ItemsSourceChangedBehavior.cs" />
+    <Compile Include="Behaviors\OnLoadedSelectFirstBehavior.cs" />
+    <Compile Include="Behaviors\TabItemDisabledBehavior.cs" />
+    <Compile Include="Behaviors\ToggleButtonUpdateTargetBehavior.cs" />
+    <Compile Include="Behaviors\TreeViewRightClickBehavior.cs" />
+    <Compile Include="Classes\ButtonManager.cs" />
+    <Compile Include="Classes\classesOfMetods.cs" />
+    <Compile Include="Classes\ExportExcelManager.cs" />
+    <Compile Include="Classes\ExportTxtManager.cs" />
+    <Compile Include="Services\SqlWork.cs" />
+    <Compile Include="CmdPlugin\MainCallPlugin.cs" />
+    <Compile Include="CmdPlugin\Model\PropertyCmd.cs" />
+    <Compile Include="CmdPlugin\Module\IconModule.cs" />
+    <Compile Include="CmdPlugin\Module\XMLModule.cs" />
+    <Compile Include="CmdPlugin\Views\PropertyCmdView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CmdPlugin\Views\PropertyCmdView.Designer.cs">
+      <DependentUpon>PropertyCmdView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CmdPlugin\Views\UCSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CmdPlugin\Views\UCSettings.Designer.cs">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GeographyTextBox.cs" />
+    <Compile Include="Converters\CommandParametersConverter.cs" />
+    <Compile Include="Converters\EnumVisibilityConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgFullTextSearch\PgSearchObjectM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgFullTextSearch\PgSearchTableM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgImportTableVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgFullTextSearchVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgGroupsVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgIndexVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgLayerGroupsVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Converters\LastItemMultiConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\PgAttributes\GeometryCharacteristicsV.xaml.cs">
+      <DependentUpon>GeometryCharacteristicsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgAttributes\GeomRecalcV.xaml.cs">
+      <DependentUpon>GeomRecalcV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgAttributes\PgAttributesGeomV.xaml.cs">
+      <DependentUpon>PgAttributesGeomV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgFullTextSearch\PgFullTextSearchUV.xaml.cs">
+      <DependentUpon>PgFullTextSearchUV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceRastr\Model\WMSRastrM.cs" />
+    <Compile Include="FastReportClasses\ReportEditor_VM.cs" />
+    <Compile Include="FastReportClasses\ReportItem_M.cs" />
+    <Compile Include="FastReportClasses\Report_M.cs" />
+    <Compile Include="FastReportClasses\ReportEditor_V.xaml.cs">
+      <DependentUpon>ReportEditor_V.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FastReportClasses\Report_VM.cs" />
+    <Compile Include="FastReportClasses\TableForReport.cs" />
+    <Compile Include="FastReportClasses\TableModel_M.cs" />
+    <Compile Include="SQLiteSettings\FilterSaveFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SQLiteSettings\FilterSaveFrm.Designer.cs">
+      <DependentUpon>FilterSaveFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSets\WorkSets_M.cs" />
+    <Compile Include="ViewModel\ToolBar_VM.cs" />
+    <Compile Include="Classes\TransformGeometry.cs" />
+    <Compile Include="ExtraFunctions\Converts.cs" />
+    <Compile Include="Controllers\EmptyCommand.cs" />
+    <Compile Include="ExtraFunctions\Sorts.cs" />
+    <Compile Include="Controllers\FilePreviewController.cs" />
+    <Compile Include="Controllers\MTObservableCollection.cs" />
+    <Compile Include="Controls\AutoFocusTextBox.cs" />
+    <Compile Include="Controls\CheckObjects.xaml.cs">
+      <DependentUpon>CheckObjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BooleansToBooleanConverter.cs" />
+    <Compile Include="Converters\BooleanYesNoConverter.cs" />
+    <Compile Include="Converters\EnumWrapperConverter.cs" />
+    <Compile Include="Converters\MathConverter.cs" />
+    <Compile Include="Converters\PortionToPercentConverter.cs" />
+    <Compile Include="Converters\YesNoBooleanConverter.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\GroupM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\AbstractSource\Model\IDataRepositoryVM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\IFieldM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\IGroupM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\ILayerM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\ITableBaseM.cs" />
+    <Compile Include="DataAccess\AbstractSource\Model\TableBaseM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\AbstractSource\ViewModel\DataRepositoryVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\RelayCommand.cs" />
+    <Compile Include="Controllers\ViewModelBase.cs" />
+    <Compile Include="Controllers\WindowViewModelBase_VM.cs" />
+    <Compile Include="Converters\BooleanVisibilityConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\CollectionEmptyVisibilityConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\FieldsOfTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\IntCharConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\IntColorConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\LabelMaskConverter.cs" />
+    <Compile Include="Converters\ObjectOfTypeConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\PenTypeBitmapSourceConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\PropertyExistsVisibilityConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\StyleHatchBitmapSourceConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\TableViewTabEnableConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Converters\TableViewTabVisibilityConverter.cs" />
+    <Compile Include="Converters\TrueFalseConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Exporters\SHPExporter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Exporters\TXTExporter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\ExportQuestion.xaml.cs">
+      <DependentUpon>ExportQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importer.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importers\DBFImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importers\ExcelImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importers\ExcelUC.xaml.cs">
+      <DependentUpon>ExcelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importers\SHPImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\Importers\SHPUC.xaml.cs">
+      <DependentUpon>SHPUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\ImportExport.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ImportExport\ImportWindow.xaml.cs">
+      <DependentUpon>ImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgActionM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgAttributes\IPgAttributesVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgAttributes\PgAttributeEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgAttributes\PgAttributeFileM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgAttributes\PgAttributeM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgAttributes\PgAttributeVariantM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgExtentM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgFieldM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgFileInfoM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgHistory\PgHistoryAttribute.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgHistory\PgHistoryDate.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgHistory\PgHistoryEvent.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgStyleLableM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgStyleLayerM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgStyleM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgStyleObjectM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgStyleSetsM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableBaseM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableHierarchyM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableView\IPgTableViewFilterM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableView\PgFieldAllFilterM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableView\PgTableViewFilterM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgTableView\PgTableViewFiltersM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgActionRightM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\Model\PgUserM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\Model\PgUserRightsM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgAttributes\PgAttributeFilesVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgAttributes\PgAttributesGeomVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgAttributes\PgAttributesListVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgAttributes\PgAttributesStyleVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgAttributes\PgAttributesVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgDataRepositoryVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgHistoryVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgListUserRightsVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgRepositoriesConfig_VM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgTableView\PgTableViewFilterVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\ViewModel\PgTableView\PgTableViewVM.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\FieldsView.xaml.cs">
+      <DependentUpon>FieldsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\FieldView.xaml.cs">
+      <DependentUpon>FieldView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\GroupsView.xaml.cs">
+      <DependentUpon>GroupsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\LabelStyleView.xaml.cs">
+      <DependentUpon>LabelStyleView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\LayerGroupsView.xaml.cs">
+      <DependentUpon>LayerGroupsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\MapLayerStyleView.xaml.cs">
+      <DependentUpon>MapLayerStyleView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\MapLayerView.xaml.cs">
+      <DependentUpon>MapLayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\ObjectProviderValues.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\RepoConfigView.xaml.cs">
+      <DependentUpon>RepoConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\StyleIntervalReference.xaml.cs">
+      <DependentUpon>StyleIntervalReference.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\StyleRange.xaml.cs">
+      <DependentUpon>StyleRange.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\TableProperties.xaml.cs">
+      <DependentUpon>TableProperties.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\TableRightsV.xaml.cs">
+      <DependentUpon>TableRightsV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\UserConfigV.xaml.cs">
+      <DependentUpon>UserConfigV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ConfigView\UsersRightsV.xaml.cs">
+      <DependentUpon>UsersRightsV.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\Converters\PgAttributesValueConverter.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\History\PgHistoryV.xaml.cs">
+      <DependentUpon>PgHistoryV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ObjectStyleEditV.xaml.cs">
+      <DependentUpon>ObjectStyleEditV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgAttributes\PgAttributesUV.xaml.cs">
+      <DependentUpon>PgAttributesUV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgRepositoriesConfig_V.xaml.cs">
+      <DependentUpon>PgRepositoriesConfig_V.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\PgTableView\PgTableViewV.xaml.cs">
+      <DependentUpon>PgTableViewV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\Styles\PgTableViewSV.xaml.cs">
+      <DependentUpon>PgTableViewSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\FieldValidationRule.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\GroupPropertiesValidationRule.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\MapLayerLabelStyleValidationRule.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\MapLayerStyleValidationRule.cs" />
+    <Compile Include="DataAccess\SourcePostgres\View\ValidationRules\TablePropertiesValidationRule.cs" />
+    <Compile Include="DataAccess\SourceRastr\Model\RastTableBaseM.cs" />
+    <Compile Include="DataAccess\SourceRastr\ViewModel\RastrDataRepositoryVM.cs" />
+    <Compile Include="DataAccess\SourceRastr\View\RastrLayerV.xaml.cs">
+      <DependentUpon>RastrLayerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceRastr\View\RastrRepositoryV.xaml.cs">
+      <DependentUpon>RastrRepositoryV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceRastr\View\ValidationRules\RastrPropertiesValidationRule.cs" />
+    <Compile Include="DataAccess\SourceVMP\Model\VMPTableBaseM.cs" />
+    <Compile Include="DataAccess\SourceVMP\ViewModel\VMPDataRepositoryVM.cs" />
+    <Compile Include="DataAccess\SourceVMP\View\ValidationRules\VMPPropertiesValidationRule.cs" />
+    <Compile Include="DataAccess\SourceVMP\View\VMPLayerV.xaml.cs">
+      <DependentUpon>VMPLayerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\SourceVMP\View\VMPRepositoryV.xaml.cs">
+      <DependentUpon>VMPRepositoryV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\Converters\CursorEqualsCurrentCursorConverter.cs" />
+    <Compile Include="DataAccess\TableManager\Model\ITableManagerVM.cs" />
+    <Compile Include="DataAccess\TableManager\ViewModel\TableManagerVM.cs" />
+    <Compile Include="DataAccess\TableManager\View\AddSourceV.xaml.cs">
+      <DependentUpon>AddSourceV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\DeleteSourceV.xaml.cs">
+      <DependentUpon>DeleteSourceV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\TableManagerV.xaml.cs">
+      <DependentUpon>TableManagerV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\Templates\AllLayersTreeViewTemplate.xaml.cs">
+      <DependentUpon>AllLayersTreeViewTemplate.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\Templates\GroupsTreeViewTemplate.xaml.cs">
+      <DependentUpon>GroupsTreeViewTemplate.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\Templates\LayersManagerStyles.xaml.cs">
+      <DependentUpon>LayersManagerStyles.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\Templates\VisibleLayersTreeViewTemplate.xaml.cs">
+      <DependentUpon>VisibleLayersTreeViewTemplate.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\TableManager\View\TextBlockService.cs" />
+    <Compile Include="Controls\TreeListView.cs" />
+    <Compile Include="FastReportClasses\GenerateReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FastReportClasses\GenerateReportForm.Designer.cs">
+      <DependentUpon>GenerateReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSets\SaveSetFrm.xaml.cs">
+      <DependentUpon>SaveSetFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintModule\Converters\EnumBooleanConverter.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\LayerBase.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\LayerObjectBase.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\Node.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\RastrLayer.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\RastrLayerObject.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\ServiceLayer.cs" />
+    <Compile Include="PrintModule\LayersObjectModel\ServiceLayerObject.cs" />
+    <Compile Include="PrintModule\RenderComponents\DrawingCanvas.cs" />
+    <Compile Include="PrintModule\Service\LogicalTreeHelperService.cs" />
+    <Compile Include="PrintModule\Service\RastrSource.cs" />
+    <Compile Include="PrintModule\Thumbs\ResizeThumb.cs" />
+    <Compile Include="PrintModule\Thumbs\ThumbBase.cs" />
+    <Compile Include="PrintModule\ViewModel\PreviewWindowVM.cs" />
+    <Compile Include="PrintModule\View\PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintModule\View\PrintAreaTableV.xaml.cs">
+      <DependentUpon>PrintAreaTableV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintModule\View\ValidationRules\PrinatAreaTableValidationRule.cs" />
+    <Compile Include="Properties\Resources.en.Designer.cs">
+      <DependentUpon>Resources.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SampleData\WorkSet_SD\WorkSet_SD.xaml.cs">
+      <DependentUpon>WorkSet_SD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BindingProxy.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\IWindowViewModelMappings.cs" />
+    <Compile Include="Services\ServiceClass.cs" />
+    <Compile Include="Services\WindowViewModelMappings.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Styles\objStyleRange.cs" />
+    <Compile Include="Styles\StylesVM.cs" />
+    <Compile Include="Converters\AttributesOfObjectConverter.cs" />
+    <Compile Include="DBHistory\CheckObjects.xaml.cs">
+      <DependentUpon>CheckObjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\ExportToExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\ExportToExcel.Designer.cs">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\FindBox2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\FindBox2.Designer.cs">
+      <DependentUpon>FindBox2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\GeometryCharacteristics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\GeometryCharacteristics.designer.cs">
+      <DependentUpon>GeometryCharacteristics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\ReCalcGeom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\ReCalcGeom.designer.cs">
+      <DependentUpon>ReCalcGeom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\SetSeparatorFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\SetSeparatorFrm.Designer.cs">
+      <DependentUpon>SetSeparatorFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBInfoEdit\ucTableObjects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\ucTableObjects.Designer.cs">
+      <DependentUpon>ucTableObjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBLayerForms\LayerItemsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBLayerForms\LayerItemsView.designer.cs">
+      <DependentUpon>LayerItemsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBLayerForms\layersManager.cs" />
+    <Compile Include="DBTablesEdit\CreateCopyTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\CreateCopyTable.Designer.cs">
+      <DependentUpon>CreateCopyTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\EditGroupsOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\EditGroupsOrder.Designer.cs">
+      <DependentUpon>EditGroupsOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpFiles\HelpLableFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpFiles\HelpLableFrm.Designer.cs">
+      <DependentUpon>HelpLableFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\ImgBrush.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\ImgBrush.designer.cs">
+      <DependentUpon>ImgBrush.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\ImgBrushContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\ImgBrushContainer.designer.cs">
+      <DependentUpon>ImgBrushContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\ImgBrushContainerFill.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\LabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\LabelControl.designer.cs">
+      <DependentUpon>LabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\LabelStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\LabelStyle.designer.cs">
+      <DependentUpon>LabelStyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpFiles\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpFiles\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\Exporters\ExportDBF.cs" />
+    <Compile Include="ImportExport\Exporters\SHPExporter.cs" />
+    <Compile Include="ImportExport\ExportQuestion.xaml.cs">
+      <DependentUpon>ExportQuestion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\Importer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportExport\Importers\DBFImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportExport\Importers\ExcelImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportExport\Importers\ExcelUC.xaml.cs">
+      <DependentUpon>ExcelUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\Importers\SHPImporter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImportExport\Importers\SHPUC.xaml.cs">
+      <DependentUpon>SHPUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ImportExport.cs" />
+    <Compile Include="ImportExport\ImportWindow.xaml.cs">
+      <DependentUpon>ImportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PluginModel\PluginFunc.cs" />
+    <Compile Include="Model\RedefinitionControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Model\AttributesOfObjectModel.cs" />
+    <Compile Include="Model\FilesOfObjectModel.cs" />
+    <Compile Include="PluginSettings\interfaceClass.cs" />
+    <Compile Include="Classes\relation.cs" />
+    <Compile Include="DBInfoEdit\itemsTableGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBInfoEdit\itemsTableGridForm.Designer.cs">
+      <DependentUpon>itemsTableGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\ActionWithTables.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\ActionWithTables.Designer.cs">
+      <DependentUpon>ActionWithTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditAtributs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditAtributs.Designer.cs">
+      <DependentUpon>AddEditAtributs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditGroup.Designer.cs">
+      <DependentUpon>AddEditGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\AddEditTable.Designer.cs">
+      <DependentUpon>AddEditTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\CloseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\DBTablesGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\DBTablesGroups.Designer.cs">
+      <DependentUpon>DBTablesGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\DoubleBufferedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\FiledEditListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\FiledEditListControl.Designer.cs">
+      <DependentUpon>FiledEditListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\GroupFunct.cs" />
+    <Compile Include="DBTablesEdit\ManagementTables.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\ManagementTables.designer.cs">
+      <DependentUpon>ManagementTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\PanelGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\PanelGroup.Designer.cs">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\PropertyFieldControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\PropertyFieldControl.Designer.cs">
+      <DependentUpon>PropertyFieldControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\propertyTableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\propertyTableControl.Designer.cs">
+      <DependentUpon>propertyTableControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\QuestionDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\QuestionDelete.Designer.cs">
+      <DependentUpon>QuestionDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\StyleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\StyleControl.Designer.cs">
+      <DependentUpon>StyleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\TableGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\TableGroup.Designer.cs">
+      <DependentUpon>TableGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBTablesEdit\TableListEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBTablesEdit\TableListEdit.Designer.cs">
+      <DependentUpon>TableListEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpFiles\AboutBoxGs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpFiles\AboutBoxGs.Designer.cs">
+      <DependentUpon>AboutBoxGs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapLayersInfo\FindBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapLayersInfo\FindBox.Designer.cs">
+      <DependentUpon>FindBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapLayersInfo\layerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MapLayersInfo\layerInfo.designer.cs">
+      <DependentUpon>layerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluginSettings\PluginInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluginSettings\PluginInfoControl.Designer.cs">
+      <DependentUpon>PluginInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluginSettings\PluginSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PluginSettings\PluginSettingsForm.Designer.cs">
+      <DependentUpon>PluginSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluginSettings\Plugins.cs" />
+    <Compile Include="PluginSettings\LocalSettings\UserSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PluginSettings\LocalSettings\UserSettingsControl.Designer.cs">
+      <DependentUpon>UserSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Progress\TheraedProgres.cs" />
+    <Compile Include="SQLiteSettings\FilterModels.cs" />
+    <Compile Include="SQLiteSettings\FilterViewModel.cs" />
+    <Compile Include="Services\SQLiteWork.cs" />
+    <Compile Include="SQLiteSettings\SqlJsonParser.cs" />
+    <Compile Include="Styles\StylesVMP_VM.cs" />
+    <Compile Include="Styles\StylesPgTable_VM.cs" />
+    <Compile Include="Styles\StylesPgField_VM.cs" />
+    <Compile Include="TableData\BreakOrSkipDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableData\BreakOrSkipDialog.Designer.cs">
+      <DependentUpon>BreakOrSkipDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolsFrm\NotFindSettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolsFrm\NotFindSettingFrm.Designer.cs">
+      <DependentUpon>NotFindSettingFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolsFrm\PrintSettingsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolsFrm\PrintSettingsFrm.Designer.cs">
+      <DependentUpon>PrintSettingsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolsFrm\RotateFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolsFrm\RotateFrm.Designer.cs">
+      <DependentUpon>RotateFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolsFrm\SelectedSetFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolsFrm\SelectedSetFrm.Designer.cs">
+      <DependentUpon>SelectedSetFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingStartPosition\PosNameFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingStartPosition\PosNameFrm.Designer.cs">
+      <DependentUpon>PosNameFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingStartPosition\SettingsPosFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingStartPosition\SettingsPosFrm.Designer.cs">
+      <DependentUpon>SettingsPosFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\workLogFile.cs" />
+    <Compile Include="Classes\exif.cs" />
+    <Compile Include="Classes\generalClass.cs" />
+    <Compile Include="DBLayerForms\LayerManagerEventArgsM.cs" />
+    <Compile Include="DBLayerForms\layersManagerFRMRastr.cs" />
+    <Compile Include="DBLayerForms\layerRastrM.cs" />
+    <Compile Include="lineRes.Designer.cs">
+      <DependentUpon>lineRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ImageBrushRes.Designer.cs">
+      <DependentUpon>ImageBrushRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="mainFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="mainFrm.designer.cs">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Progress\ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Progress\ProgressForm.designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserSets\LayerStyleFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserSets\LayerStyleFrm.Designer.cs">
+      <DependentUpon>LayerStyleFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSets\MessageInfo_VM.cs" />
+    <Compile Include="UserSets\WorkSetItem_S.cs" />
+    <Compile Include="UserSets\WorkSets_V.xaml.cs">
+      <DependentUpon>WorkSets_V.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserSets\WorkSets_VM.cs" />
+    <Compile Include="ViewModel\FilesOfObjectViewModel.cs" />
+    <Compile Include="ViewModel\AttributesOfObjectViewModel.cs" />
+    <Compile Include="ViewModel\ToolButton_VM.cs" />
+    <Compile Include="Views\AttributesOfObjectView.xaml.cs">
+      <DependentUpon>AttributesOfObjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinMain.xaml.cs">
+      <DependentUpon>WinMain.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CmdPlugin\Views\PropertyCmdView.en.resx">
+      <DependentUpon>PropertyCmdView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CmdPlugin\Views\PropertyCmdView.mn.resx">
+      <DependentUpon>PropertyCmdView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CmdPlugin\Views\PropertyCmdView.resx">
+      <DependentUpon>PropertyCmdView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CmdPlugin\Views\UCSettings.en.resx">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CmdPlugin\Views\UCSettings.mn.resx">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CmdPlugin\Views\UCSettings.resx">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ExportToExcel.en.resx">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ExportToExcel.mn.resx">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ExportToExcel.resx">
+      <DependentUpon>ExportToExcel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\FindBox2.mn.resx">
+      <DependentUpon>FindBox2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\FindBox2.resx">
+      <DependentUpon>FindBox2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\GeometryCharacteristics.en.resx">
+      <DependentUpon>GeometryCharacteristics.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\GeometryCharacteristics.mn.resx">
+      <DependentUpon>GeometryCharacteristics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\GeometryCharacteristics.resx">
+      <DependentUpon>GeometryCharacteristics.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\itemsTableGridForm.resx">
+      <DependentUpon>itemsTableGridForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ReCalcGeom.en.resx">
+      <DependentUpon>ReCalcGeom.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ReCalcGeom.mn.resx">
+      <DependentUpon>ReCalcGeom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ReCalcGeom.resx">
+      <DependentUpon>ReCalcGeom.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\SetSeparatorFrm.en.resx">
+      <DependentUpon>SetSeparatorFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\SetSeparatorFrm.mn.resx">
+      <DependentUpon>SetSeparatorFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\SetSeparatorFrm.resx">
+      <DependentUpon>SetSeparatorFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ucTableObjects.en.resx">
+      <DependentUpon>ucTableObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\UcTableObjects.mn.resx">
+      <DependentUpon>ucTableObjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBInfoEdit\ucTableObjects.resx">
+      <DependentUpon>ucTableObjects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBLayerForms\LayerItemsView.en.resx">
+      <DependentUpon>LayerItemsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBLayerForms\LayerItemsView.mn.resx">
+      <DependentUpon>LayerItemsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBLayerForms\LayerItemsView.resx">
+      <DependentUpon>LayerItemsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ActionWithTables.en.resx">
+      <DependentUpon>ActionWithTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ActionWithTables.mn.resx">
+      <DependentUpon>ActionWithTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ActionWithTables.resx">
+      <DependentUpon>ActionWithTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditAtributs.en.resx">
+      <DependentUpon>AddEditAtributs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditAtributs.mn.resx">
+      <DependentUpon>AddEditAtributs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditAtributs.resx">
+      <DependentUpon>AddEditAtributs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditGroup.en.resx">
+      <DependentUpon>AddEditGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditGroup.mn.resx">
+      <DependentUpon>AddEditGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditGroup.resx">
+      <DependentUpon>AddEditGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditTable.en.resx">
+      <DependentUpon>AddEditTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditTable.mn.resx">
+      <DependentUpon>AddEditTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\AddEditTable.resx">
+      <DependentUpon>AddEditTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\CreateCopyTable.en.resx">
+      <DependentUpon>CreateCopyTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\CreateCopyTable.mn.resx">
+      <DependentUpon>CreateCopyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\CreateCopyTable.resx">
+      <DependentUpon>CreateCopyTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\DBTablesGroups.en.resx">
+      <DependentUpon>DBTablesGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\DBTablesGroups.mn.resx">
+      <DependentUpon>DBTablesGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\DBTablesGroups.resx">
+      <DependentUpon>DBTablesGroups.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\EditGroupsOrder.en.resx">
+      <DependentUpon>EditGroupsOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\EditGroupsOrder.mn.resx">
+      <DependentUpon>EditGroupsOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\EditGroupsOrder.resx">
+      <DependentUpon>EditGroupsOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\FiledEditListControl.en.resx">
+      <DependentUpon>FiledEditListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\FiledEditListControl.mn.resx">
+      <DependentUpon>FiledEditListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\FiledEditListControl.resx">
+      <DependentUpon>FiledEditListControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelControl.en.resx">
+      <DependentUpon>LabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelControl.mn.resx">
+      <DependentUpon>LabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelStyle.en.resx">
+      <DependentUpon>LabelStyle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelStyle.mn.resx">
+      <DependentUpon>LabelStyle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ManagementTables.mn.resx">
+      <DependentUpon>ManagementTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PanelGroup.mn.resx">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PropertyFieldControl.mn.resx">
+      <DependentUpon>PropertyFieldControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\propertyTableControl.mn.resx">
+      <DependentUpon>propertyTableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\QuestionDelete.mn.resx">
+      <DependentUpon>QuestionDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\StyleControl.mn.resx">
+      <DependentUpon>StyleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableGroup.mn.resx">
+      <DependentUpon>TableGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableListEdit.mn.resx">
+      <DependentUpon>TableListEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastReportClasses\GenerateReportForm.en.resx">
+      <DependentUpon>GenerateReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastReportClasses\GenerateReportForm.mn.resx">
+      <DependentUpon>GenerateReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FastReportClasses\GenerateReportForm.resx">
+      <DependentUpon>GenerateReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ManagementTables.en.resx">
+      <DependentUpon>ManagementTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PanelGroup.en.resx">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PropertyFieldControl.en.resx">
+      <DependentUpon>PropertyFieldControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\propertyTableControl.en.resx">
+      <DependentUpon>propertyTableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\QuestionDelete.en.resx">
+      <DependentUpon>QuestionDelete.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\StyleControl.en.resx">
+      <DependentUpon>StyleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableGroup.en.resx">
+      <DependentUpon>TableGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableListEdit.en.resx">
+      <DependentUpon>TableListEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\AboutBoxGs.en.resx">
+      <DependentUpon>AboutBoxGs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\AboutBoxGS.mn.resx">
+      <DependentUpon>AboutBoxGs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpForm.mn.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpLableFrm.mn.resx">
+      <DependentUpon>HelpLableFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\LicenseForm.en.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\LicenseForm.mn.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\LicenseForm.resx">
+      <DependentUpon>LicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpForm.en.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpLableFrm.en.resx">
+      <DependentUpon>HelpLableFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpLableFrm.resx">
+      <DependentUpon>HelpLableFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ImgBrush.resx">
+      <DependentUpon>ImgBrush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ImgBrushContainer.resx">
+      <DependentUpon>ImgBrushContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelControl.resx">
+      <DependentUpon>LabelControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\LabelStyle.resx">
+      <DependentUpon>LabelStyle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\ManagementTables.resx">
+      <DependentUpon>ManagementTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PanelGroup.resx">
+      <DependentUpon>PanelGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\PropertyFieldControl.resx">
+      <DependentUpon>PropertyFieldControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\propertyTableControl.resx">
+      <DependentUpon>propertyTableControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\QuestionDelete.resx">
+      <DependentUpon>QuestionDelete.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\StyleControl.resx">
+      <DependentUpon>StyleControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableGroup.resx">
+      <DependentUpon>TableGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBTablesEdit\TableListEdit.resx">
+      <DependentUpon>TableListEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\AboutBoxGs.resx">
+      <DependentUpon>AboutBoxGs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpFiles\HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageBrushRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageBrushRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lineRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>lineRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.en.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.mn.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mainFrm.en.resx">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mainFrm.mn.resx">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mainFrm.resx">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\FindBox.en.resx">
+      <DependentUpon>FindBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\FindBox.mn.resx">
+      <DependentUpon>FindBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\FindBox.resx">
+      <DependentUpon>FindBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\layerInfo.en.resx">
+      <DependentUpon>layerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\layerInfo.mn.resx">
+      <DependentUpon>layerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MapLayersInfo\layerInfo.resx">
+      <DependentUpon>layerInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\LocalSettings\ProxySettingsControl.mn.resx">
+      <DependentUpon>ProxySettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\LocalSettings\UserSettingsControl.mn.resx">
+      <DependentUpon>UserSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\PluginInfoControl.resx">
+      <DependentUpon>PluginInfoControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\PluginSettingsForm.en.resx">
+      <DependentUpon>PluginSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\PluginSettingsForm.mn.resx">
+      <DependentUpon>PluginSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\PluginSettingsForm.resx">
+      <DependentUpon>PluginSettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\LocalSettings\ProxySettingsControl.resx">
+      <DependentUpon>ProxySettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\LocalSettings\UserSettingsControl.en.resx">
+      <DependentUpon>UserSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PluginSettings\LocalSettings\UserSettingsControl.resx">
+      <DependentUpon>UserSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Progress\ProgressForm.en.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Progress\ProgressForm.mn.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Progress\ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.mn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.mn.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegionRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegionRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\PosNameFrm.en.resx">
+      <DependentUpon>PosNameFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\PosNameFrm.mn.resx">
+      <DependentUpon>PosNameFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\SettingsPosFrm.en.resx">
+      <DependentUpon>SettingsPosFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\SettingsPosFrm.mn.resx">
+      <DependentUpon>SettingsPosFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQLiteSettings\FilterSaveFrm.en.resx">
+      <DependentUpon>FilterSaveFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQLiteSettings\FilterSaveFrm.mn.resx">
+      <DependentUpon>FilterSaveFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQLiteSettings\FilterSaveFrm.resx">
+      <DependentUpon>FilterSaveFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\BreakOrSkipDialog.en.resx">
+      <DependentUpon>BreakOrSkipDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\BreakOrSkipDialog.mn.resx">
+      <DependentUpon>BreakOrSkipDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\BreakOrSkipDialog.resx">
+      <DependentUpon>BreakOrSkipDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\FormTableData.en.resx">
+      <DependentUpon>FormTableData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\FormTableData.mn.resx">
+      <DependentUpon>FormTableData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\NotFindSettingFrm.resx">
+      <DependentUpon>NotFindSettingFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\PrintSettingsFrm.en.resx">
+      <DependentUpon>PrintSettingsFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\PrintSettingsFrm.mn.resx">
+      <DependentUpon>PrintSettingsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\PrintSettingsFrm.resx">
+      <DependentUpon>PrintSettingsFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\RotateFrm.en.resx">
+      <DependentUpon>RotateFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\RotateFrm.mn.resx">
+      <DependentUpon>RotateFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\RotateFrm.resx">
+      <DependentUpon>RotateFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\SelectedSetFrm.en.resx">
+      <DependentUpon>SelectedSetFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\SelectedSetFrm.mn.resx">
+      <DependentUpon>SelectedSetFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolsFrm\SelectedSetFrm.resx">
+      <DependentUpon>SelectedSetFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\PosNameFrm.resx">
+      <DependentUpon>PosNameFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingStartPosition\SettingsPosFrm.resx">
+      <DependentUpon>SettingsPosFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableData\FormTableData.resx">
+      <DependentUpon>FormTableData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserSets\LayerStyleFrm.en.resx">
+      <DependentUpon>LayerStyleFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSets\LayerStyleFrm.mn.resx">
+      <DependentUpon>LayerStyleFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserSets\LayerStyleFrm.resx">
+      <DependentUpon>LayerStyleFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="gdal\data\compdcs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\coordinate_axis.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\cubewerx_extra.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\datum_shift.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\ecw_cs.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\ellipsoid.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\epsg.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\esri_extra.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\esri_StatePlane_extra.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\esri_Wisconsin_extra.wkt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\gcs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\gcs.override.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\gdal_datum.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\geoccs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\gt_datum.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\gt_ellips.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\header.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\nitf_spec.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\pcs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\pcs.override.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\prime_meridian.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\projop_wparm.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57agencies.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57attributes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57attributes_aml.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57attributes_iw.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57expectedinput.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57objectclasses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57objectclasses_aml.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\s57objectclasses_iw.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\seed_2d.dgn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\seed_3d.dgn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\stateplane.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\trailer.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\unit_of_measure.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\vertcs.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="gdal\data\vertcs.override.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EntityDeploy Include="Repository\SettingsDB\SettingsDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SettingsDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Rekod.Repository.SettingsDB.SettingsContext.datasource" />
+    <None Include="Properties\DataSources\SettingsContext.datasource">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RegionRes.Designer.cs">
+      <DependentUpon>RegionRes.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Styles\objStyleBrush.cs" />
+    <Compile Include="Styles\objStyleFont.cs" />
+    <Compile Include="Styles\objStylePen.cs" />
+    <Compile Include="Styles\objStylesM.cs" />
+    <Compile Include="Styles\objStyleSymbol.cs" />
+    <Compile Include="TableData\DataColumn.cs" />
+    <Compile Include="TableData\DataConnect.cs" />
+    <Compile Include="Styles\StylesM.cs" />
+    <Compile Include="TableData\FormTableData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableData\FormTableData.Designer.cs">
+      <DependentUpon>FormTableData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableData\ValueInterval.cs" />
+    <None Include="Russian.frl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workset.png" />
+    <None Include="Resources\worksetstyle.png" />
+    <None Include="Resources\worksetstyleremove.png" />
+    <Resource Include="Resources\LayersImages\Lock.png" />
+    <Resource Include="Resources\autocad_icon_addstyle.png" />
+    <Resource Include="Resources\autocad_icon_delstyle.png" />
+    <Resource Include="Resources\autocad_icon_orderset.png" />
+    <Resource Include="Resources\autocad_icon_workset.png" />
+    <Resource Include="Resources\autocad_icon_workset_2.png" />
+    <Resource Include="Resources\find_fulltextsearch.png" />
+    <Resource Include="Resources\multinodesselect.png" />
+    <Resource Include="Resources\deselect_objects.png" />
+    <Resource Include="Resources\edit_copy.png" />
+    <Resource Include="Resources\edit_paste.png" />
+    <Resource Include="PrintModule\View\Images\inscribe.png" />
+    <Resource Include="PrintModule\View\Images\save.png" />
+    <Resource Include="PrintModule\View\Images\mapmode.png" />
+    <Resource Include="PrintModule\View\Images\canvasmode.png" />
+    <Resource Include="PrintModule\View\Images\margins.png" />
+    <Resource Include="PrintModule\View\Images\movecanvas.png" />
+    <Resource Include="PrintModule\View\Images\objectmode.png" />
+    <Resource Include="PrintModule\View\Images\papersize.png" />
+    <Resource Include="PrintModule\View\Images\settings.png" />
+    <Resource Include="PrintModule\View\Images\table.png" />
+    <Resource Include="PrintModule\View\Images\reload.png" />
+    <Resource Include="Resources\search.ico" />
+    <Resource Include="Images\search_active.png" />
+    <Resource Include="Images\search_inactive.png" />
+    <Resource Include="Images\preview.png" />
+    <Resource Include="DataAccess\SourcePostgres\Modules\TableRegister\Images\add.png" />
+    <Resource Include="DataAccess\SourcePostgres\Modules\TableRegister\Images\edit.png" />
+    <Resource Include="DataAccess\SourcePostgres\Modules\TableRegister\Images\fix.ico" />
+    <Resource Include="Resources\loading.png" />
+    <Resource Include="Resources\left_arrow.ico" />
+    <Resource Include="Resources\right_arrow.ico" />
+    <Resource Include="Resources\object_List.png" />
+    <Resource Include="Resources\arrow_sans_down.png" />
+    <Resource Include="Resources\arrow_sans_up.png" />
+    <Resource Include="Resources\sync-24.png" />
+    <Resource Include="Resources\gtk_copy.png" />
+    <Resource Include="Resources\gtk_paste.png" />
+    <Resource Include="Resources\save.png" />
+    <Resource Include="PrintModule\View\Images\selectpages.ico" />
+    <Resource Include="Resources\mapeditor_splashscreen.png" />
+    <Resource Include="Resources\div_with_line.png" />
+    <Resource Include="PrintModule\View\Images\canvas-change.png" />
+    <Resource Include="PrintModule\View\Images\map-align.png" />
+    <Resource Include="PrintModule\View\Images\map-change.png" />
+    <Resource Include="PrintModule\View\Images\fields.png" />
+    <Resource Include="PrintModule\View\Images\grid.png" />
+    <Resource Include="PrintModule\View\Images\size.png" />
+    <Resource Include="Resources\separateObj.png" />
+    <Resource Include="PrintModule\View\Images\map-align-selected.png" />
+    <Resource Include="PrintModule\View\Images\print-selected.png" />
+    <Resource Include="PrintModule\View\Images\save-selected.png" />
+    <Resource Include="Images\Линия.png" />
+    <Resource Include="Images\Полигон.png" />
+    <Resource Include="Images\Точка.png" />
+    <Resource Include="RasterGeoreferenceModule\Images\add-point.png" />
+    <Resource Include="RasterGeoreferenceModule\Images\start-2.png" />
+    <Resource Include="RasterGeoreferenceModule\Images\xy.png" />
+    <Content Include="gdal\bin\gdalwarp.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\gdal_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\gdal_translate.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\geos_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\geotiff_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\hdf5dll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\hdf_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\jpeg12_osgeo.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\jpeg_osgeo.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libcurl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libeay32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libexpat.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libmysql.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libpq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\libtiff_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\lti_dsdk_dll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\mfhdf_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\msvcp71.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\msvcr71.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\NCScnet_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\NCSEcw_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\NCSUtil_fw.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\netcdf.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\ogdi_32b1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\proj.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\ssleay32.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\szlibdll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\xerces-c_2_7.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\zlib1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\bin\zlib_osgeo.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\freetype6.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\freexl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\gdal110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\gdalconst_wrap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\gdal_wrap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\geos.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\geos_c.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libcurl.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libiconv.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libmysql.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libpng16.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libpq.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\libxml2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\maplib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\maplib_v2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\msvcp110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\msvcr110.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\mvMapLib.ocx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\ogr_wrap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\osr_wrap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\proj.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\spatialite4.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\xmap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MVActiveX\zlib1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\AddPointOnMap.png" />
+    <Resource Include="Resources\AddPolygonOnMap.png" />
+    <Resource Include="Resources\AddLineOnMap.png" />
+    <Resource Include="Resources\intersection.png" />
+    <Resource Include="Resources\join-intersection.png" />
+    <Resource Include="Resources\sym-difference.png" />
+    <Content Include="SQLite_libs\libgeos-3-0-0.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite_libs\libgeos_c-1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite_libs\libiconv2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite_libs\libproj-0.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite_libs\libspatialite-1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite_libs\libsqlite3-1.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Globe.ico" />
+    <Resource Include="Images\brush.png" />
+    <Resource Include="Images\edit_checked.png" />
+    <Resource Include="Images\edit_unchecked.png" />
+    <Resource Include="Images\history.png" />
+    <Resource Include="Images\LayersManagerBottomLayer.png" />
+    <Resource Include="Images\LayersManagerCommon.png" />
+    <Resource Include="Images\LayersManagerLine.png" />
+    <Resource Include="Images\LayersManagerPoint.png" />
+    <Resource Include="Images\LayersManagerPolygon.png" />
+    <Resource Include="Images\LayersManagerRastr.png" />
+    <Resource Include="Images\LayersManagerView.png" />
+    <Resource Include="Images\pen.png" />
+    <Resource Include="Images\range.png" />
+    <Resource Include="Images\readonly.png" />
+    <Resource Include="Images\readwrite.png" />
+    <Resource Include="Images\select_checked.png" />
+    <Resource Include="Images\select_unchecked.png" />
+    <Resource Include="Images\symbol.png" />
+    <Resource Include="gdal\data\gdalicon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="gdal\data\GDALLogoBW.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\data\GDALLogoColor.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="gdal\data\GDALLogoGS.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="gdal\data\nitf_spec.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="gdal\data\pci_datum.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="gdal\data\pci_ellips.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Globe.ico" />
+    <Resource Include="Resources\lupa minus region.png" />
+    <Resource Include="Resources\lupa plus region.png" />
+    <Resource Include="Resources\РЕКОД_new_logo.png" />
+    <Resource Include="Resources\ГС_new_logo.png" />
+    <Resource Include="Resources\selectpoly.ico" />
+    <Resource Include="Resources\selectregion.ico" />
+    <Resource Include="Resources\ZoomToLayer.png" />
+    <Resource Include="Resources\ZoomToSelectObj.png" />
+    <Resource Include="Resources\SnapToPoint.png" />
+    <Resource Include="Resources\SnapToLine.png" />
+    <Resource Include="Resources\add2.png" />
+    <Resource Include="Resources\LayersImages\locked.png" />
+    <Resource Include="Resources\LayersImages\unlocked.png" />
+    <Resource Include="Resources\NotImage.png" />
+    <Resource Include="PrintModule\View\Images\print.png" />
+    <Content Include="SQLite.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sqlite3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\arrow_up_1.ico" />
+    <None Include="Resources\Line\LINE01.bmp" />
+    <None Include="Resources\Line\LINE02.bmp" />
+    <None Include="Resources\Line\LINE03.bmp" />
+    <None Include="Resources\Line\LINE04.bmp" />
+    <None Include="Resources\Line\LINE05.bmp" />
+    <None Include="Resources\Line\LINE06.bmp" />
+    <None Include="Resources\Line\LINE07.bmp" />
+    <None Include="Resources\Line\LINE08.bmp" />
+    <None Include="Resources\Line\LINE09.bmp" />
+    <None Include="Resources\Line\LINE10.bmp" />
+    <None Include="Resources\Line\LINE11.bmp" />
+    <None Include="Resources\Line\LINE12.bmp" />
+    <None Include="Resources\Line\LINE13.bmp" />
+    <None Include="Resources\Line\LINE14.bmp" />
+    <None Include="Resources\Line\LINE15.bmp" />
+    <None Include="Resources\Line\LINE16.bmp" />
+    <None Include="Resources\Line\LINE17.bmp" />
+    <None Include="Resources\Line\LINE18.bmp" />
+    <None Include="Resources\Line\LINE19.bmp" />
+    <None Include="Resources\Line\LINE20.bmp" />
+    <None Include="Resources\Line\LINE21.bmp" />
+    <None Include="Resources\Line\LINE22.bmp" />
+    <None Include="Resources\Line\LINE23.bmp" />
+    <None Include="Resources\Line\LINE24.bmp" />
+    <None Include="Resources\Line\LINE25.bmp" />
+    <None Include="Resources\poly\poly%402_0.bmp" />
+    <None Include="Resources\poly\poly%402_1.bmp" />
+    <None Include="Resources\poly\poly%402_2.bmp" />
+    <None Include="Resources\poly\poly%402_3.bmp" />
+    <None Include="Resources\poly\poly%402_4.bmp" />
+    <None Include="Resources\poly\poly%402_5.bmp" />
+    <None Include="Resources\poly\poly%405_1.bmp" />
+    <None Include="Resources\poly\poly%405_100.bmp" />
+    <None Include="Resources\poly\poly%405_101.bmp" />
+    <None Include="Resources\poly\poly%405_102.bmp" />
+    <None Include="Resources\poly\poly%405_103.bmp" />
+    <None Include="Resources\poly\poly%405_104.bmp" />
+    <None Include="Resources\poly\poly%405_105.bmp" />
+    <None Include="Resources\poly\poly%405_106.bmp" />
+    <None Include="Resources\poly\poly%405_107.bmp" />
+    <None Include="Resources\poly\poly%405_108.bmp" />
+    <None Include="Resources\poly\poly%405_109.bmp" />
+    <None Include="Resources\poly\poly%405_110.bmp" />
+    <None Include="Resources\poly\poly%405_111.bmp" />
+    <None Include="Resources\poly\poly%405_112.bmp" />
+    <None Include="Resources\poly\poly%405_113.bmp" />
+    <None Include="Resources\poly\poly%405_114.bmp" />
+    <None Include="Resources\poly\poly%405_115.bmp" />
+    <None Include="Resources\poly\poly%405_116.bmp" />
+    <None Include="Resources\poly\poly%405_117.bmp" />
+    <None Include="Resources\poly\poly%405_118.bmp" />
+    <None Include="Resources\poly\poly%405_119.bmp" />
+    <None Include="Resources\poly\poly%405_12.bmp" />
+    <None Include="Resources\poly\poly%405_120.bmp" />
+    <None Include="Resources\poly\poly%405_121.bmp" />
+    <None Include="Resources\poly\poly%405_122.bmp" />
+    <None Include="Resources\poly\poly%405_123.bmp" />
+    <None Include="Resources\poly\poly%405_124.bmp" />
+    <None Include="Resources\poly\poly%405_125.bmp" />
+    <None Include="Resources\poly\poly%405_126.bmp" />
+    <None Include="Resources\poly\poly%405_127.bmp" />
+    <None Include="Resources\poly\poly%405_128.bmp" />
+    <None Include="Resources\poly\poly%405_129.bmp" />
+    <None Include="Resources\poly\poly%405_13.bmp" />
+    <None Include="Resources\poly\poly%405_130.bmp" />
+    <None Include="Resources\poly\poly%405_131.bmp" />
+    <None Include="Resources\poly\poly%405_132.bmp" />
+    <None Include="Resources\poly\poly%405_133.bmp" />
+    <None Include="Resources\poly\poly%405_134.bmp" />
+    <None Include="Resources\poly\poly%405_135.bmp" />
+    <None Include="Resources\poly\poly%405_136.bmp" />
+    <None Include="Resources\poly\poly%405_137.bmp" />
+    <None Include="Resources\poly\poly%405_138.bmp" />
+    <None Include="Resources\poly\poly%405_139.bmp" />
+    <None Include="Resources\poly\poly%405_14.bmp" />
+    <None Include="Resources\poly\poly%405_140.bmp" />
+    <None Include="Resources\poly\poly%405_141.bmp" />
+    <None Include="Resources\poly\poly%405_142.bmp" />
+    <None Include="Resources\poly\poly%405_143.bmp" />
+    <None Include="Resources\poly\poly%405_144.bmp" />
+    <None Include="Resources\poly\poly%405_145.bmp" />
+    <None Include="Resources\poly\poly%405_146.bmp" />
+    <None Include="Resources\poly\poly%405_147.bmp" />
+    <None Include="Resources\poly\poly%405_148.bmp" />
+    <None Include="Resources\poly\poly%405_149.bmp" />
+    <None Include="Resources\poly\poly%405_15.bmp" />
+    <None Include="Resources\poly\poly%405_150.bmp" />
+    <None Include="Resources\poly\poly%405_151.bmp" />
+    <None Include="Resources\poly\poly%405_152.bmp" />
+    <None Include="Resources\poly\poly%405_153.bmp" />
+    <None Include="Resources\poly\poly%405_154.bmp" />
+    <None Include="Resources\poly\poly%405_155.bmp" />
+    <None Include="Resources\poly\poly%405_156.bmp" />
+    <None Include="Resources\poly\poly%405_157.bmp" />
+    <None Include="Resources\poly\poly%405_158.bmp" />
+    <None Include="Resources\poly\poly%405_159.bmp" />
+    <None Include="Resources\poly\poly%405_16.bmp" />
+    <None Include="Resources\poly\poly%405_160.bmp" />
+    <None Include="Resources\poly\poly%405_161.bmp" />
+    <None Include="Resources\poly\poly%405_162.bmp" />
+    <None Include="Resources\poly\poly%405_163.bmp" />
+    <None Include="Resources\poly\poly%405_164.bmp" />
+    <None Include="Resources\poly\poly%405_165.bmp" />
+    <None Include="Resources\poly\poly%405_166.bmp" />
+    <None Include="Resources\poly\poly%405_167.bmp" />
+    <None Include="Resources\poly\poly%405_168.bmp" />
+    <None Include="Resources\poly\poly%405_169.bmp" />
+    <None Include="Resources\poly\poly%405_17.bmp" />
+    <None Include="Resources\poly\poly%405_170.bmp" />
+    <None Include="Resources\poly\poly%405_171.bmp" />
+    <None Include="Resources\poly\poly%405_172.bmp" />
+    <None Include="Resources\poly\poly%405_173.bmp" />
+    <None Include="Resources\poly\poly%405_174.bmp" />
+    <None Include="Resources\poly\poly%405_175.bmp" />
+    <None Include="Resources\poly\poly%405_18.bmp" />
+    <None Include="Resources\poly\poly%405_19.bmp" />
+    <None Include="Resources\poly\poly%405_2.bmp" />
+    <None Include="Resources\poly\poly%405_20.bmp" />
+    <None Include="Resources\poly\poly%405_21.bmp" />
+    <None Include="Resources\poly\poly%405_22.bmp" />
+    <None Include="Resources\poly\poly%405_23.bmp" />
+    <None Include="Resources\poly\poly%405_24.bmp" />
+    <None Include="Resources\poly\poly%405_25.bmp" />
+    <None Include="Resources\poly\poly%405_26.bmp" />
+    <None Include="Resources\poly\poly%405_27.bmp" />
+    <None Include="Resources\poly\poly%405_28.bmp" />
+    <None Include="Resources\poly\poly%405_29.bmp" />
+    <None Include="Resources\poly\poly%405_3.bmp" />
+    <None Include="Resources\poly\poly%405_30.bmp" />
+    <None Include="Resources\poly\poly%405_31.bmp" />
+    <None Include="Resources\poly\poly%405_32.bmp" />
+    <None Include="Resources\poly\poly%405_33.bmp" />
+    <None Include="Resources\poly\poly%405_34.bmp" />
+    <None Include="Resources\poly\poly%405_35.bmp" />
+    <None Include="Resources\poly\poly%405_36.bmp" />
+    <None Include="Resources\poly\poly%405_37.bmp" />
+    <None Include="Resources\poly\poly%405_38.bmp" />
+    <None Include="Resources\poly\poly%405_39.bmp" />
+    <None Include="Resources\poly\poly%405_4.bmp" />
+    <None Include="Resources\poly\poly%405_40.bmp" />
+    <None Include="Resources\poly\poly%405_41.bmp" />
+    <None Include="Resources\poly\poly%405_42.bmp" />
+    <None Include="Resources\poly\poly%405_43.bmp" />
+    <None Include="Resources\poly\poly%405_44.bmp" />
+    <None Include="Resources\poly\poly%405_45.bmp" />
+    <None Include="Resources\poly\poly%405_46.bmp" />
+    <None Include="Resources\poly\poly%405_47.bmp" />
+    <None Include="Resources\poly\poly%405_48.bmp" />
+    <None Include="Resources\poly\poly%405_49.bmp" />
+    <None Include="Resources\poly\poly%405_5.bmp" />
+    <None Include="Resources\poly\poly%405_50.bmp" />
+    <None Include="Resources\poly\poly%405_51.bmp" />
+    <None Include="Resources\poly\poly%405_52.bmp" />
+    <None Include="Resources\poly\poly%405_53.bmp" />
+    <None Include="Resources\poly\poly%405_54.bmp" />
+    <None Include="Resources\poly\poly%405_55.bmp" />
+    <None Include="Resources\poly\poly%405_56.bmp" />
+    <None Include="Resources\poly\poly%405_57.bmp" />
+    <None Include="Resources\poly\poly%405_58.bmp" />
+    <None Include="Resources\poly\poly%405_59.bmp" />
+    <None Include="Resources\poly\poly%405_6.bmp" />
+    <None Include="Resources\poly\poly%405_60.bmp" />
+    <None Include="Resources\poly\poly%405_61.bmp" />
+    <None Include="Resources\poly\poly%405_62.bmp" />
+    <None Include="Resources\poly\poly%405_63.bmp" />
+    <None Include="Resources\poly\poly%405_64.bmp" />
+    <None Include="Resources\poly\poly%405_65.bmp" />
+    <None Include="Resources\poly\poly%405_66.bmp" />
+    <None Include="Resources\poly\poly%405_67.bmp" />
+    <None Include="Resources\poly\poly%405_68.bmp" />
+    <None Include="Resources\poly\poly%405_69.bmp" />
+    <None Include="Resources\poly\poly%405_7.bmp" />
+    <None Include="Resources\poly\poly%405_70.bmp" />
+    <None Include="Resources\poly\poly%405_71.bmp" />
+    <None Include="Resources\poly\poly%405_72.bmp" />
+    <None Include="Resources\poly\poly%405_73.bmp" />
+    <None Include="Resources\poly\poly%405_74.bmp" />
+    <None Include="Resources\poly\poly%405_75.bmp" />
+    <None Include="Resources\poly\poly%405_76.bmp" />
+    <None Include="Resources\poly\poly%405_77.bmp" />
+    <None Include="Resources\poly\poly%405_78.bmp" />
+    <None Include="Resources\poly\poly%405_79.bmp" />
+    <None Include="Resources\poly\poly%405_8.bmp" />
+    <None Include="Resources\poly\poly%405_80.bmp" />
+    <None Include="Resources\poly\poly%405_81.bmp" />
+    <None Include="Resources\poly\poly%405_82.bmp" />
+    <None Include="Resources\poly\poly%405_83.bmp" />
+    <None Include="Resources\poly\poly%405_84.bmp" />
+    <None Include="Resources\poly\poly%405_85.bmp" />
+    <None Include="Resources\poly\poly%405_86.bmp" />
+    <None Include="Resources\poly\poly%405_87.bmp" />
+    <None Include="Resources\poly\poly%405_88.bmp" />
+    <None Include="Resources\poly\poly%405_89.bmp" />
+    <None Include="Resources\poly\poly%405_90.bmp" />
+    <None Include="Resources\poly\poly%405_91.bmp" />
+    <None Include="Resources\poly\poly%405_92.bmp" />
+    <None Include="Resources\poly\poly%405_93.bmp" />
+    <None Include="Resources\poly\poly%405_94.bmp" />
+    <None Include="Resources\poly\poly%405_95.bmp" />
+    <None Include="Resources\poly\poly%405_96.bmp" />
+    <None Include="Resources\poly\poly%405_97.bmp" />
+    <None Include="Resources\poly\poly%405_98.bmp" />
+    <None Include="Resources\poly\poly%405_99.bmp" />
+    <None Include="Resources\poly\POLY001.bmp" />
+    <None Include="Resources\poly\POLY002.bmp" />
+    <None Include="Resources\poly\POLY003.bmp" />
+    <None Include="Resources\poly\POLY004.bmp" />
+    <None Include="Resources\poly\POLY005.bmp" />
+    <None Include="Resources\poly\POLY006.bmp" />
+    <None Include="Resources\poly\POLY007.bmp" />
+    <None Include="Resources\poly\POLY008.bmp" />
+    <None Include="Resources\poly\POLY009.bmp" />
+    <None Include="Resources\poly\POLY010.bmp" />
+    <None Include="Resources\poly\POLY011.bmp" />
+    <None Include="Resources\poly\POLY012.bmp" />
+    <None Include="Resources\poly\POLY013.bmp" />
+    <None Include="Resources\poly\POLY014.bmp" />
+    <None Include="Resources\poly\POLY015.bmp" />
+    <None Include="Resources\poly\POLY016.bmp" />
+    <None Include="Resources\poly\POLY017.bmp" />
+    <None Include="Resources\poly\POLY018.bmp" />
+    <None Include="Resources\poly\POLY019.bmp" />
+    <None Include="Resources\poly\POLY020.bmp" />
+    <None Include="Resources\poly\POLY021.bmp" />
+    <None Include="Resources\poly\POLY022.bmp" />
+    <None Include="Resources\poly\POLY023.bmp" />
+    <None Include="Resources\poly\POLY024.bmp" />
+    <None Include="Resources\poly\POLY025.bmp" />
+    <None Include="Resources\poly\POLY026.bmp" />
+    <None Include="Resources\poly\POLY027.bmp" />
+    <None Include="Resources\poly\POLY028.bmp" />
+    <None Include="Resources\poly\POLY029.bmp" />
+    <None Include="Resources\poly\POLY030.bmp" />
+    <None Include="Resources\poly\POLY031.bmp" />
+    <None Include="Resources\poly\POLY032.bmp" />
+    <None Include="Resources\poly\POLY033.bmp" />
+    <None Include="Resources\poly\POLY034.bmp" />
+    <None Include="Resources\poly\POLY035.bmp" />
+    <None Include="Resources\poly\POLY036.bmp" />
+    <None Include="Resources\poly\POLY037.bmp" />
+    <None Include="Resources\poly\POLY038.bmp" />
+    <None Include="Resources\poly\POLY039.bmp" />
+    <None Include="Resources\poly\POLY040.bmp" />
+    <None Include="Resources\poly\POLY041.bmp" />
+    <None Include="Resources\poly\POLY042.bmp" />
+    <None Include="Resources\poly\POLY043.bmp" />
+    <None Include="Resources\poly\POLY044.bmp" />
+    <None Include="Resources\poly\POLY045.bmp" />
+    <None Include="Resources\poly\POLY046.bmp" />
+    <None Include="Resources\poly\POLY047.bmp" />
+    <None Include="Resources\poly\POLY048.bmp" />
+    <None Include="Resources\poly\POLY049.bmp" />
+    <None Include="Resources\poly\POLY050.bmp" />
+    <None Include="Resources\poly\POLY051.bmp" />
+    <None Include="Resources\poly\POLY052.bmp" />
+    <None Include="Resources\poly\POLY053.bmp" />
+    <None Include="Resources\poly\POLY054.bmp" />
+    <None Include="Resources\poly\POLY055.bmp" />
+    <None Include="Resources\poly\POLY056.bmp" />
+    <None Include="Resources\poly\POLY057.bmp" />
+    <None Include="Resources\poly\POLY058.bmp" />
+    <None Include="Resources\poly\POLY059.bmp" />
+    <None Include="Resources\poly\POLY060.bmp" />
+    <None Include="Resources\poly\POLY061.bmp" />
+    <None Include="Resources\poly\POLY062.bmp" />
+    <None Include="Resources\poly\POLY063.bmp" />
+    <None Include="Resources\poly\POLY064.bmp" />
+    <None Include="Resources\poly\POLY065.bmp" />
+    <None Include="Resources\poly\POLY066.bmp" />
+    <None Include="Resources\poly\POLY067.bmp" />
+    <None Include="Resources\poly\POLY068.bmp" />
+    <None Include="Resources\poly\POLY069.bmp" />
+    <None Include="Resources\poly\POLY070.bmp" />
+    <None Include="Resources\poly\POLY071.bmp" />
+    <None Include="Resources\poly\POLY072.bmp" />
+    <None Include="Resources\poly\POLY073.bmp" />
+    <None Include="Resources\poly\POLY074.bmp" />
+    <None Include="Resources\poly\POLY075.bmp" />
+    <None Include="Resources\poly\POLY076.bmp" />
+    <None Include="Resources\poly\POLY077.bmp" />
+    <None Include="Resources\poly\POLY078.bmp" />
+    <None Include="Resources\poly\POLY079.bmp" />
+    <None Include="Resources\poly\POLY080.bmp" />
+    <None Include="Resources\poly\POLY081.bmp" />
+    <None Include="Resources\poly\POLY082.bmp" />
+    <None Include="Resources\poly\POLY083.bmp" />
+    <None Include="Resources\poly\POLY084.bmp" />
+    <None Include="Resources\poly\POLY085.bmp" />
+    <None Include="Resources\poly\POLY086.bmp" />
+    <None Include="Resources\poly\POLY087.bmp" />
+    <None Include="Resources\poly\POLY088.bmp" />
+    <None Include="Resources\poly\POLY089.bmp" />
+    <None Include="Resources\poly\POLY090.bmp" />
+    <None Include="Resources\poly\POLY091.bmp" />
+    <None Include="Resources\poly\POLY092.bmp" />
+    <None Include="Resources\poly\POLY093.bmp" />
+    <None Include="Resources\poly\POLY094.bmp" />
+    <None Include="Resources\poly\POLY095.bmp" />
+    <None Include="Resources\poly\POLY096.bmp" />
+    <None Include="Resources\poly\POLY097.bmp" />
+    <None Include="Resources\poly\POLY098.bmp" />
+    <None Include="Resources\poly\POLY099.bmp" />
+    <None Include="Resources\poly\POLY100.bmp" />
+    <None Include="Resources\poly\POLY101.bmp" />
+    <None Include="Resources\poly\POLY102.bmp" />
+    <None Include="Resources\poly\POLY103.bmp" />
+    <None Include="Resources\poly\POLY104.bmp" />
+    <None Include="Resources\poly\POLY105.bmp" />
+    <None Include="Resources\poly\POLY106.bmp" />
+    <None Include="Resources\poly\POLY107.bmp" />
+    <None Include="Resources\poly\POLY108.bmp" />
+    <None Include="Resources\poly\POLY109.bmp" />
+    <None Include="Resources\poly\POLY110.bmp" />
+    <None Include="Resources\poly\POLY111.bmp" />
+    <None Include="Resources\poly\POLY112.bmp" />
+    <None Include="Resources\poly\POLY113.bmp" />
+    <None Include="Resources\poly\POLY114.bmp" />
+    <None Include="Resources\poly\POLY115.bmp" />
+    <None Include="Resources\poly\POLY116.bmp" />
+    <None Include="Resources\poly\POLY117.bmp" />
+    <None Include="Resources\poly\POLY118.bmp" />
+    <None Include="Resources\poly\POLY119.bmp" />
+    <None Include="Resources\poly\POLY120.bmp" />
+    <None Include="Resources\poly\POLY121.bmp" />
+    <None Include="Resources\poly\POLY122.bmp" />
+    <None Include="Resources\poly\POLY123.bmp" />
+    <None Include="Resources\poly\POLY124.bmp" />
+    <None Include="Resources\poly\POLY125.bmp" />
+    <None Include="Resources\poly\POLY126.bmp" />
+    <None Include="Resources\poly\POLY127.bmp" />
+    <None Include="Resources\poly\POLY128.bmp" />
+    <None Include="Resources\poly\POLY129.bmp" />
+    <None Include="Resources\poly\POLY130.bmp" />
+    <None Include="Resources\poly\POLY131.bmp" />
+    <None Include="Resources\poly\POLY132.bmp" />
+    <None Include="Resources\poly\POLY133.bmp" />
+    <None Include="Resources\poly\POLY134.bmp" />
+    <None Include="Resources\poly\POLY135.bmp" />
+    <None Include="Resources\poly\POLY136.bmp" />
+    <None Include="Resources\poly\POLY137.bmp" />
+    <None Include="Resources\poly\POLY138.bmp" />
+    <None Include="Resources\poly\POLY139.bmp" />
+    <None Include="Resources\poly\POLY140.bmp" />
+    <None Include="Resources\poly\POLY141.bmp" />
+    <None Include="Resources\poly\POLY142.bmp" />
+    <None Include="Resources\poly\POLY143.bmp" />
+    <None Include="Resources\poly\POLY144.bmp" />
+    <None Include="Resources\poly\POLY145.bmp" />
+    <None Include="Resources\poly\POLY146.bmp" />
+    <None Include="Resources\poly\POLY147.bmp" />
+    <None Include="Resources\poly\POLY148.bmp" />
+    <None Include="Resources\poly\POLY149.bmp" />
+    <None Include="Resources\poly\POLY150.bmp" />
+    <None Include="Resources\poly\POLY151.bmp" />
+    <None Include="Resources\poly\POLY152.bmp" />
+    <None Include="Resources\poly\POLY153.bmp" />
+    <None Include="Resources\poly\POLY154.bmp" />
+    <None Include="Resources\poly\POLY155.bmp" />
+    <None Include="Resources\poly\POLY156.bmp" />
+    <None Include="Resources\poly\POLY157.bmp" />
+    <None Include="Resources\poly\POLY158.bmp" />
+    <None Include="Resources\poly\POLY159.bmp" />
+    <None Include="Resources\poly\POLY160.bmp" />
+    <None Include="Resources\poly\POLY161.bmp" />
+    <None Include="Resources\poly\POLY162.bmp" />
+    <None Include="Resources\poly\POLY163.bmp" />
+    <None Include="Resources\poly\POLY164.bmp" />
+    <None Include="Resources\poly\POLY165.bmp" />
+    <None Include="Resources\poly\POLY166.bmp" />
+    <None Include="Resources\poly\POLY167.bmp" />
+    <None Include="Resources\poly\POLY168.bmp" />
+    <None Include="Resources\poly\POLY169.bmp" />
+    <None Include="Resources\poly\POLY170.bmp" />
+    <None Include="Resources\poly\POLY171.bmp" />
+    <None Include="Resources\poly\POLY172.bmp" />
+    <Resource Include="Resources\legend-icon.png" />
+    <Resource Include="Resources\object-rotate-left_on_deg.png" />
+    <Resource Include="Resources\rotate270anticlockwise3green_9632.png" />
+    <Resource Include="Resources\object-rotate-left_8086.png" />
+    <Resource Include="Resources\object-rotate-right_5106.png" />
+    <Resource Include="Resources\stock_draw_rectangle_unfilled.png" />
+    <Resource Include="Resources\stock_snap-guides_9095.png" />
+    <Resource Include="Resources\MoveObject.png" />
+    <Resource Include="Resources\savebaw.png" />
+    <Resource Include="Resources\delete_gray.png" />
+    <Resource Include="Resources\group_order_change.png" />
+    <Resource Include="Resources\ArrowHeadDown.png" />
+    <Resource Include="Resources\new hollow type 1.png" />
+    <Resource Include="Resources\new hollow type 2.png" />
+    <Resource Include="Resources\kfontview.png" />
+    <Resource Include="Resources\kwalletmanager.png" />
+    <Resource Include="Resources\info_gray.png" />
+    <Resource Include="Resources\addXYNew.png" />
+    <Resource Include="Resources\addNotEnabledXYNew.png" />
+    <Resource Include="Resources\copy.png" />
+    <Resource Include="Resources\udalit obekt na videlenii sloi.png" />
+    <Resource Include="Resources\Stil sloya_gray.png" />
+    <Resource Include="Pie_Chart.ico" />
+    <Content Include="app.manifest" />
+    <Resource Include="Resources\для_арсенала.png" />
+    <Resource Include="Resources\gnome-mime-text-x-copying.png" />
+    <Resource Include="Resources\cancel.png" />
+    <Resource Include="Resources\reload_gray.png" />
+    <Resource Include="Resources\reload_2.png" />
+    <Resource Include="Resources\reference.png" />
+    <Resource Include="Resources\addNotEnabledXY.jpg" />
+    <Resource Include="Resources\struct.png" />
+    <Resource Include="Resources\izmeritel rastoyaniya2.png" />
+    <Resource Include="Resources\sloi1.png" />
+    <Resource Include="Resources\peremeschenie1.png" />
+    <Resource Include="Resources\izmeritel rastoyaniya1.png" />
+    <Resource Include="Resources\videlit obekt1.png" />
+    <Resource Include="Resources\pri navedenii.png" />
+    <Resource Include="Resources\pri vibore instrumenta.png" />
+    <Resource Include="Resources\izmeritel rastoyaniya.png" />
+    <Resource Include="Resources\lupa -.png" />
+    <Resource Include="Resources\lupa +.png" />
+    <Resource Include="Resources\peremeschenie.png" />
+    <Resource Include="Resources\lupa plus.png" />
+    <Resource Include="Resources\lupa minus.png" />
+    <Resource Include="Resources\spisok sloev.png" />
+    <Resource Include="Resources\+plus.png" />
+    <Resource Include="Resources\- minus.png" />
+    <Resource Include="Resources\sloi.png" />
+    <Resource Include="Resources\dobavit obekt na videlenii sloi.png" />
+    <Resource Include="Resources\bg_gorizontal.png" />
+    <Resource Include="Resources\pri navedenii2.png" />
+    <Resource Include="Resources\pri vibore instrumenta2.png" />
+    <Resource Include="Resources\videlit obekt.png" />
+    <Resource Include="Resources\точка1 серая.png" />
+    <Resource Include="Resources\Площадь1 серая.png" />
+    <Resource Include="Resources\обновить.png" />
+    <Resource Include="Resources\КРИВАЯ1 серая.png" />
+    <Resource Include="Resources\tablichnii dannii1.png" />
+    <Resource Include="Resources\tablichnii dannii.png" />
+    <Resource Include="Resources\redaktor.png" />
+    <Resource Include="Resources\rastrovii izobrageni9ya.png" />
+    <Resource Include="Resources\peremechenie  uzla new 21.png" />
+    <Resource Include="Resources\peremechenie  uzla new 2.png" />
+    <Resource Include="Resources\peremechenie  uzla new 2 not1.png" />
+    <Resource Include="Resources\peremechenie  uzla new 2 not.png" />
+    <Resource Include="Resources\obnovit.png" />
+    <Resource Include="Resources\new udalennii.png" />
+    <Resource Include="Resources\new lokalnii.png" />
+    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\minus.png" />
+    <Resource Include="Resources\instruments.png" />
+    <Resource Include="Resources\peremechenie  uzla new 3.png" />
+    <Resource Include="Resources\HIstory.jpg" />
+    <Resource Include="Resources\NotSelected3.jpg" />
+    <Resource Include="Resources\bridget.jpg" />
+    <Resource Include="Resources\Selected.jpg" />
+    <Resource Include="Resources\точка1.png" />
+    <Resource Include="Resources\Площадь1.png" />
+    <Resource Include="Resources\КРИВАЯ1.png" />
+    <Resource Include="Resources\delete2.png" />
+    <Resource Include="Resources\edit-icon.png" />
+    <Resource Include="Resources\Group.png" />
+    <Resource Include="Resources\bg_selecteg_button.png" />
+    <Resource Include="Resources\blue_bg_for_panel.png" />
+    <Resource Include="Resources\right.png" />
+    <Resource Include="Resources\left.png" />
+    <Resource Include="Resources\remove.png" />
+    <Resource Include="Resources\addNotEnabled.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\text1.png" />
+    <Resource Include="Resources\data_time1.png" />
+    <Resource Include="Resources\real1.png" />
+    <Resource Include="Resources\int1.png" />
+    <Resource Include="Resources\save5.png" />
+    <Resource Include="Resources\Untitled-11.jpg" />
+    <Resource Include="Resources\a_c48d37de1.jpg" />
+    <Resource Include="Resources\upload_logotip_cku22.jpg" />
+    <Resource Include="Resources\1downarrow1.png" />
+    <Resource Include="Resources\1downarrow.png" />
+    <Resource Include="Resources\clip_image0021.jpg" />
+    <Resource Include="Resources\clip_image002.jpg" />
+    <Resource Include="Resources\field_del1.png" />
+    <Resource Include="Resources\bd.png" />
+    <Resource Include="Resources\info.png" />
+    <Resource Include="Resources\table.png" />
+    <Resource Include="Resources\reload.png" />
+    <Resource Include="Resources\add_sattelite.png" />
+    <Resource Include="Resources\photo_add.png" />
+    <Resource Include="Resources\zoom_max.png" />
+    <Resource Include="Resources\field_del.png" />
+    <Resource Include="Resources\zoom_min.png" />
+    <Resource Include="Resources\ruler.png" />
+    <Resource Include="Resources\ruler_area.png" />
+    <Resource Include="Resources\pan.png" />
+    <Resource Include="Resources\sel.png" />
+    <Resource Include="Resources\layers_img.png" />
+    <Resource Include="Resources\layers_base.png" />
+    <Resource Include="Resources\layers_pg.png" />
+    <Resource Include="Resources\1279535667_edit.png" />
+    <Resource Include="Resources\1279535710_view_16x16.gif" />
+    <Resource Include="Resources\Управление_слоями.png" />
+    <Resource Include="Resources\Управление_работами.png" />
+    <Resource Include="Resources\Управление_полями.png" />
+    <Resource Include="Resources\Управление растром.png" />
+    <Resource Include="Resources\Уменьшить.png" />
+    <Resource Include="Resources\Увеличить.png" />
+    <Resource Include="Resources\Слой_вниз.png" />
+    <Resource Include="Resources\Слой_вверх.png" />
+    <Resource Include="Resources\Информация.png" />
+    <Resource Include="Resources\Выбор_объекта.png" />
+    <Resource Include="Resources\reload_page.png" />
+    <Resource Include="Resources\delete.png" />
+    <Resource Include="Resources\cog.png" />
+    <Resource Include="Resources\arrow_up.png" />
+    <Resource Include="Resources\arrow_down.png" />
+    <Resource Include="Resources\application_view_columns.png" />
+    <Resource Include="Resources\agt_forward.png" />
+    <Resource Include="Resources\agt_back.png" />
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\Управление_растровыми_слоями.png" />
+    <None Include="settings.aews">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <DesignTimeOnly Include="SampleData\WorkSet_SD\WorkSet_SD.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\CheckObjects.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\CosmeticLayerV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\CosmeticRepositoryV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\CosmeticTableViewV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\DefaultStyleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\CosmeticAttributes\CosmeticAttributesV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceCosmetic\View\Styles\PgAttributesSV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\ImportExport\ExportQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\ImportExport\Importers\ExcelUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\ImportExport\Importers\SHPUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\ImportExport\ImportWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RFieldV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RTableRegistrationV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\Modules\TableRegister\View\RTableV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\CaptionStyleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\FieldsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\FieldView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\GroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\LabelStyleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\LayerGroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\MapLayerStyleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\MapLayerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\RepoConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\StyleIntervalReference.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\StyleRange.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\TableProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\TableRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\UserConfigV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\UsersRightsV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\History\PgHistoryV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\History\Styles\HistoryStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ConfigView\IndexView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ImportTableV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\ObjectStyleEditV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgAttributes\GeometryCharacteristicsV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgAttributes\GeomRecalcV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgAttributes\PgAttributesGeomV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgAttributes\PgAttributesUV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgFullTextSearch\PgFullTextSearchUV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRepositoriesConfig_V.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\ActionUsersRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\AdminRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\PgListActionUserRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\PgListTableRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\PgListUserRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\TableRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\TableTree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgRights\UserRightsV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\PgTableView\PgTableViewV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\Styles\PgTableViewSV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourcePostgres\View\Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceRastr\View\RastrLayerV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceRastr\View\RastrRepositoryV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\SourceVMP\View\VMPLayerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\SourceVMP\View\VMPRepositoryV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\AddSourceV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\DeleteSourceV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\TableManagerV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\Templates\AllLayersTreeViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\Templates\GroupsTreeViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\Templates\LayersManagerStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataAccess\TableManager\View\Templates\VisibleLayersTreeViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DBHistory\CheckObjects.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DBInfoEdit\View\GridViewSettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FastReportClasses\ReportEditor_V.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FastReportClasses\SaveReportFrm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MapLayersItemInfo\View\MapLayersItemInfoV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintModule\View\SaveSelectedPagesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectionSelection\View\ExportProjSelectionV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RasterGeoreferenceModule\View\GeoreferencePreviewV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AttributesStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\UtilityStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserSets\SaveSetFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportExport\ExportQuestion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImportExport\Importers\ExcelUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportExport\Importers\SHPUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportExport\ImportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintModule\View\PreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PrintModule\View\PrintAreaTableV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectionSelection\AddProj.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectionSelection\AddProjTestDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectionSelection\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectionSelection\ObjectView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectionSelection\View\SelectProjectionV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ChooseObjectsBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ExtendedSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <DesignTimeOnly Include="SampleData\WorkSet_SD\WorkSet_SD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignTimeOnly>
+    <Page Include="Styles\PostgresStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\SearchTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TreeViewItemStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserSets\WorkSets_V.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AttributesOfObjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\AttributesOfObjectStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{16e574c6-87a2-4322-8cde-6ea647547bc7}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OGRFramework\OGRFramework\OGRFramework.csproj">
+      <Project>{781821bf-5345-41c3-b784-bc7822bf22b2}</Project>
+      <Name>OGRFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sscSync\sscSync.csproj">
+      <Project>{15a63ec4-27d0-4d40-9a09-b40ea10bdedb}</Project>
+      <Name>sscSync</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\sscSync\sscSync.csproj">
+      <Project>{15a63ec4-27d0-4d40-9a09-b40ea10bdedb}</Project>
+      <Name>sscSync</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="SampleData\AttributesOfObjectViewModelSampleData.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataAccess\SourceCosmetic\Converters\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(TargetDir)"
+IF $(ConfigurationName)==GS copy $(TargetFileName) mapeditor.exe</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

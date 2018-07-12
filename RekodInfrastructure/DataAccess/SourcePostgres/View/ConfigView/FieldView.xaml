@@ -1,0 +1,261 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.FieldView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:tm="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:absm="clr-namespace:Rekod.DataAccess.AbstractSource.Model"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:pgvr="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ValidationRules">
+    
+    <UserControl.Resources>
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="FieldTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="absm:EFieldType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="RefTypeValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="absm:ERefType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        
+        
+        <Style TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--<ObjectDataProvider  MethodName="GetAllTables" ObjectType="{x:Type tm:ObjectProviderValues}" x:Key="GetAllTablesObject" />-->
+    </UserControl.Resources>
+    <Grid
+        Name="FieldProps" 
+        DataContext="{Binding}" >
+        <beh:CommandBehaviorCollection.Behaviors>
+            <beh:BehaviorBinding Event="Loaded" Action="{Binding BindingGroupLoaded}" CommandParameter="{Binding ElementName=fieldPropertiesBindingGroup}" />
+            <beh:BehaviorBinding Event="System.Windows.Controls.Validation.ErrorEvent" Action="{Binding BindingGroupError}" />
+        </beh:CommandBehaviorCollection.Behaviors>
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="0, 0, 10, 0" />
+                </Style.Setters>
+            </Style>
+        </Grid.Resources>
+        <Grid.BindingGroup>
+            <BindingGroup x:Name="fieldPropertiesBindingGroup" NotifyOnValidationError="True">
+                <BindingGroup.ValidationRules>
+                    <pgvr:FieldValidationRule />                    
+                </BindingGroup.ValidationRules>
+            </BindingGroup>
+        </Grid.BindingGroup>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocNameInSystem}" />
+        <TextBox
+            Name="FieldSystemName"
+            Text="{Binding Path=Text}" 
+            Grid.Column="1"/>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocNameInBase}"
+            Grid.Row="1"/>
+        
+        <!--<TextBox 
+            Text="{Binding Path=Name}" 
+            Grid.Column="1" 
+            Grid.Row="1"/>-->
+
+        <DockPanel
+            LastChildFill="True"
+            Grid.Row="1"
+            Grid.Column="1">
+            <CheckBox
+                Visibility="{Binding Path=IsNew, Converter={StaticResource BooleanVisibilityConverter}}"
+                DockPanel.Dock="Right"
+                VerticalAlignment="Center"
+                IsChecked="False"
+                Margin="5, 0, 0, 0"
+                ToolTip="{x:Static properties:Resources.LocEdit}"
+                Name="EditBaseNameCheckBox"/>
+            <TextBox
+                beh:CopyTranslitBehavior.CheckString="True"
+                beh:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=FieldSystemName}"
+                IsReadOnly="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                Name="TableDbName"
+                IsEnabled="{Binding Path=IsNew, Mode=OneWay}"
+                Text="{Binding Path=Name}">
+                <beh:CopyTranslitBehavior.UseTranslit>
+                    <MultiBinding Converter="{StaticResource BooleansToBooleanConverter}" ConverterParameter="And">
+                        <Binding Path="IsNew" Mode="OneWay"/>
+                        <Binding ElementName="EditBaseNameCheckBox" Path="IsChecked" Mode="OneWay" Converter="{StaticResource TrueFalseConverter}"/>
+                    </MultiBinding>
+                </beh:CopyTranslitBehavior.UseTranslit>
+            </TextBox>
+        </DockPanel>
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocType}"
+            Grid.Row="2"/>
+        <ComboBox 
+            Grid.Column="1"
+            Grid.Row="2"
+            ItemsSource="{Binding Source={StaticResource FieldTypeValues}}" 
+            DisplayMemberPath="Description"
+            SelectedItem="{Binding Path=Type, Converter={StaticResource EnumWrapperConverter}}" />
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocDescription}"
+            Grid.Row="3"/>
+        <TextBox 
+            Text="{Binding Path=Description}" 
+            Grid.Column="1"
+            Grid.Row="3"/>
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocReadOnly}"
+            Grid.Row="4"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Path=IsReadOnly, Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocIsVisible}"
+            Grid.Row="5"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" SelectedItem="{Binding Path=IsVisible, Converter={StaticResource BooleanYesNoConverter}}">
+            <ComboBox.Items>
+                <x:StaticExtension Member="properties:Resources.LocYes" />
+                <x:StaticExtension Member="properties:Resources.LocNo" />
+            </ComboBox.Items>
+        </ComboBox>
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocTypeRelation}"
+            Grid.Row="6" />
+        <ComboBox Grid.Row="6" Grid.Column="1"
+                  Name="RefTableTypeBox"
+                  DisplayMemberPath="Description"
+                  SelectedItem="{Binding Path=RefType, Converter={StaticResource EnumWrapperConverter}}"
+                  ItemsSource="{Binding Source={StaticResource RefTypeValues}}" 
+                  Height="22" 
+                  VerticalAlignment="Top">
+            <beh:CommandBehaviorCollection.Behaviors>
+                <beh:BehaviorBinding Action="{Binding ChangeRefTypeBox}" Event="SelectionChanged">
+                    <beh:BehaviorBinding.CommandParameter>
+                        <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                            <Binding ElementName="RefTableTypeBox" />
+                            <Binding ElementName="RefFieldIdText" />
+                            <Binding ElementName="RefFieldEndText" />
+                            <Binding ElementName="RefFieldEndBox" />
+                        </MultiBinding>
+                    </beh:BehaviorBinding.CommandParameter>
+                </beh:BehaviorBinding>
+            </beh:CommandBehaviorCollection.Behaviors>
+        </ComboBox>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocSourceTable}"
+            Grid.Row="7" />
+        <ComboBox 
+            Grid.Column="1" Grid.Row="7"
+            Name="TableSourceBox"
+            DisplayMemberPath="Text"
+            ItemsSource="{Binding Path=Table.Source.Tables}"
+            SelectedItem="{Binding Path=RefTable}" />
+
+        <TextBlock
+            Name="RefFieldIdText"
+            Text="{x:Static properties:Resources.LocSourceField}"
+            Grid.Row="8"/>
+        <ComboBox
+            Grid.Column="1"
+            Grid.Row="8"
+            ItemsSource="{Binding ElementName=TableSourceBox, Path=SelectedItem.Fields}"
+            SelectedItem="{Binding Path=RefField}" 
+            DisplayMemberPath="Text"/>
+
+        <TextBlock 
+            Text="{x:Static properties:Resources.LocEndOfInterval}"
+            Grid.Row="9"
+            Name="RefFieldEndText" 
+            Visibility="Collapsed"/>
+        <ComboBox 
+            Grid.Column="1"
+            Grid.Row="9"
+            Name="RefFieldEndBox" 
+            Visibility="Collapsed"
+            ItemsSource="{Binding ElementName=TableSourceBox, Path=SelectedItem.Fields}"
+            SelectedItem="{Binding Path=RefFieldEnd}" 
+            DisplayMemberPath="Text"/>
+
+        <TextBlock
+            Text="{x:Static properties:Resources.LocValueField}"
+            Grid.Row="10"/>
+        <ComboBox 
+            Grid.Column="1"
+            Grid.Row="10"
+            ItemsSource="{Binding ElementName=TableSourceBox, Path=SelectedItem.Fields}"
+            SelectedItem="{Binding Path=RefFieldName}" 
+            DisplayMemberPath="Text"/>
+        
+        <StackPanel
+            Grid.Row="100"
+            Grid.ColumnSpan="2" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Center" >
+            <Button 
+                Content="{x:Static properties:Resources.LocSave}"
+                MinWidth="85" 
+                Margin="0, 5, 5, 0"
+                Name="SaveButton" 
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.Action="{Binding BindingGroupSave}"
+                beh:CommandBehavior.CommandParameter="{Binding ElementName=fieldPropertiesBindingGroup}"
+                />
+            <Button 
+                Content="{x:Static properties:Resources.LocCancel}"
+                MinWidth="85" 
+                Name="CancelButton" 
+                Margin="0, 5, 0, 0" 
+                beh:CommandBehavior.Event="Click"
+                beh:CommandBehavior.Action="{Binding BindingGroupCancel}"
+                beh:CommandBehavior.CommandParameter="{Binding ElementName=fieldPropertiesBindingGroup}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

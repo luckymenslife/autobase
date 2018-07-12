@@ -1,0 +1,553 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.PgRights.TableRightsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pgm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:conv="clr-namespace:Rekod.Converters"
+             xmlns:view="clr-namespace:Rekod.DataAccess.SourcePostgres.View.PgRights"
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"    
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             Name="TableActionsRights" 
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             d:DesignWidth="590" d:DesignHeight="427">
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Data}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <serv:BindingProxy 
+                x:Key="UserProxy"
+                Data="{Binding}" />
+            <conv:MathConverter x:Key="MathConverter" />
+            <pgm:PgTableHierarchyM x:Key="PgTableHierarchyM" />
+            <ObjectDataProvider 
+                MethodName="GetEnumValues"
+                ObjectType="{x:Type conf:ObjectProviderValues}"
+                x:Key="UserTypeValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="pgm:UserType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <CollectionViewSource 
+                x:Key="UsersSorted"
+                Source="{Binding Data.UserRights.Source.Users}">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="NameLogin" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/rekod_infrastructure;component/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <TabControl
+        Style="{x:Null}">
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="True"
+            Header="{x:Static properties:Resources.LocGrantTableRights}" 
+            Style="{x:Null}"
+            Name="ManageRightsTabItem"
+            IsEnabled="{Binding Path=Data.IsNewUser, Converter={StaticResource TrueFalseConverter}}">
+            <Grid
+                DataContext="{Binding Path=Data.UserRights}"
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!--Слить права-->
+                <GroupBox
+                    Padding="2, 0, 2, 0"
+                    Margin="0, 0, 1, 5"
+                    Header="{x:Static properties:Resources.LocGetUserRights}"  >
+                    <StackPanel>
+                        <ComboBox 
+                            Name="ReplaceRightsUserBox"
+                            Margin="0,3,0,5"
+                            DisplayMemberPath="NameLogin"
+                            ItemsSource="{Binding Source={StaticResource UsersSorted}}"
+                            SelectedItem="{Binding Path=UserToReplaceWith}"
+                            IsEditable="True"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton
+                            Name="ReplaceRightsRadioButton" 
+                            IsChecked="True"
+                            GroupName="ReplaceAction" 
+                            Content="{x:Static properties:Resources.LocReplace}" />
+                            <RadioButton
+                            Grid.Row="1"
+                            Name="AddRightsRadioButton"
+                            GroupName="ReplaceAction" 
+                            Content="{x:Static properties:Resources.LocAdd}" />
+                            <Button 
+                            Grid.Column="1"
+                            Grid.RowSpan="2"
+                            Content="{x:Static properties:Resources.LocExecute}" 
+                            Command="{Binding Path=MergeUserRightsCommand}"
+                            CommandParameter="{Binding ElementName=ReplaceRightsRadioButton, Path=IsChecked}"
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom">
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+
+                <!--Таблица прав-->
+                <view:TableTree Grid.Row="3" />
+
+                <!--Кнопки сохранить/обновить-->
+                <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Margin="0,4,0,0"
+                        Grid.Row="4">
+                    <Button 
+                            Height="23" 
+                            MinWidth="90" 
+                            Margin="0,0,5,0"
+                            Command="{Binding SaveChangesCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/save5.png"/>-->
+                                <TextBlock
+                                    Text="{x:Static properties:Resources.LocSave}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                            Height="23" 
+                            MinWidth="90"
+                            Command="{Binding ReloadCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/reload_2.png"/>-->
+                                <TextBlock Text="{x:Static properties:Resources.LocUpdate}"  VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="True"
+            Header="{x:Static properties:Resources.LocGrantActionRights}"
+            Style="{x:Null}"
+            Name="ManageActionRightsTabItem"
+            IsEnabled="{Binding Path=Data.IsNewUser, Converter={StaticResource TrueFalseConverter}}">
+            <Grid
+                DataContext="{Binding Path=Data.UserRights}"
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!--Слить права-->
+                <GroupBox
+                Padding="2, 0, 2, 0"
+                Margin="0, 0, 0, 5"
+                Header="{x:Static properties:Resources.LocGetUserRights}">
+                    <StackPanel>
+                        <ComboBox 
+                            Name="ReplaceActionRightsUserBox"
+                            Margin="0,3,0,5"
+                            DisplayMemberPath="NameLogin"
+                            ItemsSource="{Binding Source={StaticResource UsersSorted}}"
+                            SelectedItem="{Binding Path=UserToReplaceWith}"
+                            IsEditable="True"/>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <RadioButton
+                                Name="ReplaceActionRightsRadioButton" 
+                                IsChecked="True"
+                                GroupName="ReplaceAction" 
+                                Content="{x:Static properties:Resources.LocReplace}" />
+                            <RadioButton
+                                Grid.Row="1"
+                                Name="AddActionRightsRadioButton"
+                                GroupName="ReplaceAction" 
+                                Content="{x:Static properties:Resources.LocAdd}" />
+                            <Button 
+                                Grid.Column="1"
+                                Grid.RowSpan="2"
+                                Content="{x:Static properties:Resources.LocExecute}" 
+                                Command="{Binding Path=MergeUserActionRightsCommand}"
+                                CommandParameter="{Binding ElementName=ReplaceActionRightsRadioButton, Path=IsChecked}"
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Bottom">
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+
+                <!--Таблица прав-->
+                <DataGrid 
+                        Grid.Row="1"
+                        AutoGenerateColumns="False" 
+                        Name="RightsGrid"
+			            CanUserAddRows="False" 
+                        CanUserDeleteRows="False" 
+                        VerticalGridLinesBrush="#FFF0F0F0" 
+                        HeadersVisibility="Column"
+                        HorizontalGridLinesBrush="#FFF0F0F0" 
+                        SelectionMode="Single"
+                        ItemsSource="{Binding Path=ActionRights}">
+                    <DataGrid.Resources>
+                        <serv:BindingProxy Data="{Binding}" x:Key="BindingProxy"/>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                                Header="{x:Static properties:Resources.LocActions}" 
+                                Width="*" 
+                                Binding="{Binding Path=Action.NameVisible, Mode=OneWay}"/>
+                        <DataGridTextColumn 
+                                Width="90"
+                                CanUserResize="False">
+                            <DataGridTextColumn.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
+                                            Text="{x:Static properties:Resources.LocAllowed}" 
+                                            VerticalAlignment="Center" />
+                                    <CheckBox
+                                            IsChecked="{Binding Source={StaticResource BindingProxy}, Path=Data.AllAllowed}"
+                                            Margin="10, 0, 0, 0"
+                                            VerticalAlignment="Center"
+                                            x:Name="CanAllDoComboBox"/>
+                                </StackPanel>
+                            </DataGridTextColumn.Header>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <CheckBox 
+                                                        IsChecked="{Binding Allowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        x:Name="CanUserDoComboBox" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--Кнопки сохранить/обновить-->
+                <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Margin="0,4,0,0"
+                        Grid.Row="2">
+                    <Button 
+                            Height="23" 
+                            MinWidth="90" 
+                            Margin="0,0,5,0"
+                            Command="{Binding SaveChangesACommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/save5.png"/>-->
+                                <TextBlock
+                                    Text="{x:Static properties:Resources.LocSave}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                            Height="23" 
+                            MinWidth="90"
+                            Command="{Binding ReloadCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/reload_2.png"/>-->
+                                <TextBlock Text="{x:Static properties:Resources.LocUpdate}"  VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="True"
+            Header="{x:Static properties:Resources.LocAttributes}" 
+            Style="{x:Null}">
+            <Grid
+                Name="AttributesGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel 
+                    DataContext="{Binding Path=Data}"
+                    Margin="6,0,6,28" 
+                    Name="fieldsStack">
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocLogin}" />
+                    <TextBox 
+                        Margin="0,3,0,5" 
+                        Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" 
+                        IsEnabled="{Binding IsNewUser}"
+                        ToolTip="{x:Static properties:Resources.LocUserLoginWarning}"/>
+                    <TextBlock Text="{x:Static properties:Resources.LocFio}" />
+                    <TextBox 
+                        Margin="0,3,0,5" 
+                        Text="{Binding NameFull, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{x:Static properties:Resources.LocDepartment}" />
+                    <TextBox 
+                        Margin="0,3,0,5"
+                        Text="{Binding Otdel, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{x:Static properties:Resources.LocProgramName}" />
+                    <TextBox 
+                        Margin="0,3,0,5"
+                        Text="{Binding WindowName, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="{x:Static properties:Resources.LocLocalisationOnStartup}" />
+                    <DockPanel>
+                        <Button 
+                            beh:CommandBehavior.Event="Click"
+                            beh:CommandBehavior.Action="{Binding ClearExtentAction}"
+                            beh:CommandBehavior.CommandParameter="{Binding ElementName=ExtentsBox}"
+                            DockPanel.Dock="Right"
+                            Margin="3,3,0,5">
+                            <Image
+                                Height="16"
+                                Source="/Images/brush.png"/>
+                        </Button>
+                        <ComboBox 
+                            Name="ExtentsBox"
+                            Margin="0,3,0,5" 
+                            ItemsSource="{Binding Path=Source.Extents}"
+                            SelectedItem="{Binding Path=Extent}"
+                            DisplayMemberPath="Name"/>
+                    </DockPanel>
+
+                    <TextBlock Text="{x:Static properties:Resources.LocUserType}"/>
+                    <ComboBox 
+                        Margin="0,3,0,5" 
+                        SelectedItem="{Binding Path=Type, Converter={StaticResource EnumWrapperConverter}}"
+                        ItemsSource="{Binding Source={StaticResource UserTypeValues}}" 
+                        DisplayMemberPath="Description"
+                        IsEnabled="{Binding IsNewUser}">
+                    </ComboBox>
+                   
+
+                    <CheckBox
+                        Margin="2"
+                        IsChecked="{Binding ElementName=EditPasswordPopup, Path=IsOpen, Mode=TwoWay}"
+                        x:Name="EditPasswordCheckBox">
+                        <CheckBox.Template>
+                            <ControlTemplate>
+                                <TextBlock
+                                    TextDecorations="Underline"
+                                    Foreground="Blue">
+                                    <TextBlock.Text>
+                                        <x:Static Member="properties:Resources.LocPasswordEdit" />
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Popup
+                        PopupAnimation="Slide"
+                        x:Name="EditPasswordPopup" 
+                        AllowsTransparency="True"
+                        PlacementTarget="{Binding ElementName=EditPasswordCheckBox}"
+                        StaysOpen="False"
+                        Placement="Top" >
+                        <Border
+                            RenderOptions.BitmapScalingMode="NearestNeighbor"
+                            UseLayoutRounding="True"
+                            SnapsToDevicePixels="True"
+                            BorderBrush="Gray"
+                            BorderThickness="1.01"
+                            Background="LightGray"
+                            Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock 
+                                    VerticalAlignment="Center"
+                                    Margin="2, 2, 4, 0"
+                                    Text="{x:Static properties:Resources.LocPassword}" />
+                                <TextBlock 
+                                    VerticalAlignment="Center"
+                                    Margin="2, 2, 4, 2"
+                                    Grid.Row="1"
+                                    Text="{x:Static properties:Resources.LocConfirmation}" />
+                                <PasswordBox 
+                                    Name="BoxPassword"
+                                    VerticalAlignment="Center"
+                                    Margin="0, 2, 2, 0"
+                                    Grid.Column="1" 
+                                    MinWidth="150" />
+                                <PasswordBox 
+                                    Name="BoxConfirmation"
+                                    VerticalAlignment="Center"
+                                    Margin="0, 2, 2, 2"
+                                    Grid.Column="1" 
+                                    Grid.Row="1"
+                                    MinWidth="150" />
+                                <Button
+                                    Command="{Binding EditPasswordCommand}"
+                                    Margin="3"
+                                    Grid.Row="2"
+                                    Grid.Column="1" 
+                                    Content="{x:Static properties:Resources.LocOk}">
+                                    <Button.CommandParameter>
+                                        <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                            <Binding ElementName="BoxPassword" />
+                                            <Binding ElementName="BoxConfirmation" />
+                                        </MultiBinding>
+                                    </Button.CommandParameter>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </Popup>
+                    <CheckBox
+                        Margin="2"
+                        IsChecked="{Binding ElementName=ShowSyncPasswordPopup, Path=IsOpen, Mode=TwoWay}"
+                        x:Name="ShowSyncPassworCheckBox">
+                        <CheckBox.Template>
+                            <ControlTemplate>
+                                <TextBlock
+                                    TextDecorations="Underline"
+                                    Foreground="Blue">
+                                    <TextBlock.Text>
+                                        <x:Static Member="properties:Resources.LocShowSynchronisationPassword" />
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Popup
+                        PopupAnimation="Slide"
+                        x:Name="ShowSyncPasswordPopup" 
+                        AllowsTransparency="True"
+                        PlacementTarget="{Binding ElementName=ShowSyncPassworCheckBox}"
+                        StaysOpen="False"
+                        Placement="Top" >
+                        <Border
+                            SnapsToDevicePixels="True"
+                            BorderBrush="Gray"
+                            BorderThickness="1.01"
+                            Background="LightGray"
+                            Padding="5">
+                            <TextBox 
+                                BorderThickness="1.01"
+                                BorderBrush="DimGray"
+                                Background="Transparent"
+                                IsReadOnly="True" 
+                                Text="{Binding PassSync}"/>
+                        </Border>
+                    </Popup>
+                </StackPanel>
+                
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Margin="6"
+                    Grid.Row="1"
+                    Foreground="Red"
+                    Opacity="0.8"
+                    Text="{Binding Path=Data.EvaluateError}" />
+
+                <StackPanel
+                    Grid.Row="2"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" 
+                    Margin="0,0,2,0">
+                    <Button 
+                        Height="23" 
+                        MinWidth="90" 
+                        Margin="0,0,5,0"
+                        Command="{Binding Path=Data.SaveCommand}"
+                        CommandParameter="{Binding ElementName=AttributesGrid, Path=DataContext}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/save5.png"/>-->
+                                <TextBlock 
+                                    Text="{x:Static properties:Resources.LocSave}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button 
+                        Height="23" 
+                        MinWidth="90"
+                        Command="{Binding Path=Data.ReloadCommand}"
+                        CommandParameter="{Binding ElementName=AttributesGrid, Path=DataContext}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/reload_2.png"/>-->
+                                <TextBlock 
+                                    Text="{x:Static properties:Resources.LocUpdate}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

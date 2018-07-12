@@ -1,0 +1,83 @@
+﻿<Window x:Class="Rekod.FastReportClasses.SaveReportFrm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:Rekod.Properties"
+        Title="{x:Static properties:Resources.SRF_WindowTitle}" 
+        Width="339"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label 
+            Content="{x:Static properties:Resources.SRF_EnterName}"
+            Grid.Row="0"
+            Margin="5,3,5,0"/>
+        <TextBox 
+            x:Name="txtName" 
+            Grid.Row="1"
+            Margin="10, 0, 5, 3"
+            Text="{Binding Caption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+            <TextBox.ToolTip>
+                <ToolTip 
+                        Foreground="Red"
+                        Visibility="{Binding IsValid, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=Reverse}"
+                        ToolTipService.ShowOnDisabled="True">
+                    <ToolTip.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsUsedName}" Value="True">
+                                    <Setter Property="ToolTip.Content" Value="{x:Static properties:Resources.SRF_NameIsUsed}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsEmptyName}" Value="True">
+                                    <Setter Property="ToolTip.Content" Value="{x:Static properties:Resources.SRF_EmptyName}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToolTip.Style>
+                </ToolTip>
+            </TextBox.ToolTip>
+            <TextBox.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsValid, Mode=OneWay}" Value="False">
+                            <Setter Property="Control.Background" Value="#26FF0000"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="2"
+            HorizontalAlignment="Right">
+            <Button 
+                x:Name="btnCancel" 
+                Content="{x:Static properties:Resources.LocCancel}"
+                IsCancel="True"
+                Width="75"
+                Margin="5"/>
+            <Button 
+                x:Name="btnSave" 
+                Content="{x:Static properties:Resources.LocSave}"
+                IsDefault="True"
+                Width="75"
+                Margin="0,5,5,5">
+                <Button.Style>
+                    <Style>
+                        <Setter Property="Button.IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsValid, Mode=OneWay}" Value="True">
+                                <Setter Property="Button.IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

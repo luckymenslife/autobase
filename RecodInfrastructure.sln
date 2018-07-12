@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RekodInfrastructura", "RekodInfrastructure\RekodInfrastructura.csproj", "{119AAAA6-27AC-4B06-9B6F-C791D157686F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{16E574C6-87A2-4322-8CDE-6EA647547BC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D2A096AB-7325-43E4-89C2-9EBE799FD543}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OGRFramework", "OGRFramework\OGRFramework\OGRFramework.csproj", "{781821BF-5345-41C3-B784-BC7822BF22B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sscSync", "sscSync\sscSync.csproj", "{15A63EC4-27D0-4D40-9A09-B40EA10BDEDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GBU_Waybill_plugin", "Plugins\GBU_Waybill_plugin\GBU_Waybill_plugin.csproj", "{45F535A4-F657-4810-9735-81924394C126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPlugins", "Plugins\NotificationPlugins\NotificationPlugins.csproj", "{121DE4BD-68C3-44DB-95DC-44935854841C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		GS|x86 = GS|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{119AAAA6-27AC-4B06-9B6F-C791D157686F}.Debug|x86.ActiveCfg = Debug|x86
+		{119AAAA6-27AC-4B06-9B6F-C791D157686F}.Debug|x86.Build.0 = Debug|x86
+		{119AAAA6-27AC-4B06-9B6F-C791D157686F}.GS|x86.ActiveCfg = GS|x86
+		{119AAAA6-27AC-4B06-9B6F-C791D157686F}.GS|x86.Build.0 = GS|x86
+		{16E574C6-87A2-4322-8CDE-6EA647547BC7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16E574C6-87A2-4322-8CDE-6EA647547BC7}.Debug|x86.Build.0 = Debug|Any CPU
+		{16E574C6-87A2-4322-8CDE-6EA647547BC7}.GS|x86.ActiveCfg = Release|Any CPU
+		{16E574C6-87A2-4322-8CDE-6EA647547BC7}.GS|x86.Build.0 = Release|Any CPU
+		{781821BF-5345-41C3-B784-BC7822BF22B2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{781821BF-5345-41C3-B784-BC7822BF22B2}.Debug|x86.Build.0 = Debug|Any CPU
+		{781821BF-5345-41C3-B784-BC7822BF22B2}.GS|x86.ActiveCfg = Release|Any CPU
+		{781821BF-5345-41C3-B784-BC7822BF22B2}.GS|x86.Build.0 = Release|Any CPU
+		{15A63EC4-27D0-4D40-9A09-B40EA10BDEDB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{15A63EC4-27D0-4D40-9A09-B40EA10BDEDB}.Debug|x86.Build.0 = Debug|Any CPU
+		{15A63EC4-27D0-4D40-9A09-B40EA10BDEDB}.GS|x86.ActiveCfg = Release|Any CPU
+		{15A63EC4-27D0-4D40-9A09-B40EA10BDEDB}.GS|x86.Build.0 = Release|Any CPU
+		{45F535A4-F657-4810-9735-81924394C126}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45F535A4-F657-4810-9735-81924394C126}.Debug|x86.Build.0 = Debug|Any CPU
+		{45F535A4-F657-4810-9735-81924394C126}.GS|x86.ActiveCfg = Release|Any CPU
+		{45F535A4-F657-4810-9735-81924394C126}.GS|x86.Build.0 = Release|Any CPU
+		{121DE4BD-68C3-44DB-95DC-44935854841C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{121DE4BD-68C3-44DB-95DC-44935854841C}.Debug|x86.Build.0 = Debug|Any CPU
+		{121DE4BD-68C3-44DB-95DC-44935854841C}.GS|x86.ActiveCfg = Release|Any CPU
+		{121DE4BD-68C3-44DB-95DC-44935854841C}.GS|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45F535A4-F657-4810-9735-81924394C126} = {D2A096AB-7325-43E4-89C2-9EBE799FD543}
+		{121DE4BD-68C3-44DB-95DC-44935854841C} = {D2A096AB-7325-43E4-89C2-9EBE799FD543}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,473 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourceCosmetic.View.DefaultStyleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:pgm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model"
+             xmlns:conv="clr-namespace:Rekod.DataAccess.SourcePostgres.Converters"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:val="clr-namespace:Rekod.DataAccess.SourceCosmetic.View.ValidationRules"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ObjectDataProvider  MethodName="GetSymbols" ObjectType="{x:Type conf:ObjectProviderValues}" x:Key="SymbolValues" />
+        
+        <ObjectDataProvider 
+            MethodName="GetEnumValues"
+            ObjectType="{x:Type conf:ObjectProviderValues}"
+            x:Key="RangeColorTypesValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="pgm:EChangeColor" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ObjectDataProvider MethodName="GetPensImages" ObjectType="{x:Type conf:ObjectProviderValues}" x:Key="PenValues" />
+        <ObjectDataProvider MethodName="GetBrushesImages" ObjectType="{x:Type conf:ObjectProviderValues}" x:Key="BrushValues" />
+        
+        <Style TargetType="Grid" x:Key="nullDataContextStyle">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="InputErrorTemplate">
+            <Border BorderBrush="Red" BorderThickness="1">
+                <AdornedElementPlaceholder />
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="4,4,15,4" />
+            <Setter 
+                Property="Validation.ErrorTemplate" 
+                Value="{StaticResource InputErrorTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <Binding 
+                                Path="(Validation.Errors).CurrentItem.ErrorContent"
+                                RelativeSource="{x:Static RelativeSource.Self}"
+                            />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Style="{StaticResource nullDataContextStyle}">
+        <beh:CommandBehaviorCollection.Behaviors>
+            <!--<beh:BehaviorBinding Event="Loaded" Action="{Binding BindingGroupLoadedAction}" CommandParameter="{Binding ElementName=ControlBindingGroup}" />-->
+            <beh:BehaviorBinding Event="System.Windows.Controls.Validation.ErrorEvent" Action="{Binding BindingGroupErrorAction}" />
+        </beh:CommandBehaviorCollection.Behaviors>
+        <TabControl Name="tabControl">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Setter Property="SelectedIndex" Value="0"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CosmeticStyleType}" Value="2">
+                            <Setter Property="SelectedIndex" Value="1"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CosmeticStyleType}" Value="3">
+                            <Setter Property="SelectedIndex" Value="2"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Style>
+            <TabItem Header="{x:Static properties:Resources.LocSymbol}">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="1">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
+                <Grid>
+                    <Grid.BindingGroup>
+                        <BindingGroup x:Name="PointBindingGroup" NotifyOnValidationError="True">
+                            <BindingGroup.ValidationRules>
+                                <val:DefaultStylePointValidationRule />
+                            </BindingGroup.ValidationRules>
+                        </BindingGroup>
+                    </Grid.BindingGroup>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Text="{x:Static properties:Resources.LocFont}"
+                        Margin="5"/>
+                    <DockPanel
+                        Margin="0, 5, 5, 0"
+                        Grid.Column="1"  
+                        LastChildFill="True">
+                        <TextBox 
+                            Text="{Binding Path=FontSize,
+                                Mode=TwoWay}"
+                            IsReadOnly="True"
+                            DockPanel.Dock="Right" 
+                            Width="30"
+                            Margin="0" 
+                            Name="TextBoxFontSize"/>
+                        <Button
+                            Content="..."  
+                            DockPanel.Dock="Right" 
+                            Width="30" 
+                            Margin="0,0,5,0"
+                            Name="ButtonFontDialog"
+                            Command="serv:ServiceClass.FontDialogCommand">
+                            <Button.CommandParameter>
+                                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                    <Binding ElementName="TextBoxFontName" />
+                                    <Binding ElementName="TextBoxFontSize" />
+                                </MultiBinding>
+                            </Button.CommandParameter>
+                        </Button>
+                        <TextBox 
+                            Text="{Binding Path=FontName, Mode=TwoWay,
+                                           ValidatesOnExceptions=True, 
+                                           ValidatesOnDataErrors=True}"
+                            IsReadOnly="True"
+                            Name="TextBoxFontName"
+                            DockPanel.Dock="Left"
+                            Margin="4,0"/>
+                    </DockPanel>
+
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocColor}"
+                        Margin="5" 
+                        Grid.Row="3"/>
+                    <Rectangle 
+                        Width="32"
+                        HorizontalAlignment="Left"
+                        beh:ColorChooseBehavior.ChooseColor="True"
+                        Margin="5, 5, 5, 0" 
+                        Grid.Column="1" 
+                        Grid.Row="3" 
+                        Stroke="Gray">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Path=FontColor, Mode=TwoWay, 
+                                Converter={StaticResource PgIntColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocFringe}"
+                        Margin="5" 
+                        Grid.Row="4"/>
+                    <Rectangle 
+                        Width="32"
+                        HorizontalAlignment="Left"
+                        beh:ColorChooseBehavior.ChooseColor="True"
+                        Margin="5, 5, 5, 0" 
+                        Grid.Column="1"
+                        Grid.Row="4" 
+                        Stroke="Gray">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Path=FontFrameColor, Mode=TwoWay, 
+                                Converter={StaticResource PgIntColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock
+                        Text="{x:Static properties:Resources.LocSymbol}"
+                        Margin="5" 
+                        Grid.Row="5"/>
+                    <ComboBox Margin="5, 5, 5, 0" 
+                              Grid.Column="1"
+                              Grid.Row="5"
+                              Height="30"
+                              Width="64"
+                              HorizontalAlignment="Left"
+                              ItemsSource="{Binding Source={StaticResource SymbolValues}}"
+                              SelectedItem="{Binding Path=Symbol, Mode=TwoWay, Converter={StaticResource IntCharConverter}}"
+                              FontSize="20"
+                              FontFamily="{Binding Path=FontName}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static properties:Resources.LocPen}">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="2">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="3">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
+                <Grid>
+                    <Grid.BindingGroup>
+                        <BindingGroup x:Name="LineBindingGroup" NotifyOnValidationError="True">
+                            <BindingGroup.ValidationRules>
+                                <val:DefaultStyleLineValidationRule />
+                            </BindingGroup.ValidationRules>
+                        </BindingGroup>
+                    </Grid.BindingGroup>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5, 0, 5, 0" VerticalAlignment="Center" Text="{x:Static properties:Resources.LocColor}" />
+                        <Rectangle 
+                            Width="32"
+                            HorizontalAlignment="Left"
+                            beh:ColorChooseBehavior.ChooseColor="True"
+                            Margin="2, 5, 15, 5" 
+                            Grid.Column="1" 
+                            Stroke="Gray" >
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding Path=PenColor, Mode=TwoWay, 
+                                    Converter={StaticResource PgIntColorConverter}}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock VerticalAlignment="Center" Text="{x:Static properties:Resources.LocSize}" Grid.Column="2"/>
+                        <TextBox
+                            MinWidth="32"
+                            HorizontalAlignment="Stretch" 
+                                 Margin="5, 5, 5, 5" 
+                                 Text="{Binding Path=PenWidth,
+                                            ValidatesOnExceptions=True, 
+                                            ValidatesOnDataErrors=True}" 
+                                 Grid.Column="3"/>
+                    </Grid>
+                    <ListBox 
+                        Grid.Row="1" 
+                        Margin="5" 
+                        ItemsSource="{Binding Source={StaticResource PenValues}}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        SelectedItem="{Binding Path=PenType, Mode=TwoWay,
+                                Converter={StaticResource PgPenTypeBitmapSourceConverter}}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel ItemWidth="75"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image
+                                    Stretch="Fill"
+                                    UseLayoutRounding="True"
+                                    SnapsToDevicePixels="True"
+                                    Source="{Binding}" 
+                                    Width="72" 
+                                    Margin="1, 2, 2, 2" 
+                                    Opacity="0.8"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="BorderBrush" Value="Blue"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                        <TextBlock Text="{x:Static properties:Resources.LocCurrentPen}" />
+                        <Image Width="72" Margin="5, 2, 2 ,2" 
+                               Source="{Binding Path=PenType, 
+                                    Converter={StaticResource PgPenTypeBitmapSourceConverter}, 
+                                    UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="{x:Static properties:Resources.LocBrush}">
+                <TabItem.Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CosmeticStyleType}" Value="3">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TabItem.Style>
+                <Grid>
+                    <Grid.BindingGroup>
+                        <BindingGroup x:Name="PolygonBindingGroup" NotifyOnValidationError="True">
+                            <BindingGroup.ValidationRules>
+                                <val:DefaultStylePolygonValidationRule />
+                            </BindingGroup.ValidationRules>
+                        </BindingGroup>
+                    </Grid.BindingGroup>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox
+                                IsChecked="{Binding HasBackground}"
+                                Name="cbHasBackgroundColor"
+                                Content="{x:Static properties:Resources.LocBackgroundColor}"
+                                VerticalAlignment="Center" Margin="5, 5, 2, 5" />
+                            <Rectangle
+                                Width="32"
+                                HorizontalAlignment="Left"
+                                beh:ColorChooseBehavior.ChooseColor="True"
+                                Height="23" 
+                                Margin="5, 5, 15, 5"
+                                Grid.Column="1" 
+                                Stroke="Gray"
+                                IsEnabled="{Binding ElementName=cbHasBackgroundColor, Path=IsChecked}">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding Path=BrushBgColor, Mode=TwoWay, 
+                                    Converter={StaticResource PgIntColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock VerticalAlignment="Center" Margin="0, 5, 0, 5" Text="{x:Static properties:Resources.LocColor}" Grid.Column="2"/>
+                            <Rectangle 
+                                Width="32"
+                                HorizontalAlignment="Left"
+                                beh:ColorChooseBehavior.ChooseColor="True"
+                                Margin="5, 5, 5, 5" 
+                                Grid.Column="3" 
+                                Stroke="Gray">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush 
+                                    x:Name="fbColorBrush"
+                                    Color="{Binding Path=BrushFgColor, Mode=TwoWay, 
+                                        Converter={StaticResource PgIntColorConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </StackPanel>
+                        
+                        <DockPanel Grid.Row="1" Grid.ColumnSpan="4" Margin="3">
+                            <TextBlock DockPanel.Dock="Left" Margin="0,0,5,0" Text="{x:Static properties:Resources.LocOpacity}" />
+                            <Slider
+                                Minimum="0"
+                                Maximum="1"
+                                Value="{Binding Opacity, Mode=TwoWay}"
+                                SmallChange="0.1"                                
+                                Name="sliderOpacity"
+                                DockPanel.Dock="Right">
+                                <Slider.Style>
+                                    <Style TargetType="Slider">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=lbBrushes, Path=SelectedIndex}" Value="1">
+                                                <Setter Property="IsEnabled" Value="True"/>
+                                            </DataTrigger>
+                                            <Trigger Property="IsEnabled" Value="False">
+                                                <Setter Property="Value" Value="0"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Slider.Style>
+                            </Slider>
+                        </DockPanel>
+                    </Grid>
+
+                    <ListBox 
+                        Grid.Row="1" Margin="5" Name="lbBrushes"
+                        ItemsSource="{Binding Source={StaticResource BrushValues}}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel ItemWidth="38">
+                                </WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="BorderBrush" Value="Blue"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image
+                                    UseLayoutRounding="True"
+                                    SnapsToDevicePixels="True"
+                                    RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                    Width="32"
+                                    Height="32"
+                                    Source="{Binding}" 
+                                    Opacity="0.8" 
+                                    Margin="1, 3, 3, 3"/>
+                            </DataTemplate>                            
+                        </ListBox.ItemTemplate>
+                        <ListBox.SelectedItem>
+                            <MultiBinding Converter="{StaticResource PgStyleHatchBitmapSourceConverter}">
+                                <Binding Path="BrushStyle" Mode="TwoWay" />
+                                <Binding Path="BrushHatch" Mode="TwoWay" />
+                            </MultiBinding>
+                        </ListBox.SelectedItem>
+                    </ListBox>
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock Text="{x:Static properties:Resources.LocCurrentBrush}" VerticalAlignment="Center"/>
+                        <Image Margin="5, 3, 3, 3" Width="32" Height="32">
+                            <Image.Source>
+                                <MultiBinding Converter="{StaticResource PgStyleHatchBitmapSourceConverter}">
+                                    <Binding Path="BrushStyle" Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
+                                    <Binding Path="BrushHatch" Mode="OneWay" UpdateSourceTrigger="PropertyChanged" />
+                                </MultiBinding>
+                            </Image.Source>
+                        </Image>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,3731 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About the program</value>
+  </data>
+  <data name="AbsM.EFieldType.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="AbsM.EFieldType.DateTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="AbsM.EFieldType.Geometry" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="AbsM.EFieldType.Integer" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="AbsM.EFieldType.Real" xml:space="preserve">
+    <value>Real</value>
+  </data>
+  <data name="AbsM.EFieldType.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="AbsM.EGeomType.Line" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="AbsM.EGeomType.None" xml:space="preserve">
+    <value>Without geometry</value>
+  </data>
+  <data name="AbsM.EGeomType.Point" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="AbsM.EGeomType.Polygon" xml:space="preserve">
+    <value>Polygon</value>
+  </data>
+  <data name="AbsM.ERefType.Data" xml:space="preserve">
+    <value>Data table</value>
+  </data>
+  <data name="AbsM.ERefType.Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="AbsM.ERefType.None" xml:space="preserve">
+    <value>No connection</value>
+  </data>
+  <data name="AbsM.ERefType.Reference" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="AbsM.ETableType.BottomLayer" xml:space="preserve">
+    <value>Base layer</value>
+  </data>
+  <data name="AbsM.ETableType.Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="AbsM.ETableType.CommonType" xml:space="preserve">
+    <value>Common type</value>
+  </data>
+  <data name="AbsM.ETableType.Data" xml:space="preserve">
+    <value>Data table</value>
+  </data>
+  <data name="AbsM.ETableType.Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="AbsM.ETableType.MapLayer" xml:space="preserve">
+    <value>Map layer</value>
+  </data>
+  <data name="AbsM.ETableType.Rastr" xml:space="preserve">
+    <value>Raster layer</value>
+  </data>
+  <data name="AbsM.ETableType.View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="AddEditRastr_EnterName" xml:space="preserve">
+    <value>Enter the name of a raster layer</value>
+  </data>
+  <data name="AddEditRastr_ErrorExistFile" xml:space="preserve">
+    <value>Specify an existing raster file</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser" xml:space="preserve">
+    <value>You can not delete the current user!</value>
+  </data>
+  <data name="AdminFrm_DeleteCurrUser_Header" xml:space="preserve">
+    <value>Delete the user</value>
+  </data>
+  <data name="AdminFrm_NotReadAllTable" xml:space="preserve">
+    <value>Viewing of all tables is prohibited</value>
+  </data>
+  <data name="AdminFrm_NotWriteAllTable" xml:space="preserve">
+    <value>Editing of all tables is prohibited</value>
+  </data>
+  <data name="AdminFrm_ReadAllTables" xml:space="preserve">
+    <value>Viewing of all tables is allowed</value>
+  </data>
+  <data name="AdminFrm_ReadSomeTables" xml:space="preserve">
+    <value>Viewing of certain tables  is allowed</value>
+  </data>
+  <data name="AdminFrm_WriteAllTables" xml:space="preserve">
+    <value>Editing of all tables  is allowed</value>
+  </data>
+  <data name="AdminFrm_WriteSomeTables" xml:space="preserve">
+    <value>Editing of certain tables  is allowed</value>
+  </data>
+  <data name="AEAtr_CreatingAttribute" xml:space="preserve">
+    <value>Attribute creating </value>
+  </data>
+  <data name="AEAtr_ErrorAllFieldHiden" xml:space="preserve">
+    <value>The table must have at least one hidden attribute. If you want to hide all attributes of the table, use  property 'hidden' for the table</value>
+  </data>
+  <data name="AEAtr_ErrorCreateAtrField" xml:space="preserve">
+    <value>Failed to create attribute field!</value>
+  </data>
+  <data name="AEAtr_NameFormat" xml:space="preserve">
+    <value>The field name must contain Latin letters and numbers and begin with the Latin letters</value>
+  </data>
+  <data name="AEAtr_NotPutName" xml:space="preserve">
+    <value>The name of an attribute in the database or in the system was not input!</value>
+  </data>
+  <data name="AEAtr_NotSaveField" xml:space="preserve">
+    <value>The field with this name could not be saved!</value>
+  </data>
+  <data name="AEAtr_NotSelectType" xml:space="preserve">
+    <value>The field type is not selected!</value>
+  </data>
+  <data name="AEAtr_RenameInDB" xml:space="preserve">
+    <value>Change the name of the field in the database.</value>
+  </data>
+  <data name="AEAtr_ReservedName" xml:space="preserve">
+    <value>The name is a reserved.</value>
+  </data>
+  <data name="AEAtr_SaveRenameField" xml:space="preserve">
+    <value>Field with the same name already exists in the database. Save a field named "{0}"?"</value>
+  </data>
+  <data name="AEAtr_TableAttributesHeader" xml:space="preserve">
+    <value>Table attributes</value>
+  </data>
+  <data name="AET_AddLabel" xml:space="preserve">
+    <value>Adding a caption</value>
+  </data>
+  <data name="AET_AlreadyExistsTable" xml:space="preserve">
+    <value>Table with the same name already exists in the database.
+Save a table named \"{0}\"?</value>
+  </data>
+  <data name="AET_ChangeTable" xml:space="preserve">
+    <value>Change the name of the table in the database.</value>
+  </data>
+  <data name="AET_ConNotSave" xml:space="preserve">
+    <value>A table with a given name can not be saved!</value>
+  </data>
+  <data name="AET_CreatingTable" xml:space="preserve">
+    <value>Creating a table</value>
+  </data>
+  <data name="AET_ErrorBoundValue" xml:space="preserve">
+    <value>The lower bound of visibility exceeds the upper or is equal to it!</value>
+  </data>
+  <data name="AET_ErrorCreatingHistory" xml:space="preserve">
+    <value>An error occurred while creating history!</value>
+  </data>
+  <data name="AET_ErrorCreatingTable" xml:space="preserve">
+    <value>An error occurred while creating the table</value>
+  </data>
+  <data name="AET_MustBeGeom" xml:space="preserve">
+    <value>The layer of the map must have the geometry!</value>
+  </data>
+  <data name="AET_NameIsReserved" xml:space="preserve">
+    <value>The name is a reserved.</value>
+  </data>
+  <data name="AET_NotRegScheme" xml:space="preserve">
+    <value>No registered schemes!</value>
+  </data>
+  <data name="AET_PerformOperation" xml:space="preserve">
+    <value>Perform the operation?</value>
+  </data>
+  <data name="AET_RequiredParams" xml:space="preserve">
+    <value>You must enter the required parameters!</value>
+  </data>
+  <data name="AET_SaveTableRename" xml:space="preserve">
+    <value>Save the table with the name {0}"?"</value>
+  </data>
+  <data name="AET_TableNameFormat" xml:space="preserve">
+    <value>Table name must contain latin letters, numbers, and must begin with a letter</value>
+  </data>
+  <data name="AET_TurnHistory" xml:space="preserve">
+    <value>When you turn off the function of keeping story, all current history about the table will be removed!</value>
+  </data>
+  <data name="AWT_EditLabel" xml:space="preserve">
+    <value>Edit the caption</value>
+  </data>
+  <data name="CCT_Postfix" xml:space="preserve">
+    <value>copy</value>
+  </data>
+  <data name="ChangesAreSaved" xml:space="preserve">
+    <value>Сhanges are saved!</value>
+  </data>
+  <data name="CheckObjects_ColumnName" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="CheckObjects_Title" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company name:</value>
+  </data>
+  <data name="COM_ConnAnNoExistsTable" xml:space="preserve">
+    <value>-Column '{0}' is connected to an not existing table;</value>
+  </data>
+  <data name="COM_NoRightToTable" xml:space="preserve">
+    <value>-No read permission on the table '{0}';</value>
+  </data>
+  <data name="ConnectionIsBroken_Header" xml:space="preserve">
+    <value>The connection with database was lost</value>
+  </data>
+  <data name="ConnectionIsBroken_Message" xml:space="preserve">
+    <value>Connection with a database was lost! Do you want to retry? Otherwise the application will be closed!</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright:</value>
+  </data>
+  <data name="CouldNotExtractIcon" xml:space="preserve">
+    <value>Could not extract the icon</value>
+  </data>
+  <data name="Count_In_Status" xml:space="preserve">
+    <value>Count:</value>
+  </data>
+  <data name="DBTG_ManagingGroups" xml:space="preserve">
+    <value>Groups management</value>
+  </data>
+  <data name="DBTG_TablesList" xml:space="preserve">
+    <value>Tables list</value>
+  </data>
+  <data name="DeleteUserQuetion" xml:space="preserve">
+    <value>Do you really want to delete the user?</value>
+  </data>
+  <data name="DeletingAuser" xml:space="preserve">
+    <value>Delete the user</value>
+  </data>
+  <data name="DGBH_AppointNewProj" xml:space="preserve">
+    <value>
+Appoint a new projection without conversion?</value>
+  </data>
+  <data name="DGBH_col" xml:space="preserve">
+    <value>column</value>
+  </data>
+  <data name="DGBH_CoordIncorrect" xml:space="preserve">
+    <value>Coordinates are incorrect!</value>
+  </data>
+  <data name="DGBH_DeleteObjMessage" xml:space="preserve">
+    <value>Do you really want to delete the object?</value>
+  </data>
+  <data name="DGBH_Editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="DGBH_EditingLineObj" xml:space="preserve">
+    <value>line object</value>
+  </data>
+  <data name="DGBH_EditingPointObj" xml:space="preserve">
+    <value>point object</value>
+  </data>
+  <data name="DGBH_EditingPolygonObj" xml:space="preserve">
+    <value>polygon object</value>
+  </data>
+  <data name="DGBH_Empty" xml:space="preserve">
+    <value>Hole</value>
+  </data>
+  <data name="DGBH_EnterInt" xml:space="preserve">
+    <value>Enter an integer</value>
+  </data>
+  <data name="DGBH_ErrorHeader" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DGBH_ErrorInDataEntry" xml:space="preserve">
+    <value>Error in data entry</value>
+  </data>
+  <data name="DGBH_ErrorReplaceFile" xml:space="preserve">
+    <value>The system can not replace the existing file! Please enter another name. Do you want to continue?</value>
+  </data>
+  <data name="DGBH_ErrorSingleLine" xml:space="preserve">
+    <value>You can not delete the single line</value>
+  </data>
+  <data name="DGBH_ErrorSinglePoint" xml:space="preserve">
+    <value>You can not delete the single point</value>
+  </data>
+  <data name="DGBH_ErrorSinglePolygon" xml:space="preserve">
+    <value>You can not delete the single polygon</value>
+  </data>
+  <data name="DGBH_FixForContinue" xml:space="preserve">
+    <value>Correct to continue</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessage" xml:space="preserve">
+    <value>Do you really want to delete the hole?</value>
+  </data>
+  <data name="DGBH_HoleDeleteMessageHeader" xml:space="preserve">
+    <value>Delete the hole</value>
+  </data>
+  <data name="DGBH_Line" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacLine" xml:space="preserve">
+    <value>Not enough points to display the characteristics of the line</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPoint" xml:space="preserve">
+    <value>Not enough points to display the characteristics of the point</value>
+  </data>
+  <data name="DGBH_NotEnoughCharacPolygon" xml:space="preserve">
+    <value>Not enough points to display the characteristics of the polygon</value>
+  </data>
+  <data name="DGBH_NotEnoughPoints" xml:space="preserve">
+    <value>Not enough points for the construction of the border of the polygon №{0}</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForHole" xml:space="preserve">
+    <value>Not enough points for building a cavity №{0} of polygon №{1}. The cavity will be removed</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsForLine" xml:space="preserve">
+    <value>Not enough points for the construction of the line №{0}</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsMeesage" xml:space="preserve">
+    <value>Not enough points</value>
+  </data>
+  <data name="DGBH_NotEnoughPointsToGeom" xml:space="preserve">
+    <value>Not enough points to preview geometry</value>
+  </data>
+  <data name="DGBH_NotMatch" xml:space="preserve">
+    <value>The type of geometry in  file does not match the type of geometry in the table!</value>
+  </data>
+  <data name="DGBH_OneMoreNotNotEnough" xml:space="preserve">
+    <value>Not enough points for preview of the polygon. /n Not enough points in {0} cavity</value>
+  </data>
+  <data name="DGBH_OperSuccess" xml:space="preserve">
+    <value>The operation was a success!</value>
+  </data>
+  <data name="DGBH_PhotoWithoutCoords" xml:space="preserve">
+    <value>The photo has no information about the coordinates!</value>
+  </data>
+  <data name="DGBH_Point" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="DGBH_Polygon" xml:space="preserve">
+    <value>Polygon</value>
+  </data>
+  <data name="DGBH_ProjNotInDB" xml:space="preserve">
+    <value>Projection {0} is not in the database. You can not use this projection</value>
+  </data>
+  <data name="DGBH_ProjNotInDB_EnterCorrect" xml:space="preserve">
+    <value>This projection is not in the database. Enter the correct projection!</value>
+  </data>
+  <data name="DGBH_RecalcGeomNewProj" xml:space="preserve">
+    <value>The coordinates for the new projection could not be recalculated</value>
+  </data>
+  <data name="DGBH_RecalGeometry" xml:space="preserve">
+    <value>Recalculation of the geometry</value>
+  </data>
+  <data name="DGBH_row" xml:space="preserve">
+    <value>row</value>
+  </data>
+  <data name="DGBH_SelectObjForInputCoord" xml:space="preserve">
+    <value>Select the object you want to input with coordinates</value>
+  </data>
+  <data name="DGBH_UnableDisplay" xml:space="preserve">
+    <value>
+Unable to display. Please correct to continue</value>
+  </data>
+  <data name="DGBH_WrongFormat" xml:space="preserve">
+    <value>The wrong file format</value>
+  </data>
+  <data name="DPolygon" xml:space="preserve">
+    <value>Polygon</value>
+  </data>
+  <data name="EGO_DeleteGroup" xml:space="preserve">
+    <value>Do you really want to delete the group {0}"?"</value>
+  </data>
+  <data name="EGO_DeletingGroup" xml:space="preserve">
+    <value>Delete the group</value>
+  </data>
+  <data name="EGO_groups" xml:space="preserve">
+    <value>groups</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorArraySize" xml:space="preserve">
+    <value>Incorrect size of the input array</value>
+  </data>
+  <data name="ErrorMessage" xml:space="preserve">
+    <value>An error has occurred! Message:</value>
+  </data>
+  <data name="ErrorMessage_header" xml:space="preserve">
+    <value>Error message!</value>
+  </data>
+  <data name="ErrorReadDataReader" xml:space="preserve">
+    <value>Error reading</value>
+  </data>
+  <data name="ExcelImporter_ColumnNEmpty" xml:space="preserve">
+    <value>The column {0} is empty</value>
+  </data>
+  <data name="ExcelImporter_NotSelectedList" xml:space="preserve">
+    <value>The list is not selected</value>
+  </data>
+  <data name="ExcelImporter_NotSpecifiedRange" xml:space="preserve">
+    <value>Specified range is incorrect</value>
+  </data>
+  <data name="ExcelImporter_RowNEmpty" xml:space="preserve">
+    <value>Row {0} is empty</value>
+  </data>
+  <data name="ExcelUC_List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="ExcelUC_RangeBy" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="ExcelUC_RangeWith" xml:space="preserve">
+    <value>Fange from</value>
+  </data>
+  <data name="ExcelUC_SpecifyRange" xml:space="preserve">
+    <value>Specify the range</value>
+  </data>
+  <data name="ExportDBF_Errors" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="ExportQuestion_btnNotUnloading" xml:space="preserve">
+    <value>Not to unload</value>
+  </data>
+  <data name="ExportQuestion_btnUnloadingwithoutGeom" xml:space="preserve">
+    <value>Unload without geometry</value>
+  </data>
+  <data name="ExportQuestion_MesExceptGeom" xml:space="preserve">
+    <value>Objects with incorrect geometry were found in the file</value>
+  </data>
+  <data name="ExportQuestion_Status" xml:space="preserve">
+    <value>Rows loaded for preview: {0} Rows in total: {1}</value>
+  </data>
+  <data name="ExportQuestion_StatusErrorUnloading" xml:space="preserve">
+    <value>Unloading error</value>
+  </data>
+  <data name="ExportQuestion_Title" xml:space="preserve">
+    <value>Unloading message</value>
+  </data>
+  <data name="FELC_CreatingFields" xml:space="preserve">
+    <value>Creating a field</value>
+  </data>
+  <data name="FELC_DeletingFieldAsk" xml:space="preserve">
+    <value>Do you really want to delete the selected attribute?</value>
+  </data>
+  <data name="FELC_DeletingFields" xml:space="preserve">
+    <value>Delete the attribute</value>
+  </data>
+  <data name="FELC_EditingField" xml:space="preserve">
+    <value>Field editing</value>
+  </data>
+  <data name="FELC_Fields" xml:space="preserve">
+    <value>Attributes</value>
+  </data>
+  <data name="FELC_Forever" xml:space="preserve">
+    <value>Irretrievably</value>
+  </data>
+  <data name="FELC_UseCatalogs" xml:space="preserve">
+    <value>Use of catalogs</value>
+  </data>
+  <data name="FilterViewModel_ExceptSource" xml:space="preserve">
+    <value>The source must be specified</value>
+  </data>
+  <data name="FilterViewModel_ExceptTableName" xml:space="preserve">
+    <value>The table must be specified</value>
+  </data>
+  <data name="FindBox2_Colmn" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="FindBox2_Contains" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="FindBox2_DoesNotContain" xml:space="preserve">
+    <value>Does not contain</value>
+  </data>
+  <data name="FindBox2_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="FindBox2_IsNotEmpty" xml:space="preserve">
+    <value>Is not empty</value>
+  </data>
+  <data name="FindBox2_StartsWith" xml:space="preserve">
+    <value>Starts with</value>
+  </data>
+  <data name="FindBox2_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="FindBox2_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FindBox_Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FormTableData_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FormTableData_CheckFrormatData" xml:space="preserve">
+    <value>Check data format!</value>
+  </data>
+  <data name="FormTableData_DataTable" xml:space="preserve">
+    <value>Data table  "{0}"</value>
+  </data>
+  <data name="FormTableData_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FormTableData_DateAndTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="FormTableData_DeleteFile" xml:space="preserve">
+    <value>Delete file</value>
+  </data>
+  <data name="FormTableData_DeleteFileMes" xml:space="preserve">
+    <value>Do you really want to delete the selected file?</value>
+  </data>
+  <data name="FormTableData_EnterOnlyInteger" xml:space="preserve">
+    <value>Input of only integer is possible</value>
+  </data>
+  <data name="FormTableData_EnterOnlyNumeric" xml:space="preserve">
+    <value>Input of only numeric is possible</value>
+  </data>
+  <data name="FormTableData_ErrorGeom" xml:space="preserve">
+    <value>Geometry error</value>
+  </data>
+  <data name="FormTableData_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FormTableData_Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="FormTableData_Files1" xml:space="preserve">
+    <value>Files:</value>
+  </data>
+  <data name="FormTableData_FilterFile" xml:space="preserve">
+    <value>Picture file |*.jpg;*jpeg|All files|*.*</value>
+  </data>
+  <data name="FormTableData_Integer" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="FormTableData_NameFileDefault" xml:space="preserve">
+    <value>Names by default</value>
+  </data>
+  <data name="FormTableData_Numeric" xml:space="preserve">
+    <value>Numeric</value>
+  </data>
+  <data name="FormTableData_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="FormTableData_RightEditable" xml:space="preserve">
+    <value>You can not edit the table!</value>
+  </data>
+  <data name="FormTableData_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="FormTableData_SaveData" xml:space="preserve">
+    <value>Data saving</value>
+  </data>
+  <data name="FormTableData_SaveWithoutGeom" xml:space="preserve">
+    <value>Do you want to save without geometry?</value>
+  </data>
+  <data name="FormTableData_Style" xml:space="preserve">
+    <value>Style…</value>
+  </data>
+  <data name="FormTableData_StyleForm" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="FormTableData_TableData" xml:space="preserve">
+    <value>Table data</value>
+  </data>
+  <data name="FormTableData_Text" xml:space="preserve">
+    <value>Click here for the convenient editing</value>
+  </data>
+  <data name="FormTableData_ValueIntervalsNotFoundBySaves" xml:space="preserve">
+    <value>The value of the field "{0}" has not got in any of the intervals</value>
+  </data>
+  <data name="GC_Area" xml:space="preserve">
+    <value>Area (sq.m)</value>
+  </data>
+  <data name="GC_Centroid" xml:space="preserve">
+    <value>Centroid</value>
+  </data>
+  <data name="GC_CharacteristicsGeometry" xml:space="preserve">
+    <value>Characteristics of geometry</value>
+  </data>
+  <data name="GC_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="GC_Length" xml:space="preserve">
+    <value>Length (m)</value>
+  </data>
+  <data name="GC_Perimetr" xml:space="preserve">
+    <value>Perimeter (m)</value>
+  </data>
+  <data name="GC_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="GF_ErrorCreateGroup" xml:space="preserve">
+    <value>You are not allowed to create a group, contact to the administrator</value>
+  </data>
+  <data name="GF_NonexistentGroupTable" xml:space="preserve">
+    <value>Nonexistent group or table</value>
+  </data>
+  <data name="GF_OrderGroup" xml:space="preserve">
+    <value>Failed to change the order of the groups.</value>
+  </data>
+  <data name="HisotryClass_TableNotFound" xml:space="preserve">
+    <value>Table was not found</value>
+  </data>
+  <data name="HisotryForm_SelectTablesForSearch" xml:space="preserve">
+    <value>Select tables for search</value>
+  </data>
+  <data name="HisotryForm_SelectUsersForSearch" xml:space="preserve">
+    <value>Select users for search</value>
+  </data>
+  <data name="HistoryCalss_RowNotFound" xml:space="preserve">
+    <value>No entry  with the data was found</value>
+  </data>
+  <data name="HistoryClass_ActualState" xml:space="preserve">
+    <value>You are going to restore an  actual condition of the object. Do you want to continue?</value>
+  </data>
+  <data name="HistoryClass_Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="HistoryClass_ErrorGetValue" xml:space="preserve">
+    <value>(an error occurred while retrieving the value)</value>
+  </data>
+  <data name="HistoryClass_ErrorOnlyOne" xml:space="preserve">
+    <value>The only one entry should be found</value>
+  </data>
+  <data name="HistoryClass_ErrorResotreDeletedObject" xml:space="preserve">
+    <value>The attribute of the deleted object can not be restored</value>
+  </data>
+  <data name="HistoryClass_ErrorRestoreExistsObj" xml:space="preserve">
+    <value>This object already exists. It can not be restored.</value>
+  </data>
+  <data name="HistoryClass_intervalValueField" xml:space="preserve">
+    <value>(value from the interval)</value>
+  </data>
+  <data name="HistoryClass_MessageHeader" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="HistoryClass_OperationSuccess" xml:space="preserve">
+    <value>The operation was a success!</value>
+  </data>
+  <data name="HistoryClass_referenceValueField" xml:space="preserve">
+    <value>(value from the reference)</value>
+  </data>
+  <data name="HistoryClass_simpleValueField" xml:space="preserve">
+    <value>(field contains the value)</value>
+  </data>
+  <data name="HistoryClass_ValueNotFound" xml:space="preserve">
+    <value>(value not found)</value>
+  </data>
+  <data name="HistoryForm_ActualValue" xml:space="preserve">
+    <value>The actual value</value>
+  </data>
+  <data name="HistoryForm_attributs" xml:space="preserve">
+    <value>Number of attributes:</value>
+  </data>
+  <data name="HistoryForm_ColGeom" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="HistoryForm_ColGeomWithValue" xml:space="preserve">
+    <value>Geometry (field with value)</value>
+  </data>
+  <data name="HistoryForm_ColNameFields" xml:space="preserve">
+    <value>Fields</value>
+  </data>
+  <data name="HistoryForm_ColValueUpTo" xml:space="preserve">
+    <value>Value up to</value>
+  </data>
+  <data name="HistoryForm_CountDate" xml:space="preserve">
+    <value>Number of dates:</value>
+  </data>
+  <data name="HistoryForm_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="HistoryForm_ErrorActual" xml:space="preserve">
+    <value>The value coincides with the actual one</value>
+  </data>
+  <data name="HistoryForm_ErrorNoActual" xml:space="preserve">
+    <value>The value does not match with the actual one</value>
+  </data>
+  <data name="HistoryForm_Event" xml:space="preserve">
+    <value>Number of events:</value>
+  </data>
+  <data name="HistoryForm_GeomValue" xml:space="preserve">
+    <value>The value of geometry is not empty</value>
+  </data>
+  <data name="HistoryForm_Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="HistoryForm_LoadPart" xml:space="preserve">
+    <value>Download more. Loaded {0} of {1} ({2}%)</value>
+  </data>
+  <data name="HistoryForm_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="HistoryForm_MatchWithPrev" xml:space="preserve">
+    <value>The value is equal to the previous one</value>
+  </data>
+  <data name="HistoryForm_NotMatchWithPrev" xml:space="preserve">
+    <value>The value does not match with the previous one</value>
+  </data>
+  <data name="HistoryForm_restore_beffor" xml:space="preserve">
+    <value>Restore before state</value>
+  </data>
+  <data name="HistoryForm_restore_after" xml:space="preserve">
+    <value>Restore after state</value>
+  </data>
+  <data name="HistoryForm_SelectLink" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="HistoryForm_SelectTable" xml:space="preserve">
+    <value>Select tables</value>
+  </data>
+  <data name="HistoryForm_SelectUsers" xml:space="preserve">
+    <value>Select users</value>
+  </data>
+  <data name="HistoryForm_ShowActualState" xml:space="preserve">
+    <value>Show the actual state</value>
+  </data>
+  <data name="HistoryForm_ShowGeom" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="HistoryForm_ShowOnlyChange" xml:space="preserve">
+    <value>Show only with the changes</value>
+  </data>
+  <data name="HistoryForm_TableName" xml:space="preserve">
+    <value>Table name</value>
+  </data>
+  <data name="HistoryForm_Titel" xml:space="preserve">
+    <value>History of  objects changes</value>
+  </data>
+  <data name="HistoryForm_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="HistoryForm_TypeUser" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="HistoryForm_UserName" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="HistoryForm_ValueAfter" xml:space="preserve">
+    <value>Value after</value>
+  </data>
+  <data name="HistoryForm_ValueIsNotSpecif" xml:space="preserve">
+    <value>The value is not specified</value>
+  </data>
+  <data name="HistoryForm_ValueIsSpecif" xml:space="preserve">
+    <value>The value is specified</value>
+  </data>
+  <data name="HistoryForm_ValueNotFound" xml:space="preserve">
+    <value>Value was not found</value>
+  </data>
+  <data name="HistoryFrom_ButtonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="HistoryFrom_ButtonFind" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="HistoryFrom_endDp_toolTip" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="HistoryFrom_startDp_toolTip" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="HistoryServices_ErrorGeomConvert" xml:space="preserve">
+    <value>Failed to convert geometry</value>
+  </data>
+  <data name="HistoryServices_GeomNotFound" xml:space="preserve">
+    <value>Geometry is not found</value>
+  </data>
+  <data name="HistoryState_Change" xml:space="preserve">
+    <value>Has been changed</value>
+  </data>
+  <data name="HistoryState_NotChange" xml:space="preserve">
+    <value>Has not been changed</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertDate" xml:space="preserve">
+    <value>Can not be converted to the date:</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertInt" xml:space="preserve">
+    <value>Can not be converted to the integer:</value>
+  </data>
+  <data name="ImporterHelper_ExceptConvertNumeric" xml:space="preserve">
+    <value>Can not be converted to the fractional:</value>
+  </data>
+  <data name="ImporterHelper_ExceptFileName" xml:space="preserve">
+    <value>Input file has an incorrect file extension </value>
+  </data>
+  <data name="ImportWindow_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ImportWindow_DownloadWizard" xml:space="preserve">
+    <value>Download master</value>
+  </data>
+  <data name="ImportWindow_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="ImportWindow_Load" xml:space="preserve">
+    <value>To load</value>
+  </data>
+  <data name="ImportWindow_LoadedSuccessfully" xml:space="preserve">
+    <value>Loading is successfully complete</value>
+  </data>
+  <data name="ImportWindow_NotSelect" xml:space="preserve">
+    <value>Not selected</value>
+  </data>
+  <data name="ImportWindow_NotSelect1" xml:space="preserve">
+    <value>Not selected</value>
+  </data>
+  <data name="ImportWindow_NotSelectTableBD" xml:space="preserve">
+    <value>Database table is not selected</value>
+  </data>
+  <data name="ImportWindow_NotSupportExtension" xml:space="preserve">
+    <value>The chosen type of the file isn't supported by the loader</value>
+  </data>
+  <data name="ImportWindow_ReadMe" xml:space="preserve">
+    <value>Compare columns from the file to columns from the database table</value>
+  </data>
+  <data name="ImportWindow_SelectField" xml:space="preserve">
+    <value>Select a field</value>
+  </data>
+  <data name="ImportWindow_Status" xml:space="preserve">
+    <value>Rows loaded for preview: {0} Rows in total: {1}</value>
+  </data>
+  <data name="ImportWindow_StatusProcess" xml:space="preserve">
+    <value>Processed objects {0} of {1}</value>
+  </data>
+  <data name="ImportWindow_Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="InfoObjForm_object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="InformationMessage" xml:space="preserve">
+    <value>Information! Message:</value>
+  </data>
+  <data name="InformationMessage_Header" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="InterfaceClass_FindLinkError" xml:space="preserve">
+    <value>When accessing the data were found the following errors:</value>
+  </data>
+  <data name="InterfaceClass_NoExistsObj" xml:space="preserve">
+    <value>Object not exists in table!</value>
+  </data>
+  <data name="ITGF_DataTable" xml:space="preserve">
+    <value>Data table</value>
+  </data>
+  <data name="LabelControl_ErrorShowResult" xml:space="preserve">
+    <value>Preview is impossible.</value>
+  </data>
+  <data name="LabelControl_Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="LabelControl_InvalidExpression" xml:space="preserve">
+    <value>You are using an invalid expression</value>
+  </data>
+  <data name="LabelControl_NotEmpty" xml:space="preserve">
+    <value>The expression must not be empty</value>
+  </data>
+  <data name="LabelControl_Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="LabelControl_ShowResult" xml:space="preserve">
+    <value>Here displays the resulting string</value>
+  </data>
+  <data name="LabelStyle_ErrorConvert" xml:space="preserve">
+    <value>Conversion error </value>
+  </data>
+  <data name="layerInfo_LayerMap" xml:space="preserve">
+    <value>Map layer: {0}</value>
+  </data>
+  <data name="layerInfo_OverAll" xml:space="preserve">
+    <value>Over all</value>
+  </data>
+  <data name="LayersInfo_Plugin_toolStripButton" xml:space="preserve">
+    <value>Getting information about the objects on the map</value>
+  </data>
+  <data name="LIV_CanNotGetLayer" xml:space="preserve">
+    <value>Can not get layer</value>
+  </data>
+  <data name="LIV_DB_layer" xml:space="preserve">
+    <value>Thematic layers</value>
+  </data>
+  <data name="LIV_DeleteSelectedRow" xml:space="preserve">
+    <value>Do you really want to remove the selected row?</value>
+  </data>
+  <data name="LIV_DeleteStyleLayer" xml:space="preserve">
+    <value>Do you really want to delete the style for the selected layer?</value>
+  </data>
+  <data name="LIV_DeleteStyleLayerHeader" xml:space="preserve">
+    <value>Delete a style</value>
+  </data>
+  <data name="LIV_ErrorDataForSort" xml:space="preserve">
+    <value>Improperly obtained data for layers sorting</value>
+  </data>
+  <data name="LIV_ErrorLoadLayer" xml:space="preserve">
+    <value>The layer can not be loaded</value>
+  </data>
+  <data name="LIV_ErrorOpenTable" xml:space="preserve">
+    <value>Opening table error</value>
+  </data>
+  <data name="LIV_ErrorSetVisible" xml:space="preserve">
+    <value>Layer visibility was not changed</value>
+  </data>
+  <data name="LIV_ErrorType" xml:space="preserve">
+    <value>This type does not exist!</value>
+  </data>
+  <data name="LIV_Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="LIV_NotOpenTable" xml:space="preserve">
+    <value>The table can not be opened</value>
+  </data>
+  <data name="LIV_NotRightLayer" xml:space="preserve">
+    <value>You have no rights to edit the layer!</value>
+  </data>
+  <data name="LIV_NotSelectedObj" xml:space="preserve">
+    <value>The object is not selected!</value>
+  </data>
+  <data name="LIV_ObjectDelete" xml:space="preserve">
+    <value>The selected object is deleted!</value>
+  </data>
+  <data name="LIV_ObjectsDelete" xml:space="preserve">
+    <value>The selected objects are deleted!</value>
+  </data>
+  <data name="LIV_Rastr_layer" xml:space="preserve">
+    <value>Raster layers</value>
+  </data>
+  <data name="LIV_SavePositionLayer" xml:space="preserve">
+    <value>Do you really want to remember the position of the layers?</value>
+  </data>
+  <data name="LIV_SavePositionLayerHeader" xml:space="preserve">
+    <value>Save layer positions</value>
+  </data>
+  <data name="LIV_Vmp_layer" xml:space="preserve">
+    <value>Substrate layers</value>
+  </data>
+  <data name="LM_ErorLoadStyleLabel" xml:space="preserve">
+    <value>Failed to load the style of captions of objects:</value>
+  </data>
+  <data name="LM_ErrorLayerLoad" xml:space="preserve">
+    <value>Loading layer error!</value>
+  </data>
+  <data name="LocActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="LocAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="LocAllowed" xml:space="preserve">
+    <value>Allowed</value>
+  </data>
+  <data name="LocAllSupportedFormats" xml:space="preserve">
+    <value>All supported formats</value>
+  </data>
+  <data name="LocArithmeticExpression" xml:space="preserve">
+    <value>Arithmetic expression</value>
+  </data>
+  <data name="LocAttributes" xml:space="preserve">
+    <value>Attributes</value>
+  </data>
+  <data name="LocBackgroundColor" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="LocBaseLayersConfig" xml:space="preserve">
+    <value>Base layers source configuration</value>
+  </data>
+  <data name="LocBeginOfInterval" xml:space="preserve">
+    <value>Start of interval</value>
+  </data>
+  <data name="LocCanAttachFiles" xml:space="preserve">
+    <value>Attached files</value>
+  </data>
+  <data name="LocCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="LocCatalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="LocChangeOfColor" xml:space="preserve">
+    <value>Change colour</value>
+  </data>
+  <data name="LocChooseLocale" xml:space="preserve">
+    <value>Choose locale</value>
+  </data>
+  <data name="LocColor" xml:space="preserve">
+    <value>Colour</value>
+  </data>
+  <data name="LocContainsStyles" xml:space="preserve">
+    <value>Contains styles</value>
+  </data>
+  <data name="LocCount" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="LocCreateUserSet" xml:space="preserve">
+    <value>Create user set</value>
+  </data>
+  <data name="LocCurrentBrush" xml:space="preserve">
+    <value>Current brush</value>
+  </data>
+  <data name="LocCurrentPen" xml:space="preserve">
+    <value>Current pen</value>
+  </data>
+  <data name="LocDataTable" xml:space="preserve">
+    <value>Data tables</value>
+  </data>
+  <data name="LocDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="LocDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="LocDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="LocDisplay" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="LocDisplayMode" xml:space="preserve">
+    <value>Display modes</value>
+  </data>
+  <data name="LocEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="LocEndOfInterval" xml:space="preserve">
+    <value>End of interval</value>
+  </data>
+  <data name="LocExecute" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="LocExpression" xml:space="preserve">
+    <value>Expression</value>
+  </data>
+  <data name="LocExternalSource" xml:space="preserve">
+    <value>External source</value>
+  </data>
+  <data name="LocFile" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LocFileExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="LocFileSaveImage" xml:space="preserve">
+    <value>Save image</value>
+  </data>
+  <data name="LocFileSaveImageForPrint" xml:space="preserve">
+    <value>Save image for print</value>
+  </data>
+  <data name="LocFio" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LocFont" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="LocFringe" xml:space="preserve">
+    <value>Fringe</value>
+  </data>
+  <data name="LocGeomType" xml:space="preserve">
+    <value>Geometry type</value>
+  </data>
+  <data name="LocGetTableRights" xml:space="preserve">
+    <value>Get rights on tables</value>
+  </data>
+  <data name="LocGetUserRights" xml:space="preserve">
+    <value>Get user rights</value>
+  </data>
+  <data name="LocGrantActionRights" xml:space="preserve">
+    <value>Grant rights on actions</value>
+  </data>
+  <data name="LocGrantRights" xml:space="preserve">
+    <value>Grant rights</value>
+  </data>
+  <data name="LocGrantTableRights" xml:space="preserve">
+    <value>Grant rights on tables</value>
+  </data>
+  <data name="LocGroupBelong" xml:space="preserve">
+    <value>Belonging to group</value>
+  </data>
+  <data name="LocGroups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="LocHasHistory" xml:space="preserve">
+    <value>Track  history</value>
+  </data>
+  <data name="LocHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="LocHelpAbout" xml:space="preserve">
+    <value>About the program</value>
+  </data>
+  <data name="LocHelpProgram" xml:space="preserve">
+    <value>Help on how to use the program</value>
+  </data>
+  <data name="LocHidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="LocInterval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="LocIsVisible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="LocLabelBoundMax" xml:space="preserve">
+    <value>Maximum, m</value>
+  </data>
+  <data name="LocLabelBoundMin" xml:space="preserve">
+    <value>Minimum, m</value>
+  </data>
+  <data name="LocLabelEdit" xml:space="preserve">
+    <value>Edit caption</value>
+  </data>
+  <data name="LocLabelOffset" xml:space="preserve">
+    <value>Offset</value>
+  </data>
+  <data name="LocLabelOverlap" xml:space="preserve">
+    <value>Allow overlap</value>
+  </data>
+  <data name="LocLabelParallel" xml:space="preserve">
+    <value>Display along the lines</value>
+  </data>
+  <data name="LocLabels" xml:space="preserve">
+    <value>Captions</value>
+  </data>
+  <data name="LocLabelStyle" xml:space="preserve">
+    <value>Caption style</value>
+  </data>
+  <data name="LocLabelUseBounds" xml:space="preserve">
+    <value>Display in bounds</value>
+  </data>
+  <data name="LocLocalisationOnStartup" xml:space="preserve">
+    <value>Localisation on startup</value>
+  </data>
+  <data name="LocLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LocMapLayer" xml:space="preserve">
+    <value>Map layer</value>
+  </data>
+  <data name="LocMaxScale" xml:space="preserve">
+    <value>Maximal scale</value>
+  </data>
+  <data name="LocMaxValue" xml:space="preserve">
+    <value>Max. value</value>
+  </data>
+  <data name="LocMaxValueColor" xml:space="preserve">
+    <value>Max. value colour</value>
+  </data>
+  <data name="LocMinObjectSize" xml:space="preserve">
+    <value>Min. object size</value>
+  </data>
+  <data name="LocMinScale" xml:space="preserve">
+    <value>Minimal scale</value>
+  </data>
+  <data name="LocMinValue" xml:space="preserve">
+    <value>Min. value</value>
+  </data>
+  <data name="LocMinValueColor" xml:space="preserve">
+    <value>Min. value colour</value>
+  </data>
+  <data name="LocName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LocNameInBase" xml:space="preserve">
+    <value>Name in base</value>
+  </data>
+  <data name="LocNameInSystem" xml:space="preserve">
+    <value>Name in system</value>
+  </data>
+  <data name="LocNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="LocNullColor" xml:space="preserve">
+    <value>Colour of null</value>
+  </data>
+  <data name="LocOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LocOperand" xml:space="preserve">
+    <value>Operand</value>
+  </data>
+  <data name="LocPasswordEdit" xml:space="preserve">
+    <value>Edit password</value>
+  </data>
+  <data name="LocPostgreConfig" xml:space="preserve">
+    <value>Source configuration like "PostgreSQL" </value>
+  </data>
+  <data name="LocPrecision" xml:space="preserve">
+    <value>Precision</value>
+  </data>
+  <data name="LocProgramName" xml:space="preserve">
+    <value>Program name</value>
+  </data>
+  <data name="LocProperties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="LocRastrConfig" xml:space="preserve">
+    <value>Raster layers source configuration</value>
+  </data>
+  <data name="LocRead" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="LocReadOnly" xml:space="preserve">
+    <value>Read only</value>
+  </data>
+  <data name="LocReplace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="LocResult" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="LocRights" xml:space="preserve">
+    <value>Rights</value>
+  </data>
+  <data name="LocSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="LocSaveScaleError" xml:space="preserve">
+    <value>Minimal scale cannot be greater than maximal one!</value>
+  </data>
+  <data name="LocScheme" xml:space="preserve">
+    <value>Scheme</value>
+  </data>
+  <data name="LocSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="LocSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="LocShowLabel" xml:space="preserve">
+    <value>Show caption</value>
+  </data>
+  <data name="LocShowSynchronisationPassword" xml:space="preserve">
+    <value>Show synchronization password</value>
+  </data>
+  <data name="LocSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="LocSourceBaseLayers" xml:space="preserve">
+    <value>Base layers</value>
+  </data>
+  <data name="LocSourceField" xml:space="preserve">
+    <value>Source field for connection</value>
+  </data>
+  <data name="LocSourcePostgre" xml:space="preserve">
+    <value>PostgreSQL</value>
+  </data>
+  <data name="LocSourceRastr" xml:space="preserve">
+    <value>Raster layers</value>
+  </data>
+  <data name="LocSources" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="LocSourceTable" xml:space="preserve">
+    <value>Source table</value>
+  </data>
+  <data name="LocStructure" xml:space="preserve">
+    <value>Structure</value>
+  </data>
+  <data name="LocStyleField" xml:space="preserve">
+    <value>Style field</value>
+  </data>
+  <data name="LocStyles" xml:space="preserve">
+    <value>Styles</value>
+  </data>
+  <data name="LocSymbol" xml:space="preserve">
+    <value>Symbol</value>
+  </data>
+  <data name="LocTables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="LocTableType" xml:space="preserve">
+    <value>Table type</value>
+  </data>
+  <data name="LocTools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="LocType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="LocTypeRelation" xml:space="preserve">
+    <value>Table relation type</value>
+  </data>
+  <data name="LocUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="LocUseGraphicUnits" xml:space="preserve">
+    <value>Use graphic units</value>
+  </data>
+  <data name="LocUserLoginWarning" xml:space="preserve">
+    <value>Username can contain letters, digits, and must begin with a letter!</value>
+  </data>
+  <data name="LocUsers" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="LocUserSets" xml:space="preserve">
+    <value>User sets</value>
+  </data>
+  <data name="LocUserType" xml:space="preserve">
+    <value>User type</value>
+  </data>
+  <data name="LocUseStyle" xml:space="preserve">
+    <value>Use style</value>
+  </data>
+  <data name="LocUseVisibilityBounds" xml:space="preserve">
+    <value>Use visibility bounds</value>
+  </data>
+  <data name="LocValueField" xml:space="preserve">
+    <value>Value field of source</value>
+  </data>
+  <data name="LocView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="LocWrite" xml:space="preserve">
+    <value>Write</value>
+  </data>
+  <data name="LocYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="login_erCnArg" xml:space="preserve">
+    <value>No server address in connection line.</value>
+  </data>
+  <data name="login_err" xml:space="preserve">
+    <value>Error!</value>
+  </data>
+  <data name="login_errAdStr" xml:space="preserve">
+    <value>Invalid expression in address string</value>
+  </data>
+  <data name="login_errConfNF" xml:space="preserve">
+    <value>Configuration not found!</value>
+  </data>
+  <data name="login_errDBNS" xml:space="preserve">
+    <value>Database name is not set</value>
+  </data>
+  <data name="login_errNoDB" xml:space="preserve">
+    <value>The database '</value>
+  </data>
+  <data name="login_errNoDB2" xml:space="preserve">
+    <value>' does not exist.</value>
+  </data>
+  <data name="login_errNoUName" xml:space="preserve">
+    <value>Username is not set.</value>
+  </data>
+  <data name="login_errSerName" xml:space="preserve">
+    <value>Incorrect server name</value>
+  </data>
+  <data name="login_errWPass" xml:space="preserve">
+    <value>Invalid username or password for user '</value>
+  </data>
+  <data name="login_errWrFile" xml:space="preserve">
+    <value>This file is not a configuration file!</value>
+  </data>
+  <data name="login_fFilter" xml:space="preserve">
+    <value>Configuration file|*.aews; *.riws|All files *.*| *.*</value>
+  </data>
+  <data name="login_msgConfF" xml:space="preserve">
+    <value>Select the configuration file!</value>
+  </data>
+  <data name="login_msgNoConDB" xml:space="preserve">
+    <value>No connection to the database.</value>
+  </data>
+  <data name="login_msgNoUser" xml:space="preserve">
+    <value>The User</value>
+  </data>
+  <data name="login_msgNoUser2" xml:space="preserve">
+    <value>is not found.</value>
+  </data>
+  <data name="mainFrm_DBConFail" xml:space="preserve">
+    <value>Connection with a database was lost!</value>
+  </data>
+  <data name="mainFrm_emptyGeo" xml:space="preserve">
+    <value>Empty geometry!</value>
+  </data>
+  <data name="mainFrm_errBDUnav" xml:space="preserve">
+    <value>This table is absent or is unavailable for viewing!</value>
+  </data>
+  <data name="mainFrm_errFileFomat" xml:space="preserve">
+    <value>Wrong projection file format!</value>
+  </data>
+  <data name="mainFrm_errFrmImg" xml:space="preserve">
+    <value>Forming image error!</value>
+  </data>
+  <data name="mainFrm_errImgSize" xml:space="preserve">
+    <value>Impossible to form an image with current size</value>
+  </data>
+  <data name="mainFrm_errMFileNF" xml:space="preserve">
+    <value>Map file not found! Press "YES" to set the file direction or "NO" to quit.</value>
+  </data>
+  <data name="mainFrm_errMOpen" xml:space="preserve">
+    <value>Map opening error</value>
+  </data>
+  <data name="mainFrm_errNMultObj" xml:space="preserve">
+    <value>Impossible operation for  not amultiarea object!</value>
+  </data>
+  <data name="mainFrm_errObjID" xml:space="preserve">
+    <value>Getting object identifier error!</value>
+  </data>
+  <data name="mainFrm_errPrint" xml:space="preserve">
+    <value>Error at print settings:
+\r\n</value>
+  </data>
+  <data name="mainFrm_errProj" xml:space="preserve">
+    <value>Projection error</value>
+  </data>
+  <data name="mainFrm_errProjFile" xml:space="preserve">
+    <value>Projection file is not found or has wrong format. Press "OK" to give the file direction or "NO" to quit.</value>
+  </data>
+  <data name="mainFrm_errProjUs" xml:space="preserve">
+    <value>This projection can't be applied!</value>
+  </data>
+  <data name="mainFrm_errRequest" xml:space="preserve">
+    <value>Process request is unavailable!</value>
+  </data>
+  <data name="mainFrm_errSetPos" xml:space="preserve">
+    <value>Position setting is impossible!</value>
+  </data>
+  <data name="mainFrm_errSRIDINT" xml:space="preserve">
+    <value>SRID must be integer only!</value>
+  </data>
+  <data name="mainFrm_errSRIDNS" xml:space="preserve">
+    <value>The chosen SRID has no description in the database!</value>
+  </data>
+  <data name="mainFrm_errWSRID" xml:space="preserve">
+    <value>Incorrect SRID!</value>
+  </data>
+  <data name="mainFrm_FileNF" xml:space="preserve">
+    <value>Map file is not found.</value>
+  </data>
+  <data name="mainFrm_filter" xml:space="preserve">
+    <value>Picture *.bmp|*.bmp|Picture *.jpg|*.jpg|Picture *.png|*.png</value>
+  </data>
+  <data name="mainFrm_IDrecieved" xml:space="preserve">
+    <value>Object ID is recieved</value>
+  </data>
+  <data name="mainFrm_infLayerN" xml:space="preserve">
+    <value>Layer is not activated!</value>
+  </data>
+  <data name="mainFrm_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="mainFrm_mapOpenError" xml:space="preserve">
+    <value>Map opening error</value>
+  </data>
+  <data name="mainFrm_mProjection" xml:space="preserve">
+    <value>) map projection</value>
+  </data>
+  <data name="mainFrm_msgBDConFail" xml:space="preserve">
+    <value>Connection with a database was lost! Repeat the  connection? Otherwise the application will be closed!</value>
+  </data>
+  <data name="mainFrm_msgMFile" xml:space="preserve">
+    <value>Specify the map file</value>
+  </data>
+  <data name="mainFrm_msgNoRights" xml:space="preserve">
+    <value>Tbales editing is not allowed.</value>
+  </data>
+  <data name="mainFrm_msgPicCS" xml:space="preserve">
+    <value>The picture is not saved</value>
+  </data>
+  <data name="mainFrm_msgStWS" xml:space="preserve">
+    <value>Tables managing is available only while using standard workset!</value>
+  </data>
+  <data name="mainFrm_printStt" xml:space="preserve">
+    <value>Print settings</value>
+  </data>
+  <data name="mainFrm_setPos" xml:space="preserve">
+    <value>The position is set</value>
+  </data>
+  <data name="mainFrm_setProjFile" xml:space="preserve">
+    <value>Specify the file projection</value>
+  </data>
+  <data name="mainFrm_sqm" xml:space="preserve">
+    <value>sq.m.</value>
+  </data>
+  <data name="mainFrm_sqMeasure" xml:space="preserve">
+    <value>For measurement of the area hold the 'Shift' key</value>
+  </data>
+  <data name="mainFrm_square" xml:space="preserve">
+    <value>Square:</value>
+  </data>
+  <data name="mainFrm_stWorkset" xml:space="preserve">
+    <value>Standard workset</value>
+  </data>
+  <data name="mainFrm_tData" xml:space="preserve">
+    <value>Table data "
+</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Mes_Change" xml:space="preserve">
+    <value>Changes</value>
+  </data>
+  <data name="Mes_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Mes_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="NewPassword_PwdIsIncorrect" xml:space="preserve">
+    <value>Password is incorrect</value>
+  </data>
+  <data name="NewPassword_PwdNotEmpty" xml:space="preserve">
+    <value>The password area can not be empty</value>
+  </data>
+  <data name="NumberIsNotCorrest" xml:space="preserve">
+    <value>The number is specified incorrectly</value>
+  </data>
+  <data name="of_text" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="OutsideDiapason" xml:space="preserve">
+    <value>Out of range</value>
+  </data>
+  <data name="PageIsNotExists" xml:space="preserve">
+    <value>There is no such a page</value>
+  </data>
+  <data name="PanelGroup_tables" xml:space="preserve">
+    <value>tables</value>
+  </data>
+  <data name="PFC_AllFieldsFill" xml:space="preserve">
+    <value>It is necessary to fill in all the fields!</value>
+  </data>
+  <data name="PgFullSearch_Attributes" xml:space="preserve">
+    <value>Attributes</value>
+  </data>
+  <data name="PgFullSearch_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="PgFullSearch_ChooseTables" xml:space="preserve">
+    <value>Choose tables for search</value>
+  </data>
+  <data name="PgFullSearch_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="PgFullSearch_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="PgFullSearch_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="PgFullSearch_MoveToObject" xml:space="preserve">
+    <value>Move to object</value>
+  </data>
+  <data name="PgFullSearch_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="PgFullSearch_SearchResult" xml:space="preserve">
+    <value>Search results</value>
+  </data>
+  <data name="PgFullSearch_Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="PgFullSearch_Title" xml:space="preserve">
+    <value>Search objects</value>
+  </data>
+  <data name="PgM.EChangeColor.Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="PgM.EChangeColor.Foreground" xml:space="preserve">
+    <value>Foreground</value>
+  </data>
+  <data name="PgM.EChangeColor.Fringe" xml:space="preserve">
+    <value>Fringe</value>
+  </data>
+  <data name="PgM.EChangeColor.LinesBounds" xml:space="preserve">
+    <value>Bounds and lines</value>
+  </data>
+  <data name="PgM.EStyleType.directory" xml:space="preserve">
+    <value>By catalog</value>
+  </data>
+  <data name="PgM.EStyleType.interval" xml:space="preserve">
+    <value>By interval</value>
+  </data>
+  <data name="PgM.EStyleType.range" xml:space="preserve">
+    <value>By range</value>
+  </data>
+  <data name="PgM.EStyleType.uniformly" xml:space="preserve">
+    <value>Uniformly</value>
+  </data>
+  <data name="PluginSettingsForm_CountPlugins" xml:space="preserve">
+    <value>Number of plagins:</value>
+  </data>
+  <data name="PluginSettingsForm_SavePlugin" xml:space="preserve">
+    <value>Settings are saved! The changes will come into force after application restart!</value>
+  </data>
+  <data name="Plugins_Exception" xml:space="preserve">
+    <value>Plugin loading error '{0}'</value>
+  </data>
+  <data name="PosNameFrm_NullName" xml:space="preserve">
+    <value>The name area should not be empty.</value>
+  </data>
+  <data name="PrintSettingsFrm_Bad" xml:space="preserve">
+    <value>Bad (75 dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Excellent" xml:space="preserve">
+    <value>Excellent  (300 dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Good" xml:space="preserve">
+    <value>Good (150 dpi)</value>
+  </data>
+  <data name="PrintSettingsFrm_Landscape" xml:space="preserve">
+    <value>Landscape</value>
+  </data>
+  <data name="PrintSettingsFrm_PaperFormat_Random" xml:space="preserve">
+    <value>Arbitrary</value>
+  </data>
+  <data name="PrintSettingsFrm_Portrait" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="PrintSettingsFrm_Random" xml:space="preserve">
+    <value>Arbitrary</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product Name:</value>
+  </data>
+  <data name="PTC_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="PTC_BasicElement" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="PTC_BordersAndLines" xml:space="preserve">
+    <value>Bounds and lines</value>
+  </data>
+  <data name="PTC_BorderSymbol" xml:space="preserve">
+    <value>Borders</value>
+  </data>
+  <data name="PTC_ErrorMaxMin" xml:space="preserve">
+    <value>The maximum value should exceed the minimum value.</value>
+  </data>
+  <data name="PTC_ErrorNotSelectGeom" xml:space="preserve">
+    <value>Geometry field is not selected</value>
+  </data>
+  <data name="PTC_NotRight" xml:space="preserve">
+    <value>Not correct!</value>
+  </data>
+  <data name="PTC_Styles" xml:space="preserve">
+    <value>Styles</value>
+  </data>
+  <data name="PTC_TableIsNotLayer" xml:space="preserve">
+    <value>Table is not a layer of the map!</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteMes" xml:space="preserve">
+    <value>Delete report?</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ReportEditor_VM_QuestionDeleteYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="ReportEditor_V_AddReport" xml:space="preserve">
+    <value>Add report</value>
+  </data>
+  <data name="ReportEditor_V_AddReportAll" xml:space="preserve">
+    <value>Add a general report</value>
+  </data>
+  <data name="ReportEditor_V_AddReportObject" xml:space="preserve">
+    <value>Add report to the current object</value>
+  </data>
+  <data name="ReportEditor_V_AddReportTable" xml:space="preserve">
+    <value>Add report to the table</value>
+  </data>
+  <data name="ReportEditor_V_DeleteReport" xml:space="preserve">
+    <value>Delete report…</value>
+  </data>
+  <data name="ReportEditor_V_EditReport" xml:space="preserve">
+    <value>Edit report</value>
+  </data>
+  <data name="ReportEditor_V_Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="ReportEditor_V_ListReport" xml:space="preserve">
+    <value>List of reports</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsAll" xml:space="preserve">
+    <value>General Reports</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsObject" xml:space="preserve">
+    <value>Reports on the current object</value>
+  </data>
+  <data name="ReportEditor_V_ListReportsTable" xml:space="preserve">
+    <value>Reports to the table</value>
+  </data>
+  <data name="ReportEditor_V_OpenReport" xml:space="preserve">
+    <value>Open report</value>
+  </data>
+  <data name="ReportEditor_V_QuestionDeleteMesTitle" xml:space="preserve">
+    <value>Removing…</value>
+  </data>
+  <data name="ReportEditor_V_Title" xml:space="preserve">
+    <value>List of reports</value>
+  </data>
+  <data name="Report_M_ErrorDesign" xml:space="preserve">
+    <value>The wrong call of designer command</value>
+  </data>
+  <data name="Report_M_ErrorLoadListReport" xml:space="preserve">
+    <value>Failed to load reports list</value>
+  </data>
+  <data name="Report_VM_geomArea" xml:space="preserve">
+    <value>Geometry: area</value>
+  </data>
+  <data name="Report_VM_geomCenter_x" xml:space="preserve">
+    <value>Geometry: Center X</value>
+  </data>
+  <data name="Report_VM_geomCenter_y" xml:space="preserve">
+    <value>Geometry: Center Y</value>
+  </data>
+  <data name="Report_VM_geomLength" xml:space="preserve">
+    <value>Geometry: Length</value>
+  </data>
+  <data name="Report_VM_geomPerimeter" xml:space="preserve">
+    <value>Geometry: Perimeter</value>
+  </data>
+  <data name="Report_VM_geomType" xml:space="preserve">
+    <value>Geometry: Type</value>
+  </data>
+  <data name="Report_VM_LoadReport" xml:space="preserve">
+    <value>Table: {0}</value>
+  </data>
+  <data name="Report_VM_photoDateUpdate" xml:space="preserve">
+    <value>Date of last modification</value>
+  </data>
+  <data name="Report_VM_photoFileBody" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="Report_VM_photoFileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
+  <data name="Report_VM_photoIdObj" xml:space="preserve">
+    <value>Object ID</value>
+  </data>
+  <data name="Report_VM_photoPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Report_VM_QuestionSave" xml:space="preserve">
+    <value>Saving…</value>
+  </data>
+  <data name="Report_VM_QuestionSaveReport" xml:space="preserve">
+    <value>Save report to file?</value>
+  </data>
+  <data name="RLM_ErrorSelectItem" xml:space="preserve">
+    <value>Select an item to edit</value>
+  </data>
+  <data name="SelectObjects" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SettingsPosFrm_DeleteLocation" xml:space="preserve">
+    <value>Do you really want to delet the selected location?</value>
+  </data>
+  <data name="SettingsPosFrm_MastSelectLocation" xml:space="preserve">
+    <value>You must select the location.</value>
+  </data>
+  <data name="SettingsPosFrm_QuestionChangeLocation" xml:space="preserve">
+    <value>Do you really want to change the location?</value>
+  </data>
+  <data name="SHPExporter_Error" xml:space="preserve">
+    <value>ID={0} Error={1} Geometry={2}</value>
+  </data>
+  <data name="SHPExporter_LoadForPreview" xml:space="preserve">
+    <value>Rows loaded for preview: {0}</value>
+  </data>
+  <data name="SHPExporter_ProcessObjCount" xml:space="preserve">
+    <value>Processed objects {0} of {1}</value>
+  </data>
+  <data name="SHPImporter_ExceptTypeGeom" xml:space="preserve">
+    <value>Geometry type in the file does not fit the geometry type in the table!</value>
+  </data>
+  <data name="SHPUC_chbLoadGeom" xml:space="preserve">
+    <value>Load geometry</value>
+  </data>
+  <data name="SHPUC_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Styles_Layer_n" xml:space="preserve">
+    <value>Layer style {0}</value>
+  </data>
+  <data name="Styles_Range" xml:space="preserve">
+    <value>Range</value>
+  </data>
+  <data name="Styles_Uniformly" xml:space="preserve">
+    <value>Uniformly</value>
+  </data>
+  <data name="Tables_Count" xml:space="preserve">
+    <value>Tables number:</value>
+  </data>
+  <data name="TLE_ActionToTable" xml:space="preserve">
+    <value>Actions over the table</value>
+  </data>
+  <data name="TLE_Attention" xml:space="preserve">
+    <value>Attention! This table is related to other tables!</value>
+  </data>
+  <data name="TLE_DeleteForever" xml:space="preserve">
+    <value>Table is deleted irretrievably!</value>
+  </data>
+  <data name="TLE_DeleteNoForever" xml:space="preserve">
+    <value>Table is deleted, but can still be restored.</value>
+  </data>
+  <data name="TLE_DeletingCatalog" xml:space="preserve">
+    <value>Deleting a catalog</value>
+  </data>
+  <data name="TLE_DeletingCatalogAsk" xml:space="preserve">
+    <value>Do you really want to remove the catalog?</value>
+  </data>
+  <data name="TLE_DeletingInterval" xml:space="preserve">
+    <value>Deleting a interval</value>
+  </data>
+  <data name="TLE_DeletingIntervalAsk" xml:space="preserve">
+    <value>Do you really want to remove the interval?</value>
+  </data>
+  <data name="TLE_DeletingLayer" xml:space="preserve">
+    <value>Deleting a map layer</value>
+  </data>
+  <data name="TLE_DeletingLayerAsk" xml:space="preserve">
+    <value>Do you really want to remove the layer?</value>
+  </data>
+  <data name="TLE_DeletingTable" xml:space="preserve">
+    <value>Deleting a table</value>
+  </data>
+  <data name="TLE_DeletingTableAsk" xml:space="preserve">
+    <value>Do you really want to remove the table?</value>
+  </data>
+  <data name="TLE_EditingTable" xml:space="preserve">
+    <value>Editing table</value>
+  </data>
+  <data name="TLE_EntryTableInGroup" xml:space="preserve">
+    <value>Table "{0}" entry in the groups</value>
+  </data>
+  <data name="TLE_SettingTable" xml:space="preserve">
+    <value>Table settings: "{0}"</value>
+  </data>
+  <data name="TLE_TableStructure" xml:space="preserve">
+    <value>Table structure</value>
+  </data>
+  <data name="ucTableNoRight" xml:space="preserve">
+    <value>You are not authorized to edit the table!</value>
+  </data>
+  <data name="ucTable_DeleteAllRows" xml:space="preserve">
+    <value>Do you really want to delete all the records from this table?</value>
+  </data>
+  <data name="ucTable_DeleteAllRowsConfirm" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="ucTable_DeleteFilter" xml:space="preserve">
+    <value>Do you really want to remove the selected filters?</value>
+  </data>
+  <data name="ucTable_DeleteRows" xml:space="preserve">
+    <value>Do you really want to remove the selected rows?</value>
+  </data>
+  <data name="ucTable_DeleteRowsHeader" xml:space="preserve">
+    <value>Deleting objects</value>
+  </data>
+  <data name="ucTable_DeletingHeader" xml:space="preserve">
+    <value>Deleting</value>
+  </data>
+  <data name="ucTable_ErrorStructTable" xml:space="preserve">
+    <value>Error loading table structure</value>
+  </data>
+  <data name="ucTable_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="ucTable_FilterName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ucTable_inAll" xml:space="preserve">
+    <value>For all</value>
+  </data>
+  <data name="ucTable_IncorretFilterFormat" xml:space="preserve">
+    <value>Incorrect data format in the filter!</value>
+  </data>
+  <data name="ucTable_NoRowsSeleted" xml:space="preserve">
+    <value>No rows selected!</value>
+  </data>
+  <data name="ucTable_NotLoaded" xml:space="preserve">
+    <value>Data was not loaded because of the settings of the table </value>
+  </data>
+  <data name="userAddFrm_AccessRightAdded" xml:space="preserve">
+    <value>The access  rights have been added!</value>
+  </data>
+  <data name="userAddFrm_errorSymbolInLogin" xml:space="preserve">
+    <value>Username should contain latin letters, numbers, and must begin with a letter!</value>
+  </data>
+  <data name="userAddFrm_LoginEmpty" xml:space="preserve">
+    <value>Login area is empty!</value>
+  </data>
+  <data name="userAddFrm_LoginExists" xml:space="preserve">
+    <value>This login is already registered!</value>
+  </data>
+  <data name="userAddFrm_LoginExistsInDB" xml:space="preserve">
+    <value>This login exists in the database!</value>
+  </data>
+  <data name="userAddFrm_LoginReservedWord" xml:space="preserve">
+    <value>This login is occupied! Please, change the login.</value>
+  </data>
+  <data name="userAddFrm_UserNameEmty" xml:space="preserve">
+    <value>User name is empty!</value>
+  </data>
+  <data name="userAddFrm_UserNotSelected" xml:space="preserve">
+    <value>The user is not selected!</value>
+  </data>
+  <data name="UserSetsFrm_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="UserSetsFrm_ErrorDeleteWorkSet" xml:space="preserve">
+    <value>Impossible to delete the set in use!</value>
+  </data>
+  <data name="UserSetsFrm_NeedSelectedWorkSet" xml:space="preserve">
+    <value>You must select a set!</value>
+  </data>
+  <data name="Users_in_Count" xml:space="preserve">
+    <value>Users quantity:</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versions</value>
+  </data>
+  <data name="workLog_null_ex" xml:space="preserve">
+    <value>Exception should not be empty</value>
+  </data>
+  <data name="WorkSets_M_DefaultWorkSetName" xml:space="preserve">
+    <value>Standard workset</value>
+  </data>
+  <data name="WorkSets_M_ExceptionAccess" xml:space="preserve">
+    <value>Permission denied</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetAdd" xml:space="preserve">
+    <value>Unable to add workset</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetEdit" xml:space="preserve">
+    <value>Unable to change workset</value>
+  </data>
+  <data name="WorkSets_M_ExceptionWorkSetName" xml:space="preserve">
+    <value>Workset name cannot be empty</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionDeleteWorkSet" xml:space="preserve">
+    <value>Delete current workset?</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="WorkSets_VM_MessageQuestionYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="WorkSets_VM_NewWorkSet" xml:space="preserve">
+    <value>New workset</value>
+  </data>
+  <data name="WorkSets_V_AddWorkSet" xml:space="preserve">
+    <value>Add new workset</value>
+  </data>
+  <data name="WorkSets_V_DeleteWorkSet" xml:space="preserve">
+    <value>Delete workset</value>
+  </data>
+  <data name="WorkSets_V_EditWorkSet" xml:space="preserve">
+    <value>Change workset</value>
+  </data>
+  <data name="WorkSets_V_Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupMy" xml:space="preserve">
+    <value>My</value>
+  </data>
+  <data name="WorkSets_V_ListBoxGroupOther" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="WorkSets_V_ListBoxName" xml:space="preserve">
+    <value>Worksets</value>
+  </data>
+  <data name="WorkSets_V_MessageQuestion" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeEditWorkSet" xml:space="preserve">
+    <value>Edit workset</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeNewWorkSet" xml:space="preserve">
+    <value>New workset</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="WorkSets_V_PanelChangeWorkSetVisable" xml:space="preserve">
+    <value>Hide workset from other users</value>
+  </data>
+  <data name="WorkSets_V_SwichWorkSet" xml:space="preserve">
+    <value>Apply workset</value>
+  </data>
+  <data name="WorkSets_V_Title" xml:space="preserve">
+    <value>Worksets</value>
+  </data>
+  <data name="YouMustSelectUser" xml:space="preserve">
+    <value>You must select a user</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.Degrees" xml:space="preserve">
+    <value>Degrees</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutes" xml:space="preserve">
+    <value>Degrees, minutes</value>
+  </data>
+  <data name="PgGeom.ECoordsViewType.DegreesMinutesSeconds" xml:space="preserve">
+    <value>Degrees, minutes, seconds</value>
+  </data>
+  <data name="PgGeom.ESridTypes.Another" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="PgGeom.ESridTypes.LongLat" xml:space="preserve">
+    <value>(4326) Longitude/Latitude WGS 84</value>
+  </data>
+  <data name="PgGeom.ESridTypes.WorldMercator" xml:space="preserve">
+    <value>(3395) World Mercator WGS 84</value>
+  </data>
+  <data name="AbsM.EGeomType.GeometryCollection" xml:space="preserve">
+    <value>Geometry collection</value>
+  </data>
+  <data name="AbsM.EGeomType.Hole" xml:space="preserve">
+    <value>Hole</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiLine" xml:space="preserve">
+    <value>Multiline</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPoint" xml:space="preserve">
+    <value>Multipoint</value>
+  </data>
+  <data name="AbsM.EGeomType.MultiPolygon" xml:space="preserve">
+    <value>Multipolygon</value>
+  </data>
+  <data name="PgGeomVRec_Adding" xml:space="preserve">
+    <value>Adding</value>
+  </data>
+  <data name="PgGeomVRec_Assign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="PgGeomVRec_Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="PgGeomVRec_Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="PgGeomVRec_Editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="PgGeomVRec_Header" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="PgGeomVRec_Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="PgGeomVRec_Invert" xml:space="preserve">
+    <value>Invert X,Y</value>
+  </data>
+  <data name="PgGeomVRec_PreviewActiveObject" xml:space="preserve">
+    <value>Preview active object</value>
+  </data>
+  <data name="PgGeomVRec_PreviewNodes" xml:space="preserve">
+    <value>Preview nodes</value>
+  </data>
+  <data name="PgGeomVRec_PreviewWholeGeometry" xml:space="preserve">
+    <value>Preview whole geometry</value>
+  </data>
+  <data name="PgGeomVRec_Projection" xml:space="preserve">
+    <value>Projection</value>
+  </data>
+  <data name="PgGeomVRec_Recalc" xml:space="preserve">
+    <value>Recalculate</value>
+  </data>
+  <data name="PgGeomVRec_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="PgGeomVRec_Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="PgGeomVRec_Use" xml:space="preserve">
+    <value>Use</value>
+  </data>
+  <data name="PgGeomVRec_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Add" xml:space="preserve">
+    <value>Adding</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.Edit" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="PgGeom.EGeometryControlMode.None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="PgGeomVRec_AddHole" xml:space="preserve">
+    <value>Add hole</value>
+  </data>
+  <data name="PgGeomVRec_AddLine" xml:space="preserve">
+    <value>Add line</value>
+  </data>
+  <data name="PgGeomVRec_AddPoint" xml:space="preserve">
+    <value>Add point</value>
+  </data>
+  <data name="PgGeomVRec_AddPolygon" xml:space="preserve">
+    <value>Add polygon</value>
+  </data>
+  <data name="PgGeomVRec_Centroid" xml:space="preserve">
+    <value>Centroid</value>
+  </data>
+  <data name="PgGeomVRec_Characteristics" xml:space="preserve">
+    <value>Geometry characteristics</value>
+  </data>
+  <data name="PgGeomVRec_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="PgGeomVRec_Length" xml:space="preserve">
+    <value>Length (m)</value>
+  </data>
+  <data name="PgGeomVRec_Perimeter" xml:space="preserve">
+    <value>Perimeter (m)</value>
+  </data>
+  <data name="PgGeomVRec_PointsDeleting" xml:space="preserve">
+    <value>Points deleting</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisLine" xml:space="preserve">
+    <value>Preview this line</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPoint" xml:space="preserve">
+    <value>Preview this point</value>
+  </data>
+  <data name="PgGeomVRec_PreviewThisPolygon" xml:space="preserve">
+    <value>Preview this polygon</value>
+  </data>
+  <data name="PgGeomVRec_ProjectionNotExists" xml:space="preserve">
+    <value>There is no such projection in database. Try another</value>
+  </data>
+  <data name="PgGeomVRec_ReallyWantDeletePoints" xml:space="preserve">
+    <value>Do you really want to delete selected points?</value>
+  </data>
+  <data name="PgGeomVRec_RemoveHole" xml:space="preserve">
+    <value>Remove hole</value>
+  </data>
+  <data name="PgGeomVRec_RemoveLine" xml:space="preserve">
+    <value>Remove line</value>
+  </data>
+  <data name="PgGeomVRec_RemovePoint" xml:space="preserve">
+    <value>Remove point</value>
+  </data>
+  <data name="PgGeomVRec_RemovePolygon" xml:space="preserve">
+    <value>Remove polygon</value>
+  </data>
+  <data name="PgGeomVRec_ShowCharacteristics" xml:space="preserve">
+    <value>Show characteristics</value>
+  </data>
+  <data name="PgGeomVRec_Square" xml:space="preserve">
+    <value>Square (sq.m)</value>
+  </data>
+  <data name="PgGeomVRec_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PgGeomVRec_UnableTransformGeom" xml:space="preserve">
+    <value>Unable to transform geometry</value>
+  </data>
+  <data name="PgFullSearch_TableChoose" xml:space="preserve">
+    <value>Choose tables</value>
+  </data>
+  <data name="PgFullSearch_TableName" xml:space="preserve">
+    <value>Table name</value>
+  </data>
+  <data name="PrintV_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="PrintV_BottomMargin" xml:space="preserve">
+    <value>Bottom margin</value>
+  </data>
+  <data name="PrintV_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="PrintV_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="PrintV_Fit" xml:space="preserve">
+    <value>Fit to the print area</value>
+  </data>
+  <data name="PrintV_Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="PrintV_HorizCount" xml:space="preserve">
+    <value>Pages count by horizontal</value>
+  </data>
+  <data name="PrintV_Landscape" xml:space="preserve">
+    <value>Landscape</value>
+  </data>
+  <data name="PrintV_LeftMargin" xml:space="preserve">
+    <value>Left margin</value>
+  </data>
+  <data name="PrintV_Margins" xml:space="preserve">
+    <value>Margins</value>
+  </data>
+  <data name="PrintV_Navigation" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="PrintV_Orientation" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="PrintV_PageHeight" xml:space="preserve">
+    <value>Page's height</value>
+  </data>
+  <data name="PrintV_PagePrintableArea" xml:space="preserve">
+    <value>Page's printable area</value>
+  </data>
+  <data name="PrintV_PagesCount" xml:space="preserve">
+    <value>Pages count</value>
+  </data>
+  <data name="PrintV_PageSettings" xml:space="preserve">
+    <value>Page settings</value>
+  </data>
+  <data name="PrintV_PageWidth" xml:space="preserve">
+    <value>Page's width</value>
+  </data>
+  <data name="PrintV_Portrait" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="PrintV_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="PrintV_PrintProgress" xml:space="preserve">
+    <value>Printing page {0} of {1}</value>
+  </data>
+  <data name="PrintV_RightMargin" xml:space="preserve">
+    <value>Right margin</value>
+  </data>
+  <data name="PrintV_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="PrintV_TopMargin" xml:space="preserve">
+    <value>Top margin</value>
+  </data>
+  <data name="PrintV_VertCount" xml:space="preserve">
+    <value>Pages count by vertical</value>
+  </data>
+  <data name="CMD_Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="CMD_DeleteConfirm" xml:space="preserve">
+    <value>Delete the selected record?</value>
+  </data>
+  <data name="CMD_EnterFile" xml:space="preserve">
+    <value>Enter the file</value>
+  </data>
+  <data name="CMD_EnterNameOfProgram" xml:space="preserve">
+    <value>Enter the name of the program</value>
+  </data>
+  <data name="CMD_NewProgram" xml:space="preserve">
+    <value>New program</value>
+  </data>
+  <data name="CMD_SettingsProgram" xml:space="preserve">
+    <value>Setting program</value>
+  </data>
+  <data name="PgUserList_AdmUserRaght" xml:space="preserve">
+    <value>Administration of user rights</value>
+  </data>
+  <data name="PgListUserRightsVM_DataTables" xml:space="preserve">
+    <value>Data tables</value>
+  </data>
+  <data name="PgListUserRightsVM_Intervals" xml:space="preserve">
+    <value>Intervals</value>
+  </data>
+  <data name="PgListUserRightsVM_MapLayers" xml:space="preserve">
+    <value>Map layers</value>
+  </data>
+  <data name="PgListUserRightsVM_References" xml:space="preserve">
+    <value>References</value>
+  </data>
+  <data name="mainFrm_copyObj" xml:space="preserve">
+    <value>Object copied</value>
+  </data>
+  <data name="mainFrm_errorReportManager" xml:space="preserve">
+    <value>Error when opening report manager</value>
+  </data>
+  <data name="mainFrm_errorWhenOpenReport" xml:space="preserve">
+    <value>Error when opening a report</value>
+  </data>
+  <data name="mainFrm_NoCopyObj" xml:space="preserve">
+    <value>There is no copied object!</value>
+  </data>
+  <data name="mainFrm_NotMatchGeomType" xml:space="preserve">
+    <value>Does not match the geometry type!</value>
+  </data>
+  <data name="MainFrm_SelectedObjNot" xml:space="preserve">
+    <value>There is no selected object</value>
+  </data>
+  <data name="mainFrm_selectedOnlyOneObj" xml:space="preserve">
+    <value>Should be selected only one object!</value>
+  </data>
+  <data name="LocConfirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="LocPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LocIndex" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="LocIndexedFields" xml:space="preserve">
+    <value>Indexed fields</value>
+  </data>
+  <data name="LocCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="LocNotIndexedFields" xml:space="preserve">
+    <value>Not indexed fields</value>
+  </data>
+  <data name="PrintV_CanvasMode" xml:space="preserve">
+    <value>Canvas mode</value>
+  </data>
+  <data name="PrintV_MapMode" xml:space="preserve">
+    <value>Print area mode</value>
+  </data>
+  <data name="DGBH_GeomAssignedDefaultValue" xml:space="preserve">
+    <value>Geometry has wrong format. Empty value assigned to geometry</value>
+  </data>
+  <data name="mainFrm_SelectedCount" xml:space="preserve">
+    <value>Selected objects: {0}</value>
+  </data>
+  <data name="AET_MustBeProj" xml:space="preserve">
+    <value>You must select layer projection!</value>
+  </data>
+  <data name="mainFrm_errMFileNFChange" xml:space="preserve">
+    <value>The map file could not be found! Would you like to set it? Otherwise, former map file will remain.</value>
+  </data>
+  <data name="mainFrm_errProjFileChange" xml:space="preserve">
+    <value>Projection file is not found or has wrong format. Would you like to set it? Otherwise, former map file will remain.</value>
+  </data>
+  <data name="SRF_EnterName" xml:space="preserve">
+    <value>Report name:</value>
+  </data>
+  <data name="SRF_WindowTitle" xml:space="preserve">
+    <value>Save report</value>
+  </data>
+  <data name="SRF_NameIsUsed" xml:space="preserve">
+    <value>Report with the same name already exists</value>
+  </data>
+  <data name="SRF_EmptyName" xml:space="preserve">
+    <value>The name area must not be empty.</value>
+  </data>
+  <data name="IV_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="IV_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="IV_UseIndex" xml:space="preserve">
+    <value>Use index in a search</value>
+  </data>
+  <data name="IV_PleaseWait" xml:space="preserve">
+    <value>This may take a few minutes.</value>
+  </data>
+  <data name="LocApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Tool_AddByCoords" xml:space="preserve">
+    <value>Add object by coordinates</value>
+  </data>
+  <data name="Tool_AddInMap" xml:space="preserve">
+    <value>Add object in map</value>
+  </data>
+  <data name="Tool_AddRectangle" xml:space="preserve">
+    <value>Add rectangle in map</value>
+  </data>
+  <data name="Tool_AddVertex" xml:space="preserve">
+    <value>Add node</value>
+  </data>
+  <data name="Tool_ClipByMouse" xml:space="preserve">
+    <value>Clip geometry by mouse</value>
+  </data>
+  <data name="Tool_ClipByPolygon" xml:space="preserve">
+    <value>Clip geometry by polygon</value>
+  </data>
+  <data name="Tool_CopyGeom" xml:space="preserve">
+    <value>Copy geometry</value>
+  </data>
+  <data name="Tool_DeleteObject" xml:space="preserve">
+    <value>Delete object</value>
+  </data>
+  <data name="Tool_DeleteVertex" xml:space="preserve">
+    <value>Delete node</value>
+  </data>
+  <data name="Tool_Hand" xml:space="preserve">
+    <value>Hand tool</value>
+  </data>
+  <data name="Tool_JoinGeometry" xml:space="preserve">
+    <value>Group geometries</value>
+  </data>
+  <data name="Tool_LayerDown" xml:space="preserve">
+    <value>Move layer down</value>
+  </data>
+  <data name="Tool_LayerUp" xml:space="preserve">
+    <value>Move layer up</value>
+  </data>
+  <data name="Tool_MapPointInfo" xml:space="preserve">
+    <value>Get info about map objects</value>
+  </data>
+  <data name="Tool_MoveGeom" xml:space="preserve">
+    <value>Move object on map</value>
+  </data>
+  <data name="Tool_MoveVertex" xml:space="preserve">
+    <value>Move node</value>
+  </data>
+  <data name="Tool_OpenTable" xml:space="preserve">
+    <value>Open table</value>
+  </data>
+  <data name="Tool_PasteGeom" xml:space="preserve">
+    <value>Paste geometry</value>
+  </data>
+  <data name="Tool_RotateDegree" xml:space="preserve">
+    <value>Rotate object on degree</value>
+  </data>
+  <data name="Tool_RotateMouse" xml:space="preserve">
+    <value>Rotate object by mouse</value>
+  </data>
+  <data name="Tool_Ruler" xml:space="preserve">
+    <value>Ruler tool</value>
+  </data>
+  <data name="Tool_Select" xml:space="preserve">
+    <value>Select mode</value>
+  </data>
+  <data name="Tool_SelectPolygon" xml:space="preserve">
+    <value>Select by polygon mode</value>
+  </data>
+  <data name="Tool_SelectRectangle" xml:space="preserve">
+    <value>Select by rectangle mode</value>
+  </data>
+  <data name="Tool_SetChangeStyle" xml:space="preserve">
+    <value>Change layer style in workset</value>
+  </data>
+  <data name="Tool_SetDeleteStyle" xml:space="preserve">
+    <value>Delete layer style in workset</value>
+  </data>
+  <data name="Tool_SetSaveLocation" xml:space="preserve">
+    <value>Save layers' locations in workset</value>
+  </data>
+  <data name="Tool_ShowLayersList" xml:space="preserve">
+    <value>Show layers' list</value>
+  </data>
+  <data name="Tool_SnapLine" xml:space="preserve">
+    <value>Snap to lines</value>
+  </data>
+  <data name="Tool_SnapPoint" xml:space="preserve">
+    <value>Snap to nodes</value>
+  </data>
+  <data name="Tool_Unselect" xml:space="preserve">
+    <value>Unselect objects</value>
+  </data>
+  <data name="Tool_UpdLayersList" xml:space="preserve">
+    <value>Update layers' list</value>
+  </data>
+  <data name="Tool_VertexEdit" xml:space="preserve">
+    <value>Edit few nodes</value>
+  </data>
+  <data name="Tool_WorkSets" xml:space="preserve">
+    <value>Work sets</value>
+  </data>
+  <data name="Tool_ZoomIn" xml:space="preserve">
+    <value>Zoom in</value>
+  </data>
+  <data name="Tool_ZoomInRegion" xml:space="preserve">
+    <value>Zoom in rectangle</value>
+  </data>
+  <data name="Tool_ZoomOut" xml:space="preserve">
+    <value>Zoom out</value>
+  </data>
+  <data name="Tool_ZoomOutRegion" xml:space="preserve">
+    <value>Zoom out rectangle</value>
+  </data>
+  <data name="Tool_ZoomToLayer" xml:space="preserve">
+    <value>Fit in all layer objects</value>
+  </data>
+  <data name="Tool_ZoomToSelObjects" xml:space="preserve">
+    <value>Fit in selected objects</value>
+  </data>
+  <data name="WmMenu_Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="WmMenu_Data_UpdMenu" xml:space="preserve">
+    <value>Reload menu</value>
+  </data>
+  <data name="WmMenu_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="WmMenu_File_ChooseVMP" xml:space="preserve">
+    <value>Choose vmp file…</value>
+  </data>
+  <data name="WmMenu_File_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="WmMenu_File_ExportPrint" xml:space="preserve">
+    <value>Export image for printing…</value>
+  </data>
+  <data name="WmMenu_File_Print" xml:space="preserve">
+    <value>Print…</value>
+  </data>
+  <data name="WmMenu_File_PrintSettings" xml:space="preserve">
+    <value>Print settings…</value>
+  </data>
+  <data name="WmMenu_File_SaveImage" xml:space="preserve">
+    <value>Save image…</value>
+  </data>
+  <data name="WmMenu_Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="WmMenu_Help_About" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="WmMenu_Help_Licences" xml:space="preserve">
+    <value>Components' licences...</value>
+  </data>
+  <data name="WmMenu_Help_Manual" xml:space="preserve">
+    <value>Manual...</value>
+  </data>
+  <data name="WmMenu_Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="WmMenu_Reports_OpenManager" xml:space="preserve">
+    <value>Show reports manager...</value>
+  </data>
+  <data name="WmMenu_Sources" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="WmMenu_Sources_BaseLayers" xml:space="preserve">
+    <value>Base layers…</value>
+  </data>
+  <data name="WmMenu_Sources_PostgreSQL" xml:space="preserve">
+    <value>PostgreSQL…</value>
+  </data>
+  <data name="WmMenu_Sources_RastrLayers" xml:space="preserve">
+    <value>Rastr layers…</value>
+  </data>
+  <data name="WmMenu_Sources_ShowPanel" xml:space="preserve">
+    <value>Show layers manager</value>
+  </data>
+  <data name="WmMenu_Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="WmMenu_Tools_BaseLayers" xml:space="preserve">
+    <value>Base layers…</value>
+  </data>
+  <data name="WmMenu_Tools_History" xml:space="preserve">
+    <value>History…</value>
+  </data>
+  <data name="WmMenu_Tools_HistoryWPF" xml:space="preserve">
+    <value>History WPF…</value>
+  </data>
+  <data name="WmMenu_Tools_LocationsReference" xml:space="preserve">
+    <value>Locations reference…</value>
+  </data>
+  <data name="WmMenu_Tools_ManageTables" xml:space="preserve">
+    <value>Manage tables…</value>
+  </data>
+  <data name="WmMenu_Tools_RastrLayers" xml:space="preserve">
+    <value>Rastr layers…</value>
+  </data>
+  <data name="WmMenu_Tools_Search" xml:space="preserve">
+    <value>Search…</value>
+  </data>
+  <data name="WmMenu_Tools_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="WmMenu_Tools_UserRights" xml:space="preserve">
+    <value>Manage user rights…</value>
+  </data>
+  <data name="WmMenu_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="WmMenu_View_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="WmMenu_View_ToolBars" xml:space="preserve">
+    <value>Toolbars</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_FastStart" xml:space="preserve">
+    <value>Fast start...</value>
+  </data>
+  <data name="WmMenu_Tools_Settings_ProgramPlugins" xml:space="preserve">
+    <value>Program and plugins settings...</value>
+  </data>
+  <data name="WmMenu_View_Map_FitObject" xml:space="preserve">
+    <value>Fit in object on moving to it</value>
+  </data>
+  <data name="WmMenu_View_Map_HideVMP" xml:space="preserve">
+    <value>Hide base layers on showing rastr layer</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Coords" xml:space="preserve">
+    <value>Toolbar "Coordinates"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditableLayer" xml:space="preserve">
+    <value>Toolbar "Editable layer"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditGeom" xml:space="preserve">
+    <value>Toolbar "Operations with geometry"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EditObject" xml:space="preserve">
+    <value>Toolbar "Operations with objects"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_EnabledModes" xml:space="preserve">
+    <value>Toolbar "Enabled modes"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_FastStart" xml:space="preserve">
+    <value>Toolbar "Fast start"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Info" xml:space="preserve">
+    <value>Toolbar "Info"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_LayersList" xml:space="preserve">
+    <value>Toolbar "Layers manager"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Map" xml:space="preserve">
+    <value>Toolbar "Map"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Plugins" xml:space="preserve">
+    <value>Toolbar "Plugins"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestorePrevious" xml:space="preserve">
+    <value>Restore toolbars' previous locations</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_RestoreStandard" xml:space="preserve">
+    <value>Restore toolbars' standard locations</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Scale" xml:space="preserve">
+    <value>Toolbar "Scale"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_Search" xml:space="preserve">
+    <value>Toolbar "Quick search"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_SelectObject" xml:space="preserve">
+    <value>Toolbar "Select object"</value>
+  </data>
+  <data name="WmMenu_View_ToolBars_WorkSets" xml:space="preserve">
+    <value>Toolbar "Work sets"</value>
+  </data>
+  <data name="FELC_CannotDeleteField" xml:space="preserve">
+    <value>This attribute is connected to the following tables:
+{0}</value>
+  </data>
+  <data name="FELC_DeletingFieldLabel" xml:space="preserve">
+    <value>This field is used to create layer label. Label will be hidden.</value>
+  </data>
+  <data name="FELC_DeletingFieldStyle" xml:space="preserve">
+    <value>This field defines the style of the table.</value>
+  </data>
+  <data name="LocClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="LocOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="PFC_EditingFields" xml:space="preserve">
+    <value>Editing field</value>
+  </data>
+  <data name="PFC_EditingFieldsAsk" xml:space="preserve">
+    <value>Do you really want to modify the selected attribute?</value>
+  </data>
+  <data name="SSF_NameIsUsed" xml:space="preserve">
+    <value>Workset with the same name already exists</value>
+  </data>
+  <data name="SSF_SetName" xml:space="preserve">
+    <value>Workset's name</value>
+  </data>
+  <data name="SSF_Title" xml:space="preserve">
+    <value>Save workset</value>
+  </data>
+  <data name="LocUseBuildPyramids" xml:space="preserve">
+    <value>Build pyramids</value>
+  </data>
+  <data name="LocUseDefaultMethodOfUsingRastr" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="LocUseGDALMethodOfUsingRastr" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="LocUseMethodOfUsing" xml:space="preserve">
+    <value>Method Of Using</value>
+  </data>
+  <data name="RasM.EConnectType.Gdal" xml:space="preserve">
+    <value>GDAL</value>
+  </data>
+  <data name="RasM.EConnectType.Standard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ucTable_ChangeProjection" xml:space="preserve">
+    <value>Do you want to change layer projection?</value>
+  </data>
+  <data name="ucTable_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="LocChange" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="FormTableData_Continue" xml:space="preserve">
+    <value>The geometry contains empty or invalid objects, which would be removed. Continue?</value>
+  </data>
+  <data name="PgAttributesGeom_TxtWarning" xml:space="preserve">
+    <value>Only current object would be exported. Continue?</value>
+  </data>
+  <data name="ExportError_NotSpecifiedProj" xml:space="preserve">
+    <value>Projection was not specified. Continue and use the layer projection?</value>
+  </data>
+  <data name="ExportProjSelection_Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="ExportProjSelection_SelectText" xml:space="preserve">
+    <value>Select the projection of the export file</value>
+  </data>
+  <data name="ExportProjSelection_SelectTitle" xml:space="preserve">
+    <value>Projection selection</value>
+  </data>
+  <data name="ExportProjSelection_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Tool_DivWithLine" xml:space="preserve">
+    <value>Сut lines/polygons using line</value>
+  </data>
+  <data name="PgM.UserType.Admin" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="PgM.UserType.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Tool_UnJoinGeometry" xml:space="preserve">
+    <value>Ungroup geometries</value>
+  </data>
+  <data name="LocGroup" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="PluginSettingsForm_tnPluginsSettings" xml:space="preserve">
+    <value>Configuring plug-ins</value>
+  </data>
+  <data name="PluginSettingsForm_tnUserSettings" xml:space="preserve">
+    <value>User Preferences</value>
+  </data>
+  <data name="PluginSettingsForm_tnProxySettings" xml:space="preserve">
+    <value>Connection Settings</value>
+  </data>
+  <data name="Report_VM_KeyAliasFormat" xml:space="preserve">
+    <value>{0} (Value)</value>
+  </data>
+  <data name="PgAttributes_ErrorGeomConvert" xml:space="preserve">
+    <value>Unable to convert the geometry</value>
+  </data>
+  <data name="LocReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="WmMenu_Tools_CosmeticLayers" xml:space="preserve">
+    <value>Cosmetic layers...</value>
+  </data>
+  <data name="LocCosmeticConfig" xml:space="preserve">
+    <value>Cosmetic layers configuration</value>
+  </data>
+  <data name="LocSourceCosmetic" xml:space="preserve">
+    <value>Cosmetic layers</value>
+  </data>
+  <data name="LocOpacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.DateTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Geometry" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Integer" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Numeric" xml:space="preserve">
+    <value>Numeric</value>
+  </data>
+  <data name="PgTableRegisterM.ERDataType.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiLinestring" xml:space="preserve">
+    <value>Lines</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPoint" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.MultiPolygon" xml:space="preserve">
+    <value>Polygons</value>
+  </data>
+  <data name="PgTableRegisterM.ERGeomType.None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="PgTableRegisterM.ERTableType.MapLayer" xml:space="preserve">
+    <value>Map layer</value>
+  </data>
+  <data name="WmMenu_Data_UpdDics" xml:space="preserve">
+    <value>Update catalogs</value>
+  </data>
+  <data name="Tool_AddInMapLine" xml:space="preserve">
+    <value>Add line on map</value>
+  </data>
+  <data name="Tool_AddInMapPoint" xml:space="preserve">
+    <value>Add point on map</value>
+  </data>
+  <data name="Tool_AddInMapPolygon" xml:space="preserve">
+    <value>Add polygon on map</value>
+  </data>
+  <data name="Tool_IntersectGeometry" xml:space="preserve">
+    <value>Intersect geometries</value>
+  </data>
+  <data name="Tool_JoinIntersectGeometry" xml:space="preserve">
+    <value>Merge intersected geometries</value>
+  </data>
+  <data name="Tool_SymDifference" xml:space="preserve">
+    <value>Geometries symmetric difference</value>
+  </data>
+  <data name="CosTableView_CopySelected" xml:space="preserve">
+    <value>Copy selected objects</value>
+  </data>
+  <data name="CosTableView_CosmeticLayer" xml:space="preserve">
+    <value>Cosmetic layer</value>
+  </data>
+  <data name="CosTableView_Label" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="CosTableView_ObjectNotExists" xml:space="preserve">
+    <value>This object does not exist</value>
+  </data>
+  <data name="CosTableView_Reload" xml:space="preserve">
+    <value>Reload data</value>
+  </data>
+  <data name="CosTableView_RemoveAll" xml:space="preserve">
+    <value>Remove all objects…</value>
+  </data>
+  <data name="LocBrush" xml:space="preserve">
+    <value>Brush</value>
+  </data>
+  <data name="LocPen" xml:space="preserve">
+    <value>Pen</value>
+  </data>
+  <data name="CosAttributes_GeomExport" xml:space="preserve">
+    <value>Export geometry to…</value>
+  </data>
+  <data name="CosAttributes_GeomImport" xml:space="preserve">
+    <value>Import geometry from…</value>
+  </data>
+  <data name="CosAttributes_ShowInTable" xml:space="preserve">
+    <value>Show in table window</value>
+  </data>
+  <data name="CosAttributes_UseOwnStyle" xml:space="preserve">
+    <value>Use own style</value>
+  </data>
+  <data name="CosAttributes_MvObjectIsNull" xml:space="preserve">
+    <value>Map object reference is null</value>
+  </data>
+  <data name="CosAttributes_Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="CosAttributes_Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="CosAttributes_TableIsNull" xml:space="preserve">
+    <value>Table reference is null</value>
+  </data>
+  <data name="CosAttributes_TableWithoutPK" xml:space="preserve">
+    <value>Table doesn't have primary key</value>
+  </data>
+  <data name="CosAttributes_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryAdding" xml:space="preserve">
+    <value>An error has occurred in geometry adding</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryEditing" xml:space="preserve">
+    <value>An error has occurred in geometry editing</value>
+  </data>
+  <data name="mainFrm_errErrorInGeometryJoining" xml:space="preserve">
+    <value>An error has occurred in geometry joining</value>
+  </data>
+  <data name="mainFrm_errGeometryShouldBeMulti" xml:space="preserve">
+    <value>Object geometry type should be multi!</value>
+  </data>
+  <data name="mainFrm_errGeometryTypesShouldMatch" xml:space="preserve">
+    <value>Type of geometry in objects must be the same!</value>
+  </data>
+  <data name="mainFrm_errIncorrectLayerType" xml:space="preserve">
+    <value>Incorrect layer type</value>
+  </data>
+  <data name="mainFrm_errNotFoundWorkObject" xml:space="preserve">
+    <value>Work object is not found</value>
+  </data>
+  <data name="mainFrm_errObjectGeometryIsNotRecognized" xml:space="preserve">
+    <value>Object geometry is not recognized!</value>
+  </data>
+  <data name="mainFrm_errSaveWhenGeometryIsNotMulti" xml:space="preserve">
+    <value>You cannot save objects with miltiple geometries in current layer.\nDo you wish to save only first geometry in the object?</value>
+  </data>
+  <data name="mainFrm_errTableShouldNotBeEmpty" xml:space="preserve">
+    <value>A table cannot be empty</value>
+  </data>
+  <data name="mainFrm_errWorkLayerNotEnabled" xml:space="preserve">
+    <value>Work layer is not enabled</value>
+  </data>
+  <data name="PgReg_AttributeProps" xml:space="preserve">
+    <value>Attribute properties</value>
+  </data>
+  <data name="PgReg_ChangesSaved" xml:space="preserve">
+    <value>Changes are saved</value>
+  </data>
+  <data name="PgReg_ChooseGeomField" xml:space="preserve">
+    <value>Choose geometry field</value>
+  </data>
+  <data name="PgReg_ChoosePK" xml:space="preserve">
+    <value>Choose primary key field</value>
+  </data>
+  <data name="PgReg_ChooseTableType" xml:space="preserve">
+    <value>Choose table type</value>
+  </data>
+  <data name="PgReg_CreateNewScheme" xml:space="preserve">
+    <value>Create new scheme</value>
+  </data>
+  <data name="PgReg_DataType" xml:space="preserve">
+    <value>Data type</value>
+  </data>
+  <data name="PgReg_DescriptionText" xml:space="preserve">
+    <value>Description text</value>
+  </data>
+  <data name="PgReg_FieldRegistered" xml:space="preserve">
+    <value>Field is registered</value>
+  </data>
+  <data name="PgReg_FieldTypeCantBeDefined" xml:space="preserve">
+    <value>Field type can't be determined</value>
+  </data>
+  <data name="PgReg_FixDb" xml:space="preserve">
+    <value>Fix database</value>
+  </data>
+  <data name="PgReg_GeomField" xml:space="preserve">
+    <value>Geometry field</value>
+  </data>
+  <data name="PgReg_GeomType" xml:space="preserve">
+    <value>Geom type</value>
+  </data>
+  <data name="PgReg_LabelField" xml:space="preserve">
+    <value>Label field</value>
+  </data>
+  <data name="PgReg_MapLayer" xml:space="preserve">
+    <value>Map layer</value>
+  </data>
+  <data name="PgReg_MapLayerHasGeom" xml:space="preserve">
+    <value>You should choose geom type for map layer </value>
+  </data>
+  <data name="PgReg_MarkFields" xml:space="preserve">
+    <value>Mark the fields you need to register</value>
+  </data>
+  <data name="PgReg_NeedAdditionalFields" xml:space="preserve">
+    <value>Table needs additional service fields. Want to create?</value>
+  </data>
+  <data name="PgReg_NotMapLayer" xml:space="preserve">
+    <value>Not map layer</value>
+  </data>
+  <data name="PgReg_OnlyIntervals" xml:space="preserve">
+    <value>Only intervals and catalogs may have styles</value>
+  </data>
+  <data name="PgReg_Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="PgReg_PrimaryKey" xml:space="preserve">
+    <value>Primary key field</value>
+  </data>
+  <data name="PgReg_RegisterScheme" xml:space="preserve">
+    <value>Register scheme in database</value>
+  </data>
+  <data name="PgReg_SSCGroup" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="PgReg_StyleCreation" xml:space="preserve">
+    <value>Style creation</value>
+  </data>
+  <data name="PgReg_Styles" xml:space="preserve">
+    <value>Styles</value>
+  </data>
+  <data name="PgReg_SystemName" xml:space="preserve">
+    <value>System name</value>
+  </data>
+  <data name="PgReg_SystemNameAbsent" xml:space="preserve">
+    <value>System name is missing</value>
+  </data>
+  <data name="PgReg_SystemNameNeeded" xml:space="preserve">
+    <value>Enter system name</value>
+  </data>
+  <data name="PgReg_TableNotDescribed" xml:space="preserve">
+    <value>Table not registered</value>
+  </data>
+  <data name="PgReg_TableProps" xml:space="preserve">
+    <value>Table properties</value>
+  </data>
+  <data name="PgReg_TablesAndFields" xml:space="preserve">
+    <value>Tables and fields</value>
+  </data>
+  <data name="PgReg_TablesLayersCatalogs" xml:space="preserve">
+    <value>Tables, layers, catalogs…</value>
+  </data>
+  <data name="PgReg_TableType" xml:space="preserve">
+    <value>Table type</value>
+  </data>
+  <data name="PgReg_Title" xml:space="preserve">
+    <value>Tables registration</value>
+  </data>
+  <data name="PgReg_Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="RstGrf_AddControlPoint" xml:space="preserve">
+    <value>Add control point</value>
+  </data>
+  <data name="RstGrf_LayerCreated" xml:space="preserve">
+    <value>Layer "{0}" in system successfully created</value>
+  </data>
+  <data name="RstGrf_LayerNotCreatedGrfFile" xml:space="preserve">
+    <value>Layer is not created, but file with georeference is created:
+{0}</value>
+  </data>
+  <data name="RstGrf_LoadControlPoints" xml:space="preserve">
+    <value>Load control points</value>
+  </data>
+  <data name="RstGrf_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="RstGrf_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="RstGrf_OpenRaster" xml:space="preserve">
+    <value>Open raster</value>
+  </data>
+  <data name="RstGrf_PointNum" xml:space="preserve">
+    <value>Point №{0}</value>
+  </data>
+  <data name="RstGrf_PointsNum" xml:space="preserve">
+    <value>Points number</value>
+  </data>
+  <data name="RstGrf_PyramidsNotCreated" xml:space="preserve">
+    <value>Unable to build pyramids</value>
+  </data>
+  <data name="RstGrf_Raster" xml:space="preserve">
+    <value>Raster</value>
+  </data>
+  <data name="RstGrf_SaveControlPoints" xml:space="preserve">
+    <value>Save control points</value>
+  </data>
+  <data name="RstGrf_SridShouldNotBeEmpty" xml:space="preserve">
+    <value>Projection definition shouldn't be empty</value>
+  </data>
+  <data name="RstGrf_StartGeoreference" xml:space="preserve">
+    <value>Start georeference</value>
+  </data>
+  <data name="RstGrf_TakeCoordsFromMap" xml:space="preserve">
+    <value>Take coordinates from map for selected point</value>
+  </data>
+  <data name="RstGrf_Title" xml:space="preserve">
+    <value>Raster georeference</value>
+  </data>
+  <data name="login_errIncorrectProxySettings" xml:space="preserve">
+    <value>An error has occured during a connection to proxy server</value>
+  </data>
+  <data name="AbsM.ETableType.Cosmetic" xml:space="preserve">
+    <value>Cosmetic layer</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="new_hollow_type_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\save5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bridget" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bridget.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videlit_obekt1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="КРИВАЯ1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ГС_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ГС_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="savebaw" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\savebaw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="deselect_objects" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deselect_objects.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sloi1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Group1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="РЕКОД_new_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\РЕКОД_new_logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HIstory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HIstory.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="data_time1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\data_time1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_down.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_right_5106" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-right_5106.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="точка1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="__minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\- minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_selecteg_button1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kfontview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kfontview.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowHeadDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowHeadDown.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_page" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_page.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="obnovit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\obnovit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="legend_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\legend-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1downarrow1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instruments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instruments.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabledXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Selected" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selected.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="videlit_obekt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\videlit obekt.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_struct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\struct.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1279535710_view_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535710_view_16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotSelected3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotSelected3.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_navedenii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dobavit_obekt_na_videlenii_sloi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dobavit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_hollow_type_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new hollow type 2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue_bg_for_panel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stock_snap_guides_9095" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_snap-guides_9095.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="обновить" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\обновить.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bd.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_vibore_instrumenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="a_c48d37de1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a_c48d37de1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_img" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_img.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremeschenie1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MoveObject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoveObject.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="real1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\real1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Площадь1_серая" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1 серая.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Выбор_объекта" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_sattelite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_sattelite.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_работами" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_работами.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\+plus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_selecteg_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_selecteg_button.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_view_columns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_view_columns.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_plus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa plus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_min.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwalletmanager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kwalletmanager.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="selectpoly" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectpoly.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Слой_вниз" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вниз.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_2_not1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 2 not1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_left_8086" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_8086.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="КРИВАЯ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\КРИВАЯ1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Stil_sloya_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stil sloya_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_полями" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление_полями.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="object_rotate_left_on_deg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\object-rotate-left_on_deg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruler_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler_area.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="agt_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addXYNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addXYNew.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spisok_sloev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spisok sloev.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremechenie__uzla_new_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremechenie  uzla new 21.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="upload_logotip_cku22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_logotip_cku22.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gnome_mime_text_x_copying" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gnome-mime-text-x-copying.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="для_арсенала" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\для_арсенала.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Untitled_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Untitled-11.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="field_del" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\field_del1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ruler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ruler.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_base.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clip_image002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image002.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clip_image0021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clip_image0021.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1downarrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1downarrow.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="layers_pg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\layers_pg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="int1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\int1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="peremeschenie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\peremeschenie.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rastrovii_izobrageni9ya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rastrovii izobrageni9ya.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_minus_region" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus region.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gtk_copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rotate270anticlockwise3green_9632" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rotate270anticlockwise3green_9632.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reference" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reference.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa_minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa minus.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gtk_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gtk_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1279535667_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1279535667_edit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_lokalnii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new lokalnii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa +.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa__1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa -.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="photo_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\photo_add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stock_draw_rectangle_unfilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stock_draw_rectangle_unfilled.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="addNotEnabledXY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\addNotEnabledXY.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="точка1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\точка1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Площадь1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Площадь1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="copy_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_vibore_instrumenta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri vibore instrumenta2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reload_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reload_2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redaktor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redaktor.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dobavit_object" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\udalit obekt na videlenii sloi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pri_navedenii2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pri navedenii2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablichnii_dannii1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablichnii dannii1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Group.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="izmeritel_rastoyaniya1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\izmeritel rastoyaniya1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="new_udalennii" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\new udalennii.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Управление_растром" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Управление растром.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="agt_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agt_forward.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zoom_max" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zoom_max.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue_bg_for_panel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue_bg_for_panel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg_gorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_gorizontal.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pan.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete_gray.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_up_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up_1.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group_order_change" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\group_order_change.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Слой_вверх" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Слой_вверх.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="selectregion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\selectregion.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToLayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToLayer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZoomToSelectObj" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZoomToSelectObj.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapToLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToLine.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SnapToPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SnapToPoint.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Globe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Globe.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pie_Chart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pie_Chart.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WmMenu_View_Map_ShowObjectForm" xml:space="preserve">
+    <value>Open window of attributes after create object on the map</value>
+  </data>
+  <data name="Info_Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="Info_Highlight" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="Info_ObjectsInfo" xml:space="preserve">
+    <value>Information of objects</value>
+  </data>
+  <data name="Info_OpenObject" xml:space="preserve">
+    <value>Open window of attribute</value>
+  </data>
+  <data name="Info_Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="Loc_CosmeticLayer" xml:space="preserve">
+    <value>Cosmetic layer</value>
+  </data>
+  <data name="Print_FitMap" xml:space="preserve">
+    <value>Insert map to the highlighted area</value>
+  </data>
+  <data name="Print_Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="Print_PrintSelected" xml:space="preserve">
+    <value>Print highlighted pages</value>
+  </data>
+  <data name="Print_SaveSelected" xml:space="preserve">
+    <value>Save highlighted pages</value>
+  </data>
+  <data name="Print_SelectionMode" xml:space="preserve">
+    <value>Highlight mode</value>
+  </data>
+  <data name="Print_UpdateExtent" xml:space="preserve">
+    <value>Update extent of map</value>
+  </data>
+  <data name="Search_ChooseTables" xml:space="preserve">
+    <value>Choose tables for search</value>
+  </data>
+  <data name="WinMain_CurrentWorkset" xml:space="preserve">
+    <value>Current workset</value>
+  </data>
+  <data name="WinMain_EditableLayer" xml:space="preserve">
+    <value>Editable layer</value>
+  </data>
+  <data name="WinMain_InformationPanel" xml:space="preserve">
+    <value>Information output panel</value>
+  </data>
+  <data name="WinMain_Projection" xml:space="preserve">
+    <value>Projection</value>
+  </data>
+  <data name="WinMain_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="WinMain_SearchBar" xml:space="preserve">
+    <value>Search bar</value>
+  </data>
+  <data name="Info_MakeEditable" xml:space="preserve">
+    <value>Make editable</value>
+  </data>
+  <data name="Info_OpenTable" xml:space="preserve">
+    <value>Open table</value>
+  </data>
+</root>

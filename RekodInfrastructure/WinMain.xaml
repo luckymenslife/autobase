@@ -1,0 +1,1351 @@
+﻿<Window x:Class="Rekod.WinMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tmv="clr-namespace:Rekod.DataAccess.TableManager.View"
+        xmlns:beh="clr-namespace:Rekod.Behaviors"
+        xmlns:props="clr-namespace:Rekod.Properties"
+        xmlns:rec="clr-namespace:Rekod"
+        Title="WinMain" Height="852" Width="1418.9" 
+        Loaded="MainWindow_Loaded"
+        Name="MainWindow"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        WindowState="Maximized" 
+        KeyDown="WinMain_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UtilityStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ToolBar">
+                <Setter Property="MinHeight" Value="32" />
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="Width" Value="22" />
+                <Setter Property="Height" Value="22" />
+                <Setter Property="Stretch" Value="Fill" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.3" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition 
+                Name="ManagerColumn"
+                Width="0" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition 
+                Name="ToolBoxRow"
+                Height="0" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DockPanel
+            Grid.Row="2"
+            Grid.Column="1">
+            <Border Name="mapborder" BorderBrush="#FF6A6A6A" Background="#FF6A6A6A" BorderThickness="1">
+                <WindowsFormsHost
+                    Name="windowsFormsHost1">
+                </WindowsFormsHost>
+            </Border>
+            <!--<Border Name="tableborder" BorderBrush="#FF6A6A6A" Background="#FF6A6A6A" BorderThickness="1">
+                <WindowsFormsHost
+                    Name="windowsFormsHost2">
+                </WindowsFormsHost>
+            </Border>-->
+        </DockPanel>
+        <tmv:TableManagerV 
+            DataContext="{Binding TableManager}"
+            Grid.Row="2"
+            Grid.Column="2"
+            Visibility="Visible"
+            x:Name="TableManagerView" />
+        <ToolBarTray
+            Name="mainBar"
+            Grid.Row="1" 
+            Grid.ColumnSpan="100"
+            AllowDrop="True">
+        </ToolBarTray>
+        <ToolBarTray
+            Name="leftBar"
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.RowSpan="100"
+            AllowDrop="True">
+        </ToolBarTray>
+        <ToolBarTray
+            Name="rightBar"
+            Grid.Row="1" 
+            Grid.Column="3" 
+            Grid.RowSpan="100"
+            AllowDrop="True">
+        </ToolBarTray>
+        <ToolBarTray
+            Name="bottonBar"
+            Background="#C8C8C8"
+            Grid.Row="3"
+            Grid.ColumnSpan="100">
+            <ToolBar
+                Name="TbWorkSets"
+                Background="LightGray">
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_WorkSets}"
+                    Click="TbbWorkSets_Click"
+                    Name="TbbWorkSets">
+                    <Image Source="/Resources/autocad_icon_workset_2.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SetChangeStyle}"
+                    Click="TbbWorkSetChangeStyleLayer_Click"
+                    Name="TbbWorkSetChangeStyleLayer">
+                    <Image Source="/Resources/autocad_icon_addstyle.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SetDeleteStyle}"
+                    Click="TbbWorkSetDeleteStyleLayer_Click"
+                    Name="TbbWorkSetDeleteStyleLayer">
+                    <Image Source="/Resources/autocad_icon_delstyle.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SetSaveLocation}"
+                    Click="TbbWorkSetSaveLocationLayers_Click"
+                    Name="TbbWorkSetSaveLocationLayers">
+                    <Image Source="/Resources/autocad_icon_orderset.png" />
+                </Button>
+                <ComboBox
+                    ToolTip="{x:Static props:Resources.WinMain_CurrentWorkset}"
+                    DisplayMemberPath="Name"
+                    Name="TbcbWorkSet"
+                    VerticalAlignment="Center" 
+                    MinWidth="175"/>
+            </ToolBar>
+            <!--<ToolBar
+                Name="TbScale"
+                Background="LightGray">
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Text="Масштаб 1:"
+                    Margin="3"/>
+                <TextBox
+                    KeyDown="TbtbScale_KeyDown"
+                    Name="TbtbScale"
+                    VerticalAlignment="Center"
+                    MinWidth="100">
+                </TextBox>
+            </ToolBar>-->
+            <!--<ToolBar
+                Name="TbCoordinates"
+                Background="LightGray">
+                <TextBlock 
+                    Name="TbtbCoords"
+                    VerticalAlignment="Center"
+                    Text=""
+                    Margin="3" />
+                <Separator />
+                <TextBlock                     
+                    VerticalAlignment="Center"
+                    Text="Проекция:"
+                    Margin="3" />
+                <ComboBox
+                    Loaded="TbcbSrid_Loaded"
+                    SelectionChanged="TbcbSrid_SelectionChanged"
+                    Name="TbcbSrid"
+                    VerticalAlignment="Center"
+                    MinWidth="150" />
+                <TextBox
+                    Visibility="Collapsed"
+                    Margin="3, 0, 3, 0"
+                    Name="TbtbCustomSRID" 
+                    MinWidth="85"/>
+                <Button
+                    Visibility="Collapsed"
+                    Name="TbbApplySRID"
+                    Content="Применить" 
+                    Click="TbbApplySRID_Click" />
+            </ToolBar>-->
+            <ToolBar
+                Name="TbFullTextSearch"
+                Band="0"
+                Background="LightGray">
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Margin="3">
+                    <Run Text="{x:Static props:Resources.WinMain_SearchBar}" /><Run Text=": " />
+                </TextBlock>
+                <TextBox
+                    KeyDown="TbtbFullSearch_KeyDown"
+                    Name="TbtbFullSearch"
+                    VerticalAlignment="Center"
+                    MinWidth="200">
+                </TextBox>
+                <Button
+                    Click="TbbFullSearch_Click"
+                    Name="TbbFullSearch"
+                    IsDefault="False">
+                    <Image Source="/Resources/find_fulltextsearch.png" />
+                </Button>
+            </ToolBar>
+            <ToolBar
+                Name="TbEditableLayer"
+                Band="0"
+                Background="LightGray">
+                <TextBlock 
+                    Margin="3"
+                    VerticalAlignment="Center">
+                    <Run Text="{x:Static props:Resources.WinMain_EditableLayer}" /><Run Text=": " />
+                </TextBlock>
+                <ComboBox
+                    DisplayMemberPath="Text"
+                    Name="TbcbEditableLayer"
+                    VerticalAlignment="Center" 
+                    MinWidth="175"/>
+            </ToolBar>
+            <!--<ToolBar
+                Band="1"
+                Name="TbInfoText"
+                Background="LightGray" HorizontalAlignment="Left" >
+                <TextBlock 
+                    Name="TbtbInfoText"
+                    VerticalAlignment="Center"
+                    Text="Панель для вывода информации"
+                    Margin="3"/>
+            </ToolBar>-->
+        </ToolBarTray>
+        <ToolBarTray
+            Name="newVerBar"
+            Background="#C8C8C8"
+            Grid.Row="4" 
+            Grid.ColumnSpan="100"
+            AllowDrop="True">
+            <ToolBarTray.Resources>
+                <Style TargetType="Image">
+                    <Style.Setters>
+                        <Setter Property="Width" Value="22" />
+                        <Setter Property="Height" Value="22" />
+                    </Style.Setters>
+                </Style>
+            </ToolBarTray.Resources>
+            <ToolBar Grid.Row="1" Grid.ColumnSpan="100" Background="LightGray" Foreground="#FF105C4E" DataContext="{Binding TableManager}">
+                <Button                    
+                    Command="{Binding Path=SelectedLayer.Source.OpenTableCommand, FallbackValue={StaticResource EmptyCommand}}"
+                    CommandParameter="{Binding Path=SelectedLayer}"
+                    ToolTip="Открыть слой в виде таблицы">
+                    <Image Source="/rekod_infrastructure;component/Resources/tablichnii dannii.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=SelectedLayer.Source.CreateObjectInMapCommand, FallbackValue={StaticResource EmptyCommand}}"
+                    CommandParameter="{Binding Path=SelectedLayer}"
+                    ToolTip="Добавить объект указанием точек на карте">
+                    <Image Source="/rekod_infrastructure;component/Resources/addNotEnabled.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=SelectedLayer.Source.CreateObjectCommand, FallbackValue={StaticResource EmptyCommand}}"
+                    CommandParameter="{Binding Path=SelectedLayer}"
+                    ToolTip="Добавить объект указанием координат">
+                    <Image Source="/rekod_infrastructure;component/Resources/addNotEnabledXYNew.png"/>
+                </Button>
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlRectangle}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlRectangle"
+                    ToolTip="Добавить прямоугольник">
+                    <Image Source="/rekod_infrastructure;component/Resources/stock_draw_rectangle_unfilled.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=MoveSelectedLayerUpCommand}"
+                    ToolTip="Переместить видимый слой вверх">
+                    <Image  Source="/rekod_infrastructure;component/Resources/1downarrow.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=MoveSelectedLayerDownCommand}"
+                    ToolTip="Переместить видимый слой вниз">
+                    <Image Source="/rekod_infrastructure;component/Resources/1downarrow1.png"/>
+                </Button>
+                <Button 
+                    Command="{Binding Path=RotateObjectOnDegreeCommand}"                    
+                    ToolTip="Повернуть объект на заданный угол">
+                    <Image Source="/rekod_infrastructure;component/Resources/object-rotate-left_on_deg.png"/>
+                </Button>
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlRotateObj}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlRotateObj"
+                    ToolTip="Повернуть объект мышкой">
+                    <Image Source="/rekod_infrastructure;component/Resources/object-rotate-left_8086.png"/>
+                </Button>
+                <Button
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlMoveObj}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlMoveObj"
+                    ToolTip="Переместить объект">
+                    <Image Source="/rekod_infrastructure;component/Resources/MoveObject.png"/>
+                </Button>
+                <Button                    
+                    VerticalAlignment="Center" 
+                    Command="{Binding Path=DeleteSelectedObjectCommand}"
+                    ToolTip="Удалить объект">
+                    <Image  Source="/rekod_infrastructure;component/Resources/dobavit obekt na videlenii sloi.png"/>
+                </Button>
+            </ToolBar>
+
+            <ToolBar 
+                MinHeight="32"
+                Background="LightGray"
+                DataContext="{Binding TableManager}">
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlPan}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlPan"
+                    ToolTip="Режим перемещения">
+                    <Image Source="/rekod_infrastructure;component/Resources/peremeschenie.png"/>
+                </Button>
+                <Button
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlDistance}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlDistance"
+                    ToolTip="Измерение расстояния">
+                    <Image Source="/rekod_infrastructure;component/Resources/izmeritel rastoyaniya.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=ScaleZoomCommand}" 
+                    CommandParameter="plus"
+                    ToolTip="Приблизить">
+                    <Image Source="/rekod_infrastructure;component/Resources/lupa +.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=ScaleZoomCommand}" 
+                    CommandParameter="minus"
+                    ToolTip="Отдалить">
+                    <Image Source="/rekod_infrastructure;component/Resources/lupa -.png"/>
+                </Button>
+                <ToggleButton                    
+                    IsChecked="{Binding Path=ShowTableManagerView}"
+                    ToolTip="Панель управления слоями">
+                    <Image  Source="/rekod_infrastructure;component/Resources/sloi.png"/>
+                </ToggleButton>
+            </ToolBar>
+
+            <ToolBar Background="LightGray" DataContext="{Binding TableManager}">
+                <Button                    
+                    Command="{Binding Path=ShowLegendCommand}"
+                    ToolTip="Окно легенды">
+                    <Image Source="/rekod_infrastructure;component/Resources/legend-icon.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=ReloadAllLayerDataCommand}"
+                    ToolTip="Обновить данные на карте">
+                    <Image Source="/rekod_infrastructure;component/Resources/reload_gray.png"/>
+                </Button>
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlSelect}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlSelect"
+                    ToolTip="Режим выбора объекта">
+                    <Image Source="/rekod_infrastructure;component/Resources/videlit obekt.png"/>
+                </Button>
+                <Button                    
+                    Command="{Binding Path=DeselectObjectsInMapCommand}"
+                    ToolTip="Снять выделение со всех объектов">
+                    <Image Source="/rekod_infrastructure;component/Resources/deselect_objects.png"/>
+                </Button>
+                <ToggleButton
+                    IsChecked="{Binding Path=SnappedToKnot}"                    
+                    ToolTip="Режим прикрепления к узлам">
+                    <Image Source="/rekod_infrastructure;component/Resources/stock_snap-guides_9095.png"/>
+                </ToggleButton>
+                <Separator />
+                <Button
+                    Command="{Binding Path=CopyMapObjectCommand}"                    
+                    ToolTip="Копировать геометрию выделенного объекта">
+                    <Image  Source="/rekod_infrastructure;component/Resources/edit_copy.png"/>
+                </Button>
+                <Button
+                    Command="{Binding Path=PasteMapObjectCommand}"                    
+                    ToolTip="Вставить геометрию в выделенный слой">
+                    <Image  Source="/rekod_infrastructure;component/Resources/edit_paste.png"/>
+                </Button>
+                <Button 
+                    Command="{Binding Path=CreateHoleTwoPolygonCommand}"                    
+                    ToolTip="Обрезать полигон с помощью другого полигона">
+                    <Image  Source="/rekod_infrastructure;component/Resources/new hollow type 2.png"/>
+                </Button>
+                <Button 
+                    Command="{Binding Path=CreateHoleByMouseCommand}"                    
+                    ToolTip="Обрезать полигон указанием точек">
+                    <Image  Source="/rekod_infrastructure;component/Resources/new hollow type 1.png"/>
+                </Button>
+                <Separator />
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlAddVx}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlAddVx"
+                    ToolTip="Добавить узлы">
+                    <Image  Source="/rekod_infrastructure;component/Resources/+plus.png"/>
+                </Button>
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlDelVx}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlDelVx"
+                    ToolTip="Удалить узлы">
+                    <Image  Source="/rekod_infrastructure;component/Resources/- minus.png"/>
+                </Button>
+                <Button 
+                    Background="{Binding Path=CurrentCursor, 
+                                    Converter={StaticResource CursorEqualsCurrentCursorConverter}, 
+                                    ConverterParameter=mlMoveVx}"                    
+                    Command="{Binding Path=ToggleModeCommand}" 
+                    CommandParameter="mlMoveVx"
+                    ToolTip="Переместить узлы">
+                    <Image  Source="/rekod_infrastructure;component/Resources/peremechenie  uzla new 3.png"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Background="LightGray">
+                <ToggleButton
+                    Name="AddSourceButton"                    
+                    IsChecked="{Binding ElementName=AddSourcePopup, Path=IsOpen, Mode=TwoWay}"
+                    ToolTip="Добавить источник">
+                    <Image Source="/rekod_infrastructure;component/Resources/Add.png"/>
+                </ToggleButton>
+                <Popup
+                    PopupAnimation="Slide"
+                    x:Name="AddSourcePopup" 
+                    AllowsTransparency="True"
+                    PlacementTarget="{Binding ElementName=AddSourceButton}"
+                    StaysOpen="False"
+                    Placement="Bottom">
+                    <Popup.Effect>
+                        <DropShadowEffect 
+                            BlurRadius="8" 
+                            Color="Gray" 
+                            ShadowDepth="5"
+                            Opacity="0.9"
+                            Direction="-40"/>
+                    </Popup.Effect>
+                    <tmv:AddSourceV />
+                </Popup>
+
+                <ToggleButton
+                    Name="DeleteSourceButton"
+                    
+                    IsChecked="{Binding ElementName=DeleteSourcePopup, Path=IsOpen, Mode=TwoWay}"
+                    ToolTip="Удалить источник">
+                    <Image Source="/rekod_infrastructure;component/Resources/Delete.png"/>
+                </ToggleButton>
+                <Popup
+                    PopupAnimation="Slide"
+                    x:Name="DeleteSourcePopup" 
+                    AllowsTransparency="True"
+                    PlacementTarget="{Binding ElementName=DeleteSourceButton}"
+                    StaysOpen="False"
+                    Placement="Bottom">
+                    <Popup.Effect>
+                        <DropShadowEffect 
+                            BlurRadius="8" 
+                            Color="Gray" 
+                            ShadowDepth="5"
+                            Opacity="0.9"
+                            Direction="-40"/>
+                    </Popup.Effect>
+                    <tmv:DeleteSourceV />
+                </Popup>
+            </ToolBar>
+        </ToolBarTray>
+        <ToolBarTray
+            Name="newVerMainBar"
+            Grid.Row="1" 
+            Background="#C8C8C8"
+            Grid.ColumnSpan="100">
+            <ToolBar
+                Name="TbMaps"
+                Band="0"
+                Background="LightGray">
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_Hand}"
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    Checked="TbtbHand_Checked"
+                    Name="TbtbHand">
+                    <Image Source="/Resources/peremeschenie.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_Ruler}"
+                    Checked="TbtbRuler_Checked"
+                    Name="TbtbRuler">
+                    <Image Source="/Resources/izmeritel rastoyaniya.png" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomIn}"
+                    Click="TbbZoomIn_Click"
+                    Name="TbbZoomIn">
+                    <Image Source="/Resources/lupa plus.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomOut}"
+                    Click="TbbZoomOut_Click"
+                    Name="TbbZoomOut">
+                    <Image Source="/Resources/lupa minus.png" />
+                </Button>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomInRegion}"
+                    Checked="TbtbZoomInRegion_Checked"
+                    Name="TbtbZoomInRegion">
+                    <Image Source="/Resources/lupa plus region.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomOutRegion}"
+                    Checked="TbtbZoomOutRegion_Checked"
+                    Name="TbtbZoomOutRegion">
+                    <Image Source="/Resources/lupa minus region.png" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomToSelObjects}"
+                    Click="TbbZoomToObj_Click"
+                    Name="TbbZoomToObj">
+                    <Image Source="/Resources/ZoomToSelectObj.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ZoomToLayer}"
+                    Click="TbbZoomToLayer_Click"
+                    Name="TbbZoomToLayer">
+                    <Image Source="/Resources/ZoomToLayer.png" />
+                </Button>
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ShowLayersList}"
+                    Checked="TbtbLayerList_Checked"
+                    Unchecked="TbtbLayerList_Checked"
+                    Name="TbtbLayerList">
+                    <Image Source="/Resources/sloi.png" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_UpdLayersList}"
+                    Click="TbbUpdateListLayers_Click"
+                    Name="TbbUpdateListLayers">
+                    <Image Source="/Resources/sync-24.png" />
+                </Button>
+                <!--beh:CancelUncheckOnClickBehavior.CancelUncheck="True"-->
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_MapPointInfo}"
+                    Checked="TbtbMapPointInfo_CheckedChanged"
+                    Unchecked="TbtbMapPointInfo_CheckedChanged"
+                    Name="TbtbMapPointInfo">
+                    <Image Source="/Resources/info_gray.png" />
+                </ToggleButton>
+            </ToolBar>
+
+            <ToolBar
+                Name="TbSelectionOf"
+                Band="0"
+                Background="LightGray">
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_Select}"
+                    Name="TbtbSelectingObject"
+                    Checked="TbtbSelectingObject_Checked">
+                    <Image Source="/Resources/videlit obekt.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SelectRectangle}"
+                    Name="TbtbSelectingObjectsRectangle"
+                    Checked="TbtbSelectingObjectsRectangle_Checked">
+                    <Image Source="/Resources/selectregion.ico" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SelectPolygon}"
+                    Name="TbtbSelectingObjectPolygon"
+                    Checked="TbtbSelectingObjectPolygon_Checked">
+                    <Image Source="/Resources/selectpoly.ico" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_Unselect}"
+                    Name="TbbUnselectingObjects"
+                    Click="TbbUnselectingObjects_Click">
+                    <Image Source="/Resources/deselect_objects.png" />
+                </Button>
+            </ToolBar>
+
+            <ToolBar
+                Name="TbOperationsWithObjects"
+                Band="0"
+                Background="LightGray">
+                <!--<ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_AddInMap}"
+                    Checked="TbtbObjectAddWithMap_Checked"
+                    Name="TbtbObjectAddWithMap">
+                    <Image Source="/Resources/addNotEnabled.png" />
+                </ToggleButton>-->
+                <ToggleButton
+                    Name="TbtbAddPointOnMap"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_AddInMapPoint}"
+                        Command="{Binding AddGeometryPointCommand}"
+                        IsChecked="{Binding AddGeometryPointIsChecked}">
+                    <Image Source="/Resources/AddPointOnMap.png" />
+                </ToggleButton>
+                <ToggleButton
+                           Name="TbtbAddLineOnMap"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_AddInMapLine}"
+                        Command="{Binding AddGeometryLineCommand}"
+                        IsChecked="{Binding AddGeometryLineIsChecked}">
+                    <Image Source="/Resources/AddLineOnMap.png" />
+                </ToggleButton>
+                <ToggleButton
+                           Name="TbtbAddPolygonOnMap"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_AddInMapPolygon}"
+                        Command="{Binding AddGeometryGeometryCommand}"
+                        IsChecked="{Binding AddGeometryGeometryIsChecked}">
+                    <Image Source="/Resources/AddPolygonOnMap.png" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_AddByCoords}"
+                    Click="TbbObjectAddWithWKT_Click"
+                    Name="TbbObjectAddWithWKT">
+                    <Image Source="/Resources/addNotEnabledXYNew.png" />
+                </Button>
+                <ToggleButton
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_AddRectangle}"
+                        Checked="TbtbObjectAddRectange_Checked"
+                        Name="TbtbObjectAddRectange">
+                    <Image Source="/Resources/stock_draw_rectangle_unfilled.png" />
+                </ToggleButton>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_CopyGeom}"
+                    Command="{Binding CopyInSQLiteCommand}"
+                    Name="TbbCopyLayer">
+                    <Image Source="/Resources/gtk_copy.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_PasteGeom}"
+                    Command="{Binding PastFromSQLiteCommand}"
+                    Name="TbbPastLayer">
+                    <Image Source="/Resources/gtk_paste.png" />
+                </Button>
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_DeleteObject}"
+                    Command="{Binding DeleteGeometryCommand}">
+                    <Image Source="/Resources/dobavit obekt na videlenii sloi.png" />
+                </Button>
+            </ToolBar>
+
+            <ToolBar
+                Name="TbOperationsWithGeometry"
+                Band="0"
+                Background="LightGray">
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_RotateDegree}"
+                    Click="TbbRotateBtn_Click"
+                    Name="TbbRotateBtn">
+                    <Image Source="/Resources/object-rotate-left_on_deg.png" />
+                </Button>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_RotateMouse}"
+                    Checked="TbtbRotateMouse_Checked"
+                    Name="TbtbRotateMouse">
+                    <Image Source="/Resources/object-rotate-left_8086.png" />
+                </ToggleButton>
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_MoveGeom}"
+                    Checked="TbtbMoveObj_Checked"
+                    Name="TbtbMoveObj">
+                    <Image Source="/Resources/MoveObject.png" />
+                </ToggleButton>
+                <Separator />
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_VertexEdit}"
+                    Checked="TbtbVertexEdit_Checked"
+                    Name="TbtbVertexEdit">
+                    <Image Source="/Resources/multinodesselect.png" />
+                </ToggleButton>
+                <ToggleButton
+                        Name="TbtbNodeAdd"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_AddVertex}"
+                        Command="{Binding NodeAddCommand}"
+                        IsChecked="{Binding NodeAddIsChecked}">
+                    <Image Source="/Resources/+plus.png" />
+                </ToggleButton>
+                <ToggleButton
+                        Name="TbtbNodeMove"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_MoveVertex}"
+                        Command="{Binding NodeMoveCommand}"
+                        IsChecked="{Binding NodeMoveIsChecked}">
+                    <Image Source="/Resources/peremechenie  uzla new 3.png" />
+                </ToggleButton>
+                <ToggleButton
+                        Name="TbtbNodeDelete"
+                        beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{x:Static props:Resources.Tool_DeleteVertex}"
+                        Command="{Binding NodeDelCommand}"
+                        IsChecked="{Binding NodeDelIsChecked}">
+                    <Image Source="/Resources/- minus.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_JoinGeometry}"
+                    Checked="TbtbJoinGeometry_Checked"
+                    Name="TbtbJoinGeometry">
+                    <Image Source="/Resources/udalit obekt na videlenii sloi.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_UnJoinGeometry}"
+                    Checked="TbtbSeparatGeometry_Checked"
+                    Name="TbtbSeparatGeometry">
+                    <Image Source="/Resources/separateObj.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_IntersectGeometry}"
+                    Checked="TbtbIntersectGeometry_Checked"
+                    Name="TbtbIntersectGeometry">
+                    <Image Source="/Resources/intersection.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_JoinIntersectGeometry}"
+                    Checked="TbtbJoinIntersectGeometry_Checked"
+                    Name="TbtbJoinIntersectGeometry">
+                    <Image Source="/Resources/join-intersection.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SymDifference}"
+                    Checked="TbtbSymDifference_Checked"
+                    Name="TbtbSymDifference">
+                    <Image Source="/Resources/sym-difference.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ClipByPolygon}"
+                    Checked="TbtbClippingPolygonAnotherPolygon_Checked"
+                    Name="TbtbClippingPolygonAnotherPolygon">
+                    <Image Source="/Resources/new hollow type 2.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_ClipByMouse}"
+                    Checked="TbtbClippingPolygonBySpecifyingPoints_Checked"
+                    Name="TbtbClippingPolygonBySpecifyingPoints">
+                    <Image Source="/Resources/new hollow type 1.png" />
+                </ToggleButton>
+                <ToggleButton
+                    beh:CancelUncheckOnClickBehavior.CancelUncheck="True"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_DivWithLine}"
+                    Checked="TbtbClippingPolygonBySpecifyingLine_Checked"
+                    Name="TbtbClippingPolygonBySpecifyingLine">
+                    <Image Source="/Resources/div_with_line.png" />
+                </ToggleButton>
+            </ToolBar>
+
+            <ToolBar
+                Name="TbLayersManager"
+                Band="0"
+                Background="LightGray">
+                <Button
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_OpenTable}"
+                    Command="{Binding OpenTableCommand}">
+                    <Image Source="/Resources/object_List.png" />
+                </Button>
+                <Button
+                    IsEnabled="False"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_LayerUp}"
+                    Click="TbbLayerUp_Click"
+                    Name="TbbLayerUp">
+                    <Image Source="/Resources/arrow_sans_up.png" />
+                </Button>
+                <Button
+                    IsEnabled="False"
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_LayerDown}"
+                    Click="TbbLayerDown_Click"
+                    Name="TbbLayerDown">
+                    <Image Source="/Resources/arrow_sans_down.png" />
+                </Button>
+            </ToolBar>
+
+            <ToolBar
+                Name="TbModeEnabled"
+                Band="0"
+                Background="LightGray">
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SnapLine}"
+                    Checked="TbbSnapToLine_CheckedChanged"
+                    Unchecked="TbbSnapToLine_CheckedChanged"
+                    Name="TbbSnapToLine">
+                    <Image Source="/Resources/SnapToLine.png" />
+                </ToggleButton>
+                <ToggleButton
+                    ToolTipService.ShowOnDisabled="True"
+                    ToolTip="{x:Static props:Resources.Tool_SnapPoint}"
+                    Checked="TbbSnapToPoint_CheckedChanged"
+                    Unchecked="TbbSnapToPoint_CheckedChanged"
+                    Name="TbbSnapToPoint">
+                    <Image Source="/Resources/SnapToPoint.png" />
+                </ToggleButton>
+            </ToolBar>
+
+            <ToolBar
+                ToolTip="Панель быстрого запуска"
+                Name="TbFastStart"
+                Band="0"
+                Background="LightGray" />
+
+            <ToolBar
+                ToolTip="Панель плагинов"
+                Name="TbPlugins"
+                Band="0"
+                Background="LightGray" />
+        </ToolBarTray>
+        <Menu
+            Name="MainMenu"
+            Background="#C8C8C8"
+            Grid.Row="0"
+            Grid.ColumnSpan="100">
+            <MenuItem
+                Name="MiFile"
+                Header="{x:Static props:Resources.WmMenu_File}">
+                <MenuItem 
+                    Click="MiSaveImage_Click"
+                    Name="MiSaveImage"
+                    Header="{x:Static props:Resources.WmMenu_File_SaveImage}" />
+                <MenuItem 
+                    Click="MiExportPrint_Click"
+                    Name="MiExportPrint"
+                    Header="{x:Static props:Resources.WmMenu_File_ExportPrint}" />
+                <MenuItem 
+                    Click="MiChooseVmpFile_Click"
+                    Name="MiChooseVmpFile"
+                    Header="{x:Static props:Resources.WmMenu_File_ChooseVMP}" />
+                <MenuItem 
+                    Click="MiRastrGeoreference_Click"
+                    Name="MiRastrGeoreference">
+                    <MenuItem.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.RstGrf_Title}" /><Run Text="..." /></TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem
+                    InputGestureText="Ctrl+P"
+                    Click="MiPrint_Click"
+                    Name="MiPrint"
+                    Header="{x:Static props:Resources.WmMenu_File_Print}" />
+                <MenuItem 
+                    Click="MiExit_Click"
+                    Name="MiExit"
+                    Header="{x:Static props:Resources.WmMenu_File_Exit}" />
+            </MenuItem>
+            <MenuItem
+                Name="MiView"
+                Header="{x:Static props:Resources.WmMenu_View}">
+                <MenuItem
+                    Name="MiToolbars"
+                    Header="{x:Static props:Resources.WmMenu_View_ToolBars}">
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbMap"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Map}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbSelectObject"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_SelectObject}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbEditObject"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_EditObject}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbEditGeom"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_EditGeom}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbLayersList"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_LayersList}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbFastStart"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_FastStart}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbEditableLayer"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_EditableLayer}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbWorkSets"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_WorkSets}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbEnabledModes"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_EnabledModes}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbPlugins"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Plugins}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbSearch"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Search}" />
+                    <!--<MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbCoords"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Coords}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbScale"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Scale}" />
+                    <MenuItem
+                        Checked="MiTb_CheckedChanged"
+                        Unchecked="MiTb_CheckedChanged"
+                        IsCheckable="True"
+                        IsChecked="True"
+                        Name="MiTbInfo"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_Info}" />-->
+                    <!--<Separator />
+                    <MenuItem
+                        Click="MiTbRestoreStandard_Click"
+                        Name="MiTbRestoreStandard"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_RestoreStandard}" />
+                    <MenuItem
+                        Checked="MiTbRestorePrevious_CheckedChanged"
+                        Unchecked="MiTbRestorePrevious_CheckedChanged"
+                        IsCheckable="True"
+                        Name="MiTbRestorePrevious"
+                        Header="{x:Static props:Resources.WmMenu_View_ToolBars_RestorePrevious}" />-->
+                </MenuItem>
+                <MenuItem
+                    Name="MiMap"
+                    Header="{x:Static props:Resources.WmMenu_View_Map}">
+                    <MenuItem
+                        Checked="MiMapFitIn_CheckedChanged"
+                        Unchecked="MiMapFitIn_CheckedChanged"
+                        IsCheckable="True"
+                        Name="MiFitObject"
+                        Header="{x:Static props:Resources.WmMenu_View_Map_FitObject}" />
+                    <MenuItem
+                        IsChecked="{Binding Source={x:Static rec:Program.SettingsXML}, Path=LocalParameters.TurnOffVMPWhenRastr}"
+                        IsCheckable="True"
+                        Name="MiHideVMP"
+                        Header="{x:Static props:Resources.WmMenu_View_Map_HideVMP}" />
+                    <MenuItem
+                        Checked="MiShowObjectForm_CheckedChanged"
+                        Unchecked="MiShowObjectForm_CheckedChanged"
+                        IsCheckable="True"
+                        Name="MiShowObjectForm"
+                        Header="{x:Static props:Resources.WmMenu_View_Map_ShowObjectForm}" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem
+                Name="MiData"
+                Header="{x:Static props:Resources.WmMenu_Data}">
+                <MenuItem
+                    Click="MiUpdMenu_Click"
+                    Name="MiUpdMenu"
+                    Header="{x:Static props:Resources.WmMenu_Data_UpdMenu}" />
+                <MenuItem
+                    Click="MiUpdDics_Click"
+                    Name="MiUpdDics"
+                    Header="{x:Static props:Resources.WmMenu_Data_UpdDics}" 
+                    />
+            </MenuItem>
+            <MenuItem
+                Visibility="Collapsed"
+                Name="MiSources"
+                Header="{x:Static props:Resources.WmMenu_Sources}">
+                <MenuItem
+                    Click="MiSrcBaseLayers_Click"
+                    Name="MiSrcBaseLayers"
+                    Header="{x:Static props:Resources.WmMenu_Sources_BaseLayers}" />
+                <MenuItem
+                    Click="MiSrcRastrLayers_Click"
+                    Name="MiSrcRastrLayers"
+                    Header="{x:Static props:Resources.WmMenu_Sources_RastrLayers}" />
+                <MenuItem
+                    Click="MiSrcPostgreSQL_Click"
+                    Name="MiSrcPostgreSQL"
+                    Header="{x:Static props:Resources.WmMenu_Sources_PostgreSQL}" />
+                <MenuItem
+                    IsCheckable="True"
+                    Checked="MiSrcShowPanel_Click"
+                    Unchecked="MiSrcShowPanel_Click"
+                    Name="MiSrcShowPanel"
+                    Header="{x:Static props:Resources.WmMenu_Sources_ShowPanel}" />
+            </MenuItem>
+            <MenuItem
+                Name="MiTools"
+                Header="{x:Static props:Resources.WmMenu_Tools}">
+                <MenuItem 
+                    Click="MiManageTables_Click"
+                    Name="MiManageTables"
+                    Header="{x:Static props:Resources.WmMenu_Tools_ManageTables}" />
+                <MenuItem
+                    Click="MiManageTablesRegistration_Click"
+                    Name="MiManageTablesRegistration">
+                    <MenuItem.Header>
+                        <TextBlock><Run Text="{x:Static props:Resources.PgReg_Title}"/><Run Text="..."/></TextBlock>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem
+                    Name="MiAddMapAdminLayer"
+                    Click="MiAddMapAdminLayer_Click"
+                    Header="Добавить слой в MapAdmin.."/>
+                <MenuItem 
+                    InputGestureText="Ctrl+R"
+                    Click="MiRastrLayers_Click"
+                    Name="MiRastrLayers"
+                    Header="{x:Static props:Resources.WmMenu_Tools_RastrLayers}" />
+                <MenuItem 
+                    Click="MiBaseLayers_Click"
+                    Name="MiBaseLayers"
+                    Header="{x:Static props:Resources.WmMenu_Tools_BaseLayers}" />
+                <MenuItem 
+                    Click="MiCosmeticLayers_Click"
+                    Name="MiCosmeticLayers"
+                    Header="{x:Static props:Resources.WmMenu_Tools_CosmeticLayers}" />
+                <MenuItem 
+                    Click="MiUserRights_Click"
+                    Name="MiUserRights"
+                    Header="{x:Static props:Resources.WmMenu_Tools_UserRights}" />
+                <MenuItem 
+                    Click="MiHistory_Click"
+                    Name="MiHistory"
+                    Header="{x:Static props:Resources.WmMenu_Tools_History}" />
+                <MenuItem 
+                    Name="MiSettings"
+                    Header="{x:Static props:Resources.WmMenu_Tools_Settings}">
+                    <MenuItem
+                        Click="MiFastStart_Click"
+                        Name="MiFastStart"
+                        Header="{x:Static props:Resources.WmMenu_Tools_Settings_FastStart}"/>
+                    <MenuItem 
+                        Click="MiProgramPlugins_Click"
+                        Name="MiProgramPlugins"
+                        Header="{x:Static props:Resources.WmMenu_Tools_Settings_ProgramPlugins}"/>
+                </MenuItem>
+                <MenuItem 
+                    Click="MiLocations_Click"
+                    Name="MiLocations"
+                    Header="{x:Static props:Resources.WmMenu_Tools_LocationsReference}" />
+                <MenuItem 
+                    InputGestureText="Ctrl+F"
+                    Click="MiSearch_Click"
+                    Name="MiSearch"
+                    Header="{x:Static props:Resources.WmMenu_Tools_Search}" />
+            </MenuItem>
+            <MenuItem
+                Name="MiReports"
+                Header="{x:Static props:Resources.WmMenu_Reports}">
+                <Separator 
+                    Name="MiReportsSeparator" />
+                <MenuItem
+                    Click="MiReportsOpen_Click"
+                    Name="MiReportsOpen"
+                    Header="{x:Static props:Resources.WmMenu_Reports_OpenManager}" />
+            </MenuItem>
+            <MenuItem
+                Name="MiHelp"
+                Header="{x:Static props:Resources.WmMenu_Help}">
+                <MenuItem
+                    Click="MiManual_Click"
+                    Name="MiManual"
+                    Header="{x:Static props:Resources.WmMenu_Help_Manual}" />
+                <MenuItem
+                    Click="MiLicences_Click"
+                    Name="MiLicences"
+                    Header="{x:Static props:Resources.WmMenu_Help_Licences}" />
+                <MenuItem
+                    Click="MiAbout_Click"
+                    Name="MiAbout"
+                    Header="{x:Static props:Resources.WmMenu_Help_About}" />
+            </MenuItem>
+        </Menu>
+        <StatusBar
+            Name="statusBar"
+            BorderBrush="Gray"
+            BorderThickness="0, 1, 0, 0"
+            Background="#C6C6C6"
+            HorizontalContentAlignment="Right"
+            HorizontalAlignment="Stretch"
+            Grid.Row="100"
+            Grid.ColumnSpan="100">
+            <StatusBar.Resources>
+
+                <Style TargetType="TextBox" x:Key="FocusInputTextBox">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="MinWidth" Value="80" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="BorderThickness" Value="1.01" />
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" Value="1.01" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </StatusBar.Resources>
+
+            <TextBlock 
+                HorizontalAlignment="Stretch"
+                Name="TbtbInfoText"
+                VerticalAlignment="Center"
+                Text="{x:Static props:Resources.WinMain_InformationPanel}" />
+
+            <StatusBarItem
+                HorizontalAlignment="Right">
+                <StackPanel
+                    Orientation="Horizontal">
+                    <Border             
+                        Style="{StaticResource SeparatorBorder}"/>
+                    <TextBlock 
+                        Margin="2, 0, 0, 0"
+                        VerticalAlignment="Center">
+                        <Run Text="{x:Static props:Resources.WinMain_Scale}" /><Run Text=" 1:" />
+                    </TextBlock>
+                    <TextBox
+                        Style="{StaticResource FocusInputTextBox}"
+                        Padding="0"
+                        KeyDown="TbtbScale_KeyDown"
+                        Name="TbtbScale"
+                        VerticalAlignment="Center">
+                    </TextBox>
+                    <Border             
+                        Style="{StaticResource SeparatorBorder}"/>
+                    <TextBlock 
+                        MinWidth="200"
+                        Name="TbtbCoords"
+                        VerticalAlignment="Center"
+                        Text=""
+                        Margin="3" />
+                    <TextBlock                     
+                        VerticalAlignment="Center"
+                        Margin="3">
+                        <Run Text="{x:Static props:Resources.WinMain_Projection}" /><Run Text=": " />
+                    </TextBlock>
+
+                    <ToggleButton
+                        x:Name="SridChangeButton"
+                        VerticalContentAlignment="Center"
+                        Margin="2"
+                        IsChecked="{Binding ElementName=SridChangePopup, Path=IsOpen, Mode=TwoWay}">
+                        <ToggleButton.Template>
+                            <ControlTemplate>
+                                <Border
+                                    Margin="0, 1, 0, 1"
+                                    Name="MainBorder"
+                                    BorderThickness="1"
+                                    BorderBrush="Gray"
+                                    Background="Transparent"
+                                    Padding="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock 
+                                            VerticalAlignment="Center"
+                                            Margin="3, 0, 2, 0"
+                                            Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=MainFrm.PrjSrid}" />
+                                        <Path
+                                            x:Name="ExpandPath"
+                                            HorizontalAlignment="Left" 
+                                            VerticalAlignment="Center" 
+                                            Margin="4"
+                                            Fill="Black"
+                                            Data="M 0 4 L 4 0 L 8 4 Z"/>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </ToggleButton.Template>
+                    </ToggleButton>
+
+                    <Popup
+                        PopupAnimation="Slide"
+                        x:Name="SridChangePopup"
+                        AllowsTransparency="True"
+                        PlacementTarget="{Binding ElementName=SridChangeButton}"
+                        StaysOpen="False"
+                        Placement="Top">
+                        <Border
+                            Padding="5"
+                            BorderBrush="Gray"
+                            BorderThickness="1"
+                            Background="LightGray"
+                            Margin="0, 1, 0, 1">
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <ComboBox
+                                    VerticalAlignment="Center"
+                                    BorderThickness="0"
+                                    SelectionChanged="TbcbSrid_SelectionChanged"
+                                    Name="TbcbSrid"/>
+                                <TextBox
+                                    BorderBrush="Gray"
+                                    BorderThickness="1.01"
+                                    VerticalAlignment="Center"
+                                    Visibility="Collapsed"
+                                    Margin="3, 0, 3, 0"
+                                    Name="TbtbCustomSRID" 
+                                    MinWidth="85"/>
+                                <Button
+                                    VerticalAlignment="Center"
+                                    Visibility="Collapsed"
+                                    Name="TbbApplySRID"
+                                    Content="Применить" 
+                                    Click="TbbApplySRID_Click" />
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+
+                    <!--<ComboBox
+                        Opacity="0.7"
+                        BorderThickness="0"
+                        Loaded="TbcbSrid_Loaded"
+                        SelectionChanged="TbcbSrid_SelectionChanged"
+                        Name="TbcbSrid"
+                        VerticalAlignment="Center"/>
+                    <TextBox
+                        Visibility="Collapsed"
+                        Margin="3, 0, 3, 0"
+                        Name="TbtbCustomSRID" 
+                        MinWidth="85"/>
+                    <Button
+                        Visibility="Collapsed"
+                        Name="TbbApplySRID"
+                        Content="Применить" 
+                        Click="TbbApplySRID_Click" />-->
+                </StackPanel>
+            </StatusBarItem>
+
+
+            <!--<StatusBarItem>
+                <StackPanel
+                    Orientation="Horizontal">
+                   
+                </StackPanel>
+            </StatusBarItem>-->
+        </StatusBar>
+    </Grid>
+</Window>

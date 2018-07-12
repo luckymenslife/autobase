@@ -1,0 +1,96 @@
+﻿<Rekod_ViewModel:AttributesOfObjectViewModel 
+    xmlns:Rekod_ViewModel="clr-namespace:Rekod.ViewModel" 
+    xmlns:Rekod_Model="clr-namespace:Rekod.Model"
+    xmlns:Interfaces="clr-namespace:Interfaces;assembly=Interfaces" 
+    xmlns:res="clr-namespace:Rekod"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    IsReadOnly="False">
+    <Rekod_ViewModel:AttributesOfObjectViewModel.CollectionOfAttributes>
+        <!--"id_style"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="True" IsReadOnly="False" 
+                        IsStyle="True" IdField="514" Lable="id_style" NameBD = "id_style"
+                        Text="id_style" Table="50" Type="DateTime" Value="34" TypeRef="isReferenceTable">
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+                <Rekod_Model:VariantsForAttributesModel IdValue="34" IntervalMin="34">
+                    <Rekod_Model:StyleImagePreview />
+                </Rekod_Model:VariantsForAttributesModel>
+            </Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"Новая колонка для данных"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="False" IsReadOnly="False" 
+                        IsStyle="False" IdField="386" Lable="Колонка" NameBD="newfield" 
+                        Text="Новая колонка для данных" Table="50" Type="Text" Value="\t\nasda" TypeRef="not">
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants/>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"пока"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="False" IsReadOnly="False" 
+                        IsStyle="False" IdField="486" Lable="пока" NameBD= "poka"
+                        Text="пока" Table="50" Type="Text" Value="29" TypeRef="not">
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants/>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"year_land"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="True" IsReference="False" IsReadOnly="False" 
+                        IsStyle="False" IdField="491" Lable="year_land" NameBD= "year_land"
+                        Text="year_land" Table="50" Type="Integer" Value="10" TypeRef="isInterval">
+            <Rekod_Model:AttributesOfObjectModel.RefValue>
+                <Rekod_Model:VariantsForAttributesModel IdValue="0" NewValue="15" IntervalMax="15" IntervalMin="0"/>
+            </Rekod_Model:AttributesOfObjectModel.RefValue>
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+                <Rekod_Model:VariantsForAttributesModel IdValue="0" NewValue="15" IntervalMax="15" IntervalMin="0"/>
+            </Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"дата"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="False" IsReadOnly="False" 
+                        IsStyle="False" IdField="492" Lable="дата" NameBD= "date"
+                        Text="дата" Table="50" Type="Date" TypeRef="not">
+            <Rekod_Model:AttributesOfObjectModel.Value>
+                <sys:DateTime>12.04.2011 0:00:00</sys:DateTime>
+            </Rekod_Model:AttributesOfObjectModel.Value>
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants/>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"дата и время"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="False" IsReadOnly="False" 
+                        IsStyle="False" IdField="493" Lable="дата" NameBD= "data_i_vremja"
+                        Text="дата и время" Table="50" Type="DateTime" TypeRef="not">
+            <Rekod_Model:AttributesOfObjectModel.Value>
+                <sys:DateTime>12.11.2011 0:00:00</sys:DateTime>
+            </Rekod_Model:AttributesOfObjectModel.Value>
+            <Rekod_Model:AttributesOfObjectModel.CollectionOfVariants/>
+        </Rekod_Model:AttributesOfObjectModel>
+        <!--"id_style"-->
+        <Rekod_Model:AttributesOfObjectModel IsVisible="True" IsInterval="False" IsReference="True" IsReadOnly="False" 
+                        IsStyle="False" IdField="514" Lable="id_style" NameBD = "id_style"
+                        Text="id_style" Table="50" Type="DateTime" Value="34" TypeRef="isReferenceTable">
+			<Rekod_Model:AttributesOfObjectModel.RefValue>
+                <Rekod_Model:VariantsForAttributesModel IdValue="34" NewValue="null" IntervalMin="34"/>
+            </Rekod_Model:AttributesOfObjectModel.RefValue>        	
+        	
+			<Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+                <Rekod_Model:VariantsForAttributesModel IdValue="34" NewValue="null" IntervalMin="34"/>
+            </Rekod_Model:AttributesOfObjectModel.CollectionOfVariants>
+        </Rekod_Model:AttributesOfObjectModel>
+
+
+    </Rekod_ViewModel:AttributesOfObjectViewModel.CollectionOfAttributes>
+
+
+    <Rekod_ViewModel:AttributesOfObjectViewModel.TableInfo>
+        <Interfaces:tablesInfo>
+            <Interfaces:tablesInfo.PhotoInfo>
+                <Interfaces:photoInfo/>
+            </Interfaces:tablesInfo.PhotoInfo>
+            <Interfaces:tablesInfo.ListField>
+                <Interfaces:fieldInfo is_style="False" is_interval="False" is_reference="True" name_lable="Adipiscing senectus mus sociosqu eros" read_only="True" visible="False"/>
+                <Interfaces:fieldInfo is_style="True" is_interval="True" is_reference="False" name_lable="Nibh nisi nisl nec" read_only="False" visible="True"/>
+                <Interfaces:fieldInfo is_style="False" is_interval="False" is_reference="True" name_lable="Iaculis lacinia" read_only="True" visible="False"/>
+                <Interfaces:fieldInfo is_style="True" is_interval="True" is_reference="False" name_lable="Malesuada felis laoreet parturient" read_only="False" visible="True"/>
+                <Interfaces:fieldInfo is_style="False" is_interval="False" is_reference="True" name_lable="Ipsum suscipit" read_only="True" visible="False"/>
+                <Interfaces:fieldInfo is_style="True" is_interval="True" is_reference="False" name_lable="Non justo" read_only="False" visible="True"/>
+                <Interfaces:fieldInfo is_style="False" is_interval="False" is_reference="True" name_lable="Vestibulum vestibulum" read_only="True" visible="False"/>
+                <Interfaces:fieldInfo is_style="True" is_interval="True" is_reference="False" name_lable="Libero penatibus per" read_only="False" visible="True"/>
+                <Interfaces:fieldInfo is_style="False" is_interval="False" is_reference="True" name_lable="Sed natoque" read_only="True" visible="False"/>
+                <Interfaces:fieldInfo is_style="True" is_interval="True" is_reference="False" name_lable="Torquent sem sit ultrices ligula" read_only="False" visible="True"/>
+            </Interfaces:tablesInfo.ListField>
+        </Interfaces:tablesInfo>
+    </Rekod_ViewModel:AttributesOfObjectViewModel.TableInfo>
+</Rekod_ViewModel:AttributesOfObjectViewModel>

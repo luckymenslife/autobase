@@ -1,0 +1,295 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.PgRights.TableTree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             xmlns:cont ="clr-namespace:Rekod.Controls"
+             xmlns:prop="clr-namespace:Rekod.Properties"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:conv="clr-namespace:Rekod.Converters"
+             x:Name="RightsTreeView"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <cont:LevelToIndentConverter x:Key="LevelToIndentConverter"/>
+
+            <Style TargetType="{x:Type cont:TreeListView}">
+                <Style.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type cont:TreeListView}">
+                               
+                                <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Name="Bd" SnapsToDevicePixels="True">
+                                    <ScrollViewer 
+                                        CanContentScroll="False"
+                                        HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" 
+                                        VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" 
+                                        Background="{TemplateBinding Panel.Background}" 
+                                   
+                                        Name="_tv_scrollviewer_" 
+                                        SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" 
+                                        Focusable="False">
+                                        
+                                        <DockPanel LastChildFill="True">
+                                            <Grid
+                                                Height="24"
+                                                DockPanel.Dock="Top">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" Name="tableColumn"/>
+                                                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                                    <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="White" Offset="0"/>
+                                                        <GradientStop Color="#FFF7F8FA" Offset="0.444"/>
+                                                        <GradientStop Color="#FFF2F3F5" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Grid.Background>
+
+                                                <!--Width="{Binding ElementName=tableColumn, Path=Width}"-->
+
+                                                <Border
+                                                    BorderBrush="#FFDCDCDC"
+                                                    BorderThickness="0, 0, 1, 1">
+                                                    <TextBlock 
+                                                        VerticalAlignment="Center"
+                                                        Text="{x:Static prop:Resources.LocTables}" 
+                                                        Margin="4"/>
+                                                </Border>
+
+                                                <Border
+                                                    Grid.Column="1"
+                                                    BorderBrush="#FFDCDCDC"
+                                                    BorderThickness="0, 0, 1, 1">
+                                                    <StackPanel 
+                                                          VerticalAlignment="Center"
+                                                        Orientation="Horizontal"
+                                                        Margin="4,0,4,0">
+                                                        <TextBlock Text="{x:Static prop:Resources.LocRead}"/>
+                                                        <CheckBox IsTabStop="False" IsChecked="{Binding Path=CanAllRead}" 
+                                                                    Margin="10, 0, 0, 0"
+                                                                    VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <Border
+                                                    Grid.Column="2"
+                                                    BorderBrush="#FFDCDCDC"
+                                                    BorderThickness="0, 0, 0, 1">
+                                                    <StackPanel
+                                                        VerticalAlignment="Center"
+                                                        Orientation="Horizontal" 
+                                                        Margin="4,0,4,0">
+                                                        <TextBlock Text="{x:Static prop:Resources.LocWrite}"/>
+                                                        <CheckBox IsChecked="{Binding Path=CanAllWrite}" 
+                                                                    Margin="10, 0, 0, 0"
+                                                                    VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                            <ItemsPresenter />
+                                        </DockPanel>
+                                    </ScrollViewer>
+                                </Border>
+                                
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style.Setters>
+            </Style>
+            
+
+            <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+                <Style.Resources>
+                    <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+                </Style.Resources>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Grid Width="15" Height="13" Background="Transparent">
+                                <Path x:Name="ExpandPath"
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Center" 
+                                Margin="1,1,1,1"
+                                Fill="{StaticResource GlyphBrush}"
+                                Data="M 4 0 L 8 4 L 4 8 Z"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked"
+                                    Value="True">
+                                    <Setter Property="Data"
+                                        TargetName="ExpandPath"
+                                        Value="M 0 4 L 8 4 L 4 8 Z"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style TargetType="{x:Type cont:TreeListViewItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type cont:TreeListViewItem}">
+                            <Border Name="RepoBorder">
+
+                                <Grid HorizontalAlignment="Stretch" ShowGridLines="False">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <ToggleButton x:Name="Expander"
+                                        Style="{StaticResource ExpandCollapseToggleStyle}"
+                                        Margin="5, 0, 0, 0"
+                                        Panel.ZIndex="10"
+                                        IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+
+                                    <Border Name="Bd"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        HorizontalAlignment="Stretch"
+                                        CornerRadius="0, 3, 0, 0"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Padding="0">
+                                        <ContentPresenter x:Name="PART_Header"
+                                            ContentSource="Header"
+                                            HorizontalAlignment="Stretch"/>
+                                    </Border>
+
+                                    <Grid
+                                        Grid.Row="1" 
+                                        Grid.ColumnSpan="3">
+                                        <ItemsPresenter 
+                                            x:Name="ItemsHost" 
+                                            Visibility="Collapsed" 
+                                            RenderTransformOrigin="0.5, 0.5">
+                                        </ItemsPresenter>
+                                    </Grid>
+                                </Grid>
+
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsExpanded" Value="True" />
+                                        <Condition Property="HasItems" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible" />
+                                </MultiTrigger>
+                                <Trigger Property="HasItems" Value="false">
+                                    <Setter TargetName="Expander" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>           
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/rekod_infrastructure;component/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    
+    <DockPanel>
+
+        <!--Фильтр-->
+        <TextBox
+            beh:CommandBehavior.Event="TextChanged"
+            beh:CommandBehavior.Command="serv:ServiceClass.FilterTreeCommand"
+            beh:CommandBehavior.CommandParameter="{Binding ElementName=TreeItems, Path=ItemsSource}"
+            beh:CommandBehavior.ExtraParameter="TableText+TableName/RightsList"
+            Margin="0, 3, 0, 3" 
+            DockPanel.Dock="Top"
+            Style="{StaticResource SearchTextBoxStyle}"/>
+
+        <cont:TreeListView 
+                Grid.IsSharedSizeScope="True" 
+                HorizontalContentAlignment="Stretch" 
+                ItemsSource="{Binding Path=TableTypeRights}" 
+                DockPanel.Dock="Bottom" 
+                x:Name="TreeItems">
+
+            <cont:TreeListView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Path=RightsList}" >                        
+                        <Grid
+                            x:Name="TableGroupRow"
+                            HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Margin="20, 0, 0, 0" HorizontalAlignment="Stretch" Text="{Binding TableText}" Grid.Column="0" FontWeight="Bold" />
+                            <CheckBox IsChecked="{Binding CanRead}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox IsChecked="{Binding CanWrite}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding RefTables}">
+
+                                <Grid Name="TableRow" Margin="0,1,0,1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                        <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="30, 0, 0, 0" Text="{Binding TableText}" ToolTip="{Binding TableName}" Grid.Column="0"/>
+                                    <CheckBox IsChecked="{Binding CanRead}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <CheckBox IsChecked="{Binding CanWrite}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Name="RefTableRow" Margin="0,1,0,1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                                <ColumnDefinition Width="Auto" MinWidth="60"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Margin="40, 0, 0, 0" Text="{Binding TableText}" ToolTip="{Binding TableName}" Grid.Column="0"/>
+                                            <CheckBox IsChecked="{Binding CanRead}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <CheckBox IsChecked="{Binding CanWrite}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsSelected}" Value="True">
+                                            <Setter TargetName="RefTableRow" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                            
+                           <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsSelected}" Value="True">
+                                    <Setter TargetName="TableRow" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                        </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+
+                        <HierarchicalDataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsSelected}" Value="True">
+                            <Setter TargetName="TableGroupRow" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            </DataTrigger>
+                    </HierarchicalDataTemplate.Triggers>
+                </HierarchicalDataTemplate>
+            </cont:TreeListView.ItemTemplate>
+        </cont:TreeListView>
+        
+    </DockPanel>
+</UserControl>

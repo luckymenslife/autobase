@@ -1,0 +1,263 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourceRastr.View.RastrLayerV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vr="clr-namespace:Rekod.DataAccess.SourceRastr.View.ValidationRules"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:rasm="clr-namespace:Rekod.DataAccess.SourceRastr.Model"
+             xmlns:rbeh="clr-namespace:Rekod.DataAccess.SourceRastr.View.Behaviors"
+             Name="RastrLayerPropertiesControl"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="313" d:DesignWidth="278">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Grid}" x:Key="DataContextNullEmpty">
+                <Style.Triggers>
+                    <Trigger Property="DataContext" Value="{x:Null}">
+                        <Setter Property="IsEnabled" Value="False" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <ObjectDataProvider 
+                MethodName="GetEnumValues"
+                ObjectType="{x:Type conf:ObjectProviderValues}"
+                x:Key="ConnectTypeValues">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="rasm:EConnectType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border 
+        beh:CommandBehavior.Command="{Binding Source.BeginValidationCommand}"
+        beh:CommandBehavior.CommandParameter="{Binding ElementName=RastrLayerPropertiesBindingGroup}"
+        beh:CommandBehavior.Event="Loaded"
+        BorderBrush="Gray" 
+        BorderThickness="1">
+        <GroupBox Header="{x:Static properties:Resources.LocProperties}" Padding="3,3,3,0" Margin="3,0,3,0">
+            <Grid
+                DataContext="{Binding Data}"
+                Name="RastrLayerPropertiesGrid"
+                Style="{StaticResource DataContextNullEmpty}"
+                beh:CommandBehavior.Command="{Binding Source.ErrorValidationCommand}"
+                beh:CommandBehavior.Event="System.Windows.Controls.Validation.ErrorEvent">
+
+                <Grid.Resources>
+                    <Style TargetType="TextBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="2, 2, 0, 2" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="0, 3, 3, 0" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="CheckBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="6, 6, 0, 6" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="ComboBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="2, 2, 0, 2" />
+                        </Style.Setters>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.BindingGroup>
+                    <BindingGroup x:Name="RastrLayerPropertiesBindingGroup" NotifyOnValidationError="True">
+                        <BindingGroup.ValidationRules>
+                            <vr:RastrPropertiesValidationRule />
+                        </BindingGroup.ValidationRules>
+                    </BindingGroup>
+                </Grid.BindingGroup>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{x:Static properties:Resources.LocName}" />
+                    <TextBlock Text="*" />
+                </StackPanel>
+                <TextBox
+                    Name="RastrNameBox"
+                    Grid.Column="1" 
+                    Text="{Binding Path=Text}" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Text="{x:Static properties:Resources.LocDescription}" />
+                <TextBox 
+                    Grid.Column="1"
+                    Text="{Binding Path=Description}"
+                    Grid.Row="1" />
+
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Grid.Row="2">
+                    <TextBlock 
+                        Text="{x:Static properties:Resources.LocFile}" />
+                    <TextBlock
+                        Text="*" />
+                </StackPanel>
+                <DockPanel
+                    LastChildFill="True"
+                    Grid.Column="1"  
+                    Grid.Row="2">
+                    <Button
+                        beh:CommandBehavior.Event="Click"
+                        beh:CommandBehavior.Action="{Binding OpenFileAction}"
+                        Name="OpenFileButton"
+                        Width="20" 
+                        DockPanel.Dock="Right" 
+                        Margin="2, 2, 0, 2"
+                        Content="...">
+                        <beh:CommandBehavior.CommandParameter>
+                            <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                <Binding ElementName="FilePathBox" />
+                                <Binding ElementName="RastrNameBox" />
+                            </MultiBinding>
+                        </beh:CommandBehavior.CommandParameter>
+                    </Button>
+                    <TextBox 
+                        rbeh:FileExtensionConnectTypeBehavior.ConnectTypeBox="{Binding ElementName=MethodUse}"
+                        Name="FilePathBox"
+                        Text="{Binding Path=FilePath}" />
+                </DockPanel>
+
+
+                <StackPanel 
+                        Grid.Row="3"
+                        Orientation="Horizontal"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock Text="{x:Static properties:Resources.LocUseVisibilityBounds}" />
+                    <TextBlock Text="*" />
+                </StackPanel>
+                <ComboBox 
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        SelectedItem="{Binding Path=UseBounds, Converter={StaticResource BooleanYesNoConverter}}"
+                        Name="UseBoundsBox">
+                    <ComboBox.Items>
+                        <x:StaticExtension Member="properties:Resources.LocYes" />
+                        <x:StaticExtension Member="properties:Resources.LocNo" />
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <TextBlock 
+                        Text="{x:Static properties:Resources.LocMinScale}" 
+                        Grid.Row="5"/>
+                <TextBox
+                        Grid.Column="1" 
+                        Text="{Binding Path=MinScale}" 
+                        Grid.Row="5" 
+                        IsEnabled="{Binding 
+                                        ElementName=UseBoundsBox, 
+                                        Path=SelectedItem, 
+                                        Converter={StaticResource YesNoBooleanConverter}}" />
+
+                <TextBlock 
+                        Text="{x:Static properties:Resources.LocMaxScale}" 
+                        Grid.Row="6"/>
+                <TextBox 
+                        Grid.Column="1" 
+                        Text="{Binding Path=MaxScale}" 
+                        Grid.Row="6"
+                        IsEnabled="{Binding 
+                                        ElementName=UseBoundsBox, 
+                                        Path=SelectedItem, 
+                                        Converter={StaticResource YesNoBooleanConverter}}" />
+
+                <StackPanel Orientation="Horizontal" Grid.Row="7">
+                    <TextBlock Text="{x:Static properties:Resources.LocUseBuildPyramids}" />
+                    <TextBlock Text="*" />
+                </StackPanel>
+                <ComboBox
+                    Grid.Column="1"
+                    Grid.Row="7"
+                    SelectedItem="{Binding Path=BuildPyramids, Mode=TwoWay, Converter={StaticResource BooleanYesNoConverter}}"
+                    Name="BuildPyramids">
+                    <ComboBox.Items>
+                        <x:StaticExtension Member="properties:Resources.LocYes" />
+                        <x:StaticExtension Member="properties:Resources.LocNo" />
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="8">
+                    <TextBlock Text="{x:Static properties:Resources.LocUseMethodOfUsing}" />
+                    <TextBlock Text="*" />
+                </StackPanel>
+                <ComboBox 
+                    rbeh:ConnectTypeBuildPyramidsBehavior.BuildPyramidsBox="{Binding ElementName=BuildPyramids}"
+                    ItemsSource="{Binding Source={StaticResource ConnectTypeValues}}"
+                    SelectedItem="{Binding Path=ConnectType, Converter={StaticResource EnumWrapperConverter}}"
+                    DisplayMemberPath="Description"
+                    SelectedValuePath="Value"
+                    Grid.Column="1"
+                    Grid.Row="8"
+                    Name="MethodUse">
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="7" Visibility="Collapsed" Grid.RowSpan="2">
+                    <TextBlock Text="{x:Static properties:Resources.LocHidden}" />
+                    <TextBlock Text="*" />
+                </StackPanel>
+                <ComboBox 
+                        Visibility="Collapsed"
+                        Grid.Column="1"
+                        Grid.Row="7"
+                        SelectedItem="{Binding Path=IsHidden, Converter={StaticResource BooleanYesNoConverter}}"
+                        Name="IsHiddenBox" Grid.RowSpan="2">
+                    <ComboBox.Items>
+                        <x:StaticExtension Member="properties:Resources.LocYes" />
+                        <x:StaticExtension Member="properties:Resources.LocNo" />
+                    </ComboBox.Items>
+                </ComboBox>
+
+
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,0,0">
+                    <Button
+                        beh:CommandBehavior.Command="{Binding Path=Source.SaveValidationCommand}"
+                        beh:CommandBehavior.CommandParameter="{Binding ElementName=RastrLayerPropertiesBindingGroup}"
+                        beh:CommandBehavior.ExtraParameter="{Binding ElementName=RastrLayerPropertiesControl, Path=DataContext}"
+                        beh:CommandBehavior.Event="Click"
+                        Name="SaveButton"
+                        Height ="23"
+                        MinWidth="80" 
+                        Content="{x:Static properties:Resources.LocSave}"
+                        Padding="0,1,0,1" 
+                        Margin="3"/>
+                    <Button 
+                        Command="{Binding Path=Source.CancelValidationCommand}" 
+                        CommandParameter="{Binding ElementName=RastrLayerPropertiesBindingGroup}"
+                        Name="CancelButton"
+                        Height ="23"
+                        MinWidth="80"
+                        Content="{x:Static properties:Resources.LocReset}"
+                        Padding="0,1,0,1"
+                        Margin="3"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Border>
+</UserControl>

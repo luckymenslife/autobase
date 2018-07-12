@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45F535A4-F657-4810-9735-81924394C126}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GBU_Waybill_plugin</RootNamespace>
+    <AssemblyName>GBU_Waybill_plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ExpressionBlendVersion>12.0.50429.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\Plugins\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastReport, Version=2013.3.2.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2013.3.2.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2013.3.2.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\FastReport.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Postgres">
+      <HintPath>Libs\FastReport.Postgres.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Data\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.92, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Data\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Data\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WrapperMaplib">
+      <HintPath>Libs\WrapperMaplib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Extended.Wpf.Toolkit.2.3\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilterTable.cs" />
+    <Compile Include="Form_mod_grounds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_mod_grounds.Designer.cs">
+      <DependentUpon>Form_mod_grounds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainPluginClass.cs" />
+    <Compile Include="MedCheck.cs" />
+    <Compile Include="MTClasses\Models.cs" />
+    <Compile Include="MTClasses\Tasks\Models\CarM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\StatusM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\TaskM.cs" />
+    <Compile Include="MTClasses\Tasks\ViewModels\RoutesVM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\TaskGroupM.cs" />
+    <Compile Include="MTClasses\Tasks\ViewModels\TasksVM.cs" />
+    <Compile Include="MTClasses\Tasks\Views\Converters\ItemsTypeCountConverter.cs" />
+    <Compile Include="MTClasses\Tasks\Views\Converters\StatusTaskSolidBrushConverter.cs" />
+    <Compile Include="MTClasses\Tasks\Views\CreateTasksV.xaml.cs">
+      <DependentUpon>CreateTasksV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\Views\RoutesV.xaml.cs">
+      <DependentUpon>RoutesV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\Views\TasksTableView.xaml.cs">
+      <DependentUpon>TasksTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\ViewModels\TasksTableVM.cs" />
+    <Compile Include="MTClasses\Tasks\WinForms\CreateTasksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\CreateTasksForm.Designer.cs">
+      <DependentUpon>CreateTasksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\CreateTaskWayBillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\CreateTaskWayBillForm.Designer.cs">
+      <DependentUpon>CreateTaskWayBillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\Models\InputFormM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\TaskGeomM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\RouteM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\SelectableClass.cs" />
+    <Compile Include="MTClasses\Tasks\Models\TaskWayBillM.cs" />
+    <Compile Include="MTClasses\Tasks\Models\TypeTaskM.cs" />
+    <Compile Include="MTClasses\Tasks\Views\TaskAttrV.xaml.cs">
+      <DependentUpon>TaskAttrV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\MapUc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\MapUc.Designer.cs">
+      <DependentUpon>MapUc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\RoutesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\RoutesForm.Designer.cs">
+      <DependentUpon>RoutesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\TasksTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\WinForms\TasksTableForm.Designer.cs">
+      <DependentUpon>TasksTableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTClasses\Tasks\ViewModels\TasksWayBillVM.cs" />
+    <Compile Include="MTClasses\Tools\AppEventsClass.cs" />
+    <Compile Include="MTClasses\Tools\Commi\CPath.cs" />
+    <Compile Include="MTClasses\Tools\Commi\CPathBruteForce.cs" />
+    <Compile Include="MTClasses\Tools\Commi\CPathLittle.cs" />
+    <Compile Include="MTClasses\Tools\Commi\CPathSimAnneal.cs" />
+    <Compile Include="MTClasses\Tools\JsonHelper.cs" />
+    <Compile Include="MTClasses\Tools\MTAPI_Helper.cs" />
+    <Compile Include="MTClasses\Tools\RouteWebAPI.cs" />
+    <Compile Include="MyComponents\TextBoxNumber.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyComponents\myitem.cs" />
+    <Compile Include="nsWaybill\Messages_cls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nsWaybill\PgDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nsWaybill\TextBoxDateTime.cs" />
+    <Compile Include="nsWaybill\Waybill_M.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nsWaybill\Waybill_V.xaml.cs">
+      <DependentUpon>Waybill_V.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nsWaybill\Waybill_VM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="nsWaybill\wb_Collections.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="RemoteMedService\EmployeesSync.cs" />
+    <Compile Include="RemoteMedService\IMedService.cs" />
+    <Compile Include="RemoteMedService\MedServiceREST.cs" />
+    <Compile Include="RemoteMedService\MedServiceWSDL.cs" />
+    <Compile Include="RemoteMedService\Models.cs" />
+    <Compile Include="RemoteMedService\ModelsREST\DriverJsonM.cs" />
+    <Compile Include="RemoteMedService\ModelsREST\MedCheckJsonM.cs" />
+    <Compile Include="RemoteMedService\ModelsREST\MedChecksJsonM.cs" />
+    <Compile Include="RemoteMedService\Tools.cs" />
+    <Compile Include="SplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControlAttr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlAttr.Designer.cs">
+      <DependentUpon>UserControlAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Web References\pro.mpmo.ln\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form_mod_grounds.resx">
+      <DependentUpon>Form_mod_grounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\CreateTasksForm.resx">
+      <DependentUpon>CreateTasksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\CreateTaskWayBillForm.resx">
+      <DependentUpon>CreateTaskWayBillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\MapUc.resx">
+      <DependentUpon>MapUc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\RoutesForm.resx">
+      <DependentUpon>RoutesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTClasses\Tasks\WinForms\TasksTableForm.resx">
+      <DependentUpon>TasksTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UserControlAttr.resx">
+      <DependentUpon>UserControlAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\myitem.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\pro.mpmo.ln\Employee.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\pro.mpmo.ln\MedService.wsdl" />
+    <None Include="Web References\pro.mpmo.ln\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\pro.mpmo.ln\Waybill.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj">
+      <Project>{16e574c6-87a2-4322-8cde-6ea647547bc7}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ln.mpmo.pro:85/PMOMedicalBase/AvtoDorogi/Drivers.nsf/MedService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\pro.mpmo.ln\</RelPath>
+      <UpdateFromURL>http://ln.mpmo.pro:85/PMOMedicalBase/AvtoDorogi/Drivers.nsf/MedService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>GBU_Waybill_plugin_pro_mpmo_ln_MedServiceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MTClasses\Tasks\Views\CreateTasksV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MTClasses\Tasks\Views\RoutesV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MTClasses\Tasks\Views\Styles\TasksStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MTClasses\Tasks\Views\TaskAttrV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="nsWaybill\Waybill_V.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MTClasses\Tasks\Views\TasksTableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BlendEmbeddedFont Include="Fonts\segoeui.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\segoeuib.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\segoeuii.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\segoeuiz.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
+    <Resource Include="images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\3floppy_unmount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mail-delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cross-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\textfield_rename.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

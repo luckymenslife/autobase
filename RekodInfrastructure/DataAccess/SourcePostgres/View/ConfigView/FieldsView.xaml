@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.FieldsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             x:Name="userControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="429" d:DesignWidth="298"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:properties="clr-namespace:Rekod.Properties"             
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView">
+    <UserControl.Resources>
+        <serv:BindingProxy x:Key="BindingProxy" />
+        <Style TargetType="{x:Type Grid}" x:Key="DataContextNullEmpty">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="FieldsViewGrid" Style="{StaticResource DataContextNullEmpty}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Path=Fields}" 
+                     CanUserAddRows="False"
+                     CanUserDeleteRows="False"
+                     AutoGenerateColumns="False"
+                     VirtualizingStackPanel.IsVirtualizing="False"
+                     HeadersVisibility="Column"
+                     VerticalGridLinesBrush="LightGray"
+                     HorizontalGridLinesBrush="LightGray"
+                     SelectionMode="Single"
+                     SelectionUnit="FullRow" 
+                     IsReadOnly="True"
+                     Name="FieldsGrid"
+                     SelectedItem="{Binding Source={StaticResource BindingProxy}, Path=Data, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="{x:Static properties:Resources.LocNameInBase}"
+                    Binding="{Binding Path=Text}"/>
+                <DataGridTextColumn 
+                    Header="{x:Static properties:Resources.LocNameInSystem}"
+                    Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn 
+                    Header="{x:Static properties:Resources.LocType}"
+                    Binding="{Binding Path=Type, Converter={StaticResource EnumWrapperConverter}}"
+                    Width="*"/>
+            </DataGrid.Columns>        
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button 
+                Command="{Binding Path=Source.NewFieldCommand}"
+                Content="{x:Static properties:Resources.LocAdd}"
+                Name="AddFieldButton" 
+                MinWidth="80"
+                Margin="0, 5, 5, 0">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                        <Binding ElementName="userControl" Path="DataContext" />
+                        <Binding Source="{StaticResource BindingProxy}" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            
+            <!--Command="{Binding Path=RemoveTableCommand}"
+                CommandParameter="{Binding ElementName=MapLayersListBox, Path=SelectedItem}"-->
+            <Button 
+                Command="{Binding Path=Source.RemoveFieldCommand}"
+                CommandParameter="{Binding ElementName=FieldsGrid, Path=SelectedItem}" 
+                Content="{x:Static properties:Resources.LocDelete}"
+                Name="DeleteFieldButton" 
+                MinWidth="80"
+                Margin="0, 5, 0, 0" />
+        </StackPanel>
+        <conf:FieldView
+            x:Name="FieldViewControl"
+            Margin="0, 5, 0, 0" 
+            Grid.Row="2" 
+            DataContext="{Binding Source={StaticResource BindingProxy}, Path=Data, Mode=TwoWay}">
+        </conf:FieldView>
+    </Grid>
+</UserControl>

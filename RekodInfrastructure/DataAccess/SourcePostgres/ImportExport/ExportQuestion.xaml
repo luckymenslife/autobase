@@ -1,0 +1,19 @@
+﻿<Window x:Class="Rekod.DataAccess.SourcePostgres.ImportExport.ExportQuestion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        Title="Сообщение выгрузки" Height="428" Width="650" MinHeight="428" MinWidth="650" WindowStartupLocation="CenterScreen" Icon="/rekod_infrastructure;component/Pie_Chart.ico">
+    <Grid>
+        <TextBlock Margin="6,6,6,0" Name="textBlock1" Text="В файле были найдены объекты с неверной геометрией" TextWrapping="Wrap" Height="17" VerticalAlignment="Top" />
+        <DataGrid Name="errGrid" AutoGenerateColumns="False" Margin="6,29,6,35" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ERROR}" Header="Ошибка выгрузки" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar BorderThickness="1" BorderBrush="Gray" VerticalAlignment="Bottom" Height="23" HorizontalAlignment="Stretch" Margin="6,0,265,6">
+            <TextBlock Name="countsTB" Text="Загрyжено строк для предпросмотра: 0  Строк всего: 0"/>
+        </StatusBar>
+        <Button Content="Не выгружать" Height="23" HorizontalAlignment="Right" Margin="0,0,166,6" Name="button1" VerticalAlignment="Bottom" Width="93" Click="button1_Click" />
+        <Button Content="Выгрузить без геометрии" Height="23" HorizontalAlignment="Right" Margin="0,0,6,6" Name="button2" VerticalAlignment="Bottom" Width="154" Click="button2_Click" />
+    </Grid>
+</Window>

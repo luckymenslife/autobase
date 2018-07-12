@@ -1,0 +1,267 @@
+﻿<ResourceDictionary x:Class="Rekod.DataAccess.TableManager.View.Templates.VisibleLayersTreeViewTemplate"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib"
+                    xmlns:v="clr-namespace:Rekod.DataAccess.TableManager.View">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="LayersManagerStyles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- Style for TreeView: Template and ItemTemplate -->
+    <Style TargetType="{x:Type TreeView}">
+        <Style.Resources>
+            <LinearGradientBrush x:Key="RepositoryBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#FF6FB4A9" />
+                <GradientStop Offset="0.5" Color="#FF105C4E" />
+                <GradientStop Offset="1" Color="#FF6FB4A9" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="CommonGroupBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#FFECECEC" />
+                <GradientStop Offset="0.5" Color="#FFB0B0B2" />
+                <GradientStop Offset="1" Color="#FFECECEC" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="BottomLayersGroupBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#FFECF0EC" />
+                <GradientStop Offset="0.5" Color="#FFB0B2B0" />
+                <GradientStop Offset="1" Color="#FFECF0EC" />
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="RastrLayersGroupBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="0" Color="#FFF0ECEC" />
+                <GradientStop Offset="0.5" Color="#FFB2B0B0" />
+                <GradientStop Offset="1" Color="#FFF0ECEC" />
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="CommonLayerBackgrondBrush" Color="#DDCCCCD5" />
+            <SolidColorBrush x:Key="BottomLayerBackgrondBrush" Color="#DDCCD5CC" />
+            <SolidColorBrush x:Key="RastrLayerBackgrondBrush" Color="#DDD5CCCC" />
+        </Style.Resources>
+        <EventSetter Event="SelectedItemChanged" Handler="TreeView_SelectedItemChanged" />
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <HierarchicalDataTemplate ItemsSource="{Binding Tables}">
+                    <Border 
+                        Name="ParentItem" 
+                        Margin="0, 1, 0, 0" 
+                        Height="28" 
+                        HorizontalAlignment="Stretch" 
+                        Background="{StaticResource CommonGroupBackgroundBrush}">
+                        <Grid ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox 
+                                BorderBrush="DimGray" Grid.Column="1"
+                                Focusable="False"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding IsVisible}"
+                                Checked="BindedObjectStateChanged"/>
+                            <Image Name="GroupImage" Grid.Column="2" Margin="5, 0, 5, 1"  Height="13" Source="/Images/LayersManagerCommon.png" />
+                            <TextBlock 
+                                FontWeight="DemiBold" 
+                                TextTrimming="CharacterEllipsis" 
+                                VerticalAlignment="Center" 
+                                Grid.Column="3" 
+                                Text="{Binding Path=Text}"
+                                Foreground="Black"/>
+                        </Grid>
+                    </Border>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <StaticResourceExtension ResourceKey="LayerTemplate" />
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TreeView">
+                    <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Name="Bd" SnapsToDevicePixels="True">
+                        <ScrollViewer CanContentScroll="False" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" Background="{TemplateBinding Panel.Background}" Padding="{TemplateBinding Control.Padding}" Name="_tv_scrollviewer_" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" Focusable="False">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsEnabled">
+                            <Setter Property="Panel.Background" TargetName="Bd">
+                                <Setter.Value>
+                                    <DynamicResource ResourceKey="{x:Static SystemColors.ControlBrushKey}" />
+                                </Setter.Value>
+                            </Setter>
+                            <Trigger.Value>
+                                <s:Boolean>False</s:Boolean>
+                            </Trigger.Value>
+                        </Trigger>
+                        <Trigger Property="VirtualizingStackPanel.IsVirtualizing">
+                            <Setter Property="ScrollViewer.CanContentScroll" TargetName="_tv_scrollviewer_">
+                                <Setter.Value>
+                                    <s:Boolean>True</s:Boolean>
+                                </Setter.Value>
+                            </Setter>
+                            <Trigger.Value>
+                                <s:Boolean>True</s:Boolean>
+                            </Trigger.Value>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Style for ToggleButton in TreeViewItem -->
+    <Style x:Key="ExpandCollapseToggleStyle" TargetType="ToggleButton">
+        <Style.Resources>
+            <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        </Style.Resources>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid Width="15" Height="13" Background="Transparent">
+                        <Path x:Name="ExpandPath"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Margin="1,1,1,1"
+                            Fill="{StaticResource GlyphBrush}"
+                            Data="M 4 0 L 8 4 L 4 8 Z"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked"
+               Value="True">
+                            <Setter Property="Data"
+                TargetName="ExpandPath"
+                Value="M 0 4 L 8 4 L 4 8 Z"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TreeViewItemFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="0,0,0,0"
+                             StrokeThickness="5"
+                             Stroke="Black"
+                             StrokeDashArray="1 2"
+                             Opacity="0"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Style and Template for TreeViewItem -->
+    <Style x:Key="{x:Type TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment,
+              RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment,
+              RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                    <Border Name="RepoBorder">
+
+                        <Grid HorizontalAlignment="Stretch" ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton x:Name="Expander"
+                                    Margin="5, 0, 0, 0"
+                                    Panel.ZIndex="10"
+                                    Style="{StaticResource ExpandCollapseToggleStyle}"
+                                    IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+
+                            <StackPanel 
+                                Visibility="Visible"
+                                TextBlock.FontWeight="Bold" 
+                                TextBlock.Foreground="Black"
+                                Margin="3, 0, 7, 0" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Right" 
+                                Name="ItemsCount" 
+                                Panel.ZIndex="10"
+                                Grid.Column="2" 
+                                Orientation="Horizontal">
+                                <TextBlock Text="["/>
+                                <TextBlock Name="FilterCount" Text="{Binding Path=Items.Count, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <TextBlock Text="]"/>
+                            </StackPanel>
+
+                            <Border Name="Bd"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    HorizontalAlignment="Stretch"
+                                    CornerRadius="0, 3, 0, 0"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="0">
+                                <ContentPresenter x:Name="PART_Header"
+                                    ContentSource="Header"
+                                    HorizontalAlignment="Stretch"/>
+                            </Border>
+
+                            <Grid
+                                Grid.Row="1" 
+                                Grid.ColumnSpan="3">
+                                <ItemsPresenter 
+                                    x:Name="ItemsHost" 
+                                    Visibility="Collapsed" 
+                                    RenderTransformOrigin="0.5, 0.5">
+                                </ItemsPresenter>
+                            </Grid>
+                        </Grid>
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsExpanded" Value="True" />
+                                <Condition Property="HasItems" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ItemsHost" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter TargetName="Expander" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="ItemsCount" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=ClassType}" Value="Repository">
+                            <Setter TargetName="RepoBorder" Property="CornerRadius" Value="0, 4, 0, 0" />
+                            <Setter TargetName="RepoBorder" Property="Padding" Value="1" />
+                            <Setter TargetName="RepoBorder" Property="Margin" Value="1" />
+                            <Setter TargetName="RepoBorder" Property="BorderBrush" Value="Green" />
+                            <Setter TargetName="RepoBorder" Property="BorderThickness" Value="2, 2, 2, 2" />
+                            <Setter TargetName="Expander" Property="Margin" Value="2" />
+                            <Setter TargetName="ItemsCount" Property="Margin" Value="3, 0, 4, 0" />
+                            <Setter TargetName="Bd" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0" Color="LightGreen" />
+                                        <GradientStop Offset="0.2" Color="Green" />
+                                        <GradientStop Offset="1" Color="LightGreen" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="Bd" Property="Margin" Value="-1, -1, -1, 0" />
+                            <Setter TargetName="Bd" Property="Padding" Value="0, 2, 0, 3" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

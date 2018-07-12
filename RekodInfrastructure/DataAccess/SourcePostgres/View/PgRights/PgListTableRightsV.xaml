@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.PgRights.PgListTableRightsV"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"			 
+			 xmlns:v="clr-namespace:Rekod.DataAccess.SourcePostgres.View"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:attach="clr-namespace:Rekod.AttachedProperties"
+             xmlns:pgm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model"
+             xmlns:view="clr-namespace:Rekod.DataAccess.SourcePostgres.View.PgRights"
+             xmlns:vm="clr-namespace:Rekod.DataAccess.SourcePostgres.ViewModel"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+			 mc:Ignorable="d"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:conv="clr-namespace:Rekod.Converters"
+             Name="UsersRightsVControl"
+			 d:DesignHeight="412" d:DesignWidth="571">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <conv:MathConverter x:Key="MathConverter" />
+            <serv:BindingProxy x:Key="BindingUserProxy" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBox
+            beh:CommandBehavior.Event="TextChanged"
+            beh:CommandBehavior.Command="serv:ServiceClass.FilterTreeCommand"
+            beh:CommandBehavior.CommandParameter="{Binding ElementName=treeView, Path=ItemsSource}"
+            beh:CommandBehavior.ExtraParameter="Name+Text/Value"
+            Margin="3, 3, 0, 0"
+            Style="{StaticResource SearchTextBoxStyle}"/>
+        <DockPanel
+            Grid.Row="1">
+            <Border 
+                Grid.Row="2" 
+                BorderThickness="1"
+                BorderBrush="Gray"
+                Margin="3, 0, 0, 3"
+                Padding="3, 1, 1, 1"
+                DockPanel.Dock="Bottom">
+                <DockPanel
+                    TextBlock.Foreground="DarkCyan"
+                    HorizontalAlignment="Stretch">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="1" 
+                        Panel.ZIndex="10" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" >
+                        <TextBlock 
+                            Text="{x:Static properties:Resources.LocCount}" ></TextBlock>
+                        <TextBlock Text=": " />
+                        <TextBlock Name="GroupsCount"  
+                                   Text="{Binding Path=Source.Tables.Count}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <TreeView Grid.Row="2" Name="treeView"
+                        Margin="3, 3, 0, 3"
+                      ItemsSource="{Binding Path=TableHierarchy}" >
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Value}">
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            TextBlock.FontWeight="Bold">
+                            <TextBlock Text="{Binding Key}"
+                                   Width="{Binding ElementName=parentGrid, Path=ActualWidth,
+                                                Converter={StaticResource MathConverter},
+                                                ConverterParameter=@VALUE-66, Mode=Default}" Margin="0,1,0,1" />
+                            <TextBlock Text=" (" />
+                            <TextBlock Name="FilterCount" Text="{Binding Path=Items.Count, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}}" />
+                            <!--<TextBlock Text="/" />
+                            <TextBlock Text="{Binding Path=Value.Count, Mode=OneWay}" />-->
+                            <TextBlock Text=")" />
+                        </StackPanel>
+
+                        <!-- Table template -->
+                        <HierarchicalDataTemplate.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding RefTables}">
+
+                                <TextBlock Text="{Binding Text}" ToolTip="{Binding Name}"
+                                           Width="{Binding ElementName=parentGrid, Path=ActualWidth,      
+                                    Converter={StaticResource MathConverter},
+                                    ConverterParameter=@VALUE-85, Mode=Default}"  Margin="0,1,0,1" />
+                                
+                                <!-- Reference table template -->
+                                <HierarchicalDataTemplate.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Text}" ToolTip="{Binding Name}"
+                                                   Width="{Binding ElementName=parentGrid, Path=ActualWidth,      
+                                            Converter={StaticResource MathConverter},
+                                            ConverterParameter=@VALUE-104, Mode=Default}" Margin="0,1,0,1"/>
+                                    </DataTemplate>
+                                </HierarchicalDataTemplate.ItemTemplate>
+
+                            </HierarchicalDataTemplate>
+                        </HierarchicalDataTemplate.ItemTemplate>
+
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </DockPanel>
+        <GridSplitter 
+            Grid.Column="1" 
+            Grid.RowSpan="10"
+            Width="3" HorizontalAlignment="Stretch" />
+        <view:UserRightsV Grid.Column="2" Grid.RowSpan="2" Margin="0, 3, 3, 3"
+            DataContext="{Binding ElementName=treeView, Path=SelectedItem}" />
+    </Grid>
+</UserControl>

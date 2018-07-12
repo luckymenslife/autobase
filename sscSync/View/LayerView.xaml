@@ -1,0 +1,324 @@
+﻿<Window x:Class="sscSync.View.LayerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:enums="clr-namespace:RESTLib.Enums;assembly=RESTLib"
+        xmlns:conv="clr-namespace:sscSync.Converters"
+        xmlns:view="clr-namespace:sscSync.View"
+        Icon="/sscSync;component/img/Globe.ico" 
+        Title="Создание слоя" 
+        SizeToContent="Width"
+        Height="350" MinHeight="300" 
+        MinWidth="600" MaxWidth="600">
+    <Window.Resources>        
+        <conv:TrueFalseConverter x:Key="TrueFalseConverter"/>
+        <conv:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Margin="5">
+            <!--Свойства таблицы-->
+            <TabItem Header="Свойства и стиль">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="240"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <GroupBox Header="Свойства" 
+                        Margin="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Русское название" 
+                                Margin="3" 
+                                VerticalAlignment="Center"
+                                Grid.Column="0"/>
+                            <TextBox Text="{Binding NameRus, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" 
+                                Margin="3" Name="nameSystemTb" 
+                                Grid.Column="1"/>
+
+                            <TextBlock Text="Английское название" 
+                                Margin="3" 
+                                VerticalAlignment="Center"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Visibility="{Binding IsAdmin, Converter={StaticResource BooleanVisibilityConverter}}"/>
+                            <DockPanel
+                                LastChildFill="True" 
+                                Margin="3"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Visibility="{Binding IsAdmin, Converter={StaticResource BooleanVisibilityConverter}}">
+                                <ToggleButton
+                                        DockPanel.Dock="Right"
+                                        IsChecked="False"
+                                        ToolTip="Редактировать"
+                                        Name="EditBaseNameCheckBox"
+                                        VerticalAlignment="Center">
+                                    <Image Width="17" Height="17" >
+                                        <Image.Style>
+                                            <Style>
+                                                <Setter Property="Image.Source" Value="../img/edit_unchecked.png"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Image.Source" Value="../img/edit_checked.png"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </ToggleButton>
+                                <TextBox
+                                    conv:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=nameSystemTb}"
+                                    conv:CopyTranslitBehavior.CheckString="True"
+                                    conv:CopyTranslitBehavior.UseTranslit="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                                    IsEnabled="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}"                                    
+                                    Text="{Binding Path=NameEng, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                    Visibility="{Binding IsAdmin, Converter={StaticResource BooleanVisibilityConverter}}">
+                                </TextBox>
+                            </DockPanel>
+
+                            <TextBlock Text="Тип геометрии" 
+                                Margin="3" 
+                                VerticalAlignment="Center"
+                                Grid.Row="2" Grid.Column="0"/>
+                            <ComboBox 
+                                Margin="3" Name="geomTypeCb" 
+                                ItemsSource="{Binding Types}" 
+                                SelectedIndex="{Binding Path=GeomType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Grid.Row="2" Grid.Column="1"/>
+
+                            <TextBlock 
+                                Text="Группа" 
+                                Margin="3" 
+                                VerticalAlignment="Center"
+                                Grid.Row="3" Grid.Column="0"/>
+                            <ComboBox  
+                                Margin="3" Name="groupCb" 
+                                ItemsSource="{Binding Groups}" 
+                                DisplayMemberPath="name"
+                                SelectedItem="{Binding Path=Group, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Стиль"
+                        Grid.Column="1"
+                        Margin="3">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <!--Стиль-->
+                            <view:StyleView 
+                                Grid.Column="1"              
+                                HorizontalAlignment="Stretch"/>
+                        </ScrollViewer>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Атрибуты">
+                <!--Атрибуты-->
+                <Grid 
+                    Margin="5" 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Background="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <ScrollViewer 
+                        VerticalScrollBarVisibility="Auto"
+                        Grid.Row="1">
+
+                        <!--Список атрибутов-->
+                        <ItemsControl 
+                            ItemsSource="{Binding Attributes}"
+                            HorizontalContentAlignment="Stretch"
+                            Name="attrList">
+
+                            <!--Заголовок-->
+                            <ItemsControl.Template>
+                                <ControlTemplate TargetType="ItemsControl">
+                                    <Border>
+                                        <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="60"/>
+                                                <ColumnDefinition Width="60"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock 
+                                                Text="Русское название"                                                
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"/>
+                                            <TextBlock  
+                                                Grid.Column="1"
+                                                Text="Английское название"                                                
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"/>
+                                            <TextBlock  
+                                                Grid.Column="2"
+                                                Text="Тип"                                               
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"/>
+                                            <TextBlock 
+                                                Grid.Column="3"
+                                                Text="Заголовок"          
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"/>
+                                            <TextBlock Grid.Column="4"/>
+                                        </Grid>
+                                        <StackPanel Margin="0,2" IsItemsHost="True"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+
+                            <!--Вид элемента списка-->
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="60"/>
+                                        </Grid.ColumnDefinitions>
+
+                                            <TextBox 
+                                                Text="{Binding Name_ru}"
+                                                Grid.Column="0" 
+                                                Margin="3"
+                                                Name="attrRusName"
+                                                VerticalAlignment="Center"/>
+                                            <DockPanel
+                                                LastChildFill="True" 
+                                                Margin="3"
+                                                Grid.Column="1"
+                                                VerticalAlignment="Center">
+                                                <ToggleButton
+                                                    DockPanel.Dock="Right"
+                                                    IsChecked="False"
+                                                    ToolTip="Редактировать"
+                                                    Name="EditBaseNameCheckBox"
+                                                    VerticalAlignment="Center"
+                                                    >
+                                                    <Image Width="17" Height="17" >
+                                                        <Image.Style>
+                                                            <Style>
+                                                                <Setter Property="Image.Source" Value="../img/edit_unchecked.png"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}" Value="True">
+                                                                        <Setter Property="Image.Source" Value="../img/edit_checked.png"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Image.Style>
+                                                    </Image>
+                                                </ToggleButton>
+                                                <TextBox
+                                                    conv:CopyTranslitBehavior.TranslitTextBox="{Binding ElementName=attrRusName}"
+                                                    conv:CopyTranslitBehavior.CheckString="True"
+                                                    conv:CopyTranslitBehavior.UseTranslit="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked, Converter={StaticResource TrueFalseConverter}}"
+                                                    IsEnabled="{Binding ElementName=EditBaseNameCheckBox, Path=IsChecked}"
+                                                    Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}">
+                                                </TextBox>
+                                            </DockPanel>
+                                            <ComboBox 
+                                                ItemsSource="{Binding AttributeTypes}"
+                                                SelectedIndex="{Binding AType}"
+                                                Grid.Column="2"
+                                                Margin="3"
+                                                VerticalAlignment="Center"/>
+                                            <CheckBox
+                                                IsChecked="{Binding IsTitle}"
+                                                Grid.Column="3"
+                                                Margin="3"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                                            <TextBlock 
+                                                Grid.Column="4"
+                                                Margin="3,3,0,3"
+                                                HorizontalAlignment="Center">
+                                                <Hyperlink Command="{Binding DeleteCommand}">
+                                                    Удалить
+                                                </Hyperlink>
+                                            </TextBlock>
+                                        </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                            <!--Скрыть заголовок, если нет атрибутов-->
+                            <ItemsControl.Style>
+                                <Style TargetType="ItemsControl">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Attributes.Count}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ItemsControl.Style>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Margin="3,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+                        <Hyperlink 
+                            Command="{Binding AddAttributeCommand}">Добавить атрибут</Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </TabItem>          
+            
+        </TabControl>
+        
+        <!--Кнопки-->
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="3"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            Margin="3">
+            <Button 
+                Content="OK"
+                Name="btnOk"
+                Width="80"
+                Margin="3"
+                IsDefault="True"
+                Command="{Binding CreateCommand}"/>
+            <Button 
+                Content="Отмена"
+                Width="80"
+                Margin="3"
+                IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>

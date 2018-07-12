@@ -1,0 +1,142 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.ConfigView.MapLayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:conf="clr-namespace:Rekod.DataAccess.SourcePostgres.View.ConfigView"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             mc:Ignorable="d" 
+             Name="TableView"
+             d:DesignHeight="468" d:DesignWidth="361">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TabControl}" x:Key="DataContextNullEmpty">
+            <Style.Triggers>
+                <Trigger Property="DataContext" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <TabControl
+        Name="TableSettingsTabControl"
+        Style="{StaticResource DataContextNullEmpty}"
+        Grid.Column="1"
+        Grid.RowSpan="10">
+        <TabItem
+            Name="TabItemProperties" 
+            Header="{x:Static properties:Resources.LocProperties}"
+            Style="{x:Null}"
+            Visibility="{Binding
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Свойства}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Свойства}">
+            <conf:TableProperties 
+                x:Name="TablePropertiesControl"
+                DataContext="{Binding}" 
+                Margin="5" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+        </TabItem>
+        
+        <TabItem 
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemStructure"
+            Header="{x:Static properties:Resources.LocStructure}"
+            Style="{x:Null}"
+            Visibility="{Binding  
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Структура}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Структура}">
+            <conf:FieldsView
+                Margin="5, 3, 5, 2" 
+                DataContext="{Binding}" />
+        </TabItem>
+        
+        <TabItem 
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemStyles" 
+            Header="{x:Static properties:Resources.LocStyles}"
+            Style="{x:Null}"
+            Visibility="{Binding  
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Стили}"
+            IsEnabled="{Binding IsNewTable,
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Стили}">
+            <conf:MapLayerStyleView
+                x:Name="MapLayerStyleViewControl"
+                Margin="5,3,5,2"
+                DataContext="{Binding}" />
+        </TabItem>
+        
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemLables" 
+            Header="{x:Static properties:Resources.LocLabels}"
+            Style="{x:Null}"
+            Visibility="{Binding  
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Подписи}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Подписи}">
+            <conf:LabelStyleView 
+                DataContext="{Binding}"/>
+        </TabItem>
+        
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemGroups" 
+            Header="{x:Static properties:Resources.LocGroups}"
+            Style="{x:Null}"
+            Visibility="{Binding
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Группы}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Группы}">
+            <conf:LayerGroupsView 
+                Margin="5, 3, 5, 2"
+                DataContext="{Binding LayerGroups}" />
+        </TabItem>
+
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemIndex" 
+            Header="{x:Static properties:Resources.LocIndex}"
+            Style="{x:Null}"
+            Visibility="{Binding
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Индекс}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Индекс}">
+            <conf:IndexView
+                Margin="5, 3, 5, 2" 
+                DataContext="{Binding Index}"/>
+        </TabItem>
+        
+        <TabItem
+            beh:TabItemDisabledBehavior.Revolve="{Binding ElementName=TableSettingsTabControl}"
+            Name="TabItemRights" 
+            Header="{x:Static properties:Resources.LocRights}"
+            Style="{x:Null}"
+            Visibility="{Binding
+                            Converter={StaticResource PgTableViewTabVisibilityConverter},
+                            ConverterParameter=Права}"
+            IsEnabled="{Binding IsNewTable, 
+                            Converter={StaticResource PgTableViewTabEnableConverter},
+                            ConverterParameter=Права}">
+            <conf:TableRightsV 
+                Margin="5, 3, 5, 2" 
+                DataContext="{Binding UsersRights}"/>
+        </TabItem>
+        
+    </TabControl>
+</UserControl>

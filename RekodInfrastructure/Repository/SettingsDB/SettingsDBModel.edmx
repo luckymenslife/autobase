@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="settingsdbModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="settingsdbModelStoreContainer">
+          <EntitySet Name="filter_elements" EntityType="settingsdbModel.Store.filter_elements" store:Type="Tables" store:Name="filter_elements">
+            <DefiningQuery>SELECT 
+      [filter_elements].[field_name] AS [field_name], 
+      [filter_elements].[type_operation] AS [type_operation], 
+      [filter_elements].[value_str] AS [value_str], 
+      [filter_elements].[is_ref] AS [is_ref], 
+      [filter_elements].[element_code] AS [element_code], 
+      [filter_elements].[id_filter] AS [id_filter]
+      FROM [filter_elements] AS [filter_elements]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="filters" EntityType="settingsdbModel.Store.filters" store:Type="Tables" />
+          <EntitySet Name="geometry_columns" EntityType="settingsdbModel.Store.geometry_columns" store:Type="Tables" store:Name="geometry_columns">
+            <DefiningQuery>SELECT 
+      [geometry_columns].[f_table_name] AS [f_table_name], 
+      [geometry_columns].[f_geometry_column] AS [f_geometry_column], 
+      [geometry_columns].[type] AS [type], 
+      [geometry_columns].[coord_dimension] AS [coord_dimension], 
+      [geometry_columns].[srid] AS [srid], 
+      [geometry_columns].[spatial_index_enabled] AS [spatial_index_enabled]
+      FROM [geometry_columns] AS [geometry_columns]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="locales" EntityType="settingsdbModel.Store.locales" store:Type="Tables" store:Name="locales">
+            <DefiningQuery>SELECT 
+      [locales].[locale] AS [locale], 
+      [locales].[description] AS [description], 
+      [locales].[iscurrent] AS [iscurrent]
+      FROM [locales] AS [locales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sources" EntityType="settingsdbModel.Store.sources" store:Type="Tables" />
+          <EntitySet Name="spatial_ref_sys" EntityType="settingsdbModel.Store.spatial_ref_sys" store:Type="Tables" />
+          <EntitySet Name="tables" EntityType="settingsdbModel.Store.tables" store:Type="Tables" />
+          <AssociationSet Name="FK_filters_0_0" Association="settingsdbModel.Store.FK_filters_0_0">
+            <End Role="tables" EntitySet="tables" />
+            <End Role="filters" EntitySet="filters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tables_0_0" Association="settingsdbModel.Store.FK_tables_0_0">
+            <End Role="sources" EntitySet="sources" />
+            <End Role="tables" EntitySet="tables" />
+          </AssociationSet>
+        </EntityContainer>
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "main.filter_elements" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+      предупреждение 6005: Тип данных "" в настоящее время не поддерживается для целевой версии платформы .NET Framework; столбец "id" в таблице "main.filter_elements" был исключен.
+      -->
+        <EntityType Name="filter_elements">
+          <Key>
+            <PropertyRef Name="field_name" />
+            <PropertyRef Name="type_operation" />
+            <PropertyRef Name="is_ref" />
+            <PropertyRef Name="element_code" />
+            <PropertyRef Name="id_filter" />
+          </Key>
+          <Property Name="field_name" Type="nvarchar" Nullable="false" />
+          <Property Name="type_operation" Type="integer" Nullable="false" />
+          <Property Name="value_str" Type="nvarchar" />
+          <Property Name="is_ref" Type="bit" Nullable="false" />
+          <Property Name="element_code" Type="nvarchar" Nullable="false" />
+          <Property Name="id_filter" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="filters">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="filter_name" Type="nvarchar" Nullable="false" />
+          <Property Name="where_text" Type="nvarchar" Nullable="false" />
+          <Property Name="id_table" Type="integer" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "main.geometry_columns" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+      -->
+        <EntityType Name="geometry_columns">
+          <Key>
+            <PropertyRef Name="f_table_name" />
+            <PropertyRef Name="f_geometry_column" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="coord_dimension" />
+            <PropertyRef Name="spatial_index_enabled" />
+          </Key>
+          <Property Name="f_table_name" Type="varchar" Nullable="false" />
+          <Property Name="f_geometry_column" Type="varchar" Nullable="false" />
+          <Property Name="type" Type="varchar" Nullable="false" />
+          <Property Name="coord_dimension" Type="integer" Nullable="false" />
+          <Property Name="srid" Type="integer" />
+          <Property Name="spatial_index_enabled" Type="integer" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+      предупреждение 6002: В таблице или представлении "main.locales" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.
+      -->
+        <EntityType Name="locales">
+          <Key>
+            <PropertyRef Name="locale" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Name="locale" Type="nvarchar" Nullable="false" />
+          <Property Name="description" Type="char" Nullable="false" />
+          <Property Name="iscurrent" Type="bit" />
+        </EntityType>
+        <EntityType Name="sources">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="source_name" Type="nvarchar" Nullable="false" />
+          <Property Name="source_type" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="spatial_ref_sys">
+          <Key>
+            <PropertyRef Name="srid" />
+          </Key>
+          <Property Name="srid" Type="integer" Nullable="false" />
+          <Property Name="auth_name" Type="varchar" Nullable="false" />
+          <Property Name="auth_srid" Type="integer" Nullable="false" />
+          <Property Name="ref_sys_name" Type="varchar" />
+          <Property Name="proj4text" Type="varchar" Nullable="false" />
+          <Property Name="sys_proj" Type="bit" />
+        </EntityType>
+        <EntityType Name="tables">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name_table" Type="nvarchar" Nullable="false" />
+          <Property Name="id_source" Type="integer" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_filters_0_0">
+          <End Role="tables" Type="settingsdbModel.Store.tables" Multiplicity="1" />
+          <End Role="filters" Type="settingsdbModel.Store.filters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tables">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="filters">
+              <PropertyRef Name="id_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tables_0_0">
+          <End Role="sources" Type="settingsdbModel.Store.sources" Multiplicity="1" />
+          <End Role="tables" Type="settingsdbModel.Store.tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sources">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tables">
+              <PropertyRef Name="id_source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SettingsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SettingsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Sources" EntityType="SettingsModel.Source" />
+          <EntitySet Name="Tables" EntityType="SettingsModel.Table" />
+          <AssociationSet Name="FK_tables_0_0" Association="SettingsModel.FK_tables_0_0">
+            <End Role="source" EntitySet="Sources" />
+            <End Role="tables" EntitySet="Tables" />
+          </AssociationSet>
+          <EntitySet Name="Spatials" EntityType="SettingsModel.Spatial" />
+          <EntitySet Name="FilterElements" EntityType="SettingsModel.FilterElement" />
+          <EntitySet Name="Filters" EntityType="SettingsModel.Filter" />
+          <AssociationSet Name="FK_filters_0_0" Association="SettingsModel.FK_filters_0_0">
+            <End Role="Table" EntitySet="Tables" />
+            <End Role="filter" EntitySet="Filters" />
+          </AssociationSet>
+          <EntitySet Name="geometry_columns" EntityType="SettingsModel.geometry_columns" />
+          <EntitySet Name="locales" EntityType="SettingsModel.locale" />
+        </EntityContainer>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="SourceType" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tables" Relationship="SettingsModel.FK_tables_0_0" FromRole="source" ToRole="tables" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TableName" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="SourceId" Nullable="false" />
+          <NavigationProperty Name="Source" Relationship="SettingsModel.FK_tables_0_0" FromRole="tables" ToRole="source" />
+          <NavigationProperty Name="filters" Relationship="SettingsModel.FK_filters_0_0" FromRole="Table" ToRole="filter" />
+        </EntityType>
+        <Association Name="FK_tables_0_0">
+          <End Type="SettingsModel.Source" Role="source" Multiplicity="1" />
+          <End Type="SettingsModel.Table" Role="tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tables">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Spatial">
+          <Key>
+            <PropertyRef Name="Srid" />
+          </Key>
+          <Property Type="Int64" Name="Srid" Nullable="false" />
+          <Property Type="String" Name="AuthName" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="AuthSrid" Nullable="false" />
+          <Property Type="String" Name="RefSysName" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ProjText" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="SysProj" />
+        </EntityType>
+        <EntityType Name="FilterElement">
+          <Key>
+            <PropertyRef Name="FieldName" />
+            <PropertyRef Name="TypeOperator" />
+            <PropertyRef Name="IsReference" />
+            <PropertyRef Name="ElementCode" />
+            <PropertyRef Name="IdFilter" />
+          </Key>
+          <Property Type="String" Name="FieldName" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TypeOperator" Nullable="false" />
+          <Property Type="String" Name="ValueString" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsReference" Nullable="false" />
+          <Property Type="String" Name="ElementCode" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdFilter" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Filter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FilterName" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="WhereText" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="IdTable" Nullable="false" />
+          <NavigationProperty Name="Table" Relationship="SettingsModel.FK_filters_0_0" FromRole="filter" ToRole="Table" />
+        </EntityType>
+        <Association Name="FK_filters_0_0">
+          <End Type="SettingsModel.Table" Role="Table" Multiplicity="1" />
+          <End Type="SettingsModel.Filter" Role="filter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="filter">
+              <PropertyRef Name="IdTable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="geometry_columns">
+          <Key>
+            <PropertyRef Name="f_table_name" />
+            <PropertyRef Name="f_geometry_column" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="coord_dimension" />
+            <PropertyRef Name="spatial_index_enabled" />
+          </Key>
+          <Property Type="String" Name="f_table_name" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="f_geometry_column" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="type" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="coord_dimension" Nullable="false" />
+          <Property Type="Int64" Name="srid" />
+          <Property Type="Int64" Name="spatial_index_enabled" Nullable="false" />
+        </EntityType>
+        <EntityType Name="locale">
+          <Key>
+            <PropertyRef Name="locale1" />
+            <PropertyRef Name="description" />
+          </Key>
+          <Property Type="String" Name="locale1" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="2147483647" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="iscurrent" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="settingsdbModelStoreContainer" CdmEntityContainer="SettingsContext">
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="SettingsModel.Source">
+              <MappingFragment StoreEntitySet="sources">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="SourceName" ColumnName="source_name" />
+                <ScalarProperty Name="SourceType" ColumnName="source_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="SettingsModel.Table">
+              <MappingFragment StoreEntitySet="tables">
+                <ScalarProperty Name="SourceId" ColumnName="id_source" />
+                <ScalarProperty Name="TableName" ColumnName="name_table" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spatials">
+            <EntityTypeMapping TypeName="SettingsModel.Spatial">
+              <MappingFragment StoreEntitySet="spatial_ref_sys">
+                <ScalarProperty Name="SysProj" ColumnName="sys_proj" />
+                <ScalarProperty Name="ProjText" ColumnName="proj4text" />
+                <ScalarProperty Name="RefSysName" ColumnName="ref_sys_name" />
+                <ScalarProperty Name="AuthSrid" ColumnName="auth_srid" />
+                <ScalarProperty Name="AuthName" ColumnName="auth_name" />
+                <ScalarProperty Name="Srid" ColumnName="srid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilterElements">
+            <EntityTypeMapping TypeName="SettingsModel.FilterElement">
+              <MappingFragment StoreEntitySet="filter_elements">
+                <ScalarProperty Name="IdFilter" ColumnName="id_filter" />
+                <ScalarProperty Name="ElementCode" ColumnName="element_code" />
+                <ScalarProperty Name="IsReference" ColumnName="is_ref" />
+                <ScalarProperty Name="ValueString" ColumnName="value_str" />
+                <ScalarProperty Name="TypeOperator" ColumnName="type_operation" />
+                <ScalarProperty Name="FieldName" ColumnName="field_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Filters">
+            <EntityTypeMapping TypeName="SettingsModel.Filter">
+              <MappingFragment StoreEntitySet="filters">
+                <ScalarProperty Name="IdTable" ColumnName="id_table" />
+                <ScalarProperty Name="WhereText" ColumnName="where_text" />
+                <ScalarProperty Name="FilterName" ColumnName="filter_name" />
+                <ScalarProperty Name="Id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="geometry_columns">
+            <EntityTypeMapping TypeName="SettingsModel.geometry_columns">
+              <MappingFragment StoreEntitySet="geometry_columns">
+                <ScalarProperty Name="spatial_index_enabled" ColumnName="spatial_index_enabled" />
+                <ScalarProperty Name="srid" ColumnName="srid" />
+                <ScalarProperty Name="coord_dimension" ColumnName="coord_dimension" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="f_geometry_column" ColumnName="f_geometry_column" />
+                <ScalarProperty Name="f_table_name" ColumnName="f_table_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locales">
+            <EntityTypeMapping TypeName="SettingsModel.locale">
+              <MappingFragment StoreEntitySet="locales">
+                <ScalarProperty Name="iscurrent" ColumnName="iscurrent" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="locale1" ColumnName="locale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="SettingsModel.Source" Width="1.5" PointX="1.625" PointY="0.875" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="SettingsModel.Table" Width="1.5" PointX="3.25" PointY="3.375" Height="1.7879850260416665" />
+        <AssociationConnector Association="SettingsModel.FK_tables_0_0" >
+          <ConnectorPoint PointX="2.71875" PointY="2.412985026041667" />
+          <ConnectorPoint PointX="2.71875" PointY="3.53125" />
+          <ConnectorPoint PointX="3.25" PointY="3.53125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SettingsModel.Spatial" Width="1.5" PointX="5.25" PointY="0.875" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SettingsModel.FilterElement" Width="1.5" PointX="0.75" PointY="3.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="SettingsModel.Filter" Width="1.5" PointX="5.75" PointY="4.5" Height="1.9802864583333335" />
+        <AssociationConnector Association="SettingsModel.FK_filters_0_0" >
+          <ConnectorPoint PointX="4.75" PointY="4.9276432291666659" />
+          <ConnectorPoint PointX="5.75" PointY="4.9276432291666659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SettingsModel.geometry_columns" Width="1.5" PointX="7.4524966401292456" PointY="22.94858821805035" />
+        <EntityTypeShape EntityType="SettingsModel.locale" Width="1.5" PointX="7.6442191021722827" PointY="27.39609844768238" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

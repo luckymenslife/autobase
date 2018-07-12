@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourceRastr.View.RastrRepositoryV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:v="clr-namespace:Rekod.DataAccess.SourceRastr.View"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             Name="UserControl"
+             d:DesignHeight="300" d:DesignWidth="589"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type Grid}" x:Key="DataContextNullEmpty">
+                <Style.Triggers>
+                    <Trigger Property="DataContext" Value="{x:Null}">
+                        <Setter Property="IsEnabled" Value="False" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <serv:BindingProxy x:Key="BindingLayerProxy" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="280" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!--{Binding Path=FilterTablesCommand}-->
+        <TextBox
+            beh:CommandBehavior.Event="TextChanged"
+            beh:CommandBehavior.Command="serv:ServiceClass.FilterItemsCommand"
+            Style="{StaticResource SearchTextBoxStyle}"
+            Margin="3, 3, 3, 0" 
+            Name="RastrFilterBox">
+            <beh:CommandBehavior.CommandParameter>
+                <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                    <Binding ElementName="RastrLayersBox" />
+                    <Binding Source="1:Text" />
+                </MultiBinding>
+            </beh:CommandBehavior.CommandParameter>
+        </TextBox>
+        <DockPanel
+            Grid.Row="1">
+            <Border 
+                Grid.Row="2" 
+                BorderThickness="1"
+                BorderBrush="Gray"
+                Margin="3, 0, 3, 3"
+                Padding="3, 1, 1, 1"
+                DockPanel.Dock="Bottom"
+                HorizontalAlignment="Stretch">
+                <DockPanel
+                    TextBlock.Foreground="DarkCyan"
+                    HorizontalAlignment="Stretch">
+
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Button
+                            Command="{Binding Path=AddLayersCommand}"
+                            Name="AddLayersButton"
+                            Width="60" 
+                            Height="23" 
+                            Margin="2, 0, 0, 0"
+                            Padding="0"
+                            Content="{x:Static properties:Resources.LocAdd}">
+                            <!--<Image Source="/Resources/plus.png"/>-->
+                        </Button>
+                        <Button
+                            Command="{Binding Path=DeleteLayerCommand}"
+                            CommandParameter="{Binding ElementName=RastrLayersBox, Path=SelectedItems}"
+                            Width="60" 
+                            Height="23" 
+                            Margin="2, 0, 1, 0" 
+                            Padding="0"
+                            Content="{x:Static properties:Resources.LocDelete}">
+                            <!--<Image Source="/Resources/minus.png" />-->
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Grid.Row="1" 
+                        Panel.ZIndex="10" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" >
+                        <TextBlock 
+                            Text="{x:Static properties:Resources.LocCount}" />
+                        <TextBlock Text=": " />
+                        <TextBlock Name="RastrsCount"  
+                                   Text="{Binding ElementName=RastrLayersBox, Path=Items.Count}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <ListBox        
+                SelectedItem="{Binding Source={StaticResource BindingLayerProxy}, Path=Data}"
+                ItemsSource="{Binding Path=Tables, Converter={StaticResource CollectionViewConverter}, ConverterParameter=Text}"
+                Margin="3"
+                SelectionMode="Extended"
+                x:Name="RastrLayersBox"
+                DisplayMemberPath="Text"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                BorderThickness="1">
+                <beh:CommandBehaviorCollection.Behaviors>
+                    <beh:BehaviorBinding 
+                        Command="{Binding DeleteLayerCommand}" 
+                        Event="KeyDown" 
+                        CommandParameter="{Binding ElementName=RastrLayersBox, Path=SelectedItems}"/>
+                    <beh:BehaviorBinding 
+                        Command="{Binding CancelValidationCommand}" 
+                        Event="SelectionChanged" 
+                        CommandParameter="{Binding ElementName=RastrLayerView, Path=PropertiesBindingGroup}"/>
+                </beh:CommandBehaviorCollection.Behaviors>
+            </ListBox>
+        </DockPanel>
+        
+        <GridSplitter
+            Grid.Column="0"
+            Grid.RowSpan="10"
+            Foreground="Transparent"
+            Background="Transparent"
+            Width="3"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Right" />
+        
+        <v:RastrLayerV
+            x:Name="RastrLayerView"
+            Grid.Column="1" 
+            Grid.RowSpan="2"
+            Margin="0, 3, 3, 3"
+            DataContext="{Binding Source={StaticResource BindingLayerProxy}}" />
+        
+    </Grid>
+</UserControl>

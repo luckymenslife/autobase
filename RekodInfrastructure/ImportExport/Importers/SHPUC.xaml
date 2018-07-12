@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Rekod.ImportExport.Importers.SHPUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             mc:Ignorable="d" d:DesignHeight="66" d:DesignWidth="663">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="..\..\Styles\Styles.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <GroupBox Header="{x:Static properties:Resources.SHPUC_Settings}" Margin="0,5">
+            <Grid>
+                <CheckBox Content="{x:Static properties:Resources.SHPUC_chbLoadGeom}" Height="16" HorizontalAlignment="Left" Margin="10,9,0,0" Name="loadGeomCB" VerticalAlignment="Top" IsChecked="True" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

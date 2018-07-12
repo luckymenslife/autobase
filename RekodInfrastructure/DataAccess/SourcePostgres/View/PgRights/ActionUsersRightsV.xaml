@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="Rekod.DataAccess.SourcePostgres.View.PgRights.ActionUsersRightsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"              
+             Background="{DynamicResource {x:Static SystemColors.ControlBrush}}"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:pgm="clr-namespace:Rekod.DataAccess.SourcePostgres.Model"
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             Name="TableActionsRights"
+             d:DesignWidth="340" d:DesignHeight="157">
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Data}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/rekod_infrastructure;component/Styles/SearchTextBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid DataContext="{Binding Path=Data.UserRights}" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Фильтр-->
+        <TextBox
+                    beh:CommandBehavior.Event="TextChanged"
+                    beh:CommandBehavior.Command="serv:ServiceClass.FilterTablesCommand"
+                    beh:CommandBehavior.CommandParameter="{Binding ElementName=RightsGrid, Path=ItemsSource}"
+                    beh:CommandBehavior.ExtraParameter="UserFullName+UserLogin"
+                    Margin="0, 0, 0, 3" 
+                    Style="{StaticResource SearchTextBoxStyle}"/>
+
+        <!--Таблица прав-->
+        <DataGrid 
+                AutoGenerateColumns="False" 
+                Name="RightsGrid"
+			    CanUserAddRows="False" 
+                CanUserDeleteRows="False" 
+                VerticalGridLinesBrush="#FFF0F0F0" 
+                HeadersVisibility="Column"
+                HorizontalGridLinesBrush="#FFF0F0F0" 
+                SelectionMode="Single"
+                Grid.Row="1"
+                ItemsSource="{Binding Path=ActionRights}">
+            <DataGrid.Resources>
+                <serv:BindingProxy Data="{Binding}" x:Key="BindingProxy"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                                Header="{x:Static properties:Resources.LocFio}" 
+                                Width="*"
+                                Binding="{Binding Path=User.NameFull, Mode=OneWay}"/>
+                <DataGridTextColumn 
+                                Header="{x:Static properties:Resources.LocLogin}" 
+                                Width="*"
+                                Binding="{Binding Path=User.Login, Mode=OneWay}"/>
+                <DataGridTextColumn 
+                                Width="90" 
+                                CanUserResize="False">
+                    <DataGridTextColumn.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+                                            Text="{x:Static properties:Resources.LocAllowed}" 
+                                            VerticalAlignment="Center" />
+                            <CheckBox
+                                            IsChecked="{Binding Source={StaticResource BindingProxy}, Path=Data.AllAllowed}"
+                                            Margin="10, 0, 0, 0"
+                                            VerticalAlignment="Center"
+                                            x:Name="CanAllDoComboBox"/>
+                        </StackPanel>
+                    </DataGridTextColumn.Header>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <CheckBox 
+                                                        IsChecked="{Binding Allowed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        x:Name="CanUserDoComboBox" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Кнопки сохранить/обновить-->
+        <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Margin="0,3,0,0"
+                        Grid.Row="2">
+            <Button 
+                Height="23" 
+                MinWidth="90" 
+                Margin="0,0,5,0"
+                Command="{Binding SaveChangesACommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/save5.png"/>-->
+                        <TextBlock
+                                    Text="{x:Static properties:Resources.LocSave}" 
+                                    VerticalAlignment="Center" 
+                                    Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button 
+                            Height="23" 
+                            MinWidth="90"
+                            Command="{Binding ReloadCommand}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!--<Image Margin="1" Source="/rekod_infrastructure;component/Resources/reload_2.png"/>-->
+                        <TextBlock Text="{x:Static properties:Resources.LocUpdate}"  VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

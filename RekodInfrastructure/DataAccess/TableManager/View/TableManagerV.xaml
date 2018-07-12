@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Rekod.DataAccess.TableManager.View.TableManagerV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:properties="clr-namespace:Rekod.Properties"
+             xmlns:beh="clr-namespace:Rekod.Behaviors"
+             xmlns:serv="clr-namespace:Rekod.Services"
+             d:DesignHeight="300" d:DesignWidth="317">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBox">
+                <Style.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Grid Background="White" Height="25" Name="Contvas" HorizontalAlignment="Stretch">
+                                    <TextBlock VerticalAlignment="Center" Padding="5" Visibility="Collapsed" Foreground="Gray" Name="PromptBlock" Canvas.Top="4" Canvas.Left="5" 
+                                               Text="{x:Static properties:Resources.LocSearch}"/>
+                                    <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+                                        <Button Command="{Binding Path=ReloadRepositoriesCommand}" DockPanel.Dock="Right">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <Image Name="ReloadImage" Margin="4" Source="/rekod_infrastructure;component/Resources/obnovit.png" />
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="Button.IsMouseOver" Value="True">
+                                                            <Setter TargetName="ReloadImage" Property="Margin" Value="3" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <ScrollViewer Height="25" Margin="3, 0, 0, 0" HorizontalAlignment="Stretch" VerticalAlignment="Center" x:Name="PART_ContentHost" />
+                                    </DockPanel>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsFocused" Value="False" />
+                                            <Condition Property="Text" Value="" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="PromptBlock" Property="Visibility" Value="Visible" />
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Margin" Value="1, 1, 1, 0" />
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="Foreground" Value="DarkBlue" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="DockPanel.Dock" Value="Top" />
+                </Style.Setters>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+       
+        <TabControl
+            Grid.Row="1">
+            <TabItem Header="Группы">
+                <TabItem.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="Templates/GroupsTreeViewTemplate.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </TabItem.Resources>
+                <DockPanel LastChildFill="True" Background="Gray">
+                    <TextBox 
+                        beh:CommandBehavior.Event="TextChanged"
+                        beh:CommandBehavior.Command="serv:ServiceClass.FilterSourceTablesCommand"
+                        Name="FirstBox" 
+                        DockPanel.Dock="Top">
+                        <beh:CommandBehavior.CommandParameter>
+                            <MultiBinding Converter="{StaticResource CommandParametersConverter}">
+                                <Binding />
+                                <Binding ElementName="FirstBox" Path="Text" />
+                            </MultiBinding>
+                        </beh:CommandBehavior.CommandParameter>                        
+                    </TextBox>
+                    <TreeView 
+                        beh:TreeViewRightClickBehavior.SelectOnRightClick="True"
+                        VirtualizingStackPanel.IsVirtualizing="True"
+                        Margin="1"
+                        BorderThickness="0" 
+                        Name="GroupTree" 
+                        ItemsSource="{Binding DataRepositories}" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Все слои">
+                <TabItem.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="Templates/AllLayersTreeViewTemplate.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </TabItem.Resources>
+                <DockPanel LastChildFill="True" Background="Gray">
+                    <TextBox 
+                        Name="SecondBox" 
+                        Text="{Binding ElementName=firstBox, UpdateSourceTrigger=PropertyChanged, Path=Text, Mode=TwoWay}"/>
+                    <TreeView Margin="1"
+                              BorderThickness="0" 
+                              Name="AllLayersTree" 
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding DataRepositories}" />
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Видимые слои">
+                <TabItem.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="Templates/VisibleLayersTreeViewTemplate.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </TabItem.Resources>
+                <DockPanel LastChildFill="True" Background="Gray">
+                    <TextBox 
+                        Name="ThirdBox" 
+                        Text="{Binding ElementName=firstBox, UpdateSourceTrigger=PropertyChanged, Path=Text, Mode=TwoWay}"/>
+                    <TreeView Name="VisibleLayersTree"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              ItemsSource="{Binding VisibleLayersGroup}"/>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
