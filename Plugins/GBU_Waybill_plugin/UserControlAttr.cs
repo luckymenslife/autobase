@@ -496,9 +496,9 @@ namespace GBU_Waybill_plugin
             sql_frompl_new = MainPluginClass.App.SqlWork();
 
             sql_frompl_new.sql = "SELECT ua.gid, utt.naimenovanie as car_type, ua.tip_ts as car_type_id, ummt.naimenovanie as car_mark, ua.gos___, ua.gar___, ua.reg___, " +
-                "coalesce((CASE WHEN extract('month' FROM now()) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_1ch_ " +
+                "coalesce((CASE WHEN extract('month' FROM :start_date) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_1ch_ " +
                 "ELSE zimnjaja_norma_rashoda_topliva__l_1ch_ END), 0) as car_norm, " +
-                "coalesce((CASE WHEN extract('month' FROM now()) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_100km__l_1ch_ " +
+                "coalesce((CASE WHEN extract('month' FROM :start_date) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_100km__l_1ch_ " +
                 "ELSE zimnjaja_norma_rashoda_topliva END), 0) as car_100km_norm, " +
                 "coalesce(ua.rabota_s_ustanovkoj__l_1ch_, 0) as car_equip_norm, " +
                 "podrazdelenie, " +
@@ -515,6 +515,8 @@ namespace GBU_Waybill_plugin
               "LEFT JOIN autobase.umjets_plan_ispolzovanija_ts upit ON upit.transportnoe_sredstvo = ua.gid " +
               "LEFT JOIN autobase.waybills_work_regimes wwr ON wwr.gid = upit.rezhim_raboty " +
               "ORDER BY ua.gos___";
+            sql_frompl_new.AddParam(new Params(":start_date", dateTimePicker_dateOutFact.Value, NpgsqlTypes.NpgsqlDbType.Date));
+
             try
             {
                 sql_frompl_new.ExecuteReader();
