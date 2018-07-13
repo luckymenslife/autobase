@@ -41,8 +41,8 @@ namespace Rekod
             if (e.Args.Count() < 5)
             {
 #if gs
-                Program.SplashScreen.Show(false);
-                Thread.Sleep(1500);
+                //Program.SplashScreen.Show(false);
+                //Thread.Sleep(1500);
 #endif
             }
 

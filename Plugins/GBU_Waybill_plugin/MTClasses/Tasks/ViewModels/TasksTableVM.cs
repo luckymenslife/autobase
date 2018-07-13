@@ -42,9 +42,6 @@ namespace GBU_Waybill_plugin.MTClasses.Tasks.ViewModels
             _id_org = id_org;
             RightDate = DateTime.Now.AddDays(2);
             LeftDate = DateTime.Now.AddDays(-2);
-
-            Reload();
-            LoadStatuses();
         }
         #endregion
 
@@ -229,88 +226,11 @@ AND :rightDate > wt.time_from;";
                 }
             }
         }
-        private void LoadTasksFromWeb()
-        {
-            _mt_tasks = MTAPI_Helper.GetMtTasks(UserControlAttr.Token);
-        }
-        private void LoadGroups()
-        {
-            using (var sqlCmd = MainPluginClass.App.SqlWork())
-            {
-                _groups.Clear();
-                sqlCmd.sql = string.Format(@"
-SELECT gid, group_name, route_id, time_from, time_till
-FROM autobase.waybills_tasks_groups");
-                sqlCmd.ExecuteReader();
-                while (sqlCmd.CanRead())
-                {
-                    TaskGroupM item = new TaskGroupM(
-                            sqlCmd.GetValue<int>("gid"),
-                            sqlCmd.GetValue<int>("route_id"),
-                            sqlCmd.GetValue<string>("group_name"),
-                            sqlCmd.GetValue<DateTime>("time_from"),
-                            sqlCmd.GetValue<DateTime>("time_till")
-                        );
-                    _groups.Add(item);
-                }
-            }
-        }
-        private void SetStatus()
-        {
-            foreach (var item in _mt_tasks)
-            {
-                var temp = _tasks.FirstOrDefault(w => w.IdMT == (int)item.id);
-                if (temp != null)
-                {
-                    temp.Status = (EStatusTask)item.status;
-                }
-            }
-        }
-        private void Reload()
-        {
-            string proc = null;
-            try
-            {
-                proc = MainPluginClass.Work.OpenForm.ProcOpen("create_task");
-                LoadGroups();
-                LoadTasks();
-
-                OnPropertyChanged("FindTasksView");
-
-                OnPropertyChanged("CountAssigned");
-                OnPropertyChanged("CountInProgress");
-                OnPropertyChanged("CountPerformed");
-                OnPropertyChanged("CountOverdue");
-            }
-            catch (Exception ex)
-            {
-                MainPluginClass.Work.OpenForm.ProcClose(proc);
-                MessageBox.Show("Ошибка: " + ex.Message, "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                MainPluginClass.Work.OpenForm.ProcClose(proc);
-            }
-        }
-        private void LoadStatuses()
-        {
-            _statuses.Clear();
-            _statuses.Add(new StatusM(-1, "Все"));
-            _statuses.Add(new StatusM((int)EStatusTask.assigned, "Назначено"));
-            _statuses.Add(new StatusM((int)EStatusTask.in_progress, "В процессе"));
-            _statuses.Add(new StatusM((int)EStatusTask.performed, "Выполнено"));
-            _statuses.Add(new StatusM((int)EStatusTask.overdue, "Просрочено"));
-            OnPropertyChanged("Statuses");
-            SelectedStatus = _statuses[0];
-        }
+        
         #endregion
 
         #region Команды
         private ICommand _reloadCommand;
-        public ICommand ReloadCommand
-        {
-            get { return _reloadCommand ?? (_reloadCommand = new RelayCommand((o) => Reload())); }
-        }
 
         #region CreateTasksCmd
         private ICommand _create_tasks;
@@ -325,44 +245,17 @@ FROM autobase.waybills_tasks_groups");
         private void CreateTasks(object obj)
         {
             CreateTasksForm frm = new CreateTasksForm(_id_org);
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Reload();
-            }
         }
         #endregion
         #region DeleteTaskCmd
         private ICommand _delete_task;
-        public ICommand DeleteTaskCmd
-        {
-            get { return _delete_task ?? (_delete_task = new RelayCommand(this.DeleteTask, this.CanDeleteTask)); }
-        }
+
         private bool CanDeleteTask(object obj)
         {
             //return SelectedTask != null && SelectedTask.Status == EStatusTask.assigned;
             return SelectedTask != null;
         }
-        private void DeleteTask(object obj)
-        {
-            if (!CanDeleteTask(obj))
-                return;
-            if (MessageBox.Show("Вы действительно хотите удалить выбранное задание?", "Удаление задания", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                if (MTAPI_Helper.DeleteTask(SelectedTask.IdMT, "Отменено пользователем", UserControlAttr.Token))
-                {
-                    using (var sqlCmd = MainPluginClass.App.SqlWork())
-                    {
-                        sqlCmd.sql = "UPDATE autobase.waybills_tasks SET status_id = 4 WHERE gid = " + SelectedTask.Id.ToString() + ";";
-                        sqlCmd.ExecuteNonQuery();
-                        Reload();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ошибка удаления задания", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+        
         #endregion
         #region PrintTasksCmd
         private ICommand _print_tasks;

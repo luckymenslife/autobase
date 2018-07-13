@@ -823,7 +823,6 @@ FROM autobase.waybills_tasks_ways_groups wtg WHERE wtg.gid in (SELECT * FROM aut
                 }
                 carsTask.till = MTAPI_Helper.GetUnixTime(_end_date);
                 carsTask.typeId = type.Id;
-                result = (int)MTAPI_Helper.PostCarsTask(carsTask, UserControlAttr.Token).id;
             }
 
             return result;

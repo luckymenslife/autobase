@@ -2180,6 +2180,8 @@
     <Resource Include="Resources\intersection.png" />
     <Resource Include="Resources\join-intersection.png" />
     <Resource Include="Resources\sym-difference.png" />
+    <None Include="Resources\infotech_logo.bmp" />
+    <None Include="Resources\infotech_logo.png" />
     <Content Include="SQLite_libs\libgeos-3-0-0.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

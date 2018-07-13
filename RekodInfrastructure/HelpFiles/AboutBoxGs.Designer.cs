@@ -112,7 +112,7 @@
             // logoPictureBox
             // 
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
-            this.logoPictureBox.Image = global::Rekod.Properties.Resources.ГС_new_logo;
+            this.logoPictureBox.Image = global::Rekod.Properties.Resources.infotech_logo;
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.TabStop = false;
             // 

@@ -139,8 +139,8 @@ namespace Rekod
             this.Activate();
 
 
-            this.pictureBox1.Image = global::Rekod.Properties.Resources.ГС_new_logo; //.a_c48d37de1 //.для_арсенала
-            this.Text = "ООО \"Градосервис\" MapEditor GS"; // ГИС Арсенал "ООО \"Градосервис\" GS MapEditor"
+            this.pictureBox1.Image = global::Rekod.Properties.Resources.infotech_logo; //.a_c48d37de1 //.для_арсенала
+            this.Text = "Infotech Group"; // ГИС Арсенал "ООО \"Градосервис\" GS MapEditor"
 #if DEBUG
             txtPass.PasswordChar = '\0';
 #endif

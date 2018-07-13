@@ -41,6 +41,7 @@ namespace axVisUtils
         private referInfo defRefValue;
         private DataColumn defRefCol;
         private int idT, idObj;
+        private bool _setOwner = true;
         private Panel panel3;
         private Panel panelForProperties;
         private GroupBox grBox;
@@ -92,13 +93,14 @@ namespace axVisUtils
         {
             if (e.IsSave)
                 this.DialogResult = DialogResult.OK;
+            MessageBox.Show("In s_CloseForm function!", "DEBUG", MessageBoxButtons.OK);
             this.Close();
         }
 
-        public FormTableData(Interfaces.tablesInfo table, int idObject, bool isNew, string wkt, referInfo RefValue = null, bool setOwner=true)
+        private void startForm(int aIdTable, bool aReadOnly, int idObject, bool isNew, string wkt, referInfo RefValue = null, bool setOwner = true)
         {
-            var idTable = table.idTable;
-            _isReadOnly = table.read_only;
+            var idTable = aIdTable;
+            _isReadOnly = aReadOnly;
 
             dateFormat = Application.CurrentCulture.DateTimeFormat.LongDatePattern;
             dateTimeFormat = Application.CurrentCulture.DateTimeFormat.FullDateTimePattern;
@@ -108,6 +110,7 @@ namespace axVisUtils
                 _wkt = wkt;
                 InitializeComponent();
 
+                _setOwner = setOwner;
                 if (setOwner)
                     classesOfMetods.SetFormOwner(this);
 
@@ -210,6 +213,11 @@ namespace axVisUtils
             {
                 //cti.ThreadProgress.Close();
             }
+        }
+
+        public FormTableData(Interfaces.tablesInfo table, int idObject, bool isNew, string wkt, referInfo RefValue = null, bool setOwner=true)
+        {
+            startForm(table.idTable, table.read_only, idObject, isNew, wkt, RefValue, setOwner);
         }
 
         public SplitContainer splitContainer1 = new SplitContainer();
@@ -857,6 +865,7 @@ namespace axVisUtils
         // Кнопка "Сохранить"
         void btnOK_Click(object sender, EventArgs e)
         {
+            Int64 ret = 0;
             DataColumn[] col = new DataColumn[0];
             try
             {
@@ -906,7 +915,6 @@ namespace axVisUtils
                 MessageBox.Show(Resources.FormTableData_CheckFrormatData, Resources.InformationMessage_Header, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             // Сюда нужно вставить передачу вкт в _data
             if (data_ != null && _geometryVM != null && _isLayer)
             {
@@ -924,12 +932,13 @@ namespace axVisUtils
 
                 data_.WKT = _geometryVM.WKT;
 
-                if (!data_.Save(col))
+                if (data_.Save(col) == 0)
                     return;
             }
             else if (data_ != null)
             {
-                if (!data_.Save(col))
+                ret = data_.Save(col);
+                            if (ret == 0)
                     return;
             }
 
@@ -946,7 +955,29 @@ namespace axVisUtils
             }
 
             this.DialogResult = DialogResult.OK;
-            this.Close();
+
+            if (Program.UserParams.ContainsKey("NotCloseOnSaveTable"))
+            {
+                string str_idtable = Program.UserParams["NotCloseOnSaveTable"].FirstOrDefault(w => w == idT.ToString());
+                if (!string.IsNullOrEmpty(str_idtable))
+                {
+                    Interfaces.tablesInfo ti = new Interfaces.tablesInfo();
+                    ti.idTable = idT;
+                    ti.read_only = _isReadOnly;
+                    this.Hide();
+                    var form2 = new FormTableData(ti, unchecked((int)ret), false, _wkt, defRefValue, _setOwner);
+                    form2.Closed += (s, args) => this.Close();
+                    form2.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }            
         }
 
         private Color GetStandartControlColor(Control cntrl)
@@ -1319,14 +1350,17 @@ namespace axVisUtils
                         dt.Name = "col_" + col.BaseName;
                         dt.Tag = col;
                         dt.Enabled = col.Edited;
+                        dt.ShowCheckBox = true;
                         dt.MouseUp += new MouseEventHandler(dt_MouseUp);
                         dt.ValueChanged += new EventHandler(dt_ValueChanged);
-                        dt.ShowCheckBox = true;
                         //dt.KeyDown += new KeyEventHandler(dt_ValueChanged);
 
 
                         if (col.Data != null)
                             toolTip2.SetToolTip(lb_1, ((DateTime)col.Data).ToString(dt.CustomFormat));
+
+                        if (dt.Checked == false || col.Data == null)
+                            dt.CustomFormat = " ";
 
                         pb.Image = (Image)Rekod.Properties.Resources.data_time1;
                         pb.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -2162,8 +2196,11 @@ namespace axVisUtils
         {
             //((DateTimePicker)sender).CustomFormat = dateFormat;
             //((DateTimePicker)sender).Format = DateTimePickerFormat.Custom;
-
-            if (((DataColumn)((DateTimePicker)sender).Tag).Type == DataColumn.enType.Date)
+            if (((DateTimePicker)sender).Checked == false)
+            {
+                ((DateTimePicker)sender).CustomFormat = " ";
+            }
+            else if (((DataColumn)((DateTimePicker)sender).Tag).Type == DataColumn.enType.Date)
             {
                 if (((DateTimePicker)sender).CustomFormat == dateFormat)
                     return;
@@ -2775,7 +2812,7 @@ namespace axVisUtils
             if (UControl != null)
             {
                 UControl.CloseForm -= new EventHandler<Interfaces.UserControls.eventCloseForm>(s_CloseForm);
-                this.Controls.Clear();
+                //this.Controls.Clear();
             }
         }
         private void loadPenList()

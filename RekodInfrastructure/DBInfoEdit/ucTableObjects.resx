@@ -394,7 +394,7 @@
     <value>246, 17</value>
   </metadata>
   <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 17</value>
+    <value>103, 17</value>
   </data>
   <data name="toolStripStatusLabel1.Text" xml:space="preserve">
     <value>Количество строк:</value>
@@ -409,19 +409,19 @@
     <value>N</value>
   </data>
   <data name="toolStripStatusLabel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 17</value>
+    <value>100, 17</value>
   </data>
   <data name="toolStripStatusLabel2.Text" xml:space="preserve">
     <value>из них загружено:</value>
   </data>
   <data name="toolStripStatusLabel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 17</value>
+    <value>116, 17</value>
   </data>
   <data name="toolStripStatusLabel3.Text" xml:space="preserve">
     <value>Количество колонок:</value>
   </data>
   <data name="tssSelected.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 17</value>
+    <value>58, 17</value>
   </data>
   <data name="tssSelected.Text" xml:space="preserve">
     <value>Выбрано: </value>
@@ -1069,7 +1069,7 @@
     <value>menuStrip2</value>
   </data>
   <data name="&gt;&gt;menuStrip2.Type" xml:space="preserve">
-    <value>Rekod.FocusMenuStrip, rekod_infrastructure, Version=2.12.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Rekod.FocusMenuStrip, rekod_infrastructure, Version=2.13.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;menuStrip2.Parent" xml:space="preserve">
     <value>$this</value>

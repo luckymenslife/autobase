@@ -185,6 +185,25 @@ namespace Rekod.Services
         {
             return ExecuteScalar<object>(listParams);
         }
+        public Int64 ExecuteUpdateReturningGid(IEnumerable<IParams> listParams = null)
+        {
+            try
+            {
+                CreateConn();
+                LoadParams(listParams);
+                var value = _queryCommand.ExecuteScalar();
+                return ExtraFunctions.Converts.To<Int64>(value);
+            }
+            catch (Exception ex)
+            {
+                ExceptionFunc(ex, _enableException);
+                return 0;
+            }
+            finally
+            {
+                Close();
+            }
+        }
         public T ExecuteScalar<T>(IEnumerable<IParams> paramArrya = null)
         {
             try

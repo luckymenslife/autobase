@@ -312,6 +312,7 @@ namespace Rekod
             _tableInfo = classesOfMetods.getTableInfo(searchValue.Key.idTable);
             _searchValue = searchValue;
             this._pkFieldValue = pkFieldValue;
+            
             SetStart();
 
             this.Load += OnLoad;
@@ -327,6 +328,7 @@ namespace Rekod
 
         private void OnLoad(object sender, EventArgs eventArgs)
         {
+            InitMaxRowsInList();
             ActivateDefaultView();
             this.Load -= OnLoad;
         }
@@ -1147,6 +1149,30 @@ WHERE id_table = " + table.idTable + " AND visible=TRUE ORDER BY num_order;";
             orderField = string.Format("\"{0}\" {1}", orderField, order);
             return orderField;
         }
+
+
+        private void InitMaxRowsInList()
+        {
+            //MessageBox.Show("init MaxRowsInList = " + MaxRowsInList, "ИНФО");
+            if (Program.UserParams.ContainsKey("MaxRowsInList"))
+            {
+                int mxRowsNumber = MaxRowsInList;
+
+                string maxRows = Program.UserParams["MaxRowsInList"].DefaultIfEmpty(mxRowsNumber.ToString()).First();
+                //MessageBox.Show("before try maxRows = " + maxRows, "ИНФО");
+                try
+                {
+
+                    //MessageBox.Show("in try MaxRowsInList = " + MaxRowsInList, "ИНФО");
+                    MaxRowsInList = !string.IsNullOrEmpty(maxRows) ? int.Parse(maxRows) : mxRowsNumber;
+                }
+                catch
+                {
+                }
+            }
+            
+        }
+
         private object SubStringInterval(FieldInfoFull fi, object value)
         {
             if (fi.is_interval)

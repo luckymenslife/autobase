@@ -57,7 +57,7 @@ namespace axVisUtils
 
             frm.EndLoadDataToForm();
         }
-        public bool Save(DataColumn[] col)
+        public Int64 Save(DataColumn[] col)
         {
             try
             {
@@ -74,19 +74,19 @@ namespace axVisUtils
                         else
                         {
                             System.Windows.Forms.MessageBox.Show(@"s");
-                            return false;
+                            return 0;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     Rekod.Classes.workLogFile.writeLogFile(ex, true, true);
-                    return false;
+                    return 0;
                 }
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
         private void loadCol()
@@ -376,11 +376,11 @@ namespace axVisUtils
         }
 
         #endregion
-        private bool SaveData(DataColumn[] col)
+        private Int64 SaveData(DataColumn[] col)
         {
             if (col.Length < 1)
             {
-                return false;
+                return 0;
             }
             string sql = "";
             var param = new List<IParams>();
@@ -482,23 +482,23 @@ namespace axVisUtils
                 {
                     if (_wkt != null)
                     {
-                        sql += "" + _wkt + ");";
+                        sql += "" + _wkt + ") RETURNING " + pkfield + "; ";
                     }
                     else
                     {
                         sql = sql.Trim(new[] { ' ', ',' });
-                        sql += ");";
+                        sql += ") RETURNING " + pkfield + "; ";
                     }
                 }
                 else
                 {
-                    sql = sql.Substring(0, sql.Length - 2) + ");";
+                    sql = sql.Substring(0, sql.Length - 2) + ") RETURNING " + pkfield + "; ";
                 }
             }
             else if (_idObject != null)
             {
                 if (col.Length == 1 && !iswkt) // Тут тоже исправил. Было условие if(col.Length == 1). Когда не было редактирования геометрии этого условия было достаточно
-                    return false;
+                    return 0;
                 sql = String.Format("UPDATE \"{0}\".\"{1}\" SET ", _table.nameSheme, _table.nameDB);
                 for (int i = 0; i < col.Length; i++)
                 {
@@ -548,11 +548,11 @@ namespace axVisUtils
                 {
                     if (_wkt == null)
                     {
-                        sql += geomField1 + "=NULL WHERE " + pkfield + "=" + _idObject + ";";
+                        sql += geomField1 + "=NULL WHERE " + pkfield + "=" + _idObject + " RETURNING " + pkfield + "; ";
                     }
                     else
                     {
-                        sql += String.Format("{0} = {1} WHERE {2} = {3};",
+                        sql += String.Format("{0} = {1} WHERE {2} = {3} RETURNING " + pkfield + "; ",
                                                 geomField1,
                                                 _wkt,
                                                 pkfield,
@@ -562,9 +562,9 @@ namespace axVisUtils
                 else
                 {
                     if (sql == String.Format("UPDATE \"{0}\".\"{1}\" SET ", _table.nameSheme, _table.nameDB))
-                        return true;
+                        return 0;
                     else
-                        sql = sql.Substring(0, sql.Length - 2) + " WHERE " + pkfield + "=" + _idObject + ";";
+                        sql = sql.Substring(0, sql.Length - 2) + " WHERE " + pkfield + "=" + _idObject + "RETURNING " + pkfield + "; ";
                 }
             }
 
@@ -573,19 +573,19 @@ namespace axVisUtils
                 using (var sqlCmd = new SqlWork())
                 {
                     sqlCmd.sql = sql;
-                    return sqlCmd.ExecuteNonQuery(param);
+                    return sqlCmd.ExecuteUpdateReturningGid(param);
                 }
             }
             else
             {
-                return false;
+                return 0;
             }
         }
-        private bool SaveDataAndStyle(DataColumn[] col, Styles.objStylesM style)
+        private Int64 SaveDataAndStyle(DataColumn[] col, Styles.objStylesM style)
         {
             if (col.Length < 1)
             {
-                return false;
+                return 0;
             }
             string sql = "";
             var param = new List<IParams>();
@@ -676,7 +676,7 @@ namespace axVisUtils
                     sql += style.BrushStyle.Hatch;
 
                 }
-                sql += ");";
+                sql += ") RETURNING " + pkfield + "; ";
 
             }
             else if (_idObject != null)
@@ -743,7 +743,7 @@ namespace axVisUtils
                     sql += "brushstyle=" + style.BrushStyle.Style + ", ";
                     sql += "brushhatch=" + style.BrushStyle.Hatch;
                 }
-                sql += " WHERE " + pkfield + "=" + _idObject + ";";
+                sql += " WHERE " + pkfield + "=" + _idObject + " RETURNING " + pkfield + "; ";
             }
 
 
@@ -755,7 +755,7 @@ namespace axVisUtils
             }
             // тут нужна перезагрузка стиля
             classesOfMetods.ReloadRelatedTables(_table.idTable);
-            return rezult;
+            return 0;
         }
     }
     public struct col_info

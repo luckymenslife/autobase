@@ -178,6 +178,10 @@
     <Compile Include="MTClasses\Tools\JsonHelper.cs" />
     <Compile Include="MTClasses\Tools\MTAPI_Helper.cs" />
     <Compile Include="MTClasses\Tools\RouteWebAPI.cs" />
+    <Compile Include="MyComponents\DriverItem.cs" />
+    <Compile Include="MyComponents\GridCalendar.cs" />
+    <Compile Include="MyComponents\IssueItem.cs" />
+    <Compile Include="MyComponents\CarItem.cs" />
     <Compile Include="MyComponents\TextBoxNumber.cs">
       <SubType>Component</SubType>
     </Compile>

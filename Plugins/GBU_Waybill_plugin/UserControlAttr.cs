@@ -15,8 +15,7 @@ using GBU_Waybill_plugin.MTClasses;
 using GBU_Waybill_plugin.MTClasses.Tools;
 using NpgsqlTypes;
 using GBU_Waybill_plugin.MTClasses.Tasks;
-
-
+using GBU_Waybill_plugin.MyComponents;
 
 namespace GBU_Waybill_plugin
 {
@@ -24,8 +23,9 @@ namespace GBU_Waybill_plugin
     public partial class UserControlAttr : UserControl, IUserControlMain
     {
         private ContextMenu _contextMenu = new ContextMenu();
+        private ContextMenu _saveContextMenu = new ContextMenu();
         private bool _can_open;
-        private int? _id;
+        private int? pl_id;
         public string norma_sp = "", norma_mch = "", norma_mchobr = "", norma_t1 = "", norma_t2 = "", modcomment = "";
         public string err_body1;
         int secsave = 0;
@@ -36,24 +36,54 @@ namespace GBU_Waybill_plugin
         private bool isEdited { get; set; }
         private string _decSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator.ToString();
         private int org_id;
-        private int base_car_id;
+        private int ff;
+        private bool isRES;
+        private int resID = 0;
+        private string issType = "";
+        private string issFrom = "";
+        private string issTo = "";
+        private string issCust = "";
+        private int? issStartNum;
+        private List<int> tripToDelete;
         long? carExternalId;
+        private bool clearClose = true;
+        private bool isInit = true;
+        private bool isMotoPlRegime = false;
+        private bool isGridWithErrors = false;
+
+        private string prevNormCons = "";
+        private string prev100kmNormCons = "";
+
+        private int carService = 0;
+        private string carOwner;
+
+        private List<myItem> driversList = new List<myItem>();
+        private bool filterDriver1Combobox = true;
+        private bool filterDriver2Combobox = true;
+
+        private List<myItem> carsList = new List<myItem>();
+        private bool filterCarCombobox = true;
+        private bool factDateOutInitialized = false;
+        private bool factDateReturnInitialized = false;
+
+        private int prevDriver1Idx = -1;
+        private int prevDriver2Idx = -1;
+        private bool driverChangedAutomatically = true;
+        private bool carUpdateInProcess = false;
+
         public UserControlAttr(int? id_object, int id_table)
         {
 
             InitializeComponent();
 
-            _id = id_object;
+            pl_id = id_object;
 
             // Запоминаем таблицу на которую назначен плагин
             MapEditorTablePutList = id_table;
 
-            // Загрузка нормы если выбрали операцию, либо подсчет суммы расхода топлива
-            DataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
-
             // Загрузим список печатных форм
             _contextMenu.MenuItems.Clear();
-            foreach (var item in MainPluginClass.Work.FastReport.FindReportsByIdTable(260).ToArray())
+            foreach (var item in MainPluginClass.Work.FastReport.FindReportsByIdTable(460).ToArray())
             {
                 if (item.Type == enTypeReport.Object)
                 {
@@ -65,92 +95,38 @@ namespace GBU_Waybill_plugin
             splitButton1.SplitMenu = _contextMenu;
             splitButton1.Click += print_MenuStrip_Click;
 
-            // Единый сводный расчет и местами раскарска если внесли данные
-            TB_tax_f.TextChanged += T1_T2_TextChanged;
-            TB_tax_drain.TextChanged += T1_T2_TextChanged;
-            TB_tax_n.TextChanged += T1_T2_TextChanged;
-            TB_t1_k.TextChanged += T1_T2_TextChanged;
-            TB_t1_n.TextChanged += T1_T2_TextChanged;
-            TB_t1_f.TextChanged += T1_T2_TextChanged;
-            TB_t1_pl.TextChanged += T1_T2_TextChanged;
-            TB_t2_n.TextChanged += T1_T2_TextChanged;
-            TB_t2_k.TextChanged += T1_T2_TextChanged;
-            TB_t2_pl.TextChanged += T1_T2_TextChanged;
-            TB_t2_f.TextChanged += T1_T2_TextChanged;
-            TB_spk.TextChanged += T1_T2_TextChanged;
-            TB_sp_n.TextChanged += T1_T2_TextChanged;
-            TB_mch_k.TextChanged += T1_T2_TextChanged;
-            TB_mch.TextChanged += T1_T2_TextChanged;
-            TB_mch_obr_k.TextChanged += T1_T2_TextChanged;
-            TB_mch_obr.TextChanged += T1_T2_TextChanged;
+
+            _saveContextMenu.MenuItems.Clear();
+            MenuItem menuItem = _saveContextMenu.MenuItems.Add("Сохранить");
+            menuItem.Tag = "SAVE";
+            menuItem.Click += btn_save_click;
+            menuItem = _saveContextMenu.MenuItems.Add("Сохранить и закрыть");
+            menuItem.Tag = "SAVE&CLOSE";
+            menuItem.Click += btn_save_click;
+            
+            splitButton_save.SplitMenu = _saveContextMenu;
+            splitButton_save.Tag = "SAVE";
+            splitButton_save.Click += btn_save_click;
 
 
             // ПРОЧИЕ ДЛЯ КНОПОЧЕК
-            BTN_save.Click += btn_save_click;
-            //BTN_print.Click += btn_print_click;
             BTN_cancel.Click += btn_cancel_click;
-            btn_edit.Click += btn_edit_Click;
 
-            // ПРОЧИЕ ДЛЯ КОМБОБОКСА
-            CB_gar_no.SelectedIndexChanged += CB_gar_no_SelectedIndexChanged;
-            CB_gos_no.SelectedIndexChanged += CB_gos_no_SelectedIndexChanged_1;
-            CB_p_gar_no.SelectedIndexChanged += CB_p_gar_no_SelectedIndexChanged;
-            CB_p_gos_no.SelectedIndexChanged += CB_p_gos_no_SelectedIndexChanged;
-            CB_rrab.SelectedIndexChanged += CB_rrab_SelectedIndexChanged;
-            CB_top2.SelectedIndexChanged += CB_top2_SelectedIndexChanged;
-            CB_gruztype.SelectedIndexChanged += CB_gruztype_SelectedIndexChanged;
-            CB_wrktype.SelectedIndexChanged += CB_wrktype_SelectedIndexChanged;
-            CB_route.SelectedIndexChanged += CB_route_SelectedIndexChanged;
-            CB_pl_zone.SelectedIndexChanged += CB_pl_zone_SelectedIndexChanged;
-            CB_pl_driverel.SelectedIndexChanged += CB_pl_driverel_SelectedIndexChanged;
-            CB_pl_drivertn.SelectedIndexChanged += CB_pl_drivertn_SelectedIndexChanged;
-            CB_escort_driverel.SelectedIndexChanged += CB_escort_driverel_SelectedIndexChanged;
-            CB_escort_drivertn.SelectedIndexChanged += CB_escort_drivertn_SelectedIndexChanged;
-            CB_org.SelectedIndexChanged += CB_org_SelectedIndexChanged;
 
-            CB_top1.SelectedIndexChanged += CB_top1_SelectedIndexChanged;
-            TB_modelid.TextChanged += TB_modelid_TextChanged;
+            this.textBox_fuelBegin.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuelEnd.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuel100kmFact.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuel100kmPlan.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuelConsFact.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuelConsNorm.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuel1hPlan.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
+            this.textBox_fuelEquipPlan.LostFocus += new EventHandler(this.textBox_LostFocus_Formatter);
 
-            // Какие-то настройки компонентов
-            btn_tax_add.Click += btn_tax_add_Click;
-            btn_tax_del.Click += btn_tax_del_Click;
-            DataGridView1.DataError += DataGridView1_DataError;
-            CHB_calc_norm_type.CheckedChanged += CHB_calc_norm_type_CheckedChanged;
+            //this.dataGridView_trip.SelectionChanged += new EventHandler(this.dataGridView_trip_SelectionChanged);
 
-            create_task_btn.Visible = (_id != null) && MainPluginClass.OrgsIds.Contains(org_id.ToString());
             isEdited = false;
         }
-
-        private void CB_escort_drivertn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_escort_drivertn.SelectedItem).GetId;
-                Set_dict_values(r, CB_escort_driverel);
-            }
-            catch { }
-        }
-
-        private void CB_escort_driverel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_escort_driverel.SelectedItem).GetId;
-                Set_dict_values(r, CB_escort_drivertn);
-            }
-            catch { }
-        }
-
-        private void CHB_calc_norm_type_CheckedChanged(object sender, EventArgs e)
-        {
-            TB_t1_k.Enabled = !CHB_calc_norm_type.Checked;
-            if (CB_top2.SelectedItem != null && !CB_top2.SelectedItem.ToString().ToUpper().Trim().Equals("НЕТ"))
-            {
-                TB_t2_k.Enabled = !CHB_calc_norm_type.Checked;
-            }
-            T1_T2_TextChanged(null, new EventArgs());
-        }
-
+        
         void print_MenuStrip_Click(object sender, EventArgs e)
         {
 
@@ -160,58 +136,36 @@ namespace GBU_Waybill_plugin
             {
                 _report_item = (IReportItem_M)((MenuItem)sender).Tag;
             }
-            else if (sender is SplitButton && splitButton1.Tag != null)
+            else if (sender is SplitButton)
             {
                 foreach (MenuItem z in splitButton1.SplitMenu.MenuItems)
                 {
-                    if (z.Tag != null && z.Tag is IReportItem_M && ((IReportItem_M)z.Tag).IdReport == (int)splitButton1.Tag)
+                    if (z.Tag != null && z.Tag is IReportItem_M)
                     {
-                        _report_item = (IReportItem_M)z.Tag;
+                        if (splitButton1.Tag != null && ((IReportItem_M)z.Tag).IdReport == (int)splitButton1.Tag 
+                                || splitButton1.Tag == null && "Путевой лист".Equals(((IReportItem_M)z.Tag).Caption))
+                        {
+                            _report_item = (IReportItem_M)z.Tag;
+                            break;
+                        }
                     }
                 }
-
             }
 
             if (_report_item != null)
             {
-                //Проверим, нужно ли делать мед. проверку сотрудника:
-                bool can_med = false;
-                ISQLCommand cmd = MainPluginClass.App.SqlWork();
                 try
                 {
-                    cmd.sql = "select waybill_med_checks from autobase.orgs where gid = " + org_id.ToString();
-                    cmd.ExecuteReader();
-                    if (cmd.CanRead())
+                    if (save_PL())
                     {
-                        can_med = cmd.GetBoolean(0);
-                    }
-                }
-                catch
-                {
-                    can_med = false;
-                }
-                cmd.Close();
-                if (can_med)
-                {
-                    try
-                    {
-                        if (EmployeesSync.Url != null)
+                        if (this.pl_id != null)
                         {
-                            EmployeesSync temp = new EmployeesSync();
-                            temp.WayBillSyncMain(((myItem)CB_pl_drivertn.SelectedItem).Name);
+                            MainPluginClass.Work.FastReport.OpenReport(_report_item, new FilterTable(this.pl_id.Value, MapEditorTablePutList, " gid", ""));
                         }
-                    }
-                    catch { }
-                }
-                try
-                {
-                    if (this._id != null)
-                    {
-                        MainPluginClass.Work.FastReport.OpenReport(_report_item, new FilterTable(this._id.Value, MapEditorTablePutList, " gid", ""));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Сохраните путевой лист!", "Ошибка сохранения!");
+                        else
+                        {
+                            MessageBox.Show("Сохраните путевой лист!", "Ошибка сохранения!");
+                        }
                     }
                 }
                 catch (Exception x)
@@ -221,196 +175,13 @@ namespace GBU_Waybill_plugin
             }
         }
 
-        void CB_org_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CB_org.SelectedItem != null)
-            {
-                org_id = ((myItem)CB_org.SelectedItem).GetId;
-
-                ISQLCommand sql_frompl = MainPluginClass.App.SqlWork();
-
-                // ЗАГРУЗКА НАЗВАНИЯ сиквенса для путевого листа
-                sql_frompl.sql = @"SELECT waybill_name_seq FROM autobase.orgs WHERE gid = " + org_id.ToString();
-                org_put_list_seq_name = (string)sql_frompl.ExecuteScalar();
-                sql_frompl.Close();
-                //sql_frompl = MainPluginClass.App.SqlWork();
-            }
-            if (_id <= 0 || _id == null)
-            {
-                // Если мы только создаем путевой лист, то перазагружаем некоторые справочники зависимые от выбора организации
-                load_dicts_after_orgs_without_id_waybill();
-            }
-        }
-
-        void load_dicts_after_orgs_without_id_waybill()
-        {
-            if (org_id <= 0) return;
-            ISQLCommand sql_frompl = MainPluginClass.App.SqlWork();
-            ////////////////           ГОСНОМЕРА ГАРАЖНЫЕ НОМЕРА              ////////////////
-            CB_gos_no.Items.Clear();
-            CB_gar_no.Items.Clear();
-            // Отвязываем автомобиль от организации. Бахтин 05,04,2016
-            //sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id not in (2,39) AND org_id = " + org_id.ToString() + " AND (length(trim(gos_no))>0 OR length(trim(gar_no))>0) ORDER BY gos_no";
-            sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id not in (2,39) AND gid in (select * from  autobase.get_access_cars()) ORDER BY gos_no";
-            sql_frompl.ExecuteReader();
-            while (sql_frompl.CanRead())
-            {
-                myItem x = new myItem(sql_frompl.GetString(0) == null ? "-" : sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                myItem y = new myItem(sql_frompl.GetString(1) == null ? "-" : sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                CB_gos_no.Items.Add(x);
-                CB_gar_no.Items.Add(y);
-            }
-            sql_frompl.Close();
-            sql_frompl = MainPluginClass.App.SqlWork();
-
-            ////////////////           ГОСНОМЕРА ГАРАЖНЫЕ НОМЕРА  ПРИЦЕПА            ////////////////
-            CB_p_gos_no.Items.Clear();
-            CB_p_gar_no.Items.Clear();
-            // Добавим пустую строку, чтобы можно было "удалить" запись
-            CB_p_gos_no.Items.Add(new myItem(" ", -99));
-            CB_p_gar_no.Items.Add(new myItem(" ", -99));
-            // Отвязываем автомобиль от организации. Бахтин 05,04,2016
-            //sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id in (2,39) AND org_id = " + org_id.ToString() + " AND (length(trim(gos_no))>0 OR length(trim(gar_no))>0) ORDER BY gos_no";
-            sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id in (2,39) AND gid in (select * from  autobase.get_access_cars()) ORDER BY gos_no";
-            sql_frompl.ExecuteReader();
-            while (sql_frompl.CanRead())
-            {
-                myItem x = new myItem(sql_frompl.GetString(0) == null ? "-" : sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                myItem y = new myItem(sql_frompl.GetString(1) == null ? "-" : sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                CB_p_gos_no.Items.Add(x);
-                CB_p_gar_no.Items.Add(y);
-            }
-            sql_frompl.Close();
-            sql_frompl = MainPluginClass.App.SqlWork();
-
-            ////////////////           ВОДИТЕЛЬ, + сопровождение               ////////////////
-            CB_pl_driverel.Items.Clear();
-            CB_pl_drivertn.Items.Clear();
-            CB_escort_driverel.Items.Clear();
-            CB_escort_drivertn.Items.Clear();
-            CB_escort_driverel.Items.Add(new myItem(" ", -99));
-            CB_escort_drivertn.Items.Add(new myItem(" ", -99));
-            sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), coalesce(e.tab_no,'-') tab_no, e.gid " +
-                            "FROM autobase.employees e, autobase.employees_positions p, autobase.employees_positions_groups pg " +
-                            "WHERE e.position_id = p.gid and p.group_id = pg.gid and pg.gid = 3 and status_id <> 2 and e.org_id=" + org_id.ToString() + " order by e.lastname";
-            sql_frompl.ExecuteReader();
-            while (sql_frompl.CanRead())
-            {
-                myItem x_pl_driver = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                CB_pl_driverel.Items.Add(x_pl_driver);
-                CB_escort_driverel.Items.Add(x_pl_driver);
-                myItem x_pl_driver2 = new myItem(sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                CB_pl_drivertn.Items.Add(x_pl_driver2);
-                CB_escort_drivertn.Items.Add(x_pl_driver2);
-            }
-            sql_frompl.Close();
-            sql_frompl = MainPluginClass.App.SqlWork();
-
-            ////////////////           МАСТЕР               ////////////////
-            CB_pl_master.Items.Clear();
-            sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), e.gid " +
-                            "FROM autobase.employees e, autobase.employees_positions p, autobase.employees_positions_groups pg " +
-                            "WHERE e.position_id = p.gid and p.group_id = pg.gid and pg.gid = 1 and status_id <> 2 and e.org_id=" + org_id.ToString() + " order by e.lastname";
-            sql_frompl.ExecuteReader();
-            while (sql_frompl.CanRead())
-            {
-                myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                CB_pl_master.Items.Add(x);
-            }
-            sql_frompl.Close();
-            sql_frompl = MainPluginClass.App.SqlWork();
-
-            ////////////////           МАРШРУТ               ////////////////
-            CB_route.Items.Clear();
-            sql_frompl.sql = "select coalesce(name,'-'), gid from autobase.waybills_routes where org_id = " + org_id.ToString() + " AND length(trim(name)) > 0 order by name";
-            sql_frompl.ExecuteReader();
-            while (sql_frompl.CanRead())
-            {
-                myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                CB_route.Items.Add(x);
-            }
-            sql_frompl.Close();
-            sql_frompl = MainPluginClass.App.SqlWork();
-        }
-
-        void DataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        void btn_edit_Click(object sender, EventArgs e)
-        {
-            isEdited = true;
-            UserControlAttr_Load(this, new EventArgs());
-            isEdited = true;
-            this.PerformLayout();
-            enable_all_Controls(this);
-            this.ResumeLayout();
-        }
-
-        private void enable_all_Controls(Control pControl)
-        {
-            foreach (Control item in pControl.Controls)
-            {
-                if (item.Enabled == false && !item.Equals(CB_org))
-                    item.Enabled = true;
-                if (item.Controls.Count > 0)
-                    enable_all_Controls(item);
-            }
-
-        }
-
-        void CB_pl_drivertn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_pl_drivertn.SelectedItem).GetId;
-                Set_dict_values(r, CB_pl_driverel);
-                CB_pl_drivertn.BackColor = SystemColors.Window;
-            }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора водителя!"); }
-
-        }
-
-        void btn_tax_del_Click(object sender, EventArgs e)
-        {
-            if (DataGridView1.SelectedRows.Count > 0 && DataGridView1.SelectedRows[0].IsNewRow == false)
-            {
-                if (DataGridView1.SelectedRows[0].Cells["oper_gid"].Value != null && (int)DataGridView1.SelectedRows[0].Cells["oper_gid"].Value > 0)
-                {
-                    taks_to_del.Add((int)DataGridView1.SelectedRows[0].Cells["oper_gid"].Value);
-                }
-                DataGridView1.Rows.RemoveAt(DataGridView1.SelectedRows[0].Index);
-            }
-        }
-
-        void btn_tax_add_Click(object sender, EventArgs e)
-        {
-            if (operacija.Items.Count > 0)
-            {
-                int k = DataGridView1.Rows.Add();
-                {
-                    try
-                    {
-                        int g = ((myItem)operacija.Items[0]).GetId;
-                        DataGridView1.Rows[k].Cells["operacija"].Value = g;
-                    }
-                    catch { }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Не удалось загрузить операции для данного ТС!");
-            }
-        }
-
         void btn_cancel_click(object sender, EventArgs e)
         {
             try
             {
                 this.ParentForm.Close();
             }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно закрыть путевой лист: " + x.Message, "Ошибка путевого листа!"); }
+            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно закрыть путевой лист: " + x.Message, "Ошибка путевого листа!"); }        
         }
 
         public bool CancelOpen
@@ -464,2444 +235,1305 @@ namespace GBU_Waybill_plugin
             }
         }
 
-        /// <summary>
-        /// В зависимости от ситуации, разрешаем или запрещаем редактировать те или иные контролы
-        /// </summary>
-        private void Decoration()
-        {
-            if (CanEditPutList_isAdmin && secsave >= 1)
-            {
-                btn_edit.Visible = true;
-            }
-            else
-            {
-                btn_edit.Visible = false;
-            }
-            if (secsave >= 2)
-            {
-                CHB_calc_norm_type.Enabled = false;
-                CB_pl_master.Enabled = false;
-                DateTimePicker4.Enabled = false;
-                dateTimePicker7.Enabled = false;
-                DateTimePicker2.Enabled = false;
-                dateTimePicker6.Enabled = false;
-                TB_ttd.Enabled = false;
-                TB_Ezdok.Enabled = false;
-                TB_spk.Enabled = false;
-                TB_mch_k.Enabled = false;
-                TB_mch_obr_k.Enabled = false;
-                TB_t1_k.Enabled = false; // Настраивается checkbox'ом "Остаток по норме"
-                TB_t2_k.Enabled = false;
-                TB_t1_f.Enabled = false;
-                TB_t2_f.Enabled = false;
-                btn_tax_add.Enabled = false;
-                btn_tax_del.Enabled = false;
-                BTN_save.Enabled = false;
-                DataGridView1.Enabled = false;
-                TB_rab.Enabled = false;
-                TB_obed.Enabled = false;
-                TB_dejrst.Enabled = false;
-                TB_remont.Enabled = false;
-                TB_den.Enabled = false;
-                TB_noch.Enabled = false;
-                TB_stavka.Enabled = false;
-                TB_itogo.Enabled = false;
-                RTB_comm.Enabled = false;
-                CB_route.Enabled = false;
-                CB_wrktype.Enabled = false;
-                CB_gruztype.Enabled = false;
-                CB_pl_zone.Enabled = false;
-                TB_sp_n.Enabled = false;
-                TB_mch.Enabled = false;
-                TB_t1_pl.Enabled = false;
-                TB_t1_n.Enabled = false;
-                TB_t2_pl.Enabled = false;
-                TB_t2_n.Enabled = false;
-                CB_fuel_card.Enabled = false;
-                CB_fuel_card2.Enabled = false;
-                TB_mch_obr.Enabled = false;
-                TB_tax_drain.Enabled = false;
-            }
-            else if (secsave == 1)
-            {
-                CB_fuel_card.Enabled = true;
-                CHB_calc_norm_type.Enabled = true;
-                TB_sp_n.BackColor = Color.FromArgb(255, 224, 192);
-                TB_mch.BackColor = Color.FromArgb(255, 224, 192);
-                TB_mch_obr.BackColor = Color.FromArgb(255, 224, 192);
-                CB_pl_master.BackColor = Color.FromArgb(255, 224, 192);
-                DateTimePicker4.BackColor = Color.FromArgb(255, 224, 192);
-                dateTimePicker7.BackColor = Color.FromArgb(255, 224, 192);
-                DateTimePicker2.BackColor = Color.FromArgb(255, 224, 192);
-                dateTimePicker6.BackColor = Color.FromArgb(255, 224, 192);
-                CB_route.BackColor = Color.FromArgb(255, 224, 192);
-                CB_wrktype.BackColor = Color.FromArgb(255, 224, 192);
-                CB_gruztype.BackColor = Color.FromArgb(255, 224, 192);
-                CB_pl_zone.BackColor = Color.FromArgb(255, 224, 192);
-                TB_Ezdok.BackColor = Color.FromArgb(255, 224, 192);
-                if (TB_sp_n.Text != null && !TB_sp_n.Text.Equals("0") && !TB_sp_n.Text.Equals(""))
-                {
-                    TB_spk.BackColor = Color.FromArgb(255, 224, 192);
-                }
-                if (TB_mch.Text != null && !TB_mch.Text.Equals("0") && !TB_mch.Text.Equals(""))
-                {
-                    TB_mch_k.BackColor = Color.FromArgb(255, 224, 192);
-                }
-                if (TB_mch_obr.Text != null && !TB_mch_obr.Text.Equals("0") && !TB_mch_obr.Text.Equals(""))
-                {
-                    TB_mch_obr_k.BackColor = Color.FromArgb(255, 224, 192);
-                }
-                TB_t1_k.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t2_k.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t1_f.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t2_f.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t1_pl.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t1_n.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t2_pl.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t2_n.BackColor = Color.FromArgb(255, 224, 192);
-                CB_pl_master.Enabled = true;
-                DateTimePicker4.Enabled = true;
-                dateTimePicker7.Enabled = true;
-                DateTimePicker2.Enabled = true;
-                dateTimePicker6.Enabled = true;
-                TB_ttd.Enabled = true;
-                TB_Ezdok.Enabled = true;
-                TB_spk.Enabled = true;
-
-                TB_mch_k.Enabled = true;
-                TB_mch_k.BackColor = Color.FromArgb(255, 224, 192);
-                TB_mch_obr_k.Enabled = true;
-                TB_mch_obr_k.BackColor = Color.FromArgb(255, 224, 192);
-                TB_t1_k.Enabled = !CHB_calc_norm_type.Checked;
-                if (CB_top2.SelectedItem != null && !CB_top2.SelectedItem.ToString().ToUpper().Trim().Equals("НЕТ"))
-                {
-                    TB_t2_k.Enabled = true;
-                    TB_t2_f.Enabled = true;
-                }
-                TB_t1_f.Enabled = true;
-                btn_tax_add.Enabled = true;
-                btn_tax_del.Enabled = true;
-                TB_tax_drain.Enabled = true;
-            }
-            if (_id != null)
-            {
-                CB_status.Enabled = false;
-                CB_pl_driverel.BackColor = SystemColors.Window;
-                CB_pl_drivertn.BackColor = SystemColors.Window;
-                CB_gos_no.BackColor = SystemColors.Window;
-                CB_gar_no.BackColor = SystemColors.Window;
-                CB_rrab.BackColor = SystemColors.Window;
-                CB_route.BackColor = SystemColors.Window;
-                CB_wrktype.BackColor = SystemColors.Window;
-                CB_gruztype.BackColor = SystemColors.Window;
-                CB_pl_zone.BackColor = SystemColors.Window;
-                TB_sp_n.BackColor = SystemColors.Window;
-                TB_mch.BackColor = SystemColors.Window;
-                TB_mch_obr.BackColor = SystemColors.Window;
-                CB_top1.BackColor = SystemColors.Window;
-                TB_t1_pl.BackColor = SystemColors.Window;
-                TB_t1_n.BackColor = SystemColors.Window;
-                CB_top2.BackColor = SystemColors.Window;
-                TB_t2_pl.BackColor = SystemColors.Window;
-                TB_t2_n.BackColor = SystemColors.Window;
-                DateTimePicker4.Visible = true;
-                dateTimePicker7.Visible = true;
-                DateTimePicker2.Visible = true;
-                dateTimePicker6.Visible = true;
-                Label6.Visible = true;
-                Label4.Visible = true;
-                CB_gar_no.Enabled = false;
-                CB_gos_no.Enabled = false;
-                CB_p_gar_no.Enabled = false;
-                CB_p_gos_no.Enabled = false;
-                CB_escort_driverel.Enabled = false;
-                CB_escort_drivertn.Enabled = false;
-                CB_pl_driverel.Enabled = false;
-                CB_pl_drivertn.Enabled = false;
-                CB_rrab.Enabled = false;
-                CB_top1.Enabled = false;
-                CB_top2.Enabled = false;
-                CB_notes.Enabled = false;
-                TB_brig.Enabled = false;
-                TB_col.Enabled = false;
-                splitButton1.Enabled = true;
-                DateTimePicker1.Enabled = false;
-                dateTimePicker5.Enabled = false;
-                DateTimePicker3.Enabled = false;
-                dateTimePicker8.Enabled = false;
-            }
-            else
-            {
-                CHB_calc_norm_type.Enabled = false;
-                CB_fuel_card.Enabled = false;
-                CB_fuel_card2.Enabled = false;
-                btn_tax_add.Enabled = false;
-                btn_tax_del.Enabled = false;
-                TB_spk.Enabled = false;
-                TB_mch_k.Enabled = false;
-                TB_mch_obr_k.Enabled = false;
-                TB_t1_k.Enabled = false; // Настраивается checkbox'ом "Остаток по норме"
-                TB_t2_k.Enabled = false;
-                TB_t1_f.Enabled = false;
-                TB_t2_f.Enabled = false;
-                splitButton1.Enabled = false;
-                btn_tax_del.Enabled = false;
-                DateTimePicker1.Value = DateTime.Today;
-                DateTimePicker3.Value = DateTime.Today.AddDays(+1);
-                DateTimePicker4.Value = DateTimePicker3.Value;
-                DateTimePicker2.Value = DateTimePicker1.Value;
-                dateTimePicker5.Value = DateTimePicker1.Value.AddHours(8);
-                dateTimePicker6.Value = dateTimePicker5.Value;
-                dateTimePicker8.Value = DateTimePicker3.Value.AddHours(8);
-                dateTimePicker7.Value = dateTimePicker8.Value;
-                TB_tax_drain.Enabled = false;
-            }
-            CB_status.Enabled = false;
-            // Разрешение сохранять путевой лист
-            if (!MainPluginClass.App.getWriteTable(260)) // В данном случае вьюшка v_waybills
-            {
-                BTN_save.Enabled = false;
-            }
-            // Разрешение сохранять таксировку
-            if (!MainPluginClass.App.getWriteTable(174)) // таблица waybills_taks
-            {
-                btn_tax_add.Enabled = false;
-                btn_tax_del.Enabled = false;
-            }
-        }
-
         private void UserControlAttr_Load(object sender, EventArgs e)
         {
             this.ParentForm.PerformLayout();
             this.ParentForm.Text = "Путевой лист";
             this.ParentForm.MinimumSize = new Size(this.ParentForm.Size.Width, 0);
             taks_to_del = new List<int>();
+            tripToDelete = new List<int>();
             // Поправим положение на экране
             CorrectPosition();
 
+            this.ParentForm.FormClosing += new FormClosingEventHandler(OnFormClosing);
+            this.dataGridView_trip.CellValueChanged += new DataGridViewCellEventHandler(this.dg_cell_changed);
+            this.dataGridView_trip.CellValueChanged += new DataGridViewCellEventHandler(this.dataGrid_trip_Formatter);
+
+
+            //comboBox_driver1.DrawMode = DrawMode.OwnerDrawFixed;
+            //comboBox_driver1.DrawItem += new DrawItemEventHandler(comboBox_driver1_DrawItem);
+
+            //comboBox_driver2.DrawMode = DrawMode.OwnerDrawFixed;
+            //comboBox_driver2.DrawItem += new DrawItemEventHandler(comboBox_driver2_DrawItem);
+
             // Определение переменных для последующей установки элементов справчочника
-            int id_avt = 0;
-            int id_pl_driver = 0;
-            int id_escort_driver = 0;
-            int id_topl = 0;
-            int id_marsh = 0;
-            int id_work = 0;
-            int id_gruz = 0;
-            int id_mark = 0;
-            int id_pl_zone = 0;
-            int id_pl_master = 0;
-            int id_top2 = 0;
-            int id_rrab = 0;
-            int id_trailer = 0;
-            int id_org = 0;
+            int id_driver1 = 0;
+            int id_driver2 = 0;
+            int id_car = 0;
+            int id_issue = 0;
+
+            int serviceId = 0;
+
+            int pl_creator_id = 0;
+
 
 
             ISQLCommand sql_frompl = MainPluginClass.App.SqlWork();
+            ISQLCommand sql_frompl_new = MainPluginClass.App.SqlWork();
 
+            ///////////////////// ПОДГРУЗКА РАЙОНА РАСПОРЯЖЕНИЯ ТЕКУЩЕГО ПОЛЬЗОВАТЕЛЯ ///////////////////////////
+            
+            sql_frompl_new = MainPluginClass.App.SqlWork();
 
-            if (_id != null)
+            sql_frompl_new.sql = "SELECT urk.sokrawennoe_naimenovanie " +
+                "FROM autobase.umjets_rajon_zakreplenie urk " +
+                    "JOIN autobase.users usr ON(usr.rajon_zakreplenija = urk.gid AND usr.user_id = autobase.get_user_id())";
+            try
             {
-                // alter table autobase.waybills add column escort_driver_id integer;
-                sql_frompl.sql = "select doc_no, date(date_out_plan), date(date_out_fact), date(date_in_plan), date(date_in_plan), " +
-                "motorcade, brigade, ttd_count, trip_count, km_begin, km_end, mh_begin," +
-                "mh_end, mh_ob_begin, mh_ob_end , fuel_plan, fuel_fact, " +
-                "fuel_begin, fuel_end, pay_work_h,pay_lunch_h, pay_duty_h, " +
-                "pay_repair_h, pay_day_h, pay_night_h, pay_rate_rh, pay_total_r, notes, fuel_plan2, " +
-                "fuel_fact2, fuel_begin2, fuel_end2, secondsave, date_out_plan, date_out_fact, date_in_plan, date_in_fact, support_persons, fuel_card_id, " +
-                "car_id, driver_id, fuel_mark_id, route_id, work_type_id, cargo_type_id, " +
-                "special_note_id, road_type_id, automaster_id, fuel_mark2_id, work_regime_id, trailer_id, km_run_glonass,mh_run_glonass,mh_ob_run_glonass, " +
-                "fuel_fact_glonass,fuel_begin_glonass,fuel_end_glonass,fuel_fact2_glonass,fuel_begin2_glonass,fuel_end2_glonass,fuel_card2_id,org_id,calc_fuel_drain, calc_norm_type, escort_driver_id " +
-                "FROM autobase.waybills WHERE gid = " + _id;
+                sql_frompl_new.ExecuteReader();
+                if (sql_frompl_new.CanRead() && pl_id == null)
+                {
+                        textBox_userDept.Text = sql_frompl_new.GetString("sokrawennoe_naimenovanie");
+                }
+            }
+            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
+
+            sql_frompl_new.Close();
+
+
+
+            ///////////////////// ЯВЛЯЕТСЯ ЛИ ТЕКУЩИЙ ПОЛЬЗОВАТЕЛЬ ПОЛЬЗОВАТЕЛЕМ РЭС + Параметры РЭС///////////////////////////
+
+            if (pl_id != null)
+            {
+                sql_frompl_new = MainPluginClass.App.SqlWork();
+
+                sql_frompl_new.sql = "SELECT usr.id as user_id " +
+                                     "FROM autobase._umjets_putevye_listy_history plh " +
+                                     "  JOIN sys_scheme.user_db usr ON usr.login = plh.user_name " +
+                                     "WHERE type_operation = 1 AND plh.gid = " + pl_id;
                 try
                 {
-                    sql_frompl.ExecuteReader();
-                    if (sql_frompl.CanRead())
+                    sql_frompl_new.ExecuteReader();
+                    if (sql_frompl_new.CanRead())
                     {
-                        TextBox1.Text = sql_frompl.GetString(0);
-                        DateTimePicker1.Value = DateTime.Parse(sql_frompl.GetString(1));
-                        DateTimePicker2.Value = DateTime.Parse(sql_frompl.GetString(2));
-                        DateTimePicker3.Value = DateTime.Parse(sql_frompl.GetString(3));
-                        DateTimePicker4.Value = DateTime.Parse(sql_frompl.GetString(4));
-                        dateTimePicker5.Value = DateTime.Parse(sql_frompl.GetString(33));
-                        dateTimePicker6.Value = DateTime.Parse(sql_frompl.GetString(34));
-                        dateTimePicker7.Value = DateTime.Parse(sql_frompl.GetString(36));
-                        dateTimePicker8.Value = DateTime.Parse(sql_frompl.GetString(35));
-                        TB_col.Text = sql_frompl.GetString(5);
-                        TB_brig.Text = sql_frompl.GetString(6);
-                        TB_ttd.Text = sql_frompl.GetString(7);
-                        TB_Ezdok.Text = sql_frompl.GetString(8);
-                        if (sql_frompl.GetString(9) != null) { TB_sp_n.Text = (Convert.ToDecimal(sql_frompl.GetString(9).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(10) != null) { TB_spk.Text = (Convert.ToDecimal(sql_frompl.GetString(10).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(11) != null) { TB_mch.Text = (Convert.ToDecimal(sql_frompl.GetString(11).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(12) != null) { TB_mch_k.Text = (Convert.ToDecimal(sql_frompl.GetString(12).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(13) != null) { TB_mch_obr.Text = (Convert.ToDecimal(sql_frompl.GetString(13).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(14) != null) { TB_mch_obr_k.Text = (Convert.ToDecimal(sql_frompl.GetString(14).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(15) != null) { TB_t1_pl.Text = (Convert.ToDecimal(sql_frompl.GetString(15).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(16) != null) { TB_t1_f.Text = (Convert.ToDecimal(sql_frompl.GetString(16).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(17) != null) { TB_t1_n.Text = (Convert.ToDecimal(sql_frompl.GetString(17).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(18) != null) { TB_t1_k.Text = (Convert.ToDecimal(sql_frompl.GetString(18).Replace(".", _decSeparator))).ToString(); };
-
-                        if (sql_frompl.GetString(19) != null) { TB_rab.Text = (Convert.ToDecimal(sql_frompl.GetString(19).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(20) != null) { TB_obed.Text = (Convert.ToDecimal(sql_frompl.GetString(20).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(21) != null) { TB_dejrst.Text = (Convert.ToDecimal(sql_frompl.GetString(21).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(22) != null) { TB_remont.Text = (Convert.ToDecimal(sql_frompl.GetString(22).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(23) != null) { TB_den.Text = (Convert.ToDecimal(sql_frompl.GetString(23).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(24) != null) { TB_noch.Text = (Convert.ToDecimal(sql_frompl.GetString(24).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(25) != null) { TB_stavka.Text = (Convert.ToDecimal(sql_frompl.GetString(25).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(26) != null) { TB_itogo.Text = (Convert.ToDecimal(sql_frompl.GetString(26).Replace(".", _decSeparator))).ToString(); };
-
-                        RTB_comm.Text = sql_frompl.GetString(27);
-                        if (sql_frompl.GetString(28) != null) { TB_t2_pl.Text = (Convert.ToDecimal(sql_frompl.GetString(28).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(29) != null) { TB_t2_f.Text = (Convert.ToDecimal(sql_frompl.GetString(29).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(30) != null) { TB_t2_n.Text = (Convert.ToDecimal(sql_frompl.GetString(30).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetString(31) != null) { TB_t2_k.Text = (Convert.ToDecimal(sql_frompl.GetString(31).Replace(".", _decSeparator))).ToString(); };
-                        if (sql_frompl.GetValue("calc_norm_type") != null) { CHB_calc_norm_type.Checked = sql_frompl.GetInt32("calc_norm_type") > 0 ? true : false; }
-
-                        TB_sp_glprob.Text = sql_frompl.GetString(51);
-                        //TextBox23.Text = sql_frompl.GetString(52);
-                        //TextBox27.Text = sql_frompl.GetString(53);
-                        TextBox35.Text = sql_frompl.GetString(54);
-                        TextBox36.Text = sql_frompl.GetString(55);
-                        TextBox37.Text = sql_frompl.GetString(56);
-                        TextBox40.Text = sql_frompl.GetString(57);
-                        TextBox39.Text = sql_frompl.GetString(58);
-                        TextBox38.Text = sql_frompl.GetString(59);
-                        TB_tax_drain.Text = sql_frompl.GetString("calc_fuel_drain");
-
-                        CB_fuel_card.Tag = sql_frompl.GetInt32(38);
-                        CB_fuel_card2.Tag = sql_frompl.GetInt32(60);
-                        secsave = sql_frompl.GetInt32(32);
-                        id_avt = sql_frompl.GetInt32(39);
-                        base_car_id = id_avt;
-                        id_pl_driver = sql_frompl.GetInt32(40);
-                        id_escort_driver = sql_frompl.GetInt32(64);
-                        id_topl = sql_frompl.GetInt32(41);
-                        id_marsh = sql_frompl.GetInt32(42);
-                        id_work = sql_frompl.GetInt32(43);
-                        id_gruz = sql_frompl.GetInt32(44);
-                        id_mark = sql_frompl.GetInt32(45);
-                        id_pl_zone = sql_frompl.GetInt32(46);
-                        id_pl_master = sql_frompl.GetInt32(47);
-                        id_top2 = sql_frompl.GetInt32(48);
-                        id_rrab = sql_frompl.GetInt32(49);
-                        id_trailer = sql_frompl.GetInt32(50);
-                        id_org = sql_frompl.GetInt32(61);
+                        pl_creator_id = sql_frompl_new.GetInt32("user_id");
                     }
                 }
                 catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-                if (secsave == 1) //На этапе закрытия путевого листа, время возвращения факт ставим плановому. Тоже для выезда.
-                {
-                    DateTimePicker4.Value = DateTimePicker3.Value;
-                    dateTimePicker7.Value = dateTimePicker8.Value;
-                    DateTimePicker2.Value = DateTimePicker1.Value;
-                    dateTimePicker6.Value = dateTimePicker5.Value;
-                }
+
+                sql_frompl_new.Close();
 
             }
-            // Загрузка сопутствующих справочных элементов
+            
+            sql_frompl_new = MainPluginClass.App.SqlWork();
+
+            sql_frompl_new.sql = "SELECT urk.gid, urk.sokrawennoe_naimenovanie, urk.otkuda_sleduet, urk.v_rasporjazhenie, urk.adres_podachi, urk.vid_raboty, " +
+                    "urk.nachalnye_nomera_putevogo_lista " +
+                "FROM autobase.umjets_rajon_zakreplenie urk " +
+                    "JOIN autobase.users usr ON(usr.rajon_zakreplenija = urk.gid AND usr.user_id = " + (pl_creator_id > 0 ? pl_creator_id.ToString() : "autobase.get_user_id()") + " " +
+                        "AND urk.sokrawennoe_naimenovanie ilike '%РЭС%')";
             try
             {
-                // Попытка установить право редактирование путевого листа
-                if (_id != null)
+                isRES = false;
+                sql_frompl_new.ExecuteReader();
+                if (sql_frompl_new.CanRead())
                 {
-                    sql_frompl.sql = @"SELECT * FROM autobase.is_admin_waybills()";
-                    if (sql_frompl.ExecuteReader() && sql_frompl.CanRead())
-                    {
-                        CanEditPutList_isAdmin = sql_frompl.GetInt32(0) == 1;
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-                }
-                else
-                    CanEditPutList_isAdmin = false;
+                    isRES = true;
+                    comboBox_issue.Visible = false;
+                    textBox_issueNum.Visible = true;
 
-                CB_org.Items.Clear();
-                sql_frompl.sql = @"SELECT gid, coalesce(name,'-') FROM autobase.orgs WHERE gid in (SELECT autobase.get_access_orgs())" + (id_org > 0 ? " or gid =" + id_org.ToString() : "");
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(1), sql_frompl.GetInt32(0));
-                    CB_org.Items.Add(x);
+                    resID = sql_frompl_new.GetInt32("gid");
+                    issType = sql_frompl_new.GetString("vid_raboty");
+                    issFrom = sql_frompl_new.GetString("otkuda_sleduet");
+                    issTo = sql_frompl_new.GetString("adres_podachi");
+                    issCust = sql_frompl_new.GetString("v_rasporjazhenie");
+                    issStartNum = sql_frompl_new.GetInt32("nachalnye_nomera_putevogo_lista");
                 }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-                // Если организация одна, то сразу устанавливаем ее
-                if (CB_org.Items.Count == 1)
-                {
-                    CB_org.SelectedIndex = 0;
-                    CB_org.Enabled = false;
-                }
-                // Или если мы загружаем пут. лист.
-                if (id_org > 0)
-                {
-                    foreach (myItem item in CB_org.Items)
-                    {
-                        if (item.GetId == id_org)
-                        {
-                            CB_org.SelectedItem = item;
-                            CB_org.Enabled = false;
-                            break;
-                        }
-                    }
-                }
-                // Если мы загружаем пут. луст, то после установки организации, справочники не подгрузятся (_id > 0)
-                // Для того, чтобы загружая справочники, учесть тот факт, что некоторые присоединенные к организации "элементы" типа водителей или машин
-                // на момент загрузки пут. листа, могут быть уже откреплены, но их нам все же надо загрузить.
-                //
-                // UPD. Загружаем только установленные эелементы, кроме тех, которые выбираются на этапе открытого путевого листа, т.е. для его закрытия
-                if (_id != null && id_org > 0)
-                {
-
-                    ////////////////           ГОСНОМЕРА ГАРАЖНЫЕ НОМЕРА              ////////////////
-                    CB_gos_no.Items.Clear();
-                    CB_gar_no.Items.Clear();
-                    if (isEdited || secsave < 1)
-                    {
-                        // Отвязываем от организации. Бахтин 05,04,2016
-                        //sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id not in (2,39) AND org_id = " + id_org.ToString() + " AND (length(trim(gos_no))>0 OR length(trim(gar_no))>0) " + (id_avt > 0 ? "or gid = " + id_avt.ToString() : "") + " ORDER BY gos_no";
-                        sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id not in (2,39) and gid in (select * from autobase.get_access_cars()) " + (id_avt > 0 ? "or gid = " + id_avt.ToString() : "") + " ORDER BY gos_no";
-                    }
-                    else
-                    {
-                        sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where gid = " + id_avt.ToString();
-                    }
-                    sql_frompl.ExecuteReader();
-                    while (sql_frompl.CanRead())
-                    {
-                        myItem x = new myItem(sql_frompl.GetString(0) == null ? "-" : sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                        myItem y = new myItem(sql_frompl.GetString(1) == null ? "-" : sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                        CB_gos_no.Items.Add(x);
-                        CB_gar_no.Items.Add(y);
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-
-                    ////////////////           ГОСНОМЕРА ГАРАЖНЫЕ НОМЕРА  ПРИЦЕПА            ////////////////
-                    CB_p_gos_no.Items.Clear();
-                    CB_p_gar_no.Items.Clear();
-                    CB_p_gos_no.Items.Add(new myItem(" ", -99));
-                    CB_p_gar_no.Items.Add(new myItem(" ", -99));
-                    if (isEdited || secsave < 1)
-                    {
-                        // Отвязываем от организации. Бахтин 05,04,2016
-                        //sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id in (2,39) AND org_id = " + id_org.ToString() + " AND (length(trim(gos_no))>0 OR length(trim(gar_no))>0) " + (id_trailer > 0 ? "or gid = " + id_trailer.ToString() : "") + " ORDER BY gos_no";
-                        sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where type_id in (2,39) and gid in (select * from autobase.get_access_cars())" + (id_trailer > 0 ? "or gid = " + id_trailer.ToString() : "") + " ORDER BY gos_no";
-                    }
-                    else
-                    {
-                        sql_frompl.sql = "select coalesce(gos_no,'-'), coalesce(gar_no,'-'), gid from autobase.cars where gid = " + id_trailer.ToString();
-                    }
-                    sql_frompl.ExecuteReader();
-                    while (sql_frompl.CanRead())
-                    {
-                        myItem x = new myItem(sql_frompl.GetString(0) == null ? "-" : sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                        myItem y = new myItem(sql_frompl.GetString(1) == null ? "-" : sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                        CB_p_gos_no.Items.Add(x);
-                        CB_p_gar_no.Items.Add(y);
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-
-                    ////////////////           ВОДИТЕЛЬ               ////////////////
-                    CB_pl_driverel.Items.Clear();
-                    CB_pl_drivertn.Items.Clear();
-                    CB_escort_driverel.Items.Clear();
-                    CB_escort_drivertn.Items.Clear();
-                    CB_escort_driverel.Items.Add(new myItem(" ", -99));
-                    CB_escort_drivertn.Items.Add(new myItem(" ", -99));
-                    if (isEdited || secsave < 1)
-                    {
-                        sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), coalesce(e.tab_no,'-') tab_no, e.gid " +
-                                "FROM autobase.employees e, autobase.employees_positions p, autobase.employees_positions_groups pg " +
-                                "WHERE e.position_id = p.gid and p.group_id = pg.gid and ((pg.gid = 3 and status_id <> 2 and e.org_id=" + org_id.ToString() + (id_pl_driver > 0 ? ") or e.gid =" + id_pl_driver.ToString() + ") order by e.lastname" : ")) order by e.lastname");
-                    }
-                    else
-                    {
-                        sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), coalesce(e.tab_no,'-') tab_no, e.gid " +
-                            "FROM autobase.employees e WHERE e.gid in (" + id_pl_driver.ToString() + ", " + id_escort_driver.ToString() + ")";
-                    }
-                    sql_frompl.ExecuteReader();
-                    while (sql_frompl.CanRead())
-                    {
-                        myItem x_pl_driver = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(2));
-                        CB_pl_driverel.Items.Add(x_pl_driver);
-                        CB_escort_driverel.Items.Add(x_pl_driver);
-                        myItem x_pl_driver2 = new myItem(sql_frompl.GetString(1), sql_frompl.GetInt32(2));
-                        CB_pl_drivertn.Items.Add(x_pl_driver2);
-                        CB_escort_drivertn.Items.Add(x_pl_driver2);
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-
-                    ////////////////           МАСТЕР               ////////////////
-                    CB_pl_master.Items.Clear();
-                    if (isEdited || secsave <= 1)
-                    {
-                        sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), e.gid " +
-                                "FROM autobase.employees e, autobase.employees_positions p, autobase.employees_positions_groups pg " +
-                                "WHERE e.position_id = p.gid and p.group_id = pg.gid and ((pg.gid = 1 and status_id <> 2 and e.org_id=" + org_id.ToString() + (id_pl_master > 0 ? ") or e.gid =" + id_pl_master.ToString() + ") order by e.lastname" : ")) order by e.lastname");
-                    }
-                    else {
-                        sql_frompl.sql = "SELECT coalesce(e.lastname,'') ||' '|| coalesce(e.firstname,'') ||' '|| coalesce(e.middlename,''), e.gid " +
-                                "FROM autobase.employees e WHERE e.gid =" + id_pl_master.ToString();
-                    }
-                    sql_frompl.ExecuteReader();
-                    while (sql_frompl.CanRead())
-                    {
-                        myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                        CB_pl_master.Items.Add(x);
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-
-                    ////////////////           МАРШРУТ               ////////////////
-                    CB_route.Items.Clear();
-                    if (isEdited || secsave <= 1)
-                    {
-                        sql_frompl.sql = "select coalesce(name,'-'), gid from autobase.waybills_routes where org_id = " + id_org.ToString() + " AND length(trim(name)) > 0 " + (id_marsh > 0 ? " or gid = " + id_marsh.ToString() : "") + " order by name";
-                    }
-                    else {
-                        sql_frompl.sql = "select coalesce(name,'-'), gid from autobase.waybills_routes where gid = " + id_marsh.ToString();
-                    }
-                    sql_frompl.ExecuteReader();
-                    while (sql_frompl.CanRead())
-                    {
-                        myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                        CB_route.Items.Add(x);
-                    }
-                    sql_frompl.Close();
-                    sql_frompl = MainPluginClass.App.SqlWork();
-                }
-                ////////////////           СТАТУС П.ЛИСТА            ////////////////
-                CB_status.Items.Clear();
-                sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_statuses order by name";
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                    CB_status.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////           ВИДЫ РАБОТ               ////////////////
-                CB_wrktype.Items.Clear();
-                sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_work_types order by name";
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                    CB_wrktype.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////           ВИДЫ ГРУЗА               ////////////////
-                CB_gruztype.Items.Clear();
-                if (isEdited || secsave <= 1)
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_cargo_types where length(trim(name)) > 0 " + (id_gruz > 0 ? " or gid =" + id_gruz.ToString() : "");
-                }
-                else {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_cargo_types where gid =" + id_gruz.ToString();
-                }
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                    CB_gruztype.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////           РЕЖИМ РАБОТЫ               ////////////////
-                CB_rrab.Items.Clear();
-                if (isEdited || secsave < 1)
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid, hours from  autobase.waybills_work_regimes where length(trim(name)) > 0 " + (id_rrab > 0 ? " or gid =" + id_rrab.ToString() : "");
-                }
-                else {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid, hours from  autobase.waybills_work_regimes where gid =" + id_rrab.ToString();
-                }
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1), sql_frompl.GetInt32(2));
-                    CB_rrab.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////           ВИДЫ ТОПЛИВА (1,2)       ////////////////
-                CB_top1.Items.Clear();
-                CB_top2.Items.Clear();
-                if (isEdited || secsave < 1)
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_fuel_marks where length(trim(name)) > 0 " + (id_topl > 0 ? " or gid =" + id_topl.ToString() : "") + (id_top2 > 0 ? " or gid =" + id_top2.ToString() : "");
-                }
-                else
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_fuel_marks where gid in (" + id_topl.ToString() + "," + id_top2.ToString() + ")";
-                }
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1)); // не загружать вид топливва "нет"
-                    if (sql_frompl.GetString(0) != null && !sql_frompl.GetString(0).ToLower().Equals("нет"))
-                    {
-                        CB_top1.Items.Add(x);
-                    }
-                    CB_top2.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////           ОСОБЫЕ ОТМЕТКИ               ////////////////
-                CB_notes.Items.Clear();
-                if (isEdited || secsave < 1)
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_special_notes where length(trim(name)) > 0 " + (id_mark > 0 ? " or gid =" + id_mark.ToString() : "");
-                }
-                else {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_special_notes where gid =" + id_mark.ToString();
-                }
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                    CB_notes.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                ////////////////          ЗОНЫ               ////////////////
-                CB_pl_zone.Items.Clear();
-                if (isEdited || secsave <= 1)
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_road_types where length(trim(name)) > 0 " + (id_pl_zone > 0 ? " or gid =" + id_pl_zone.ToString() : "");
-                }
-                else
-                {
-                    sql_frompl.sql = "SELECT coalesce(name,'-'), gid from autobase.waybills_road_types where gid =" + id_pl_zone.ToString();
-                }
-                sql_frompl.ExecuteReader();
-                while (sql_frompl.CanRead())
-                {
-                    myItem x = new myItem(sql_frompl.GetString(0), sql_frompl.GetInt32(1));
-                    CB_pl_zone.Items.Add(x);
-                }
-                sql_frompl.Close();
-                sql_frompl = MainPluginClass.App.SqlWork();
-
-                norma__l__spravochnik_.ReadOnly = true;
-                itogo__l__schitaetsja_avtomatom_.ReadOnly = true;
             }
             catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
-            sql_frompl.Close();
 
-            Set_dict_values(id_pl_driver, CB_pl_driverel);
-            Set_dict_values(id_escort_driver, CB_escort_driverel);
-            Set_dict_values(id_rrab, CB_rrab);
-            Set_dict_values(id_trailer, CB_p_gos_no);
-            Set_dict_values(id_pl_master, CB_pl_master);
-            Set_dict_values(id_marsh, CB_route);
-            Set_dict_values(id_work, CB_wrktype);
-            Set_dict_values(id_gruz, CB_gruztype);
-            Set_dict_values(id_mark, CB_notes);
-            Set_dict_values(id_pl_zone, CB_pl_zone);
-            Set_dict_values(id_avt, CB_gos_no);
-            if (CB_gos_no.SelectedItem != null && operacija.Items.Count <= 0) TB_modelid_TextChanged(null, new EventArgs());
-            Set_dict_values(id_topl, CB_top1);
-            Set_dict_values(id_top2, CB_top2);
-            Set_dict_values(secsave, CB_status);
+            sql_frompl_new.Close();
 
-            isEdited = false;
 
-            Decoration();
-            this.ParentForm.ResumeLayout();
-            if (CB_gos_no.SelectedItem != null)
+
+
+
+            ///////////////////// ОСНОВНАЯ ИНФОРМАЦИЯ ПО ПУТЕВЫМ ЛИСТАМ ///////////////////////////
+
+            if (pl_id == null)
             {
-                carExternalId = GetExternalId(((myItem)CB_gos_no.SelectedItem).GetId, "cars");
-                create_task_btn.Visible = (carExternalId != null && carExternalId.Value > 0) && MainPluginClass.OrgsIds.Contains(org_id.ToString()); //&& MainPluginClass.OrgsIds.Contains(org_id.ToString()
-            }
-        }
-
-        private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.ColumnIndex == 1 && CB_org.SelectedItem != null)
+                textBox_plNum.Text = issStartNum > 0 ? issStartNum.ToString() : string.Empty;
+                dateTimePicker_timeOutPlan.Value = DateTime.Parse("08:00");
+                dateTimePicker_timeReturnPlan.Value = DateTime.Parse("17:00");
+            } else
             {
-                // Загрузка нормы для выбранной операции
-                DataGridViewCell norma = DataGridView1.Rows[e.RowIndex].Cells["norma__l__spravochnik_"];
-                string oper = DataGridView1.Rows[e.RowIndex].Cells["operacija"].Value.ToString();
+                sql_frompl_new = MainPluginClass.App.SqlWork();
 
-                // ИД автомобиля
-                int r = ((myItem)CB_gos_no.SelectedItem).GetId;
+                sql_frompl_new.sql =
+                "SELECT upl.gid, split_part(upl.nomer_putevogo_lista, '/', 1) as nomer_putevogo_lista, " +
+                  "split_part(upl.nomer_putevogo_lista, '/', 2) as nomer_putevogo_lista_suffix, upl.voditel, " +
+                  "upl.voditel__vyezd, upl.udostoverenie__, upl.udostoverenie____2, " +
+                  "upl.data_vyezda__plan, upl.data_vozvrawenija__plan, upl.kilometrazh__nachalo, upl.kilometrazh__projdeno, " +
+                  "upl.projdeno__km, upl.toplivo_1__nachalo, upl.toplivo_1__konec, upl.rashod_po_norme, upl.rashod__fakt, upl.zajavka, " +
+                  "upl.v_rasporjazhenie, upl.adres_podachi, upl.otkuda_sleduet, upl.zadanie, upl.transportnoe_sredstvo, upl.tip_ts, " +
+                  "upl.gos__, upl.gar___, upl.data_vyezda__fakt, upl.data_vozvrawenija__fakt, upl.norma_rashoda_na_100_km__plan, " +
+                  "upl.norma_rashoda_na_100_km__fakt, upl.kilometrazh__datch___konec, upl.toplivo_1__datch___konec, " +
+                  "upl.projdeno__datch___km, upl.rashod_po_datchikam, v_rasporjazhenie__sluzhba_ " +
+                "FROM autobase._umjets_putevye_listy upl WHERE upl.gid = " + pl_id;
 
-                //Узнаем время года
-                bool sezon_leto = false;
-                var sql_sezon = MainPluginClass.App.SqlWork();
-                sql_sezon.sql = "select season_id from autobase.waybills_seasons_regulations where (current_date >= begin_date) and (current_date < end_date) and org_id = " + ((myItem)CB_org.SelectedItem).GetId.ToString();
                 try
                 {
-                    sql_sezon.ExecuteReader();
-                    if (sql_sezon.CanRead())
+                    sql_frompl_new.ExecuteReader();
+
+                    if (sql_frompl_new.CanRead())
                     {
-                        if (sql_sezon.GetInt32(0) == 1)
+                        textBox_plNum.Text = sql_frompl_new.GetString("nomer_putevogo_lista");
+                        textBox_userDept.Text = sql_frompl_new.GetString("nomer_putevogo_lista_suffix");
+                        if (isRES)
                         {
-                            sezon_leto = true;
+                            textBox_issueNum.Text = sql_frompl_new.GetString("nomer_putevogo_lista");
                         }
                         else
                         {
-                            sezon_leto = false;
+                            id_issue = sql_frompl_new.GetInt32("zajavka");
                         }
-                    }
-                }
-                catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить время года. Возможно есть пересечения!" + x.Message, "Ошибка таксировки!"); return; }
-                sql_sezon.Close();
+                        textBox_rasp.Text = sql_frompl_new.GetString("v_rasporjazhenie");
+                        textBox_issDest.Text = sql_frompl_new.GetString("adres_podachi");
+                        textBox_issSource.Text = sql_frompl_new.GetString("otkuda_sleduet");
+                        textBox_issType.Text = sql_frompl_new.GetString("zadanie");
+                        id_driver1 = sql_frompl_new.GetInt32("voditel");
+                        id_driver2 = sql_frompl_new.GetInt32("voditel__vyezd");
+                        textBox_udos1.Text = sql_frompl_new.GetString("udostoverenie__");
+                        textBox_udos2.Text = sql_frompl_new.GetString("udostoverenie____2");
+                        id_car = sql_frompl_new.GetInt32("transportnoe_sredstvo");
+                        textBox_gosNum.Text = sql_frompl_new.GetString("gos__");
+                        textBox_garNum.Text = sql_frompl_new.GetString("gar___");
+                        //textBox_regNum.Text = sql_frompl_new.GetString("gos__");
 
-                //
-                var sql_norma = MainPluginClass.App.SqlWork();
-                sql_norma.sql = "select value_summer, value_winter";
-                sql_norma.sql += " from  autobase.waybills_fuel_expenses where";
-                sql_norma.sql += " org_id = " + ((myItem)CB_org.SelectedItem).GetId.ToString();
-                sql_norma.sql += " and car_id = " + r.ToString();
-                sql_norma.sql += " and operation_id = " + oper;
-                sql_norma.sql += " union select value_summer, value_winter";
-                sql_norma.sql += " from autobase.waybills_fuel_expenses where";
-                sql_norma.sql += " org_id = " + ((myItem)CB_org.SelectedItem).GetId.ToString();
-                sql_norma.sql += " and model_id = " + TB_modelid.Text;
-                sql_norma.sql += " and operation_id = " + oper;
-                sql_norma.sql += " and operation_id not in (select operation_id from autobase.waybills_fuel_expenses where org_id = " +
-                    ((myItem)CB_org.SelectedItem).GetId.ToString() + " and car_id = " + r.ToString() + " and operation_id = " + oper + ")";
-                try
-                {
-                    sql_norma.ExecuteReader();
-                    while (sql_norma.CanRead())
-                    {
-                        norma.Value = sezon_leto ? sql_norma.GetString(0) : sql_norma.GetString(1); // Для зимы и лета - по разному однако
-                        break;
-                    }
-                    if (norma.Value == null) { norma.Value = 0; };
-                }
-                catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить норму" + x.Message, "Ошибка таксировки!"); }
-                sql_norma.Close();
-            };
-            try
-            {
+                        string sqlTimestamp = sql_frompl_new.GetString("data_vyezda__plan");
+                        if (sqlTimestamp != null)
+                        {
+                            dateTimePicker_dateOutPlan.Value = DateTime.Parse(sqlTimestamp);
+                            dateTimePicker_timeOutPlan.Value = DateTime.Parse(sqlTimestamp);
+                        }
+                        else
+                        {
+                            dateTimePicker_timeOutPlan.Value = DateTime.Parse("08:00");
+                        }
 
-                if (e.ColumnIndex == 1 || e.ColumnIndex == 2)
-                {
-                    DataGridViewCell itogo = DataGridView1.Rows[e.RowIndex].Cells["itogo__l__schitaetsja_avtomatom_"];
-                    DataGridViewCell norma = DataGridView1.Rows[e.RowIndex].Cells["norma__l__spravochnik_"];
-                    DataGridViewCell znach = DataGridView1.Rows[e.RowIndex].Cells["znachenie"];
-                    if (znach.Value != null && norma.Value != null)
-                    {
-                        itogo.Value = Convert.ToDecimal(norma.Value.ToString().Replace(".", _decSeparator)) * Convert.ToDecimal(znach.Value.ToString().Replace(".", _decSeparator));
-                    }
-                    else
-                    {
-                        itogo.Value = 0;
-                    }
-                }
-                decimal sum = 0;
-                foreach (DataGridViewRow row in DataGridView1.Rows)
-                {
-                    if (row.Cells["znachenie"].Value != null && row.Cells["norma__l__spravochnik_"].Value != null)
-                    {
-                        sum += Convert.ToDecimal(row.Cells["itogo__l__schitaetsja_avtomatom_"].Value.ToString().Replace(".", _decSeparator));
-                    }
-                }
-                TB_tax_n.Text = sum.ToString();
-            }
-            catch
-            {
-                DataGridView1.Rows[e.RowIndex].Cells["znachenie"].Value = "0";
-                TB_tax_n.Text = "0";
-            }
-        }
+                        sqlTimestamp = sql_frompl_new.GetString("data_vozvrawenija__plan");
+                        if (sqlTimestamp != null)
+                        {
+                            dateTimePicker_dateReturnPlan.Value = DateTime.Parse(sqlTimestamp);
+                            dateTimePicker_timeReturnPlan.Value = DateTime.Parse(sqlTimestamp);
+                        }
+                        else
+                        {
+                            dateTimePicker_timeReturnPlan.Value = DateTime.Parse("17:00");
+                        }
 
-        private void Set_dict_values(int selected_prm, ComboBox set_value)
-        {
-            foreach (object x in set_value.Items)
-            {
-                if (((myItem)x).GetId == selected_prm)
-                {
-                    set_value.SelectedItem = x;
-                    break;
-                }
-            }
-        }
+                        sqlTimestamp = sql_frompl_new.GetString("data_vyezda__fakt");
+                        if (sqlTimestamp != null)
+                        {
+                            dateTimePicker_dateOutFact.Value = DateTime.Parse(sqlTimestamp);
+                            dateTimePicker_timeOutFact.Value = DateTime.Parse(sqlTimestamp);
+                        }
 
-        private void CB_pl_driverel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_pl_driverel.SelectedItem).GetId;
-                Set_dict_values(r, CB_pl_drivertn);
-                CB_pl_driverel.BackColor = SystemColors.Window;
-            }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора водителя!"); }
-        }
+                        sqlTimestamp = sql_frompl_new.GetString("data_vozvrawenija__fakt");
+                        if (sqlTimestamp != null)
+                        {
+                            dateTimePicker_dateReturnFact.Value = DateTime.Parse(sqlTimestamp);
+                            dateTimePicker_timeReturnFact.Value = DateTime.Parse(sqlTimestamp);
+                        }
 
-        private void CB_gos_no_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (_id != null && CB_gos_no.SelectedItem != null && base_car_id > 0 && ((myItem)CB_gos_no.SelectedItem).GetId != base_car_id)
-            {
-                DialogResult dr = MessageBox.Show("Заменив ТС Вы потеряете все данные!\r\nПродолжить?", "Внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (dr == DialogResult.Cancel)
-                {
-                    CB_gos_no.SelectedIndexChanged -= CB_gos_no_SelectedIndexChanged_1;
-                    CB_gar_no.SelectedIndexChanged -= CB_gar_no_SelectedIndexChanged;
-                    Set_dict_values(base_car_id, CB_gos_no);
-                    Set_dict_values(base_car_id, CB_gar_no);
-                    CB_gos_no.SelectedIndexChanged += CB_gos_no_SelectedIndexChanged_1;
-                    CB_gar_no.SelectedIndexChanged += CB_gar_no_SelectedIndexChanged;
-                    return;
-                }
-                base_car_id = -1;
+                        textBox_kmBegin.Text = sql_frompl_new.GetString("kilometrazh__nachalo");
+                        textBox_kmEnd.Text = sql_frompl_new.GetString("kilometrazh__projdeno");
+                        textBox_kmDiff.Text = sql_frompl_new.GetString("projdeno__km");
+                        textBox_fuelBegin.Text = sql_frompl_new.GetString("toplivo_1__nachalo");
+                        formatTextBox(textBox_fuelBegin);
 
-                norma_sp = "";
-                norma_mch = "";
-                norma_mchobr = "";
-                norma_t1 = "";
-                norma_t2 = "";
-                TB_sp_n.Text = "";
-                TB_mch.Text = "";
-                TB_mch_obr.Text = "";
-                TB_t1_n.Text = "";
-                TB_t2_n.Text = "";
-                CB_top1.SelectedIndexChanged -= CB_top1_SelectedIndexChanged;
-                CB_top1.SelectedIndex = -1;
-                CB_top1.SelectedItem = null;
-                CB_top1.SelectedIndexChanged += CB_top1_SelectedIndexChanged;
-                CB_top2.SelectedIndexChanged -= CB_top2_SelectedIndexChanged;
-                CB_top2.SelectedItem = null;
-                CB_top2.SelectedIndex = -1;
-                CB_top2.SelectedIndexChanged += CB_top2_SelectedIndexChanged;
+                        textBox_fuelEnd.Text = sql_frompl_new.GetString("toplivo_1__konec");
+                        formatTextBox(textBox_fuelEnd);
 
-                CB_pl_driverel.SelectedIndexChanged -= CB_pl_driverel_SelectedIndexChanged;
-                CB_pl_driverel.SelectedItem = null;
-                CB_pl_driverel.SelectedIndex = -1;
-                CB_pl_driverel.SelectedIndexChanged += CB_pl_driverel_SelectedIndexChanged;
-                CB_pl_drivertn.SelectedIndexChanged -= CB_pl_drivertn_SelectedIndexChanged;
-                CB_pl_drivertn.SelectedItem = null;
-                CB_pl_drivertn.SelectedIndex = -1;
-                CB_pl_drivertn.SelectedIndexChanged += CB_pl_drivertn_SelectedIndexChanged;
+                        textBox_fuelConsFact.Text = sql_frompl_new.GetString("rashod__fakt");
+                        formatTextBox(textBox_fuelConsFact);
 
-                CB_p_gos_no.SelectedIndexChanged -= CB_p_gos_no_SelectedIndexChanged;
-                CB_p_gos_no.SelectedItem = null;
-                CB_p_gos_no.SelectedIndex = -1;
-                CB_p_gos_no.SelectedIndexChanged += CB_p_gos_no_SelectedIndexChanged;
-                CB_p_gar_no.SelectedIndexChanged -= CB_p_gar_no_SelectedIndexChanged;
-                CB_p_gar_no.SelectedItem = null;
-                CB_p_gar_no.SelectedIndex = -1;
-                CB_p_gar_no.SelectedIndexChanged += CB_p_gar_no_SelectedIndexChanged;
+                        textBox_fuelConsNorm.Text = sql_frompl_new.GetString("rashod_po_norme");
+                        prevNormCons = textBox_fuelConsNorm.Text;
+                        formatTextBox(textBox_fuelConsNorm);
+                        if (string.IsNullOrEmpty(textBox_fuelConsFact.Text) || prevNormCons.Equals(textBox_fuelConsFact.Text))
+                        {
+                            textBox_fuelConsFact.Text = textBox_fuelConsNorm.Text;
+                        }
 
-                CB_fuel_card.SelectedItem = null;
-                CB_fuel_card.SelectedIndex = -1;
-                CB_fuel_card2.SelectedItem = null;
-                CB_fuel_card2.SelectedIndex = -1;
+                        textBox_kmGaugeEnd.Text = sql_frompl_new.GetString("kilometrazh__datch___konec");
+                        textBox_fuelGaugeEnd.Text = sql_frompl_new.GetString("toplivo_1__datch___konec");
+                        textBox_kmGaugeDist.Text = sql_frompl_new.GetString("projdeno__datch___km");
+                        textBox_fuelGaugeCons.Text = sql_frompl_new.GetString("rashod_po_datchikam");
 
-                TB_spk.Text = "";
-                TB_sp_glprob.Text = "";
-                TB_sp_prob.Text = "";
-                TB_mch_k.Text = "";
-                TB_mch_pr.Text = "";
-                TB_mch_obr_k.Text = "";
-                TB_mch_obr_pr.Text = "";
-                TB_t1_pl.Text = "";
-                TB_t1_f.Text = "";
-                TextBox35.Text = "";
-                TB_t1_k.Text = "";
-                TB_t2_pl.Text = "";
-                TB_t2_f.Text = "";
-                TextBox40.Text = "";
-                TB_t2_k.Text = "";
-                TextBox38.Text = "";
-                TextBox39.Text = "";
-                TB_tax_drain.Text = "";
-                TB_tax_km_delta.Text = "";
-                TB_tax_mh_delta.Text = "";
-                TB_tax_n.Text = "";
-                TB_tax_r.Text = "";
-                TB_tax_f.Text = "";
+                        serviceId = sql_frompl_new.GetInt32("v_rasporjazhenie__sluzhba_");
+                        
 
-                foreach (DataGridViewRow item in DataGridView1.Rows)
-                {
-                    taks_to_del.Add((int)item.Cells["oper_gid"].Value);
-                    DataGridView1.Rows.RemoveAt(item.Index);
-                }
-            }
-            var sql_ts_details = MainPluginClass.App.SqlWork();
-            var sql_sp = MainPluginClass.App.SqlWork();
-            var sql_grid = MainPluginClass.App.SqlWork();
-            bool is_last_wb_closed = true;
-            int? car_type_id = null;
-            try
-            {
-                int r = ((myItem)CB_gos_no.SelectedItem).GetId;
-
-                sql_ts_details.sql = "SELECT ct.name type_name, cm.name mark_name, cmd.name model_name, c.model_id, ct.gid car_type_id FROM autobase.cars c " +
-                                    "LEFT JOIN autobase.cars_types ct ON c.type_id = ct.gid " +
-                                    "LEFT JOIN autobase.cars_marks cm ON c.mark_id = cm.gid " +
-                                    "LEFT JOIN autobase.cars_models cmd ON c.model_id = cmd.gid " +
-                                    "WHERE c.gid=" + r.ToString();
-                sql_ts_details.ExecuteReader();
-                while (sql_ts_details.CanRead())
-                {
-                    TB_tstype.Text = sql_ts_details.GetString(0);
-                    TB_tstype.Enabled = true;
-                    TB_tsmodel.Text = sql_ts_details.GetString(1) + "  " + sql_ts_details.GetString(2);
-                    TB_tsmodel.Enabled = true;
-                    Set_dict_values(r, CB_gar_no);
-                    TB_modelid.Text = sql_ts_details.GetString(3);
-                    car_type_id = sql_ts_details.GetValue<int?>("car_type_id");
-                }
-                sql_ts_details.Close();
-                CB_gos_no.BackColor = SystemColors.Window;
-
-                // От типа выбранного авто, ищем какой отчет по умолчанию назначить
-                if (car_type_id != null)
-                {
-                    int? report_id = null;
-                    using (ISQLCommand cmd = MainPluginClass.App.SqlWork())
-                    {
+                        // расчет фактического расхода на 100 км
+                        float diff = 0;
+                        float fact = 0;
                         try
                         {
-                            cmd.sql = "select t1.report_id, t2.caption from autobase.waybills_reports_default t1, sys_scheme.report_templates t2 where t1.report_id=t2.id and car_type_id = " + car_type_id;
-                            cmd.ExecuteReader();
-                            if (cmd.CanRead())
-                            {
-                                report_id = cmd.GetValue<int?>("report_id");
-                            }
+                            diff = string.IsNullOrEmpty(textBox_kmDiff.Text) ? 0 : float.Parse(textBox_kmDiff.Text);
+                            fact = string.IsNullOrEmpty(textBox_fuelConsFact.Text) ? 0 : float.Parse(textBox_fuelConsFact.Text);
                         }
-                        catch { }
-                        cmd.Close();
-                    }
-                    if (report_id != null)
-                    {
-                        splitButton1.Tag = report_id;
-                    }
-                    else
-                    {
-                        splitButton1.Tag = null;
+                        catch
+                        {
+                            showInvalidFormatMessage("Пройдено и/или Расход, факт");
+                        }
+
+                        textBox_fuel100kmFact.Text = diff == 0 ? "" : (fact / diff * (isMotoPlRegime ? 1 : 100)).ToString();
+                        formatTextBox(textBox_fuel100kmFact);
                     }
                 }
-                ////////////////           СПИДОМЕТР, МОТОЧАСЫ, ОБОРУДОВАНИЕ              ////////////////
-                if (_id == null || (isEdited && CB_gos_no.SelectedItem!=null && ((myItem)CB_gos_no.SelectedItem).GetId != base_car_id))
-                {
-                    sql_sp.sql = "SELECT km_end, mh_end, mh_ob_end, fuel_end, fuel_end2 ,fuel_mark_id, fuel_mark2_id, driver_id, fuel_card_id, autobase.get_last_waybill_is_closed(" + r + ") as is_closed, calc_fuel_drain, trailer_id FROM  autobase.waybills WHERE gid = (SELECT autobase.get_last_waybill(" + r + "));";
-                    sql_sp.ExecuteReader();
-                    if (sql_sp.CanRead())
-                    {
-                        if (sql_sp.GetValue("is_closed") != null)
-                        {
-                            is_last_wb_closed = (int)sql_sp.GetValue("is_closed") == 1 || _id != null ? true : false;
-                        }
-                        if (sql_sp.GetValue(0) != null)
-                        { TB_sp_n.Text = (Convert.ToDecimal(sql_sp.GetString(0).Replace(".", _decSeparator))).ToString(); norma_sp = sql_sp.GetString(0) == null ? "" : sql_sp.GetString(0); }
-                        else { TB_sp_n.Text = ""; norma_sp = ""; }
-                        if (sql_sp.GetValue(1) != null)
-                        { TB_mch.Text = (Convert.ToDecimal(sql_sp.GetString(1).Replace(".", _decSeparator))).ToString(); norma_mch = sql_sp.GetString(1) == null ? "" : sql_sp.GetString(1); }
-                        else { TB_mch.Text = ""; norma_mch = ""; }
-                        if (sql_sp.GetValue(2) != null)
-                        { TB_mch_obr.Text = (Convert.ToDecimal(sql_sp.GetString(2).Replace(".", _decSeparator))).ToString(); norma_mchobr = sql_sp.GetString(2) == null ? "" : sql_sp.GetString(2); }
-                        else { TB_mch_obr.Text = ""; norma_mchobr = ""; }
-                        if (sql_sp.GetValue(3) != null)
-                        {
-                            decimal s1 = Convert.ToDecimal(sql_sp.GetString(3).Replace(".", _decSeparator));
-                            decimal s2 = Convert.ToDecimal(sql_sp.GetValue("calc_fuel_drain") != null ? sql_sp.GetString("calc_fuel_drain").Replace(".", _decSeparator) : "0");
-                            decimal s3 = s1 - s2;
-                            TB_t1_n.Text = s3.ToString();
-                            norma_t1 = TB_t1_n.Text;
-                        }
-                        else { TB_t1_n.Text = ""; norma_t1 = ""; }
-                        if (sql_sp.GetValue(4) != null)
-                        { TB_t2_n.Text = (Convert.ToDecimal(sql_sp.GetString(4).Replace(".", _decSeparator))).ToString(); norma_t2 = sql_sp.GetString(4) == null ? "" : sql_sp.GetString(4); }
-                        else { TB_t2_n.Text = ""; norma_t2 = ""; }
-                        if (sql_sp.GetValue(5) != null)
-                        { Set_dict_values(sql_sp.GetInt32(5), CB_top1); }
-                        else
-                        {
-                            //CB_top1.SelectedIndexChanged -= CB_top1_SelectedIndexChanged;
-                            CB_top1.SelectedIndex = -1;
-                            CB_top1.SelectedItem = null;
-                            CB_fuel_card.Items.Clear();
-                            CB_fuel_card.SelectedItem = null;
-                            CB_fuel_card.Items.Add(new myItem(" ", -99));
-                            //CB_top1.SelectedIndexChanged += CB_top1_SelectedIndexChanged;
-                        }
-                        if (sql_sp.GetValue(6) != null)
-                        { Set_dict_values(sql_sp.GetInt32(6), CB_top2); }
-                        else
-                        {
-                            //CB_top2.SelectedIndexChanged -= CB_top2_SelectedIndexChanged;
-                            CB_top2.SelectedItem = null;
-                            CB_top2.SelectedIndex = -1;
-                            CB_fuel_card2.Items.Clear();
-                            CB_fuel_card2.SelectedItem = null;
-                            CB_fuel_card2.Items.Add(new myItem(" ", -99));
-                            //CB_top2.SelectedIndexChanged += CB_top2_SelectedIndexChanged;
-                        }
-                        if (sql_sp.GetValue(7) != null && CB_pl_driverel.SelectedItem == null)
-                        { Set_dict_values(sql_sp.GetInt32(7), CB_pl_driverel); }
-                        else
-                        {
-                            CB_pl_driverel.SelectedIndexChanged -= CB_pl_driverel_SelectedIndexChanged;
-                            CB_pl_driverel.SelectedItem = null;
-                            CB_pl_driverel.SelectedIndex = -1;
-                            CB_pl_driverel.SelectedIndexChanged += CB_pl_driverel_SelectedIndexChanged;
-                            CB_pl_drivertn.SelectedIndexChanged -= CB_pl_drivertn_SelectedIndexChanged;
-                            CB_pl_drivertn.SelectedItem = null;
-                            CB_pl_drivertn.SelectedIndex = -1;
-                            CB_pl_drivertn.SelectedIndexChanged += CB_pl_drivertn_SelectedIndexChanged;
+                catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
 
-                        }
-                        if (sql_sp.GetValue("trailer_id") != null && CB_p_gos_no.SelectedItem == null)
-                        { Set_dict_values(sql_sp.GetInt32("trailer_id"), CB_p_gos_no); }
-                        else
-                        {
-                            CB_p_gos_no.SelectedIndexChanged -= CB_p_gos_no_SelectedIndexChanged;
-                            CB_p_gos_no.SelectedItem = null;
-                            CB_p_gos_no.SelectedIndex = -1;
-                            CB_p_gos_no.SelectedIndexChanged += CB_p_gos_no_SelectedIndexChanged;
-                            CB_p_gar_no.SelectedIndexChanged -= CB_p_gar_no_SelectedIndexChanged;
-                            CB_p_gar_no.SelectedItem = null;
-                            CB_p_gar_no.SelectedIndex = -1;
-                            CB_p_gar_no.SelectedIndexChanged += CB_p_gar_no_SelectedIndexChanged;
+                sql_frompl_new.Close();
 
-                        }
-                        /* 2014-10-01 forge http://forge.gradoservice.ru/issues/15975
-                        if (sql_sp.GetValue(8) != null)
-                        {
-                            Set_dict_values(sql_sp.GetInt32(8), CB_fuel_card);
-                            CB_fuel_card.Tag = sql_sp.GetInt32(8);
-                        }
-                        */
-                    }
-                    else
-                    {
-                        norma_sp = "";
-                        norma_mch = "";
-                        norma_mchobr = "";
-                        norma_t1 = "";
-                        norma_t2 = "";
-                        TB_sp_n.Text = "";
-                        TB_mch.Text = "";
-                        TB_mch_obr.Text = "";
-                        TB_t1_n.Text = "";
-                        TB_t2_n.Text = "";
-                        CB_top1.SelectedIndexChanged -= CB_top1_SelectedIndexChanged;
-                        CB_top1.SelectedIndex = -1;
-                        CB_top1.SelectedItem = null;
-                        CB_top1.SelectedIndexChanged += CB_top1_SelectedIndexChanged;
-                        CB_top2.SelectedIndexChanged -= CB_top2_SelectedIndexChanged;
-                        CB_top2.SelectedItem = null;
-                        CB_top2.SelectedIndex = -1;
-                        CB_top2.SelectedIndexChanged += CB_top2_SelectedIndexChanged;
-
-                        CB_pl_driverel.SelectedIndexChanged -= CB_pl_driverel_SelectedIndexChanged;
-                        CB_pl_driverel.SelectedItem = null;
-                        CB_pl_driverel.SelectedIndex = -1;
-                        CB_pl_driverel.SelectedIndexChanged += CB_pl_driverel_SelectedIndexChanged;
-                        CB_pl_drivertn.SelectedIndexChanged -= CB_pl_drivertn_SelectedIndexChanged;
-                        CB_pl_drivertn.SelectedItem = null;
-                        CB_pl_drivertn.SelectedIndex = -1;
-                        CB_pl_drivertn.SelectedIndexChanged += CB_pl_drivertn_SelectedIndexChanged;
-
-                        CB_p_gos_no.SelectedIndexChanged -= CB_p_gos_no_SelectedIndexChanged;
-                        CB_p_gos_no.SelectedItem = null;
-                        CB_p_gos_no.SelectedIndex = -1;
-                        CB_p_gos_no.SelectedIndexChanged += CB_p_gos_no_SelectedIndexChanged;
-                        CB_p_gar_no.SelectedIndexChanged -= CB_p_gar_no_SelectedIndexChanged;
-                        CB_p_gar_no.SelectedItem = null;
-                        CB_p_gar_no.SelectedIndex = -1;
-                        CB_p_gar_no.SelectedIndexChanged += CB_p_gar_no_SelectedIndexChanged;
-
-                        CB_fuel_card.SelectedItem = null;
-                        CB_fuel_card.SelectedIndex = -1;
-                        CB_fuel_card2.SelectedItem = null;
-                        CB_fuel_card2.SelectedIndex = -1;
-                    }
-                }
-
-                if (_id != null)
-                {
-                    //////////////////           ЗАПОЛНЕНИЕ ОПЕРАЦИИ ПТО в GRID            ////////////////
-                    DataGridView1.Rows.Clear();
-
-                    if (_id != null && _id > 0)
-                    {
-                        sql_grid.sql = "SELECT gid, operation_id, value_input, value_norm, value_total from autobase.waybills_taks WHERE waybill_id = " + _id.ToString();
-                        sql_grid.ExecuteReader();
-                        decimal sum = 0;
-                        myItem item_id = new myItem("", 0);
-                        while (sql_grid.CanRead())
-                        {
-                            foreach (myItem z in operacija.Items)
-                            {
-                                if (z.GetId == sql_grid.GetInt32(1)) { item_id = z; break; }
-                            }
-                            int t = sql_grid.GetInt32(0);
-                            int t2 = sql_grid.GetInt32(1);
-                            //DataGridView1.Rows.Add(t, t2, sql_grid.GetValue(2), sql_grid.GetValue(3), sql_grid.GetValue(4));
-                            if (!taks_to_del.Contains(t))
-                            {
-                                int t3 = DataGridView1.Rows.Add(t, t2, sql_grid.GetValue(2), sql_grid.GetValue(3), sql_grid.GetValue(4));
-                                sum += Convert.ToDecimal(sql_grid.GetValue(4).ToString().Replace(".", _decSeparator));
-                                TB_tax_n.Text = sum.ToString();
-                            }
-                            //DataGridView1.Rows[t3].Cells[2].Value = sql_grid.GetValue(2);
-                            //DataGridView1.Rows[t3].Cells[3].Value = sql_grid.GetValue(3);
-                            //DataGridView1.Rows[t3].Cells[4].Value = sql_grid.GetValue(4);
-
-                        }
-                        sql_grid.Close();
-                    }
-                    if (TB_t1_f.Text != "" && TB_t1_n.Text != "" && TB_t1_k.Text != "")
-                    {
-                        TB_tax_f.Text = (Convert.ToDecimal(TB_t1_f.Text.Replace(".", _decSeparator)) + Convert.ToDecimal(TB_t1_n.Text.Replace(".", _decSeparator)) - Convert.ToDecimal(TB_t1_k.Text.Replace(".", _decSeparator))).ToString();
-                    }
-                    if (TB_tax_f.Text.Trim().Length != 0 && TB_tax_n.Text.Trim().Length != 0)
-                    {
-                        TB_tax_r.Text = (Convert.ToDecimal(TB_tax_n.Text.Replace(".", _decSeparator)) - Convert.ToDecimal(TB_tax_f.Text.Replace(".", _decSeparator))).ToString();
-                    }
-                }
             }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора автомобиля!"); }
-            sql_ts_details.Close();
-            sql_sp.Close();
-            sql_grid.Close();
-            if (!is_last_wb_closed && (_id == null || isEdited))
+            
+
+            ///////////////////// ПОДГРУЗКА ИНФОРМАЦИИ ПО ТС ///////////////////////////
+
+            comboBox_car.Items.Clear();
+
+            sql_frompl_new = MainPluginClass.App.SqlWork();
+
+            sql_frompl_new.sql = "SELECT ua.gid, utt.naimenovanie as car_type, ua.tip_ts as car_type_id, ummt.naimenovanie as car_mark, ua.gos___, ua.gar___, ua.reg___, " +
+                "coalesce((CASE WHEN extract('month' FROM now()) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_1ch_ " +
+                "ELSE zimnjaja_norma_rashoda_topliva__l_1ch_ END), 0) as car_norm, " +
+                "coalesce((CASE WHEN extract('month' FROM now()) BETWEEN 4 AND 10 THEN letnjaja_norma_rashoda_topliva__l_100km__l_1ch_ " +
+                "ELSE zimnjaja_norma_rashoda_topliva END), 0) as car_100km_norm, " +
+                "coalesce(ua.rabota_s_ustanovkoj__l_1ch_, 0) as car_equip_norm, " +
+                "podrazdelenie, " +
+                "utt.tip_putevogo_lista in (1, 3, 4) AS is_complex, " +
+                "upit.rezhim_raboty, " +
+                "upit.v_rasprjazhenie_podrazdelenie, " +
+                "upit.v_rasporjazhenie_fio, " +
+                "wwr.hours, " +
+                "ua.emkost_bakov, " +
+                "CASE WHEN utt.raschet_po_motochasam = 1 THEN true ELSE false END as pl_regime " +
+            "FROM autobase.umjets_avtopark ua " +
+              "JOIN autobase.umjets_tip_ts utt ON ua.tip_ts = utt.gid " +
+              "JOIN autobase.umjets_marki__modeli_ts ummt ON ua.marka__model_ts = ummt.gid " +
+              "LEFT JOIN autobase.umjets_plan_ispolzovanija_ts upit ON upit.transportnoe_sredstvo = ua.gid " +
+              "LEFT JOIN autobase.waybills_work_regimes wwr ON wwr.gid = upit.rezhim_raboty " +
+              "ORDER BY ua.gos___";
+            try
             {
-                MessageBox.Show("Предыдущий путевой лист на ТС не закрыт!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                sql_frompl_new.ExecuteReader();
+                while (sql_frompl_new.CanRead())
+                {
+                    float fuelTank = 0;
+                    try
+                    {
+                        string dbFuelTank = sql_frompl_new.GetString("emkost_bakov");
+                        fuelTank = !string.IsNullOrEmpty(dbFuelTank) ? float.Parse(dbFuelTank.Replace('.', ',')) : 0;
+                    }
+                    catch {}
+
+                    myItem x_pl_car = new myItem(
+                        sql_frompl_new.GetString("gos___") + " - " + sql_frompl_new.GetString("car_mark"),
+                        sql_frompl_new.GetInt32("gid"),
+                        new CarItem(
+                            sql_frompl_new.GetString("car_type"),
+                            sql_frompl_new.GetInt32("car_type_id"),
+                            sql_frompl_new.GetString("gos___"),
+                            sql_frompl_new.GetString("gar___"),
+                            sql_frompl_new.GetString("reg___"),
+                            sql_frompl_new.GetValue<float>("car_norm"),
+                            sql_frompl_new.GetValue<float>("car_equip_norm"),
+                            sql_frompl_new.GetValue<float>("car_100km_norm"),
+                            sql_frompl_new.GetInt32("podrazdelenie"),
+                            sql_frompl_new.GetBoolean("is_complex"),
+                            sql_frompl_new.GetInt32("rezhim_raboty"),
+                            sql_frompl_new.GetInt32("hours"),
+                            sql_frompl_new.GetInt32("v_rasprjazhenie_podrazdelenie"),
+                            sql_frompl_new.GetString("v_rasporjazhenie_fio"),
+                            fuelTank,
+                            sql_frompl_new.GetBoolean("pl_regime")
+                            )
+                        );
+                    int idx = comboBox_car.Items.Add(x_pl_car);
+                    carsList.Add(x_pl_car);
+                    if (id_car == x_pl_car.GetId)
+                    {
+                        comboBox_car.SelectedIndex = idx;
+                        textBox_carType.Text = ((CarItem)x_pl_car.Data).getCarType;
+                        prev100kmNormCons = textBox_fuel100kmPlan.Text;
+                        textBox_fuel100kmPlan.Text = ((CarItem)x_pl_car.Data).getCar100kmNorm.ToString();
+                        formatTextBox(textBox_fuel100kmPlan);
+                        textBox_fuel1hPlan.Text = ((CarItem)x_pl_car.Data).getCarNorm.ToString();
+                        formatTextBox(textBox_fuel1hPlan);
+                        textBox_fuelEquipPlan.Text = ((CarItem)x_pl_car.Data).getCarEquipNorm.ToString();
+                        formatTextBox(textBox_fuelEquipPlan);
+
+                        isMotoPlRegime = sql_frompl_new.GetBoolean("pl_regime");
+                        // в случае, если значения Километража и уровня топлива при выезде пустые (вероятно, что это копия ПЛ),
+                        // то обновляем значение Километража и уровня топлива при выезде в зависимости от предыдущего ПЛ по тачке
+                        if (string.IsNullOrEmpty(textBox_kmBegin.Text) && string.IsNullOrEmpty(textBox_fuelBegin.Text))
+                        {
+                            updateStartOdoAndFuel();
+                        }
+                    }
+
+                }
             }
+            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
+
+            sql_frompl_new.Close();
+            
+
+
+
+            ///////////////////// ПОДГРУЗКА ВОДИТЕЛЕЙ И ИНФОРМАЦИИ ПО НИМ ///////////////////////////
+
+            comboBox_driver1.Items.Clear();
+            comboBox_driver2.Items.Clear();
+
+            sql_frompl_new = MainPluginClass.App.SqlWork();
+
+            sql_frompl_new.sql = "SELECT uvs.gid, coalesce(uvs.fio, uvs.familija) as fio, uvs.voditelskoe_udostoverenie, " + 
+                    "uvr_out.vremja as vremja_vyhoda, uvr_return.vremja as vremja_vozvrata " +
+                "FROM autobase._umjets_voditel_sotrudnik uvs " +
+                    "LEFT JOIN autobase.umjets_privjazka_voditelej upv ON uvs.gid = upv.voditel " +
+                    "LEFT JOIN autobase.umjets_vremja_raboty uvr_out ON upv.vremja_vyhoda = uvr_out.gid " +
+                    "LEFT JOIN autobase.umjets_vremja_raboty uvr_return ON upv.vremja_vozvrata = uvr_return.gid " +
+                "ORDER BY 2";
+            try
+            {
+                sql_frompl_new.ExecuteReader();
+                while (sql_frompl_new.CanRead())
+                {
+                    myItem x_pl_driver = new myItem(
+                        sql_frompl_new.GetString("fio"),
+                        sql_frompl_new.GetInt32("gid"),
+                        new DriverItem(sql_frompl_new.GetString("voditelskoe_udostoverenie"),
+                            sql_frompl_new.GetString("vremja_vyhoda"),
+                            sql_frompl_new.GetString("vremja_vozvrata"))
+                        );
+
+                    driversList.Add(x_pl_driver);
+                }
+
+                reorderDriverList(id_driver1, id_driver2);
+            }
+            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
+
+            sql_frompl_new.Close();
+
+            ///////////////////// ПОДГРУЗКА ЗАЯВОК ///////////////////////////
+
+            // Если пользователь, под которым логинимся принадлежит к РЭСу (справочник "УМЭТС Подразделение" второй столбец), 
+            // то дублируем сюда поле "Номер путевого листа". 
+            // Иначе ничего не тянем пользователь сам выбирает из таблицы "УМЭТС Заявки на ТС".
+
+            if (!isRES)
+            {
+                comboBox_issue.Items.Clear();
+
+                sql_frompl_new = MainPluginClass.App.SqlWork();
+
+                sql_frompl_new.sql = "SELECT uznt.gid, uznt.nomer_zajavki, uznt.v_rasporjazhenie_sotrudnika, uznt.mesto__adres__vyezda, " +
+                                        "uznt.mesto__adres__naznachenija, uznt.cel_poezdki__perevozimyj_gruz__gabarit__massa_ " +
+                                    "FROM autobase.umjets_zajavki_na_ts uznt ORDER BY nomer_zajavki";
+                try
+                {
+                    sql_frompl_new.ExecuteReader();
+                    while (sql_frompl_new.CanRead())
+                    {
+                        myItem x_issue = new myItem(
+                            sql_frompl_new.GetString("gid") + " " + sql_frompl_new.GetString("nomer_zajavki") + " - " +
+                            sql_frompl_new.GetString("cel_poezdki__perevozimyj_gruz__gabarit__massa_"),
+                            sql_frompl_new.GetInt32("gid"),
+                            new IssueItem(
+                                sql_frompl_new.GetString("v_rasporjazhenie_sotrudnika"),
+                                sql_frompl_new.GetString("mesto__adres__naznachenija"),
+                                sql_frompl_new.GetString("mesto__adres__vyezda"),
+                                sql_frompl_new.GetString("cel_poezdki__perevozimyj_gruz__gabarit__massa_")
+                                )
+                            );
+                        int idx = comboBox_issue.Items.Add(x_issue);
+
+                        if (id_issue == x_issue.GetId)
+                        {
+                            comboBox_issue.SelectedIndex = idx;
+                        }
+                    }
+                }
+                catch (Exception x) { MessageBox.Show("Ошибка! Невозможно загрузить данные " + x.Message, "Ошибка загрузки!"); }
+
+                sql_frompl_new.Close();
+            } else
+            {
+                textBox_issueNum.Text = textBox_plNum.Text;
+
+                textBox_rasp.Text = issCust;
+                textBox_issDest.Text = issTo;
+                textBox_issSource.Text = issFrom;
+                textBox_issType.Text = issType;
+
+            }
+
+            bool isComplex = false;
+
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                isComplex = ((CarItem)item.Data).getIsComplex;
+            }
+
+            if (!isComplex)
+            {
+                // Значения колонки "Тип путевого листа"(в справочнике "УМЭТС Тип ТС") равно 2, или 5 (!isComplex)
+                // Выводим выпадающий список со значениями из справочника "УМЭТС Служба" для редактирования поля.
+                textBox_rasp.Visible = false;
+                comboBox_service.Visible = true;
+
+                String serviceSQL =
+                        "SELECT uo.gid, naimenovanie, rajon_zakreplenie " +
+                        "FROM autobase.umjets_organizacija uo";
+                using (var sqlCmd = MainPluginClass.App.SqlWork())
+                {
+                    comboBox_service.Items.Clear();
+
+                    sqlCmd.sql = serviceSQL;
+                    sqlCmd.ExecuteReader();
+                    while (sqlCmd.CanRead())
+                    {
+                        int curID = sqlCmd.GetInt32("gid");
+
+                        myItem x_service = new myItem(
+                        sqlCmd.GetString("naimenovanie"),
+                        curID,
+                        sqlCmd.GetInt32("rajon_zakreplenie")
+                        );
+                        int idx = comboBox_service.Items.Add(x_service);
+
+                        if (serviceId == curID)
+                        {
+                            comboBox_service.SelectedIndex = idx;
+                        }
+                    }
+                }
+
+            }
+            else 
+            {
+                // Значения колонки "Тип путевого листа" (в справочнике "УМЭТС Тип ТС") равно 1,3, или 4 (isComplex)
+                textBox_rasp.Visible = true;
+                comboBox_service.Visible = false;
+            }
+
+
+            // автозаполнение нормы расхода топлива
+            calcFact100kmFuelCons();
+
+            if (string.IsNullOrEmpty(textBox_fuel100kmFact.Text) || prev100kmNormCons.Equals(textBox_fuel100kmFact.Text))
+            {
+                textBox_fuel100kmFact.Text = textBox_fuel100kmPlan.Text;
+            }
+
+
+            ///////////////////// ЗАПОЛНЕНИЕ ГРИДА ПОЕЗДОК ///////////////////////////
+
+            if (pl_id != null)
+            {
+                var sql_grid = MainPluginClass.App.SqlWork();
+
+                sql_grid.sql = "SELECT up.gid, up.data_vyezda, up.data_vozvrata, up.pokazanija_spidometra__nachalo, up.pokazanija_spidometra__vozvrawenie, " +
+                                "up.dvizhenie_topliva__polucheno, up.rabota_dvigatelja_pri_stojanke__ch, up.rabota_ustanovki__ch, " +
+                                "up.dvizhenie_topliva__vyezd, up.dvizhenie_topliva__vozvrawenie " +
+                                "FROM autobase.umjets_poezdki up " +
+                                "WHERE up.putevoj_list = " + pl_id + " " +
+                                "ORDER BY up.data_vyezda";
+               
+                sql_grid.ExecuteReader();
+                
+
+                while (sql_grid.CanRead())
+                {                    
+                    string outDate = sql_grid.GetString("data_vyezda");
+                    string returnDate = sql_grid.GetString("data_vozvrata");
+
+                    DateTime outDateTime = DateTime.Now;
+                    DateTime returnDateTime = DateTime.Now;
+
+                    if (outDate != null)
+                    {
+                        outDateTime = DateTime.Parse(outDate);
+                    }
+
+                    if (returnDate != null)
+                    {
+                        returnDateTime = DateTime.Parse(returnDate);
+                    }
+
+                    String fuelGot = sql_grid.GetString("dvizhenie_topliva__polucheno");
+                    String fuelOut = sql_grid.GetString("dvizhenie_topliva__vyezd");
+                    String fuelReturn = sql_grid.GetString("dvizhenie_topliva__vozvrawenie");
+                    try
+                    {
+                        fuelGot = string.Format("{0:#,###0.000}", double.Parse(fuelGot));
+                        fuelOut = string.Format("{0:#,###0.000}", double.Parse(fuelOut));
+                        fuelReturn = string.Format("{0:#,###0.000}", double.Parse(fuelReturn));
+                    }
+                    catch { }
+
+                    int idx = dataGridView_trip.Rows.Add(
+                                            sql_grid.GetInt32("gid"),
+                                            outDateTime,
+                                            returnDateTime,
+                                            sql_grid.GetValue("pokazanija_spidometra__nachalo"),
+                                            sql_grid.GetValue("pokazanija_spidometra__vozvrawenie"),
+                                            fuelGot,
+                                            sql_grid.GetValue("rabota_dvigatelja_pri_stojanke__ch"),
+                                            sql_grid.GetValue("rabota_ustanovki__ch"),
+                                            fuelOut,
+                                            fuelReturn);
+
+                    calculateRouteLenToRow(idx);
+                    putCarDefaultsToRow(idx);
+
+
+                }
+                sql_grid.Close();
+            }
+
+
+            checkGridIsEditable();
+            checkPLItemsIsEditable();
+            updatePLandGridLabels();
+            actualizeMotoGridColumnsUpdateble();
+            checkIfDriverLocked();
+            checkIsFuelOutOfTankCapacity();
+
+            this.dataGridView_trip.DataError += new DataGridViewDataErrorEventHandler(this.dg_DataError);
+            this.button_dgAdd.Click += new EventHandler(this.btn_dg_add_Click);
+            this.dateTimePicker_dateReturnPlan.ValueChanged += new EventHandler(this.checkPlanReturnDates);
+            this.dateTimePicker_timeReturnPlan.ValueChanged += new EventHandler(this.checkPlanReturnDates);
+            this.dateTimePicker_dateOutPlan.ValueChanged += new EventHandler(this.checkPlanOutDates);
+            this.dateTimePicker_timeOutPlan.ValueChanged += new EventHandler(this.checkPlanOutDates);
+            this.comboBox_car.SelectedIndexChanged += new EventHandler(this.comboBox_car_SelectedIndexChanged);
+            this.comboBox_car.TextChanged += new EventHandler(this.comboBox_car_textChanged);
+            this.comboBox_driver1.SelectedIndexChanged += new EventHandler(this.comboBox_driver1_SelectedIndexChanged);
+            this.comboBox_driver1.TextChanged += new EventHandler(this.comboBox_driver1_textChanged);
+            this.comboBox_driver2.SelectedIndexChanged += new EventHandler(this.comboBox_driver2_SelectedIndexChanged);
+            this.comboBox_driver2.TextChanged += new EventHandler(this.comboBox_driver2_textChanged);
+            this.comboBox_issue.SelectedIndexChanged += new EventHandler(this.comboBox_issue_SelectedIndexChanged);
+            this.comboBox_service.SelectedIndexChanged += new EventHandler(this.comboBox_service_SelectedIndexChanged);
+            this.textBox_rasp.TextChanged += new EventHandler(this.textBox_rasp_TextChanged);
+            this.textBox_plNum.TextChanged += new EventHandler(this.textBox_plNum_TextChanged);
+            this.textBox_fuelConsFact.TextChanged += new EventHandler(this.textBox_fuelConsFact_TextChanged);
+            this.textBox_fuelConsNorm.TextChanged += new EventHandler(this.textBox_fuelConsNorm_TextChanged);
+            this.textBox_fuel100kmFact.TextChanged += new EventHandler(this.textBox_fuel100kmFact_TextChanged);
+            this.textBox_fuel100kmPlan.TextChanged += new EventHandler(this.textBox_fuel100kmPlan_TextChanged);
+            this.textBox_fuelBegin.TextChanged += new EventHandler(this.textBox_fuelBegin_TextChanged);
+            this.textBox_fuelEnd.TextChanged += new EventHandler(this.textBox_fuelEnd_TextChanged);
+            this.textBox_kmDiff.TextChanged += new EventHandler(this.textBox_kmDiff_TextChanged);
+            this.textBox_kmEnd.TextChanged += new EventHandler(this.onOdoValueChanged);
+            this.textBox_kmBegin.TextChanged += new EventHandler(this.onOdoValueChanged);
+            this.button_dgDel.Click += new EventHandler(this.dg_row_deleted);
+            
+            this.textBox_plNum.Focus();
+            isInit = false;
         }
 
-
-
-        /// <summary>
-        /// Проверка ввода обязательных значений
-        /// </summary>
-        private bool allow_required_fields
+        private void updatePLandGridLabels()
         {
-            get
+
+            if (isMotoPlRegime)
             {
-                string caption = "Ошибка сохранения!";
-                string err_head = "Укажите следующие поля:";
-                string err_body = "";
-                bool rez = false;
-                if (secsave < 1)
+                label96.Text = "Моточасы, начало*";
+                label95.Text = "Моточасы, конец";
+                label97.Text = "Отработано";
+                label102.Text = "Норма расхода на 1 м*час, план";
+                label101.Text = "Норма расхода на 1 м*час, факт";
+                dg_route_len.HeaderText = "Работа машины";
+                dg_odo_begin.HeaderText = "Показания счетчика, начало";
+                dg_odo_return.HeaderText = "Показания счетчика, возвращение";
+
+                return;
+            }
+
+            label96.Text = "Километраж, начало*";
+            label95.Text = "Километраж, конец";
+            label97.Text = "Пройдено";
+            label102.Text = "Норма расхода топлива (л/100км), план";
+            label101.Text = "Норма расхода топлива (л/100км), факт";
+            dg_route_len.HeaderText = "Пробег";
+            dg_odo_begin.HeaderText = "Спидометр, начало";
+            dg_odo_return.HeaderText = "Спидометр, возвращение";
+
+        }
+
+        private void actualizeMotoGridColumnsUpdateble()
+        {
+
+            if (isMotoPlRegime)
+            {
+                dg_motohours_stop.ReadOnly = true;
+                dg_equip_motohours.ReadOnly = true;
+
+                return;
+            }
+            dg_motohours_stop.ReadOnly = false;
+            dg_equip_motohours.ReadOnly = false;
+        }
+
+        private void comboBox_driver1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            myItem item = (myItem)comboBox_driver1.Items[e.Index];
+            drawItemManager(e, item);
+        }
+
+        private void comboBox_driver2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            myItem item = (myItem)comboBox_driver2.Items[e.Index];
+            drawItemManager(e, item);
+        }
+
+        private void drawItemManager(DrawItemEventArgs e, myItem drawItem)
+        {
+            Font font = comboBox_driver1.Font;
+            Brush brush = Brushes.Black;
+
+            if (drawItem.GetOrder < 0)
+            {
+                MessageBox.Show("Выделяем в БОЛД " + drawItem.Name, "ИНФО");
+                font = new Font(font, FontStyle.Bold);
+            }
+
+            e.Graphics.DrawString(drawItem.Name, font, brush, e.Bounds);
+        }
+
+        private bool save_PL()
+        {
+            if (!validateDataGrid() || !validatePLForm())
+            {
+                return false;
+            }
+
+            if (checkPLNumberExist())
+            {
+                return false;
+            }
+
+            List<string> command_list = new List<string>();
+
+            var upload_pl = MainPluginClass.App.SqlWork();
+            upload_pl.BeginTransaction();
+            try
+            {
+
+                // что обновляем
+                string temp1 = "";
+
+                // значение
+                string temp2 = "";
+
+                #region Получение всех свойств ПЛ и формирования строк набора полей
+
+                // номер путевого листа
+                if (!string.IsNullOrEmpty(textBox_plNum.Text))
                 {
-                    err_body += CB_pl_driverel.SelectedIndex < 0 ? "   Водитель [ФИО]\r\n" : "";
-                    err_body += CB_gos_no.SelectedIndex < 0 ? "   Транспортное средство [Гос. номер]\r\n" : "";
-                    err_body += CB_rrab.SelectedIndex < 0 ? "   Режим работы [ТС]\r\n" : "";
-                    err_body += CB_top1.SelectedIndex < 0 ? "   Топливо1 [вид]\r\n" : "";
-                    err_body += CB_top2.SelectedIndex < 0 ? "   Топливо2 [вид]\r\n" : "";
-                }
-                else if (secsave == 1 && isEdited == false)
-                {
-                    err_body += CB_route.SelectedIndex < 0 ? "   Маршрут [Задание]\r\n" : "";
-                    //err_body += CB_wrktype.SelectedIndex < 0 ? "   Вид работ [Задание]\r\n" : "";
-                    //err_body += CB_gruztype.SelectedIndex < 0 ? "   Груз [Задание]\r\n" : "";
-                    //err_body += CB_pl_zone.SelectedIndex < 0 ? "   Зона [Задание]\r\n" : "";
-                    //err_body += CB_pl_master.SelectedIndex < 0 ? "   Мастер [ФИО]\r\n" : "";
-                    //err_body += checkParamIsNull(TB_Ezdok.Text) ? "   Количество ездок [задание]\r\n" : "";
-                    if (checkParamIsNull(TB_sp_n.Text) && checkParamIsNull(TB_mch.Text))
-                    {
-                        err_body += "   Одно из значений: Спидометр [начало, км], Моточасы [начало, м/ч]\r\n";
-                    }
-                    err_body += (checkParamIsNull(TB_t1_pl.Text)) ? "   Топливо1 [выдать, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_n.Text)) ? "   Топливо1 [начало, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_f.Text)) ? "   Топливо1 [выдано, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_k.Text)) ? "   Топливо1 [конец, л]\r\n" : "";
-                    if (CB_top2.SelectedIndex > 0 && !CB_top2.SelectedItem.ToString().ToUpper().Trim().Equals("НЕТ"))
-                    {
-                        err_body += (checkParamIsNull(TB_t2_pl.Text)) ? "   Топливо2 [выдать, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_n.Text)) ? "   Топливо2 [начало, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_f.Text)) ? "   Топливо2 [выдано, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_k.Text)) ? "   Топливо2 [конец, л]\r\n" : "";
-                    }
-                    if (checkParamOverZero(TB_sp_n.Text) && !checkParamOverZero(TB_spk.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Спидометр [конец, км]\r\n";
-                    }
-                    if (checkParamOverZero(TB_mch.Text) && !checkParamOverZero(TB_mch_k.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Моточасы [конец, м/ч]\r\n";
-                    }
-                    if (checkParamOverZero(TB_mch_obr.Text) && !checkParamOverZero(TB_mch_obr_k.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Моточасы оборудования [конец, м/ч]\r\n";
-                    }
-                    if (DataGridView1.RowCount < 1)
-                    {
-                        err_body += "   Таксировка\r\n";
-                    }
-                    // Логические проверки:
-                    if (parseTextToDecimal(TB_tax_drain.Text) > parseTextToDecimal(TB_t1_k.Text))
-                    {
-                        err_body += "!!   Слив [л] превышает Топливо 1 [конец, л]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_spk.Text) < parseTextToDecimal(TB_sp_n.Text))
-                    {
-                        err_body += "!!   Спидометр [конец, км] меньше Спидометр [начало, км]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_mch_k.Text) < parseTextToDecimal(TB_mch.Text))
-                    {
-                        err_body += "!!   Счетчик моточасов [конец, м/ч] меньше Счетчик моточасов [начало, м/ч]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_mch_obr_k.Text) < parseTextToDecimal(TB_mch_obr.Text))
-                    {
-                        err_body += "!!   Счетчик моточасов оборудования [конец, м/ч] меньше Счетчик моточасов оборудования [начало, м/ч]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_t1_k.Text) > parseTextToDecimal(TB_t1_n.Text) + parseTextToDecimal(TB_t1_f.Text))
-                    {
-                        err_body += "!!   Топливо 1 [конец, л] больше чем [выдано + начало]\r\n";
-                    }
-                }
-                // Полный дубль проверок, только на шаг назад. На случай, когда редактируем путевой лист.
-                if (isEdited && secsave == 1)
-                {
-                    err_body += CB_pl_driverel.SelectedIndex < 0 ? "   Водитель [ФИО]\r\n" : "";
-                    err_body += CB_gos_no.SelectedIndex < 0 ? "   Транспортное средство [Гос. номер]\r\n" : "";
-                    err_body += CB_rrab.SelectedIndex < 0 ? "   Режим работы [ТС]\r\n" : "";
-                    err_body += CB_top1.SelectedIndex < 0 ? "   Топливо1 [вид]\r\n" : "";
-                    err_body += CB_top2.SelectedIndex < 0 ? "   Топливо2 [вид]\r\n" : "";
-                }
-                else if (isEdited && secsave == 2)
-                {
-                    // проверки 1го этапа
-                    err_body += CB_pl_driverel.SelectedIndex < 0 ? "   Водитель [ФИО]\r\n" : "";
-                    err_body += CB_gos_no.SelectedIndex < 0 ? "   Транспортное средство [Гос. номер]\r\n" : "";
-                    err_body += CB_rrab.SelectedIndex < 0 ? "   Режим работы [ТС]\r\n" : "";
-                    err_body += CB_top1.SelectedIndex < 0 ? "   Топливо1 [вид]\r\n" : "";
-                    err_body += CB_top2.SelectedIndex < 0 ? "   Топливо2 [вид]\r\n" : "";
-                    // проверки 2го этапа
-                    err_body += CB_route.SelectedIndex < 0 ? "   Маршрут [Задание]\r\n" : "";
-                    //err_body += CB_wrktype.SelectedIndex < 0 ? "   Вид работ [Задание]\r\n" : "";
-                    //err_body += CB_gruztype.SelectedIndex < 0 ? "   Груз [Задание]\r\n" : "";
-                    //err_body += CB_pl_zone.SelectedIndex < 0 ? "   Зона [Задание]\r\n" : "";
-                    //err_body += CB_pl_master.SelectedIndex < 0 ? "   Мастер [ФИО]\r\n" : "";
-                    //err_body += checkParamIsNull(TB_Ezdok.Text) ? "   Количество ездок [задание]\r\n" : "";
-                    if (checkParamIsNull(TB_sp_n.Text) && checkParamIsNull(TB_mch.Text))
-                    {
-                        err_body += "   Одно из значений: Спидометр [начало, км], Моточасы [начало, м/ч]\r\n";
-                    }
-                    err_body += (checkParamIsNull(TB_t1_pl.Text)) ? "   Топливо1 [выдать, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_n.Text)) ? "   Топливо1 [начало, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_f.Text)) ? "   Топливо1 [выдано, л]\r\n" : "";
-                    err_body += (checkParamIsNull(TB_t1_k.Text)) ? "   Топливо1 [конец, л]\r\n" : "";
-                    if (CB_top2.SelectedIndex > 0 && !CB_top2.SelectedItem.ToString().ToUpper().Trim().Equals("НЕТ"))
-                    {
-                        err_body += (checkParamIsNull(TB_t2_pl.Text)) ? "   Топливо2 [выдать, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_n.Text)) ? "   Топливо2 [начало, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_f.Text)) ? "   Топливо2 [выдано, л]\r\n" : "";
-                        err_body += (checkParamIsNull(TB_t2_k.Text)) ? "   Топливо2 [конец, л]\r\n" : "";
-                    }
-                    if (checkParamOverZero(TB_sp_n.Text) && !checkParamOverZero(TB_spk.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Спидометр [конец, км]\r\n";
-                    }
-                    if (checkParamOverZero(TB_mch.Text) && !checkParamOverZero(TB_mch_k.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Моточасы [конец, м/ч]\r\n";
-                    }
-                    if (checkParamOverZero(TB_mch_obr.Text) && !checkParamOverZero(TB_mch_obr_k.Text))//Если было начало - должен быть и конец
-                    {
-                        err_body += "   Моточасы оборудования [конец, м/ч]\r\n";
-                    }
-                    if (DataGridView1.RowCount < 1)
-                    {
-                        err_body += "   Таксировка\r\n";
-                    }
-                    // Логические проверки:
-                    if (parseTextToDecimal(TB_tax_drain.Text) > parseTextToDecimal(TB_t1_k.Text))
-                    {
-                        err_body += "!!   Слив [л] превышает Топливо 1 [конец, л]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_spk.Text) < parseTextToDecimal(TB_sp_n.Text))
-                    {
-                        err_body += "!!   Спидометр [конец, км] меньше Спидометр [начало, км]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_mch_k.Text) < parseTextToDecimal(TB_mch.Text))
-                    {
-                        err_body += "!!   Счетчик моточасов [конец, м/ч] меньше Счетчик моточасов [начало, м/ч]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_mch_obr_k.Text) < parseTextToDecimal(TB_mch_obr.Text))
-                    {
-                        err_body += "!!   Счетчик моточасов оборудования [конец, м/ч] меньше Счетчик моточасов оборудования [начало, м/ч]\r\n";
-                    }
-                    if (parseTextToDecimal(TB_t1_k.Text) > parseTextToDecimal(TB_t1_n.Text) + parseTextToDecimal(TB_t1_f.Text))
-                    {
-                        err_body += "!!   Топливо 1 [конец, л] больше чем [выдано + начало]\r\n";
-                    }
-                }
-                if (err_body.Length > 0)
-                {
-                    MessageBox.Show(err_head + "\r\n" + err_body, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    temp1 += "nomer_putevogo_lista, ";
+                    temp2 += "'" + textBox_plNum.Text + (!string.IsNullOrEmpty(textBox_userDept.Text) ? "/" + textBox_userDept.Text : "") + "', ";
                 }
                 else
                 {
-                    rez = true;
+                    nullValue(ref temp1, ref temp2, "nomer_putevogo_lista");
                 }
-                return rez;
-            }
 
-        }
 
-        /// <summary>
-        /// Если текст больше нуля, то возращает True. Если текст не удалось преобразовать к числу или меньше нуля - возвращает False
-        /// </summary>
-        /// <param name="param">Текстовое значение числа, иначе False</param>
-        /// <returns></returns>
-        private bool checkParamOverZero(string param)
-        {
-            decimal zero = 0;
-            if (decimal.TryParse(param, out zero) == false) return false; // Указано не число
-            if (zero <= 0) return false;
-            return true;
-        }
+                // даты выезда/возвращения по плану/факту
+                temp1 += "data_vyezda__plan, data_vozvrawenija__plan, ";
+                temp2 += "'" + dateTimePicker_dateOutPlan.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker_timeOutPlan.Value.ToString("HH:mm:00") + "', " +
+                    "'" + dateTimePicker_dateReturnPlan.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker_timeReturnPlan.Value.ToString("HH:mm:00") + "', ";
 
-        /// <summary>
-        /// Проверяет, указано ли значение. Даже 0 сойдет
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        private bool checkParamIsNull(string param)
-        {
-            decimal zero = 0;
-            if (decimal.TryParse(param.Trim(), out zero) == false) return true; // Указано не число
-            return false;
-        }
-        /// <summary>
-        /// Просто, получаем число. Если не удалось - возвращает НОЛЬ
-        /// </summary>
-        /// <param name="param">Текст, который необходимо преобразовать</param>
-        /// <returns></returns>
-        private decimal parseTextToDecimal(string param)
-        {
-            decimal zero = 0;
-            if (decimal.TryParse(param, out zero) == false) return 0; // Указано не число
-            return zero;
-        }
-        /// <summary>
-        /// Проверяет, чтобы некоторые значения были не больше других.
-        /// Логическая проверка указанных данных.
-        /// </summary>
-        private bool Check_mod_grounds
-        {
-            get
-            {
-                err_body1 = "";
-                bool rez = false;
-                err_body1 += parseTextToDecimal(norma_sp) != parseTextToDecimal(TB_sp_n.Text) ? "   Спидометр [начало, км]\r\n" : "";
-                err_body1 += parseTextToDecimal(norma_mch) != parseTextToDecimal(TB_mch.Text) ? "   Моточасы [начало, м/ч]\r\n" : "";
-                err_body1 += parseTextToDecimal(norma_mchobr) != parseTextToDecimal(TB_mch_obr.Text) ? "   Моточасы оборудования [начало, м/ч]\r\n" : "";
-                err_body1 += parseTextToDecimal(norma_t1) != parseTextToDecimal(TB_t1_n.Text) ? "   Топливо 1 [начало, л]\r\n" : "";
-                err_body1 += parseTextToDecimal(norma_t2) != parseTextToDecimal(TB_t2_n.Text) ? "   Топливо 2 [начало, л]\r\n" : "";
-                if (err_body1.Length > 0)
+                if (factDateOutInitialized)
                 {
-                    Form_mod_grounds f = new Form_mod_grounds(err_body1);
-                    f.ShowDialog();
-                    if (f.DialogResult == DialogResult.OK)
+                    temp1 += "data_vyezda__fakt, ";
+                    temp2 += "'" + dateTimePicker_dateOutFact.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker_timeOutFact.Value.ToString("HH:mm:00") + "', ";
+                }
+
+                if (factDateReturnInitialized)
+                {
+                    temp1 += "data_vozvrawenija__fakt, ";
+                    temp2 += "'" + dateTimePicker_dateReturnFact.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker_timeReturnFact.Value.ToString("HH:mm:00") + "', ";
+                }
+
+                // водитель 1
+                if (comboBox_driver1.SelectedItem != null)
+                {
+                    myItem item = (myItem)comboBox_driver1.SelectedItem;
+                    if (item.GetId > 0)
                     {
-                        if (f.M_grounds != "")
+                        temp1 += "voditel, ";
+                        temp2 += item.GetId + ", ";
+
+                        if (!string.IsNullOrEmpty(textBox_udos1.Text))
                         {
-                            modcomment = f.M_grounds;
-                            rez = true;
-                            f.Dispose();
+                            temp1 += "udostoverenie__, ";
+                            temp2 += "'" + textBox_udos1.Text + "', ";
                         }
-                        else
-                        {
-                            MessageBox.Show("Вы не указали основания изменений, путевой лист не сохранен!", "Ошибка при сохранении!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        f.Dispose();
                     }
                 }
                 else
                 {
-                    rez = true;
+                    nullValue(ref temp1, ref temp2, "voditel");
+                    nullValue(ref temp1, ref temp2, "udostoverenie__");
                 }
-                return rez;
-            }
-        }
 
-
-
-        /// <summary>
-        /// Проверка на повторяющиеся операции, а также на имеющиеся данные (ИД операции, значение)
-        /// </summary>
-        /// <returns></returns>
-        private bool CheckValidTaksirovkaList()
-        {
-            bool rez = true;
-            for (int i = 0; i < DataGridView1.RowCount; i++)
-            {
-                int id_operc = Convert.ToInt32(DataGridView1.Rows[i].Cells["operacija"].Value);
-                for (int j = 0; j < DataGridView1.RowCount; j++)
+                // водитель 2
+                if (comboBox_driver2.SelectedItem != null)
                 {
-                    if (i != j)
+                    myItem item = (myItem)comboBox_driver2.SelectedItem;
+                    if (item.GetId > 0)
                     {
-                        if (Convert.ToInt32(DataGridView1.Rows[j].Cells["operacija"].Value) == id_operc)
+                        temp1 += "voditel__vyezd, ";
+                        temp2 += item.GetId + ", ";
+
+                        if (!string.IsNullOrEmpty(textBox_udos2.Text))
                         {
-                            rez = false;
+                            temp1 += "udostoverenie____2, ";
+                            temp2 += "'" + textBox_udos2.Text + "', ";
                         }
                     }
                 }
-                if (DataGridView1.Rows[i].Cells["operacija"].Value == null || DataGridView1.Rows[i].Cells["znachenie"].Value == null)
+                else
                 {
-                    rez = false;
+                    nullValue(ref temp1, ref temp2, "voditel__vyezd");
+                    nullValue(ref temp1, ref temp2, "udostoverenie____2");
                 }
-            }
-            return rez;
-        }
 
-        private bool checkDateTime(ref string Message)
-        {
-            bool rez = true;
-            int z = 0;
-            if (CB_rrab.SelectedItem != null)
+                // километраж, начало
+                if (!string.IsNullOrEmpty(textBox_kmBegin.Text))
+                {
+                    temp1 += "kilometrazh__nachalo, ";
+                    temp2 += textBox_kmBegin.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "kilometrazh__nachalo");
+                }
+
+                // километраж, конец
+                if (!string.IsNullOrEmpty(textBox_kmEnd.Text))
+                {
+                    temp1 += "kilometrazh__projdeno, ";
+                    temp2 += textBox_kmEnd.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "kilometrazh__projdeno");
+                }
+
+                // пройдено, км
+                if (!string.IsNullOrEmpty(textBox_kmDiff.Text))
+                {
+                    temp1 += "projdeno__km, ";
+                    temp2 += textBox_kmDiff.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "projdeno__km");
+                }
+
+                // топливо, начало
+                if (!string.IsNullOrEmpty(textBox_fuelBegin.Text))
+                {
+                    temp1 += "toplivo_1__nachalo, ";
+                    temp2 += textBox_fuelBegin.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "toplivo_1__nachalo");
+                }
+
+                // топливо, конец
+                if (!string.IsNullOrEmpty(textBox_fuelEnd.Text))
+                {
+                    temp1 += "toplivo_1__konec, ";
+                    temp2 += textBox_fuelEnd.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "toplivo_1__konec");
+                }
+
+                // расход по норме
+                if (!string.IsNullOrEmpty(textBox_fuelConsNorm.Text))
+                {
+                    temp1 += "rashod_po_norme, ";
+                    temp2 += textBox_fuelConsNorm.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "rashod_po_norme");
+                }
+
+                // расход, факт
+                if (!string.IsNullOrEmpty(textBox_fuelConsFact.Text))
+                {
+                    temp1 += "rashod__fakt, ";
+                    temp2 += textBox_fuelConsFact.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "rashod__fakt");
+                }
+
+                // норма расхода на 100 км, план
+                if (!string.IsNullOrEmpty(textBox_fuel100kmPlan.Text))
+                {
+                    temp1 += "norma_rashoda_na_100_km__plan, ";
+                    temp2 += textBox_fuel100kmPlan.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "norma_rashoda_na_100_km__plan");
+                }
+
+                // норма расхода на 100 км, факт
+                if (!string.IsNullOrEmpty(textBox_fuel100kmFact.Text))
+                {
+                    temp1 += "norma_rashoda_na_100_km__fakt, ";
+                    temp2 += textBox_fuel100kmFact.Text.Replace(",", ".") + ", ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "norma_rashoda_na_100_km__fakt");
+                }
+
+                // транспортное средство: марка, тип ТС, гос. номер, гар. номер
+                if (comboBox_car.SelectedItem != null)
+                {
+                    myItem item = (myItem)comboBox_car.SelectedItem;
+
+                    if (item.GetId > 0)
+                    {
+                        temp1 += "transportnoe_sredstvo, ";
+                        temp2 += item.GetId + ", ";
+
+                        CarItem carItem = (CarItem)item.Data;
+
+                        if (carItem.getCarTypeId > 0)
+                        {
+                            temp1 += "tip_ts, ";
+                            temp2 += carItem.getCarTypeId + ", ";
+                        }
+
+                        if (!string.IsNullOrEmpty(carItem.getGosNum))
+                        {
+                            temp1 += "gos__, ";
+                            temp2 += "'" + carItem.getGosNum + "', ";
+                        }
+
+                        if (!string.IsNullOrEmpty(carItem.getGarNum))
+                        {
+                            temp1 += "gar___, ";
+                            temp2 += "'" + carItem.getGarNum + "', ";
+                        }
+
+                        if (carItem.getDeptId > 0)
+                        {
+                            temp1 += "organizacija1, ";
+                            temp2 += carItem.getDeptId + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref temp1, ref temp2, "organizacija1");
+                        }
+
+                    }
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "transportnoe_sredstvo");
+                    nullValue(ref temp1, ref temp2, "tip_ts");
+                    nullValue(ref temp1, ref temp2, "gos__");
+                    nullValue(ref temp1, ref temp2, "gar___");
+
+                    // если у путевого листа не задано ТС, то использовать в качестве района закрепления район пользователя
+                    if (resID > 0)
+                    {
+                        temp1 += "organizacija1, ";
+                        temp2 += resID + ", ";
+                    }
+                    else
+                    {
+                        nullValue(ref temp1, ref temp2, "organizacija1");
+                    }
+
+                }
+
+                // заявка
+                if (!isRES && comboBox_issue.SelectedItem != null)
+                {
+                    myItem item = (myItem)comboBox_issue.SelectedItem;
+                    if (item.GetId > 0)
+                    {
+                        temp1 += "zajavka, ";
+                        temp2 += item.GetId + ", ";
+                    }
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "zajavka");
+                }
+
+                // в распоряжение
+
+                // если считали из плана использования ТС, то обновляем и службу, и в чье распоряжение
+                if (carService > 0 && !string.IsNullOrEmpty(carOwner))
+                {
+                    temp1 += "v_rasporjazhenie__sluzhba_, ";
+                    temp2 += carService + ", ";
+
+                    temp1 += "v_rasporjazhenie, ";
+                    temp2 += "'" + carOwner + "', ";
+                }
+                else
+                {
+                    bool isComplex = false;
+
+                    if (comboBox_car.SelectedItem != null)
+                    {
+                        myItem item = (myItem)comboBox_car.SelectedItem;
+                        isComplex = ((CarItem)item.Data).getIsComplex;
+                    }
+
+                    // Если пользователь принадлежит РЭС (это смотрим в таблице "Настройки|Пользователи", в колонке "Район-закрепления".
+                    if (!isComplex)
+                    {
+                        if (comboBox_service.SelectedItem != null)
+                        {
+                            myItem item = (myItem)comboBox_service.SelectedItem;
+                            if (item.GetId > 0)
+                            {
+                                temp1 += "v_rasporjazhenie__sluzhba_, ";
+                                temp2 += item.GetId + ", ";
+                            }
+                        }
+                        else
+                        {
+                            nullValue(ref temp1, ref temp2, "v_rasporjazhenie__sluzhba_");
+                        }
+
+                        nullValue(ref temp1, ref temp2, "v_rasporjazhenie");
+
+                    }
+                    else
+                    {
+
+                        if (!string.IsNullOrEmpty(textBox_rasp.Text))
+                        {
+                            temp1 += "v_rasporjazhenie, ";
+                            temp2 += "'" + textBox_rasp.Text + "', ";
+                        }
+                        else
+                        {
+                            nullValue(ref temp1, ref temp2, "v_rasporjazhenie");
+                        }
+
+                        nullValue(ref temp1, ref temp2, "v_rasporjazhenie__sluzhba_");
+                    }
+                }
+
+                // куда следует
+                if (!string.IsNullOrEmpty(textBox_issDest.Text))
+                {
+                    temp1 += "adres_podachi, ";
+                    temp2 += "'" + textBox_issDest.Text + "', ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "adres_podachi");
+                }
+
+                // откуда следует
+                if (!string.IsNullOrEmpty(textBox_issSource.Text))
+                {
+                    temp1 += "otkuda_sleduet, ";
+                    temp2 += "'" + textBox_issSource.Text + "', ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "otkuda_sleduet");
+                }
+
+                // вид работы
+                if (!string.IsNullOrEmpty(textBox_issType.Text))
+                {
+                    temp1 += "zadanie, ";
+                    temp2 += "'" + textBox_issType.Text + "', ";
+                }
+                else
+                {
+                    nullValue(ref temp1, ref temp2, "zadanie");
+                }
+
+                #endregion
+
+                // добавление метки того, что данные отправлены из специальной (этой) формы
+                temp1 += "is_special_form, ";
+                temp2 += "1, ";
+
+
+                temp1 = temp1.Trim(new char[] { ' ', ',' });
+                temp2 = temp2.Trim(new char[] { ' ', ',' });
+
+                int plIdForTrip;
+
+                // обновление путевого листа
+                if (pl_id != null)
+                {
+                    command_list.Add("UPDATE autobase._umjets_putevye_listy SET (" + temp1 + ") = (" + temp2 + ") where gid = " + pl_id.ToString());
+
+                    plIdForTrip = pl_id.Value;
+
+                    // очистка удаленных поездок
+                    foreach (int tripId in tripToDelete)
+                    {
+                        string deleteTripSQL;
+                        deleteTripSQL = "DELETE FROM autobase.umjets_poezdki WHERE gid = " + tripId;
+                        command_list.Add(deleteTripSQL);
+                    }
+
+                }
+                // создание путевого листа
+                else
+                {
+                    String createPL = "INSERT INTO autobase._umjets_putevye_listy (" + temp1 + ") VALUES (" + temp2 + ") RETURNING gid;";
+
+                    upload_pl.sql = createPL;
+                    plIdForTrip = (int)upload_pl.ExecuteScalar();
+
+                    pl_id = plIdForTrip;
+
+                    if (isRES && issStartNum > 0)
+                    {
+                        string startNumSQL = "UPDATE autobase.umjets_rajon_zakreplenie urk SET nachalnye_nomera_putevogo_lista = nachalnye_nomera_putevogo_lista + 1 " +
+                            "FROM autobase.users usr WHERE usr.rajon_zakreplenija = urk.gid AND usr.user_id = autobase.get_user_id();";
+                        command_list.Add(startNumSQL);
+                    }
+
+                }
+
+                #region Создание/обновление поездок
+                // создание/обновление поездок
+                foreach (DataGridViewRow row in dataGridView_trip.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        String argNameListTrip = "";
+                        String argValueListTrip = "";
+
+
+                        Object outCell = row.Cells["dg_date_out"].Value;
+                        Object returnCell = row.Cells["dg_date_return"].Value;
+                        if (outCell != null && returnCell != null)
+                        {
+                            try
+                            {
+                                DateTime outDateTime = (DateTime)outCell;
+                                DateTime returnDateTime = (DateTime)returnCell;
+
+                                argNameListTrip += "data_vyezda, data_vozvrata, ";
+                                argValueListTrip += "'" + outDateTime.ToString("yyyy-MM-dd") + " " + outDateTime.ToString("HH:mm:00") + "', " +
+                                    "'" + returnDateTime.ToString("yyyy-MM-dd") + " " + returnDateTime.ToString("HH:mm:00") + "', ";
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Неверный формат даты выезда/возвращения.", "Ошибка при сохранении");
+                                return false;
+                            }
+
+                        }
+
+
+                        // спидометр, начало
+                        if (row.Cells["dg_odo_begin"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_odo_begin"].Value.ToString()))
+                        {
+                            argNameListTrip += "pokazanija_spidometra__nachalo, ";
+                            argValueListTrip += row.Cells["dg_odo_begin"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "pokazanija_spidometra__nachalo");
+                        }
+
+                        // спидометр, возвращение
+                        if (row.Cells["dg_odo_return"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_odo_return"].Value.ToString()))
+                        {
+                            argNameListTrip += "pokazanija_spidometra__vozvrawenie, ";
+                            argValueListTrip += row.Cells["dg_odo_return"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "pokazanija_spidometra__vozvrawenie");
+                        }
+
+                        // движение топлива, получено
+                        if (row.Cells["dg_fuel_got"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_fuel_got"].Value.ToString()))
+                        {
+                            argNameListTrip += "dvizhenie_topliva__polucheno, ";
+                            argValueListTrip += row.Cells["dg_fuel_got"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "dvizhenie_topliva__polucheno");
+                        }
+
+                        // работа двигателя при стоянке
+                        if (row.Cells["dg_motohours_stop"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_motohours_stop"].Value.ToString()))
+                        {
+                            argNameListTrip += "rabota_dvigatelja_pri_stojanke__ch, ";
+                            argValueListTrip += row.Cells["dg_motohours_stop"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "rabota_dvigatelja_pri_stojanke__ch");
+                        }
+
+                        // работа установки
+                        if (row.Cells["dg_equip_motohours"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_equip_motohours"].Value.ToString()))
+                        {
+                            argNameListTrip += "rabota_ustanovki__ch, ";
+                            argValueListTrip += row.Cells["dg_equip_motohours"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "rabota_ustanovki__ch");
+                        }
+
+                        // топливо при выезде
+                        if (row.Cells["dg_fuel_out"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_fuel_out"].Value.ToString()))
+                        {
+                            argNameListTrip += "dvizhenie_topliva__vyezd, ";
+                            argValueListTrip += row.Cells["dg_fuel_out"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "dvizhenie_topliva__vyezd");
+                        }
+
+                        // топливо при возвращении
+                        if (row.Cells["dg_fuel_return"].Value != null && !string.IsNullOrWhiteSpace(row.Cells["dg_fuel_return"].Value.ToString()))
+                        {
+                            argNameListTrip += "dvizhenie_topliva__vozvrawenie, ";
+                            argValueListTrip += row.Cells["dg_fuel_return"].Value.ToString().Replace(",", ".") + ", ";
+                        }
+                        else
+                        {
+                            nullValue(ref argNameListTrip, ref argValueListTrip, "dvizhenie_topliva__vozvrawenie");
+                        }
+
+                        // добавление метки того, что данные отправлены из специальной (этой) формы
+                        argNameListTrip += "is_special_form, ";
+                        argValueListTrip += "1, ";
+
+                        // поездка уже создана в БД
+                        if (row.Cells["dg_trip_gid"].Value != null && (int)row.Cells["dg_trip_gid"].Value > 0)
+                        {
+                            argNameListTrip = argNameListTrip.Trim(new char[] { ' ', ',' });
+                            argValueListTrip = argValueListTrip.Trim(new char[] { ' ', ',' });
+                            command_list.Add("UPDATE autobase.umjets_poezdki SET (" + argNameListTrip + ") = (" + argValueListTrip + ") where gid = " + (int)row.Cells["dg_trip_gid"].Value + ";");
+
+                        }
+                        // новая поездка
+                        else
+                        {
+                            argNameListTrip += "putevoj_list, ";
+                            argValueListTrip += plIdForTrip + ", ";
+
+                            // из-за DO INSTEAD NOTHING правил возпользоваться RETURNING не получается.
+                            // Придется gid доставать отдельно.
+                            String getTripIdSQL = "SELECT nextval('autobase.umjets_poezdki_gid_seq') as nextval;";
+                            int tripId = 0;
+                            using (var sqlCmd = MainPluginClass.App.SqlWork())
+                            {
+                                sqlCmd.sql = getTripIdSQL;
+                                sqlCmd.ExecuteReader();
+                                if (sqlCmd.CanRead())
+                                {
+                                    tripId = sqlCmd.GetInt32("nextval");
+                                }
+                            }
+
+                            if (tripId > 0)
+                            {
+                                argNameListTrip += "gid";
+                                argValueListTrip += tripId;
+
+                                String createTrip = "INSERT INTO autobase.umjets_poezdki (" + argNameListTrip + ") VALUES (" + argValueListTrip + ");";
+
+                                // сохранение поездки сразу в БД
+                                upload_pl.sql = createTrip;
+                                upload_pl.ExecuteNonQuery();
+
+                                // обновление id текущей строки, чтобы избежать дублирование поездок
+                                row.Cells["dg_trip_gid"].Value = tripId;
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                foreach (string par in command_list)
+                {
+                    upload_pl.sql = par;
+                    upload_pl.ExecuteNonQuery();
+                }
+
+                upload_pl.EndTransaction();
+                clearClose = true;
+                return true;
+            }
+            catch (Exception ex)
             {
-                // Режим работы, выраженный в часах
-                z = Convert.ToInt32(((myItem)CB_rrab.SelectedItem).Data);
+                MessageBox.Show("Произошла ошибка при сохранении: " + ex.Message, "Ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-
-            if (DateTimePicker1.Value.Date.AddHours(dateTimePicker5.Value.Hour + z).AddMinutes(dateTimePicker5.Value.Minute)
-                > DateTimePicker3.Value.Date.AddHours(dateTimePicker8.Value.Hour).AddMinutes(dateTimePicker8.Value.Minute)
-            )
+            finally
             {
-                Message += "\r\nРазница времени выезда и возвращения не может быть меньше режима работы! (Планируемое)\r\n";
-                rez = false;
-            }
 
-            if (DateTimePicker2.Value.Date.AddHours(dateTimePicker6.Value.Hour).AddMinutes(dateTimePicker6.Value.Minute)
-                >= DateTimePicker4.Value.Date.AddHours(dateTimePicker7.Value.Hour).AddMinutes(dateTimePicker7.Value.Minute)
-                )
-            {
-                Message += "\r\nВремя выезда не может быть позже времени возвращения! (Фактическое)\r\n";
-                rez = false;
+                upload_pl.EndTransaction();
+                upload_pl.Close();
             }
-
-            return rez;
         }
 
         private void btn_save_click(object sender, EventArgs e)
         {
-            string msgDate = "";
-            if (!checkDateTime(ref msgDate))
+            if (save_PL())
             {
-                MessageBox.Show(msgDate, "Ошибка при сохранении!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (!CheckValidTaksirovkaList())
-            {
-                MessageBox.Show("Имеются повторяющиеся операции в таксировке, либо не указано значение!", "Ошибка при сохранении!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (allow_required_fields)
-            {
-                if (!(_id == null && !Check_mod_grounds))
+                // Закрывать ли окно после сохранения
+                string saveType = "";
+                if (sender is MenuItem)
                 {
-                    List<string> command_list = new List<string>();
-
-                    var upload_pl = MainPluginClass.App.SqlWork();
-                    upload_pl.BeginTransaction();
+                    saveType = (string)((MenuItem)sender).Tag;
+                }
+                else if (sender is SplitButton && splitButton_save.Tag != null)
+                {
+                    saveType = (string)splitButton_save.Tag;
+                }
+                
+                if (saveType.Equals("SAVE&CLOSE"))
+                {
                     try
                     {
-                        #region UPDATE
-                        if (_id != null)
-                        {
-                            string temp1 = "";// что обновляем
-                            string temp2 = "";// значение
-                            temp1 += "calc_norm_type,";
-                            temp2 += CHB_calc_norm_type.Checked ? "1, " : "0, ";
-                            temp1 += "date_out_plan, date_out_fact, date_in_plan, date_in_fact, ";
-                            temp2 += "'" + DateTimePicker1.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker5.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker2.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker6.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker3.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker8.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker4.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker7.Value.ToString("HH:mm:00") + "', ";
-                            if (!TB_sp_n.Text.Equals(""))
-                            {
-                                temp1 += "km_begin, ";
-                                temp2 += TB_sp_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_spk.Text.Equals(""))
-                            {
-                                temp1 += "km_end, ";
-                                temp2 += TB_spk.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_sp_prob.Text.Equals(""))
-                            {
-                                temp1 += "km_run, ";
-                                temp2 += TB_sp_prob.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_top1.SelectedItem != null)
-                            {
-                                temp1 += "fuel_mark_id, ";
-                                temp2 += ((myItem)CB_top1.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_t1_pl.Text.Equals(""))
-                            {
-                                temp1 += "fuel_plan, ";
-                                temp2 += TB_t1_pl.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_n.Text.Equals(""))
-                            {
-                                temp1 += "fuel_begin, ";
-                                temp2 += TB_t1_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_k.Text.Equals(""))
-                            {
-                                temp1 += "fuel_end, ";
-                                temp2 += TB_t1_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_f.Text.Equals(""))
-                            {
-                                temp1 += "fuel_fact, ";
-                                temp2 += TB_t1_f.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_top2.SelectedItem != null)
-                            {
-                                temp1 += "fuel_mark2_id, ";
-                                temp2 += ((myItem)CB_top2.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_t2_pl.Text.Equals(""))
-                            {
-                                temp1 += "fuel_plan2, ";
-                                temp2 += TB_t2_pl.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_n.Text.Equals(""))
-                            {
-                                temp1 += "fuel_begin2, ";
-                                temp2 += TB_t2_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_k.Text.Equals(""))
-                            {
-                                temp1 += "fuel_end2, ";
-                                temp2 += TB_t2_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_f.Text.Equals(""))
-                            {
-                                temp1 += "fuel_fact2, ";
-                                temp2 += TB_t2_f.Text.Replace(",", ".") + ", ";
-                            }
-
-                            if (!TB_ttd.Text.Equals(""))
-                            {
-                                temp1 += "ttd_count, ";
-                                temp2 += TB_ttd.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_Ezdok.Text.Equals(""))
-                            {
-                                temp1 += "trip_count, ";
-                                temp2 += TB_Ezdok.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_rab.Text.Equals(""))
-                            {
-                                temp1 += "pay_work_h, ";
-                                temp2 += TB_rab.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_obed.Text.Equals(""))
-                            {
-                                temp1 += "pay_lunch_h, ";
-                                temp2 += TB_obed.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_dejrst.Text.Equals(""))
-                            {
-                                temp1 += "pay_duty_h, ";
-                                temp2 += TB_dejrst.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_remont.Text.Equals(""))
-                            {
-                                temp1 += "pay_repair_h, ";
-                                temp2 += TB_remont.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_den.Text.Equals(""))
-                            {
-                                temp1 += "pay_day_h, ";
-                                temp2 += TB_den.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_noch.Text.Equals(""))
-                            {
-                                temp1 += "pay_night_h, ";
-                                temp2 += TB_noch.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_stavka.Text.Equals(""))
-                            {
-                                temp1 += "pay_rate_rh, ";
-                                temp2 += TB_stavka.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_itogo.Text.Equals(""))
-                            {
-                                temp1 += "pay_total_r, ";
-                                temp2 += TB_itogo.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch.Text.Equals(""))
-                            {
-                                temp1 += "mh_begin, ";
-                                temp2 += TB_mch.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_k.Text.Equals(""))
-                            {
-                                temp1 += "mh_end, ";
-                                temp2 += TB_mch_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_pr.Text.Equals(""))
-                            {
-                                temp1 += "mh_run, ";
-                                temp2 += TB_mch_pr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_begin, ";
-                                temp2 += TB_mch_obr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr_k.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_end, ";
-                                temp2 += TB_mch_obr_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr_pr.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_run, ";
-                                temp2 += TB_mch_obr_pr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_gos_no.SelectedItem != null)
-                            {
-                                temp1 += "car_id, ";
-                                temp2 += ((myItem)CB_gos_no.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_driverel.SelectedItem != null)
-                            {
-                                temp1 += "driver_id, ";
-                                temp2 += ((myItem)CB_pl_driverel.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_route.SelectedItem != null)
-                            {
-                                temp1 += "route_id, ";
-                                temp2 += ((myItem)CB_route.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_col.Text.Equals(""))
-                            {
-                                temp1 += "motorcade, ";
-                                temp2 += TB_col.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_brig.Text.Equals(""))
-                            {
-                                temp1 += "brigade, ";
-                                temp2 += TB_brig.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_wrktype.SelectedItem != null)
-                            {
-                                temp1 += "work_type_id, ";
-                                temp2 += ((myItem)CB_wrktype.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_gruztype.SelectedItem != null)
-                            {
-                                temp1 += "cargo_type_id, ";
-                                temp2 += ((myItem)CB_gruztype.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_notes.SelectedItem != null)
-                            {
-                                temp1 += "special_note_id, ";
-                                temp2 += ((myItem)CB_notes.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_master.SelectedItem != null)
-                            {
-                                temp1 += "automaster_id, ";
-                                temp2 += ((myItem)CB_pl_master.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_zone.SelectedItem != null)
-                            {
-                                temp1 += "road_type_id, ";
-                                temp2 += ((myItem)CB_pl_zone.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!RTB_comm.Text.Equals(""))
-                            {
-                                temp1 += "notes, ";
-                                temp2 += "'" + RTB_comm.Text.Replace("'", "") + "', ";
-                            }
-                            if (CB_fuel_card.SelectedItem != null)
-                            {
-                                temp1 += "fuel_card_id, ";
-                                //temp2 += ((myItem)CB_fuel_card.SelectedItem).GetId.ToString() + ", ";
-                                if (((myItem)CB_fuel_card.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_fuel_card.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_fuel_card2.SelectedItem != null)
-                            {
-                                temp1 += "fuel_card2_id, ";
-                                //temp2 += ((myItem)CB_fuel_card2.SelectedItem).GetId.ToString() + ", ";
-                                if (((myItem)CB_fuel_card2.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_fuel_card2.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_rrab.SelectedItem != null)
-                            {
-                                temp1 += "work_regime_id, ";
-                                temp2 += ((myItem)CB_rrab.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (secsave == 1 && !isEdited)
-                            {
-                                temp1 += "secondsave, ";
-                                temp2 += "2, ";
-                            }
-                            else
-                            {
-                                temp1 += "secondsave, ";
-                                temp2 += ((myItem)CB_status.SelectedItem).GetId.ToString() + ", ";
-                            }
-
-                            if (!TB_tax_n.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_norm, ";
-                                temp2 += TB_tax_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_f.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_fact, ";
-                                temp2 += TB_tax_f.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_r.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_delta, ";
-                                temp2 += TB_tax_r.Text.Replace(",", ".") + ", ";
-                            }
-
-                            if (!TB_tax_drain.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_drain, ";
-                                temp2 += TB_tax_drain.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_km_delta.Text.Equals(""))
-                            {
-                                temp1 += "calc_km_run_delta, ";
-                                temp2 += TB_tax_km_delta.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_mh_delta.Text.Equals(""))
-                            {
-                                temp1 += "calc_mh_run_delta, ";
-                                temp2 += TB_tax_mh_delta.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_p_gos_no.SelectedItem != null)
-                            {
-                                temp1 += "trailer_id, ";
-                                if (((myItem)CB_p_gos_no.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_p_gos_no.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_escort_driverel.SelectedItem != null)
-                            {
-                                temp1 += "escort_driver_id, ";
-                                if (((myItem)CB_escort_driverel.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_escort_driverel.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-
-                            temp1 = temp1.Trim(new char[] { ' ', ',' });
-                            temp2 = temp2.Trim(new char[] { ' ', ',' });
-                            command_list.Add("UPDATE autobase.waybills SET (" + temp1 + ") = (" + temp2 + ") where gid = " + _id.ToString());
-
-                            // Обновление таксировки
-                            if (_id != null && (secsave == 1 || CanEditPutList_isAdmin)) // Можно только есть пут. лист уже создан. И у нас второй этап. Т.е возвращение в гараж.
-                            {
-                                //Для того, что уже есть в таблице таксировки
-                                foreach (DataGridViewRow row in DataGridView1.Rows)
-                                {
-                                    bool is_new_oper = true; // Новое ли значение таксировки
-                                    if (!row.IsNewRow)
-                                    {
-                                        // Если эта операция ранее сохраненная, у нее есть ID
-                                        if (row.Cells["oper_gid"].Value != null && int.Parse(row.Cells["oper_gid"].Value.ToString()) > 0)
-                                        {
-                                            is_new_oper = false;
-                                        }
-                                        if (!is_new_oper) // Если таксировку нужно обновить
-                                        {
-                                            if (row.Cells["znachenie"].Value != null && row.Cells["oper_gid"].Value != null)
-                                            {
-                                                string sql1;
-                                                sql1 = "UPDATE autobase.waybills_taks SET " +
-                                                    " operation_id = " + row.Cells["operacija"].Value.ToString().Replace(",", ".") +
-                                                    " ,value_input = " + row.Cells["znachenie"].Value.ToString().Replace(",", ".") +
-                                                    " ,value_norm = " + row.Cells["norma__l__spravochnik_"].Value.ToString().Replace(",", ".") +
-                                                    " ,value_total = " + row.Cells["itogo__l__schitaetsja_avtomatom_"].Value.ToString().Replace(",", ".") +
-                                                    " WHERE gid = " + row.Cells["oper_gid"].Value.ToString();
-                                                command_list.Add(sql1);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            string sql1;
-                                            sql1 = "INSERT INTO autobase.waybills_taks(waybill_id,operation_id,value_input,value_norm,value_total) VALUES ( " +
-                                                _id.ToString() + ", " + row.Cells["operacija"].Value.ToString() + ", " +
-                                                row.Cells["znachenie"].Value.ToString().Replace(",", ".") + ", '" +
-                                                row.Cells["norma__l__spravochnik_"].Value.ToString().Replace(",", ".") + "', '" +
-                                                row.Cells["itogo__l__schitaetsja_avtomatom_"].Value.ToString().Replace(",", ".") + "' );";
-                                            command_list.Add(sql1);
-                                        }
-                                    }
-                                }
-                                // Если мы удалили какую-то таксировочку
-                                foreach (int taks_del_item in taks_to_del)
-                                {
-                                    string sql1;
-                                    sql1 = "DELETE FROM autobase.waybills_taks WHERE gid = " + taks_del_item.ToString();
-                                    command_list.Add(sql1);
-                                }
-                            }
-                        }
-                        #endregion
-                        #region INSERT
-                        else
-                        {
-                            string temp1 = "";// что обновляем
-                            string temp2 = "";// значение
-                            temp1 += "doc_no, ";
-                            temp2 += "nextval('" + org_put_list_seq_name + "'), ";
-                            temp1 += "org_id, ";
-                            temp2 += org_id.ToString() + ", ";
-                            temp1 += "calc_norm_type,";
-                            temp2 += CHB_calc_norm_type.Checked ? "1, " : "0, ";
-                            temp1 += "date_out_plan, date_out_fact, date_in_plan, date_in_fact, ";
-                            temp2 += "'" + DateTimePicker1.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker5.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker2.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker6.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker3.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker8.Value.ToString("HH:mm:00") + "', " +
-                                "'" + DateTimePicker4.Value.ToString("yyyy-MM-dd") + " " + dateTimePicker7.Value.ToString("HH:mm:00") + "', ";
-                            if (!TB_sp_n.Text.Equals(""))
-                            {
-                                temp1 += "km_begin, ";
-                                temp2 += TB_sp_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_spk.Text.Equals(""))
-                            {
-                                temp1 += "km_end, ";
-                                temp2 += TB_spk.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_sp_prob.Text.Equals(""))
-                            {
-                                temp1 += "km_run, ";
-                                temp2 += TB_sp_prob.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_top1.SelectedItem != null)
-                            {
-                                temp1 += "fuel_mark_id, ";
-                                temp2 += ((myItem)CB_top1.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_t1_pl.Text.Equals(""))
-                            {
-                                temp1 += "fuel_plan, ";
-                                temp2 += TB_t1_pl.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_n.Text.Equals(""))
-                            {
-                                temp1 += "fuel_begin, ";
-                                temp2 += TB_t1_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_k.Text.Equals(""))
-                            {
-                                temp1 += "fuel_end, ";
-                                temp2 += TB_t1_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t1_f.Text.Equals(""))
-                            {
-                                temp1 += "fuel_fact, ";
-                                temp2 += TB_t1_f.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_top2.SelectedItem != null)
-                            {
-                                temp1 += "fuel_mark2_id, ";
-                                temp2 += ((myItem)CB_top2.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_t2_pl.Text.Equals(""))
-                            {
-                                temp1 += "fuel_plan2, ";
-                                temp2 += TB_t2_pl.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_n.Text.Equals(""))
-                            {
-                                temp1 += "fuel_begin2, ";
-                                temp2 += TB_t2_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_k.Text.Equals(""))
-                            {
-                                temp1 += "fuel_end2, ";
-                                temp2 += TB_t2_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_t2_f.Text.Equals(""))
-                            {
-                                temp1 += "fuel_fact2, ";
-                                temp2 += TB_t2_f.Text.Replace(",", ".") + ", ";
-                            }
-
-                            if (!TB_ttd.Text.Equals(""))
-                            {
-                                temp1 += "ttd_count, ";
-                                temp2 += TB_ttd.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_Ezdok.Text.Equals(""))
-                            {
-                                temp1 += "trip_count, ";
-                                temp2 += TB_Ezdok.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_rab.Text.Equals(""))
-                            {
-                                temp1 += "pay_work_h, ";
-                                temp2 += TB_rab.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_obed.Text.Equals(""))
-                            {
-                                temp1 += "pay_lunch_h, ";
-                                temp2 += TB_obed.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_dejrst.Text.Equals(""))
-                            {
-                                temp1 += "pay_duty_h, ";
-                                temp2 += TB_dejrst.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_remont.Text.Equals(""))
-                            {
-                                temp1 += "pay_repair_h, ";
-                                temp2 += TB_remont.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_den.Text.Equals(""))
-                            {
-                                temp1 += "pay_day_h, ";
-                                temp2 += TB_den.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_noch.Text.Equals(""))
-                            {
-                                temp1 += "pay_night_h, ";
-                                temp2 += TB_noch.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_stavka.Text.Equals(""))
-                            {
-                                temp1 += "pay_rate_rh, ";
-                                temp2 += TB_stavka.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_itogo.Text.Equals(""))
-                            {
-                                temp1 += "pay_total_r, ";
-                                temp2 += TB_itogo.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch.Text.Equals(""))
-                            {
-                                temp1 += "mh_begin, ";
-                                temp2 += TB_mch.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_k.Text.Equals(""))
-                            {
-                                temp1 += "mh_end, ";
-                                temp2 += TB_mch_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_pr.Text.Equals(""))
-                            {
-                                temp1 += "mh_run, ";
-                                temp2 += TB_mch_pr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_begin, ";
-                                temp2 += TB_mch_obr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr_k.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_end, ";
-                                temp2 += TB_mch_obr_k.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_mch_obr_pr.Text.Equals(""))
-                            {
-                                temp1 += "mh_ob_run, ";
-                                temp2 += TB_mch_obr_pr.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_gos_no.SelectedItem != null)
-                            {
-                                temp1 += "car_id, ";
-                                temp2 += ((myItem)CB_gos_no.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_driverel.SelectedItem != null)
-                            {
-                                temp1 += "driver_id, ";
-                                temp2 += ((myItem)CB_pl_driverel.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_route.SelectedItem != null)
-                            {
-                                temp1 += "route_id, ";
-                                temp2 += ((myItem)CB_route.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!TB_col.Text.Equals(""))
-                            {
-                                temp1 += "motorcade, ";
-                                temp2 += TB_col.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_brig.Text.Equals(""))
-                            {
-                                temp1 += "brigade, ";
-                                temp2 += TB_brig.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_wrktype.SelectedItem != null)
-                            {
-                                temp1 += "work_type_id, ";
-                                temp2 += ((myItem)CB_wrktype.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_gruztype.SelectedItem != null)
-                            {
-                                temp1 += "cargo_type_id, ";
-                                temp2 += ((myItem)CB_gruztype.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_notes.SelectedItem != null)
-                            {
-                                temp1 += "special_note_id, ";
-                                temp2 += ((myItem)CB_notes.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_master.SelectedItem != null)
-                            {
-                                temp1 += "automaster_id, ";
-                                temp2 += ((myItem)CB_pl_master.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (CB_pl_zone.SelectedItem != null)
-                            {
-                                temp1 += "road_type_id, ";
-                                temp2 += ((myItem)CB_pl_zone.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!RTB_comm.Text.Equals(""))
-                            {
-                                temp1 += "notes, ";
-                                temp2 += "'" + RTB_comm.Text.Replace("'", "") + "', ";
-                            }
-                            if (CB_fuel_card.SelectedItem != null)
-                            {
-                                temp1 += "fuel_card_id, ";
-                                //temp2 += ((myItem)CB_fuel_card.SelectedItem).GetId.ToString() + ", ";
-                                if (((myItem)CB_fuel_card.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_fuel_card.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_fuel_card2.SelectedItem != null)
-                            {
-                                temp1 += "fuel_card2_id, ";
-                                //temp2 += ((myItem)CB_fuel_card2.SelectedItem).GetId.ToString() + ", ";
-                                if (((myItem)CB_fuel_card2.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_fuel_card2.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_rrab.SelectedItem != null)
-                            {
-                                temp1 += "work_regime_id, ";
-                                temp2 += ((myItem)CB_rrab.SelectedItem).GetId.ToString() + ", ";
-                            }
-                            if (!isEdited)
-                            {
-                                temp1 += "secondsave, ";
-                                temp2 += "1, ";
-                            }
-                            if (!TB_tax_n.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_norm, ";
-                                temp2 += TB_tax_n.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_f.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_fact, ";
-                                temp2 += TB_tax_f.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_r.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_delta, ";
-                                temp2 += TB_tax_r.Text.Replace(",", ".") + ", ";
-                            }
-
-                            if (!TB_tax_drain.Text.Equals(""))
-                            {
-                                temp1 += "calc_fuel_drain, ";
-                                temp2 += TB_tax_drain.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_km_delta.Text.Equals(""))
-                            {
-                                temp1 += "calc_km_run_delta, ";
-                                temp2 += TB_tax_km_delta.Text.Replace(",", ".") + ", ";
-                            }
-                            if (!TB_tax_mh_delta.Text.Equals(""))
-                            {
-                                temp1 += "calc_mh_run_delta, ";
-                                temp2 += TB_tax_mh_delta.Text.Replace(",", ".") + ", ";
-                            }
-                            if (CB_p_gos_no.SelectedItem != null)
-                            {
-                                temp1 += "trailer_id, ";
-                                if (((myItem)CB_p_gos_no.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_p_gos_no.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            if (CB_escort_driverel.SelectedItem != null)
-                            {
-                                temp1 += "escort_driver_id, ";
-                                if (((myItem)CB_escort_driverel.SelectedItem).GetId == -99)
-                                {
-                                    temp2 += "null, ";
-                                }
-                                else
-                                {
-                                    temp2 += ((myItem)CB_escort_driverel.SelectedItem).GetId.ToString() + ", ";
-                                }
-                            }
-                            //if (!tb_escort.text.equals(""))
-                            //{
-                            //    temp1 += "support_persons, ";
-                            //    temp2 += "'" + tb_escort.text.replace("'", "") + "', ";
-                            //}
-                            temp1 = temp1.Trim(new char[] { ' ', ',' });
-                            temp2 = temp2.Trim(new char[] { ' ', ',' });
-                            command_list.Add("INSERT INTO autobase.waybills (" + temp1 + ") VALUES (" + temp2 + ");");
-                            if (norma_sp != TB_sp_n.Text)
-                            {
-                                command_list.Add("INSERT INTO autobase.waybills_changes(waybill_id, number_old, number_new, field_name, basis) VALUES (" +
-                                    "currval('autobase.waybills_gid_seq'), " + (norma_sp == "" ? "null" : norma_sp.Replace(",", ".")) + ", " + (TB_sp_n.Text == "" ? "null" : TB_sp_n.Text.Replace(",", ".")) + ", 'km_begin', " + "'" + modcomment + "'" + "); ");
-                            };
-                            if (norma_mch != TB_mch.Text)
-                            {
-                                command_list.Add("INSERT INTO autobase.waybills_changes(waybill_id, number_old, number_new, field_name, basis) VALUES (" +
-                                    "currval('autobase.waybills_gid_seq'), " + (norma_mch == "" ? "null" : norma_mch.Replace(",", ".")) + ", " + (TB_mch.Text == "" ? "null" : TB_mch.Text.Replace(",", ".")) + ", 'mh_begin', " + "'" + modcomment + "'" + "); ");
-                            };
-                            if (norma_mchobr != TB_mch_obr.Text)
-                            {
-                                command_list.Add("INSERT INTO autobase.waybills_changes(waybill_id, number_old, number_new, field_name, basis) VALUES (" +
-                                    "currval('autobase.waybills_gid_seq'), " + (norma_mchobr == "" ? "null" : norma_mchobr.Replace(",", ".")) + ", " + (TB_mch_obr.Text == "" ? "null" : TB_mch_obr.Text.Replace(",", ".")) + ", 'mh_ob_begin', " + "'" + modcomment + "'" + "); ");
-                            };
-                            if (norma_t1 != TB_t1_n.Text)
-                            {
-                                command_list.Add("INSERT INTO autobase.waybills_changes(waybill_id, number_old, number_new, field_name, basis) VALUES (" +
-                                    "currval('autobase.waybills_gid_seq'), " + (norma_t1 == "" ? "null" : norma_t1.Replace(",", ".")) + ", " + (TB_t1_n.Text == "" ? "null" : TB_t1_n.Text.Replace(",", ".")) + ", 'fuel_begin', " + "'" + modcomment + "'" + "); ");
-                            };
-                            if (norma_t2 != TB_t2_n.Text)
-                            {
-                                command_list.Add("INSERT INTO autobase.waybills_changes(waybill_id, number_old, number_new, field_name, basis) VALUES (" +
-                                    "currval('autobase.waybills_gid_seq'), " + (norma_t2 == "" ? "null" : norma_t2.Replace(",", ".")) + ", " + (TB_t2_n.Text == "" ? "null" : TB_t2_n.Text.Replace(",", ".")) + ", 'fuel_begin2', " + "'" + modcomment + "'" + "); ");
-                            };
-                        }
-                        #endregion
-                        foreach (string par in command_list)
-                        {
-                            upload_pl.sql = par;
-                            upload_pl.ExecuteNonQuery();
-                        }
-                        #region AutoMap Sync
-                        if (!isEdited && secsave == 1 && MainPluginClass.CanSyncAutoMapWaybills)//&& MainPluginClass.App.user_info.id_user == 353
-                        {
-                            try
-                            {
-                                this.SendDataToMT(((myItem)CB_gos_no.SelectedItem).GetId,
-                                    new DateTime(DateTimePicker2.Value.Year, DateTimePicker2.Value.Month, DateTimePicker2.Value.Day, dateTimePicker6.Value.Hour, dateTimePicker6.Value.Minute, 0),
-                                    new DateTime(DateTimePicker4.Value.Year, DateTimePicker4.Value.Month, DateTimePicker4.Value.Day, dateTimePicker7.Value.Hour, dateTimePicker7.Value.Minute, 0),
-                                    (TB_sp_prob.Text.Equals("") ? 0 : double.Parse(TB_sp_prob.Text)), upload_pl);
-                            }
-                            catch (Exception ex)
-                            {
-                                try
-                                {
-                                    using (var sqlCmd = MainPluginClass.App.SqlWork())
-                                    {
-                                        sqlCmd.sql = @"INSERT INTO esmc_sync.errors(exception, data, resolved, operation)
-    VALUES (@exception, @data, @resolved, @operation);";
-                                        sqlCmd.AddParam(new Params("@exception", ex.Message, NpgsqlDbType.Text));
-                                        sqlCmd.AddParam(new Params("@data", ex.Message, NpgsqlDbType.Text));
-                                        sqlCmd.AddParam(new Params("@resolved", false, NpgsqlDbType.Boolean));
-                                        sqlCmd.AddParam(new Params("@operation", "SendDataToMT", NpgsqlDbType.Text));
-                                        sqlCmd.ExecuteNonQuery();
-                                    }
-                                }
-                                catch
-                                {
-                                    //MessageBox.Show("Ошибка в методе SendDataToMT! Описание:" + Environment.NewLine +
-                                    //ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
-                            }
-                            #region Получаем параметры датчиков
-                            try
-                            {
-                                // Запись в путевой лист информации из автомониторинга о затратах топлива
-                                long from = MTAPI_Helper.GetUnixTime(DateTimePicker2.Value);
-                                long till = MTAPI_Helper.GetUnixTime(DateTimePicker4.Value);
-                                carExternalId = GetExternalId(((myItem)CB_gos_no.SelectedItem).GetId, "cars");
-                                if (carExternalId != null)
-                                {
-                                    // Получить список типов датчиков
-                                    String gaugeTypesJSon = MTAPI_Helper.Get(String.Format(MTAPI_Helper.mt_url + "/gauges/types?token={0}", Token));
-                                    List<MT_GaugeType> gaugeTypes = JsonHelper.JsonDeserialize<List<MT_GaugeType>>(gaugeTypesJSon);
-                                    if (gaugeTypes != null && gaugeTypes.Count > 0)
-                                    {
-                                        // Выбрать из списка датчик "Топливо" и узнать его typeId, port
-                                        MT_GaugeType fuelGaugeType = (from MT_GaugeType gt in gaugeTypes where gt.name == "Топливо" select gt).FirstOrDefault();
-                                        if (fuelGaugeType != null)
-                                        {
-                                            // Для текущего автомобиля получить список датчиков
-                                            String carGaugesJSon = MTAPI_Helper.Get(
-                                                String.Format(MTAPI_Helper.mt_url + "/cars/{0}/gauges?token={1}",
-                                                        carExternalId,
-                                                        Token));
-                                            List<MT_Gauge> carGauges = JsonHelper.JsonDeserialize<List<MT_Gauge>>(carGaugesJSon);
-                                            if (carGauges != null && carGauges.Count > 0)
-                                            {
-                                                // Выбрать из списка датчики, чьи typeId соответствуют датчику топлива
-                                                IEnumerable<MT_Gauge> fuelGauges = from MT_Gauge g in carGauges where g.typeId == fuelGaugeType.id select g;
-                                                if (fuelGauges.Count() > 0)
-                                                {
-                                                    MT_Gauge firstGauge = fuelGauges.ElementAt(0);
-                                                    // Получить показания первого датчика за выбранный период
-                                                    String gaugeValuesJSon = MTAPI_Helper.Get(
-                                                        String.Format(MTAPI_Helper.mt_url + "/reports/gaugehistory/{0}/{1}/{2}/{3}/{4}?token={5}",
-                                                                carExternalId,
-                                                                firstGauge.port,
-                                                                fuelGaugeType.id,
-                                                                from,
-                                                                till,
-                                                                Token));
-                                                    List<MT_GaugeValue> gaugeValues = JsonHelper.JsonDeserialize<List<MT_GaugeValue>>(gaugeValuesJSon);
-                                                    if (gaugeValues != null && gaugeValues.Count > 1)
-                                                    {
-                                                        MT_GaugeValue firstValue = gaugeValues[0];
-                                                        MT_GaugeValue lastValue = gaugeValues[gaugeValues.Count - 1];
-                                                        // Записать показания первого датчика за выбранный период как значения для первого бака
-                                                        upload_pl.sql =
-                                                            @"UPDATE autobase.waybills SET 
-                                                                    fuel_begin_glonass=:pl_glfuel_begin, 
-                                                                    fuel_end_glonass=:pl_glfuel_end WHERE gid = " + _id.Value;
-                                                        List<Params> _params = new List<Params>();
-                                                        _params.Add(new Params(":pl_glfuel_begin", firstValue.value, NpgsqlDbType.Numeric));
-                                                        _params.Add(new Params(":pl_glfuel_end", lastValue.value, NpgsqlDbType.Numeric));
-                                                        upload_pl.ExecuteNonQuery(_params);
-                                                    }
-                                                }
-
-                                                // Если есть второй датчик, записать его показания как значения для второго бака
-                                                if (fuelGauges.Count() > 1)
-                                                {
-                                                    MT_Gauge secondGauge = fuelGauges.ElementAt(1);
-                                                    // Получить показания первого датчика за выбранный период
-                                                    String secondGaugeValuesJSon = MTAPI_Helper.Get(
-                                                        String.Format(MTAPI_Helper.mt_url + "/reports/gaugehistory/{0}/{1}/{2}/{3}/{4}?token={5}",
-                                                                carExternalId,
-                                                                secondGauge.port,
-                                                                fuelGaugeType.id,
-                                                                from,
-                                                                till,
-                                                                Token));
-                                                    List<MT_GaugeValue> secondGaugeValues = JsonHelper.JsonDeserialize<List<MT_GaugeValue>>(secondGaugeValuesJSon);
-                                                    if (secondGaugeValues != null && secondGaugeValues.Count > 1)
-                                                    {
-                                                        MT_GaugeValue firstValue = secondGaugeValues[0];
-                                                        MT_GaugeValue lastValue = secondGaugeValues[secondGaugeValues.Count - 1];
-                                                        // Записать показания первого датчика за выбранный период как значения для первого бака
-                                                        upload_pl.sql =
-                                                            @"UPDATE autobase.waybills SET 
-                                                                    fuel_begin2_glonass=:pl_glfuel_begin2, 
-                                                                    fuel_end2_glonass=:pl_glfuel_end2 WHERE gid = " + _id.Value;
-                                                        List<Params> _params = new List<Params>();
-                                                        _params.Add(new Params(":pl_glfuel_begin2", firstValue.value, NpgsqlDbType.Numeric));
-                                                        _params.Add(new Params(":pl_glfuel_end2", lastValue.value, NpgsqlDbType.Numeric));
-                                                        upload_pl.ExecuteNonQuery(_params);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                //MessageBox.Show("Ошибка при получении параметров датчиков! Описание:" + Environment.NewLine +
-                                //    ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            #endregion
-                        }
-                        #endregion
-                        if (_id == null)
-                        {
-                            //try
-                            //{
-                            //    DateTime from = new DateTime(DateTimePicker1.Value.Year, DateTimePicker1.Value.Month, DateTimePicker1.Value.Day, dateTimePicker5.Value.Hour, dateTimePicker5.Value.Minute, 0);
-                            //    DateTime till = new DateTime(DateTimePicker3.Value.Year, DateTimePicker3.Value.Month, DateTimePicker3.Value.Day, dateTimePicker8.Value.Hour, dateTimePicker8.Value.Minute, 0);
-                            //    String description = "Сгенерированная задача";
-
-                            //    TimeSpan duration = till - from;
-                            //    if (duration > new TimeSpan(0, 1, 0, 0) &&
-                            //        duration <= new TimeSpan(1, 0, 0, 0))
-                            //    {
-                            //        long carGid = ((myItem)CB_gos_no.SelectedItem).GetId;
-                            //        long routeGid = ((myItem)CB_route.SelectedItem).GetId;
-                            //        long typeGid = ((myItem)CB_wrktype.SelectedItem).GetId;
-
-                            //        long? carExternalId = GetExternalId(carGid, "cars");
-                            //        long? routeExternalId = GetExternalId(routeGid, "waybills_routes");
-                            //        long? typeExternalId = GetExternalId(typeGid, "waybills_work_types");
-
-                            //        if (carExternalId != null && routeExternalId != null && typeExternalId != null)
-                            //        {
-                            //            MT_CarsTask carsTask = new MT_CarsTask();
-                            //            carsTask.carIds = new List<long>() { carExternalId.Value };
-                            //            carsTask.description = description;
-                            //            carsTask.from = MTAPI_Helper.GetUnixTime(from);
-                            //            carsTask.routeId = routeExternalId.Value;
-                            //            carsTask.till = MTAPI_Helper.GetUnixTime(till);
-                            //            carsTask.typeId = typeExternalId.Value;
-                            //            MTAPI_Helper.PostCarsTask(carsTask, Token);
-                            //        }
-                            //    }
-                            //}
-                            //catch
-                            //{
-
-                            //}
-
-                            upload_pl.sql = "SELECT gid from autobase.waybills WHERE doc_no = currval('" + org_put_list_seq_name + "')::character varying and car_id=" + ((myItem)CB_gos_no.SelectedItem).GetId.ToString();
-                            _id = (int)upload_pl.ExecuteScalar();
-                            upload_pl.sql = "SELECT doc_no from autobase.waybills WHERE gid = " + _id.ToString();
-                            TextBox1.Text = upload_pl.ExecuteScalar().ToString();
-                        }
-                        upload_pl.EndTransaction();
-                        this.UserControlAttr_Load(this, new EventArgs());
+                        this.ParentForm.Close();
                     }
-                    catch
-                    {
-                        upload_pl.EndTransaction();
-                        upload_pl.Close();
-                        return;
-                    }
-
-                    upload_pl.Close();
+                    catch (Exception x) { MessageBox.Show("Ошибка! Невозможно закрыть путевой лист: " + x.Message, "Ошибка путевого листа!"); }
                 }
             }
         }
-
-        private void CB_gar_no_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_gar_no.SelectedItem).GetId;
-                Set_dict_values(r, CB_gos_no);
-                CB_gar_no.BackColor = SystemColors.Window;
-            }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора автомобиля!"); }
-        }
-
-        void CB_p_gos_no_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var sql_pr_details = MainPluginClass.App.SqlWork();
-            try
-            {
-                int r = ((myItem)CB_p_gos_no.SelectedItem).GetId;
-                sql_pr_details.sql = "SELECT cmd.name FROM autobase.cars c LEFT JOIN autobase.cars_models cmd ON c.model_id = cmd.gid WHERE c.gid=" + r.ToString();
-                sql_pr_details.ExecuteReader();
-                if (sql_pr_details.CanRead())
-                {
-                    TB_prmodel.Text = sql_pr_details.GetString(0);
-                    TB_prmodel.Enabled = true;
-                }
-                else
-                {
-                    TB_prmodel.Text = "";
-                }
-                CB_p_gos_no.BackColor = SystemColors.Window;
-                Set_dict_values(r, CB_p_gar_no);
-            }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора автомобиля!"); }
-            sql_pr_details.Close();
-        }
-
-        private void CB_p_gar_no_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int r = ((myItem)CB_p_gar_no.SelectedItem).GetId;
-                Set_dict_values(r, CB_p_gos_no);
-            }
-            catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения! " + x.Message, "Ошибка выбора автомобиля!"); }
-        }
-
+        
         private void btn_print_click(object sender, EventArgs e)
         {
-            //Проверим, нужно ли делать мед. проверку сотрудника:
-            bool can_med = false;
-            ISQLCommand cmd = MainPluginClass.App.SqlWork();
             try
             {
-                cmd.sql = "select waybill_med_checks from autobase.orgs where gid = " + org_id.ToString();
-                cmd.ExecuteReader();
-                if (cmd.CanRead())
-                {
-                    can_med = cmd.GetBoolean(0);
-                }
-            }
-            catch
-            {
-                can_med = false;
-            }
-            cmd.Close();
-            if (can_med)
-            {
-                try
-                {
-                    if (EmployeesSync.Url != null)
-                    {
-                        EmployeesSync temp = new EmployeesSync();
-                        temp.WayBillSyncMain(((myItem)CB_pl_drivertn.SelectedItem).Name);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show("Не удалось запросить последние данные по мед. проверки сотрудника!", "Ошибка загрузки!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            try
-            {
-                if (this._id != null)
+                if (this.pl_id != null)
                 {
                     var list = MainPluginClass.Work.FastReport.FindReportsByIdTable(MapEditorTablePutList).ToArray();
-                    MainPluginClass.Work.FastReport.OpenReport(list[0], new FilterTable(this._id.Value, MapEditorTablePutList, " gid", ""));
+                    MainPluginClass.Work.FastReport.OpenReport(list[0], new FilterTable(this.pl_id.Value, MapEditorTablePutList, " gid", ""));
                 }
                 else
                 {
@@ -2914,495 +1546,1813 @@ namespace GBU_Waybill_plugin
             }
         }
 
-        private void TB_modelid_TextChanged(object sender, EventArgs e)
+        private void comboBox_driver1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //////////////////           ОПЕРАЦИИ ПТО в GRID            ////////////////
-
-            operacija.Items.Clear();
-            //DataGridView1.Rows.Clear();
-            if (_id == null) { return; } // Если мы только созлает путевой лист - операции нам не нужны,
-            // Заодно избавимся от ошибки. когда гос. номер не загружен
-            if (TB_modelid.Text != null)
+            if (carUpdateInProcess == false && driverChangedAutomatically == true)
             {
-                var sql_pto = MainPluginClass.App.SqlWork();
-                try
+                driverChangedAutomatically = false;
+            }
+
+            filterDriver1Combobox = false;
+
+            clearClose = false;
+            int? driver1 = null;
+            if (comboBox_driver1.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_driver1.SelectedItem;
+                if (comboBox_driver2.SelectedItem != null)
                 {
-                    sql_pto.sql = "select DISTINCT (o.name) operation_name, o.gid operation_id from  autobase.waybills_fuel_expenses fe, autobase.waybills_operations o where fe.operation_id=o.gid and (fe.model_id = " + TB_modelid.Text.ToString() + " or fe.car_id = " + (((myItem)CB_gos_no.SelectedItem).GetId).ToString() + ") and fe.org_id = " + org_id.ToString() +
-                        " union select name, gid from autobase.waybills_operations where gid in (select distinct operation_id from autobase.waybills_taks where waybill_id = " + _id.ToString() + ")";
-                    sql_pto.ExecuteReader();
-                    while (sql_pto.CanRead())
+                    myItem item2 = (myItem)comboBox_driver2.SelectedItem;
+                    if (item.GetId == item2.GetId)
                     {
-                        myItem oper = new myItem(sql_pto.GetString(0), sql_pto.GetInt32(1));
-                        operacija.Items.Add(oper);
-                        operacija.DisplayMember = "Name";
-                        operacija.ValueMember = "GetId";
+                        MessageBox.Show("Выбор одного и того же водителя на разные смены недопустим", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        comboBox_driver1.SelectedIndex = prevDriver1Idx;
+                        return;
                     }
                 }
-                catch (Exception x) { MessageBox.Show("Ошибка! Невозможно установить значения операции! " + x.Message, "Ошибка выбора автомобиля!"); }
-                sql_pto.Close();
+                textBox_udos1.Text = ((DriverItem)item.Data).getDriverCard;
+                driver1 = item.GetId;
+            }
+            updatePLDateOut();
+            updatePLDateReturn();
+            checkGridIsEditable();
+
+
+            this.comboBox_driver1.SelectedIndexChanged -= new EventHandler(this.comboBox_driver1_SelectedIndexChanged);
+            IOrderedEnumerable<myItem> orderedList = driversList
+                .OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
+            comboBox_driver1.Items.Clear();
+            foreach (var listItem in orderedList)
+            {
+                int idx = comboBox_driver1.Items.Add(listItem);
+                if (driver1 != null && driver1.Value == listItem.GetId)
+                {
+                    comboBox_driver1.SelectedIndex = idx;
+                    prevDriver1Idx = idx;
+                }
+            }
+            this.comboBox_driver1.SelectedIndexChanged += new EventHandler(this.comboBox_driver1_SelectedIndexChanged);
+
+            filterDriver1Combobox = true;
+        }
+
+        private void comboBox_driver2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (carUpdateInProcess == false && driverChangedAutomatically == true)
+            {
+                driverChangedAutomatically = false;
+            }
+
+            filterDriver2Combobox = false;
+            clearClose = false;
+            int? driver2 = null;
+            if (comboBox_driver2.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_driver2.SelectedItem;
+
+                if (comboBox_driver1.SelectedItem != null)
+                {
+                    myItem item2 = (myItem)comboBox_driver1.SelectedItem;
+                    if (item.GetId == item2.GetId)
+                    {
+                        MessageBox.Show("Выбор одного и того же водителя на разные смены недопустим", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        comboBox_driver2.SelectedIndex = prevDriver2Idx;
+                        return;
+                    }
+                }
+
+                textBox_udos2.Text = ((DriverItem)item.Data).getDriverCard;
+                driver2 = item.GetId;
+            }
+
+            this.comboBox_driver2.SelectedIndexChanged -= new EventHandler(this.comboBox_driver2_SelectedIndexChanged);
+            IOrderedEnumerable<myItem> orderedList = driversList
+                .OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
+            comboBox_driver2.Items.Clear();
+            foreach (var listItem in orderedList)
+            {
+                int idx = comboBox_driver2.Items.Add(listItem);
+                if (driver2 != null && driver2.Value == listItem.GetId)
+                {
+                    comboBox_driver2.SelectedIndex = idx;
+                    prevDriver2Idx = idx;
+                }
+            }
+            this.comboBox_driver2.SelectedIndexChanged += new EventHandler(this.comboBox_driver2_SelectedIndexChanged);
+
+            filterDriver2Combobox = true;
+        }
+        
+        void nullValue(ref string argumentNameList, ref string argumentValueList, string argumentName)
+        {
+            argumentNameList += argumentName + ", ";
+            argumentValueList += "null, ";
+        }
+
+        bool checkPlanDates(bool isSilent)
+        {
+            DateTime datePlanOut = dateTimePicker_dateOutPlan.Value.Date + dateTimePicker_timeOutPlan.Value.TimeOfDay;
+            DateTime datePlanReturn = dateTimePicker_dateReturnPlan.Value.Date + dateTimePicker_timeReturnPlan.Value.TimeOfDay;
+
+
+            if (DateTime.Compare(datePlanReturn, datePlanOut) < 0)
+            {
+                if (!isSilent)
+                {
+                    MessageBox.Show("Дата возвращения не может быть меньше даты выезда " + datePlanOut.ToString() + " " + datePlanReturn.ToString(), "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            return true;
+
+        }
+
+        void checkPlanOutDates(object sender, EventArgs e)
+        {
+            clearClose = false;
+            checkPlanDates(false);
+            updateStartOdoAndFuel();
+            checkGridIsEditable();
+        }
+
+        void checkPlanReturnDates(object sender, EventArgs e)
+        {
+            clearClose = false;
+            checkPlanDates(false);
+            checkGridIsEditable();
+        }
+
+        private void OnFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.clearClose &&
+                    MessageBox.Show("Все несохраненные данные будут потеряны. Вы уверены, что хотите закрыть окно ?",
+                               "Подтверждение",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
 
-        private void CB_rrab_SelectedIndexChanged(object sender, EventArgs e)
+        bool checkDataGridRow(int dgIdx, bool isSilent)
         {
-            CB_rrab.BackColor = SystemColors.Window;
-            if (CB_rrab.SelectedItem != null && secsave < 2)
+            if (dataGridView_trip.Rows.Count > dgIdx && dgIdx >= 0)
             {
-                this.dateTimePicker8.Value = this.DateTimePicker1.Value.AddHours(this.dateTimePicker5.Value.Hour + Convert.ToInt32(((myItem)CB_rrab.SelectedItem).Data)).AddMinutes(this.dateTimePicker5.Value.Minute);
-                this.DateTimePicker3.Value = this.dateTimePicker8.Value;
-            }
-        }
-
-        private void CB_route_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CB_route.BackColor = SystemColors.Window;
-        }
-
-        private void CB_wrktype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CB_wrktype.BackColor = SystemColors.Window;
-        }
-
-        private void CB_gruztype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CB_gruztype.BackColor = SystemColors.Window;
-        }
-
-        private void CB_pl_zone_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CB_pl_zone.BackColor = SystemColors.Window;
-        }
-
-        private void CB_top1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            //////////////////           ТОПЛИВО 1              ////////////////
-            if (CB_gos_no.SelectedItem != null && CB_top1.SelectedItem != null)
-            {
-                CB_top1.BackColor = SystemColors.Window;
-                // Подгрузка топливной карты
-                ISQLCommand my_sql = MainPluginClass.App.SqlWork();
-                int r = ((myItem)CB_gos_no.SelectedItem).GetId;
-                CB_fuel_card.Items.Clear();
-                CB_fuel_card.Items.Add(new myItem(" ", -99));
-                try
+                if (dataGridView_trip.Rows[dgIdx].Cells["dg_odo_return"].Value == null ||
+                    dataGridView_trip.Rows[dgIdx].Cells["dg_date_return"].Value == null)
                 {
-                    my_sql.sql = @"SELECT card_no, gid FROM autobase.waybills_fuel_cards WHERE (fuel_mark_id = " + ((myItem)CB_top1.SelectedItem).GetId.ToString() + @" and org_id = " + org_id.ToString() + ") " + (CB_fuel_card.Tag != null ? " or gid =" + ((int)CB_fuel_card.Tag).ToString() : "");
-                    my_sql.ExecuteReader();
-                    while (my_sql.CanRead())
+                    if (!isSilent)
                     {
-                        myItem y = new myItem(my_sql.GetString(0) == null ? "-" : my_sql.GetString(0), my_sql.GetInt32(1));
-                        CB_fuel_card.Items.Add(y);
+                        MessageBox.Show("В поездке поля 'Спидометр, конец' и 'Дата возврата' обязательны для заполения!", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    my_sql.Close();
+                    return false;
                 }
-                catch { }
 
-                if (_id != null)
+                if (dataGridView_trip.Rows[dgIdx].Cells["dg_fuel_return"].Style.BackColor == Color.Red)
                 {
-                    if (CB_fuel_card.Tag == null)
+                    if (!isSilent)
                     {
-                        /* 2014-10-01 forge http://forge.gradoservice.ru/issues/15975
-                        var sql_sp = MainPluginClass.App.SqlWork();
-                        sql_sp.sql = "SELECT \"_RealValue_fuel_card_id\" FROM esmc.put_lists_vw WHERE gid = (SELECT esmc.get_last_second_put_list(" + r + "));";
-                        sql_sp.ExecuteReader();
-                        if (sql_sp.CanRead())
+                        MessageBox.Show("Некорректное значение уровня топлива в поездке!", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        bool checkPLNumberExist()
+        {
+            if (!string.IsNullOrEmpty(textBox_plNum.Text))
+            {
+                String plNumber = textBox_plNum.Text + (!string.IsNullOrEmpty(textBox_userDept.Text) ? "/" + textBox_userDept.Text : "");
+                int plId = pl_id.HasValue ? pl_id.Value :0;
+                DateTime dateOut = dateTimePicker_dateOutPlan.Value;
+                String checkPLNumber =
+                        "WITH date_period AS ( " +
+                          "SELECT date_trunc('year', @DateOut) as year_begin, date_trunc('year', @DateOut) + '1 year'::interval as year_end " +
+                        ") " +
+                        "SELECT * " +
+                        "FROM autobase._umjets_putevye_listy_base upl " +
+                          "JOIN date_period dp ON (upl.data_vyezda__plan >= dp.year_begin AND upl.data_vyezda__plan < dp.year_end) " +
+                        "WHERE upl.nomer_putevogo_lista = @PlNum AND upl.gid <> @PlId";
+
+                using (var sqlCmd = MainPluginClass.App.SqlWork())
+                {
+                    sqlCmd.sql = checkPLNumber;
+                    sqlCmd.AddParam("DateOut", dateOut, DbType.DateTime);
+                    sqlCmd.AddParam("PlNum", plNumber, DbType.String);
+                    sqlCmd.AddParam("PlId", plId, DbType.Int32);
+                    sqlCmd.ExecuteReader();
+                    if (sqlCmd.CanRead())
+                    {
+                        MessageBox.Show("Путевой лист с таким номером уже существует.", "Ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        bool checkPreviousPLTripExists()
+        {
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+
+                int carId = item.GetId;
+                DateTime dateOut = dateTimePicker_dateOutPlan.Value;
+
+                
+                String checkPLTrip =    "SELECT upl.gid, upl.nomer_putevogo_lista, upl.data_vyezda__plan, count(up.gid) as trip_cnt " +
+                                        "FROM autobase._umjets_putevye_listy upl " +
+                                            "LEFT JOIN autobase. umjets_poezdki up ON upl.gid = up.putevoj_list " +
+                                        "WHERE upl.data_vyezda__plan <= @DateOut AND upl.transportnoe_sredstvo = @CarId AND upl.gid <> @PlId " +
+                                        "GROUP BY upl.gid, upl.nomer_putevogo_lista, upl.data_vyezda__plan " +
+                                        "ORDER BY upl.data_vyezda__plan DESC " +
+                                        "LIMIT 1";
+                    
+                using (var sqlCmd = MainPluginClass.App.SqlWork())
+                {
+                    sqlCmd.sql = checkPLTrip;
+                    sqlCmd.AddParam("DateOut", dateOut, DbType.DateTime);
+                    sqlCmd.AddParam("CarId", carId, DbType.Int32);
+                    sqlCmd.AddParam("PlId", pl_id != null ? pl_id.Value : 0, DbType.Int32);
+                    sqlCmd.ExecuteReader();
+                    if (sqlCmd.CanRead())
+                    {
+                        if (sqlCmd.GetInt32("trip_cnt") < 1)
                         {
-                            if (sql_sp.GetValue(0) != null)
-                            {
-                                Set_dict_values(sql_sp.GetInt32(0), CB_fuel_card);
-                                CB_fuel_card.Tag = sql_sp.GetInt32(0);
-                            }
-                            Set_dict_values((int)CB_fuel_card.Tag, CB_fuel_card);
+                            MessageBox.Show(String.Format("По предыдущему путевому листу №{0} не указаны поездки.", sqlCmd.GetString("nomer_putevogo_lista")), 
+                                "Невозможно провести путевой лист", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
                         }
-                        sql_sp.Close();
-                        */
-                        CB_fuel_card.SelectedIndex = -1;
-                        CB_fuel_card.SelectedItem = null;
-                    }
-                    else
-                    {
-                        Set_dict_values((int)CB_fuel_card.Tag, CB_fuel_card);
                     }
                 }
+            }
+            return true;
+        }
+
+
+        void dg_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void showInvalidFormatMessage(string failedFields)
+        {
+            MessageBox.Show(
+                "Неверный формат введенного значения. Значение должно быть числом! Поля с ошибками: " + failedFields, 
+                "Ошибка при редактировании");
+        }
+
+        private void comboBox_car_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            carUpdateInProcess = true;
+
+            filterCarCombobox = false;
+            clearClose = false;
+            int? car = null;
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                car = item.GetId;
+                textBox_carType.Text = ((CarItem)item.Data).getCarType;
+                textBox_gosNum.Text = ((CarItem)item.Data).getGosNum;
+                textBox_garNum.Text = ((CarItem)item.Data).getGarNum;
+                textBox_regNum.Text = ((CarItem)item.Data).getRegNum;
+
+                float carNorm = ((CarItem)item.Data).getCarNorm;
+                float carEquipNorm = ((CarItem)item.Data).getCarEquipNorm;
+                float car100kmNorm = ((CarItem)item.Data).getCar100kmNorm;
+
+                isMotoPlRegime = ((CarItem)item.Data).getMotoPlRegime;
+
+                textBox_fuel100kmPlan.Text = car100kmNorm.ToString();
+                formatTextBox(textBox_fuel100kmPlan);
+                textBox_fuel1hPlan.Text = carNorm.ToString();
+                formatTextBox(textBox_fuel1hPlan);
+                textBox_fuelEquipPlan.Text = carEquipNorm.ToString();
+                formatTextBox(textBox_fuelEquipPlan);
+
+                // обновление нормы в поездках
+                foreach (DataGridViewRow row in dataGridView_trip.Rows)
+                {
+                    row.Cells["dg_car_norm"].Value = carNorm;
+                    row.Cells["dg_car_equip_norm"].Value = carEquipNorm;
+                }
+
+                updateStartOdoAndFuel();
+                updatePLDateReturn();
+            }
+            checkIfDriverLocked();
+            checkGridIsEditable();
+            checkIsFuelOutOfTankCapacity();
+            refresh_issue_block();
+            updateCarServiceAndOwner();
+            updatePLandGridLabels();
+            actualizeMotoGridColumnsUpdateble();
+
+            if (driverChangedAutomatically)
+            {
+                reorderDriverList(null, null);
+            }
+
+            this.comboBox_car.SelectedIndexChanged -= new EventHandler(this.comboBox_car_SelectedIndexChanged);
+            IOrderedEnumerable<myItem> orderedList = carsList
+                .OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
+            comboBox_car.Items.Clear();
+            foreach (var listItem in orderedList)
+            {
+                int idx = comboBox_car.Items.Add(listItem);
+                if (car != null && car.Value == listItem.GetId)
+                {
+                    comboBox_car.SelectedIndex = idx;
+                }
+            }
+            this.comboBox_car.SelectedIndexChanged += new EventHandler(this.comboBox_car_SelectedIndexChanged);
+            filterCarCombobox = true;
+            carUpdateInProcess = false;
+        }
+
+        private void comboBox_issue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (comboBox_issue.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_issue.SelectedItem;
+
+                textBox_rasp.Text = ((IssueItem)item.Data).getOwner;
+                textBox_issDest.Text = ((IssueItem)item.Data).getTo;
+                textBox_issSource.Text = ((IssueItem)item.Data).getFrom;
+                textBox_issType.Text = ((IssueItem)item.Data).getType;
+            }
+            refresh_issue_block();
+        }
+
+        private void comboBox_service_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (comboBox_service.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_service.SelectedItem;
+
+                if (carService != 0 && item.GetId != carService)
+                {
+                    carService = 0;
+                }
+            }
+        }
+
+        private void textBox_rasp_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (!string.IsNullOrEmpty(carOwner) && string.Compare(textBox_rasp.Text, carOwner) != 0)
+            {
+                carOwner = string.Empty;
+            }
+        }
+
+        private void updateCarServiceAndOwner()
+        {
+            clearClose = false;
+            if (comboBox_car.SelectedItem != null)
+            {
+                CarItem item = (CarItem)((myItem)comboBox_car.SelectedItem).Data;
+
+                carService = item.getService;
+                if (carService > 0)
+                {
+                    for (int i = 0; i < comboBox_service.Items.Count; i++)
+                    {
+                        if (((myItem)comboBox_service.Items[i]).GetId == carService)
+                        {
+                            comboBox_service.SelectedIndex = i;
+                            break;
+                        }
+                    } 
+                }
+
+                carOwner = item.getOwner;
+                if (!string.IsNullOrEmpty(carOwner))
+                {
+                    textBox_rasp.Text = carOwner;
+                }
+            }
+        }
+
+        private void checkIfDriverLocked()
+        {
+            if (comboBox_car.SelectedItem != null)
+            {
+                groupBox18.Enabled = true;
             }
             else
             {
-                CB_top1.SelectedIndexChanged -= CB_top1_SelectedIndexChanged;
-                CB_top1.SelectedItem = null;
-                CB_top1.SelectedIndexChanged += CB_top1_SelectedIndexChanged;
-                MessageBox.Show("Сначала выберите автомобиль!", "Ошибка загрузки!");
+                groupBox18.Enabled = false;
             }
         }
 
-        private void CB_top2_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkIsFuelOutOfTankCapacity()
         {
-            if (CB_gos_no.SelectedItem != null && CB_top2.SelectedItem != null)
+            float fuelReturn = string.IsNullOrEmpty(textBox_fuelEnd.Text) ? 0 : float.Parse(textBox_fuelEnd.Text);
+            float fuelOut = string.IsNullOrEmpty(textBox_fuelBegin.Text) ? 0 : float.Parse(textBox_fuelBegin.Text);
+
+            if (isOutOfTankCapacity(fuelOut))
             {
-                int r = ((myItem)CB_gos_no.SelectedItem).GetId;
-                CB_top2.BackColor = SystemColors.Window;
-                CB_fuel_card2.SelectedIndex = -1;
-                CB_fuel_card2.SelectedItem = null;
-                CB_fuel_card2.Items.Clear();
-                CB_fuel_card2.Items.Add(new myItem(" ", -99));
-                ////////////////           ТОПЛИВО 2              ////////////////
-                var sql_t2 = MainPluginClass.App.SqlWork();
-                if (CB_top2.SelectedItem.ToString().ToUpper().Trim().Equals("НЕТ"))
-                {
-                    TB_t2_f.BackColor = SystemColors.Window;
-                    TB_t2_f.Enabled = false;
-                    TB_t2_f.Text = "";
-                    TB_t2_pl.BackColor = SystemColors.Window;
-                    TB_t2_pl.Enabled = false;
-                    TB_t2_pl.Text = "";
-                    TB_t2_n.BackColor = SystemColors.Window;
-                    TB_t2_n.Enabled = false;
-                    TB_t2_n.Text = "";
-                    TB_t2_k.BackColor = SystemColors.Window;
-                    TB_t2_k.Enabled = false;
-                    TB_t2_k.Text = "";
-                    CB_fuel_card2.Enabled = false;
-                }
-                else
-                {
-                    ISQLCommand my_sql = MainPluginClass.App.SqlWork();
-                    try
-                    {
-                        my_sql.sql = @"SELECT card_no, gid FROM autobase.waybills_fuel_cards WHERE (fuel_mark_id = " + ((myItem)CB_top2.SelectedItem).GetId.ToString() + @" and org_id = " + org_id.ToString() + ") " + (CB_fuel_card2.Tag != null ? " or gid =" + ((int)CB_fuel_card2.Tag).ToString() : "");
-                        my_sql.ExecuteReader();
-                        while (my_sql.CanRead())
-                        {
-                            myItem y = new myItem(my_sql.GetString(0) == null ? "-" : my_sql.GetString(0), my_sql.GetInt32(1));
-                            CB_fuel_card2.Items.Add(y);
-                        }
-                        my_sql.Close();
-                    }
-                    catch { }
-                    if (_id != null)
-                    {
-                        if (CB_fuel_card2.Tag != null)
-                        {
-                            Set_dict_values((int)CB_fuel_card2.Tag, CB_fuel_card2);
-                        }
-                    }
-                    if (secsave < 1)
-                    {
-                        TB_t2_pl.Enabled = true;
-                        if (TB_t2_pl.Text == "") { TB_t2_pl.BackColor = System.Drawing.Color.FromArgb(255, 224, 192); };
-                        TB_t2_n.Enabled = true;
-                        if (TB_t2_n.Text == "") { TB_t2_n.BackColor = System.Drawing.Color.FromArgb(255, 224, 192); };
-                    };
-                    if (secsave == 1)
-                    {
-                        TB_t2_f.Enabled = true;
-                        if (TB_t2_f.Text == "") { TB_t2_f.BackColor = System.Drawing.Color.FromArgb(255, 224, 192); };
-                        TB_t2_k.Enabled = true;
-                        if (TB_t2_k.Text == "") { TB_t2_k.BackColor = System.Drawing.Color.FromArgb(255, 224, 192); }
-                        CB_fuel_card2.Enabled = true;
-                    };
-                }
+                textBox_fuelBegin.BackColor = Color.Red;
             }
             else
             {
-                CB_top2.SelectedIndexChanged -= CB_top2_SelectedIndexChanged;
-                CB_top2.SelectedItem = null;
-                CB_top2.SelectedIndexChanged += CB_top2_SelectedIndexChanged;
-                MessageBox.Show("Сначала выберите автомобиль!", "Ошибка загрузки!");
+                textBox_fuelBegin.BackColor = Color.White;
             }
-        }
-
-
-        private void DataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            List<int> _idObjects = new List<int>();
-            _idObjects.Clear();
-            foreach (DataGridViewRow row in DataGridView1.SelectedRows)
+            if (isOutOfTankCapacity(fuelReturn))
             {
-                _idObjects.Add(Convert.ToInt32(row.Cells[0].Value));
-                if (Convert.ToInt32(row.Cells[0].Value) == 0)
-                {
-                    btn_tax_del.Enabled = true;
-                }
-                else
-                {
-                    btn_tax_del.Enabled = false;
-                }
-
+                textBox_fuelEnd.BackColor = Color.Red;
             }
-            if (_idObjects.Count == 0)
+            else
             {
-                btn_tax_del.Enabled = false;
+                textBox_fuelEnd.BackColor = Color.White;
             }
 
         }
 
-        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void updateStartOdoAndFuel()
         {
-            DateTimePicker2.MinDate = DateTimePicker1.Value;
-            DateTimePicker3.MinDate = DateTimePicker1.Value;
-            CB_rrab_SelectedIndexChanged(null, null);
-        }
-
-        private void DateTimePicker3_ValueChanged(object sender, EventArgs e)
-        {
-            DateTimePicker4.MinDate = DateTimePicker3.Value;
-        }
-
-        private void CB_pl_master_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CB_pl_master.BackColor = SystemColors.Window;
-        }
-
-        private void T1_T2_TextChanged(object sender, EventArgs e)
-        {
-            // Раскраска
-            if (sender as MyComponents.TextBoxNumber == TB_t2_f) { if (secsave == 1) { TB_t2_f.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_t2_pl) { TB_t2_pl.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_t2_k) { if (secsave == 1) { TB_t2_k.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_t2_n) { TB_t2_n.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_t1_pl) { TB_t1_pl.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_t1_f) { if (secsave == 1) { TB_t1_f.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_t1_n) { TB_t1_n.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_t1_k) { if (secsave == 1) { TB_t1_k.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_spk) { if (secsave == 1) { TB_spk.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_sp_n) { if (secsave == 1) { TB_sp_n.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_Ezdok) { TB_Ezdok.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_mch) { TB_mch.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_mch_obr) { TB_mch_obr.BackColor = SystemColors.Window; }
-            else if (sender as MyComponents.TextBoxNumber == TB_sp_n) { if (secsave == 1) { TB_mch_obr_k.BackColor = SystemColors.Window; } }
-            else if (sender as MyComponents.TextBoxNumber == TB_mch_k) { if (secsave == 1) { TB_mch_k.BackColor = SystemColors.Window; } }
-
-            // Расчет, если путевой лист не закрыт. Или он редактируемый
-            if (secsave <= 1 || isEdited)
+            clearClose = false;
+            textBox_kmBegin.Text = string.Empty;
+            textBox_fuelBegin.Text = string.Empty;
+            if (comboBox_car.SelectedItem != null)
             {
-                decimal TB_t1_n_dec = 0; decimal.TryParse(TB_t1_n.Text, out TB_t1_n_dec);
-                decimal TB_t1_f_dec = 0; decimal.TryParse(TB_t1_f.Text, out TB_t1_f_dec);
-                decimal TB_tax_n_dec = 0; decimal.TryParse(TB_tax_n.Text, out TB_tax_n_dec);
-                decimal TB_spk_dec = 0; decimal.TryParse(TB_spk.Text, out TB_spk_dec);
-                decimal TB_sp_n_dec = 0; decimal.TryParse(TB_sp_n.Text, out TB_sp_n_dec);
-                decimal TB_mch_dec = 0; decimal.TryParse(TB_mch.Text, out TB_mch_dec);
-                decimal TB_mch_k_dec = 0; decimal.TryParse(TB_mch_k.Text, out TB_mch_k_dec);
-                decimal TB_mch_obr_k_dec = 0; decimal.TryParse(TB_mch_obr_k.Text, out TB_mch_obr_k_dec);
-                decimal TB_mch_obr_dec = 0; decimal.TryParse(TB_mch_obr.Text, out TB_mch_obr_dec);
-                if (CHB_calc_norm_type.Checked && secsave == 1) // Если расчет "Конец, л" делать по какой-то там норме
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                int carId = item.GetId;
+                if (carId > 0)
                 {
-                    TB_t1_k.TextChanged -= T1_T2_TextChanged;
-                    TB_t1_k.Text = (TB_t1_n_dec + TB_t1_f_dec - TB_tax_n_dec).ToString();
-                    TB_t1_k.TextChanged += T1_T2_TextChanged;
-                }
-                decimal TB_t1_k_dec = 0; decimal.TryParse(TB_t1_k.Text, out TB_t1_k_dec);
-                if (TB_t1_k_dec <= TB_t1_n_dec + TB_t1_f_dec)
-                {
-                    TB_tax_f.TextChanged -= T1_T2_TextChanged;
-                    TB_tax_f.Text = (TB_t1_f_dec + TB_t1_n_dec - TB_t1_k_dec).ToString();
-                    TB_tax_f.TextChanged += T1_T2_TextChanged;
-                }
-                else
-                {
-                    TB_tax_f.TextChanged -= T1_T2_TextChanged;
-                    TB_tax_f.Text = "0";
-                    TB_tax_f.TextChanged += T1_T2_TextChanged;
-                };
-                decimal TB_tax_f_dec = 0; decimal.TryParse(TB_tax_f.Text, out TB_tax_f_dec);
-                if (TB_mch_obr_k_dec >= TB_mch_obr_dec)
-                {
-                    TB_mch_obr_pr.Text = (TB_mch_obr_k_dec - TB_mch_obr_dec).ToString();
-                }
-                else
-                {
-                    TB_mch_obr_pr.Text = "0";
-                };
-                if (TB_mch_k_dec >= TB_mch_dec)
-                {
-                    TB_mch_pr.Text = (TB_mch_k_dec - TB_mch_dec).ToString();
-                }
-                else
-                {
-                    TB_mch_pr.Text = "0";
-                };
-                if (TB_spk_dec >= TB_sp_n_dec)
-                {
-                    TB_sp_prob.Text = (TB_spk_dec - TB_sp_n_dec).ToString();
-                }
-                else
-                {
-                    TB_sp_prob.Text = "0";
-                };
+                    string plDate = "'" + dateTimePicker_dateOutPlan.Value.ToString("yyyy-MM-dd") + " "
+                        + dateTimePicker_timeOutPlan.Value.ToString("HH:mm:00") + "'";
 
-                if (TB_tax_n_dec >= 0 && TB_tax_f_dec >= 0)
-                {
-                    TB_tax_r.Text = (TB_tax_n_dec - TB_tax_f_dec).ToString();
-                }
-            }
-        }
-
-        private CarInfoM GetCarInfo(int id_car)
-        {
-            CarInfoM car = new CarInfoM();
-            using (var sqlCmd = MainPluginClass.App.SqlWork())
-            {
-                sqlCmd.sql = "SELECT glonass_id, external_id FROM autobase.cars WHERE gid = " + id_car.ToString();
-                sqlCmd.ExecuteReader();
-                if (sqlCmd.CanRead())
-                {
-                    car.id_ME = id_car;
-                    car.glonass_id = sqlCmd.GetValue<int>("glonass_id");
-                    car.id_MT = sqlCmd.GetValue<int>("external_id");
-                }
-            }
-            return car;
-        }
-
-        private long? GetExternalId(long gid, String tableName)
-        {
-            long? result = null;
-            using (var sqlCmd = MainPluginClass.App.SqlWork())
-            {
-                sqlCmd.sql = String.Format("SELECT external_id FROM autobase.{0} WHERE gid = {1}", tableName, gid);
-                result = sqlCmd.ExecuteScalar<Int32>();
-            }
-            return result;
-        }
-
-        private void SendDataToMT(int id_car, DateTime data_begin, DateTime data_end, double distance, ISQLCommand sqlCmd)
-        {
-            CarInfoM car = GetCarInfo(id_car);
-            if (car.glonass_id != 0)
-            {
-                MT_CarShortReportModel car_short_report = null;
-                try
-                {
-                    car_short_report = MTAPI_Helper.GetCarShortReport(car.glonass_id, data_begin, data_end, Token);
-                }
-                catch (Exception)
-                {
-                    car_short_report = new MT_CarShortReportModel();
-                    car_short_report.length = 0;
-                    car_short_report.fuel = 0;
-                }
-
-                //Василий просил закомментировать 
-                //sqlCmd.sql = "UPDATE esmc.put_lists SET pl_glrun_km=:pl_glrun_km, pl_glfuel_fact=:pl_glfuel_fact WHERE gid = " + _id.Value.ToString();
-                //List<Params> _params = new List<Params>();
-                //_params.Add(new Params(":pl_glrun_km", car_short_report.length, NpgsqlDbType.Numeric));
-                //_params.Add(new Params(":pl_glfuel_fact", car_short_report.fuel, NpgsqlDbType.Numeric));
-
-                sqlCmd.sql = "UPDATE autobase.waybills SET km_run_glonass=:pl_glrun_km WHERE gid = " + _id.Value.ToString();
-                List<Params> _params = new List<Params>();
-                _params.Add(new Params(":pl_glrun_km", car_short_report.length, NpgsqlDbType.Numeric));
-                sqlCmd.ExecuteNonQuery(_params);
-            }
-            if (car.id_MT != 0)
-            {
-                List<MT_CarWayBill> way_bills = new List<MT_CarWayBill>();
-                way_bills.Add(new MT_CarWayBill()
-                {
-                    carId = car.id_MT,
-                    distance = distance,
-                    dateFrom = MTAPI_Helper.GetUnixTime(data_begin),
-                    dateTill = MTAPI_Helper.GetUnixTime(data_end)
-                });
-                MTAPI_Helper.PostWayBills(way_bills, Token);
-            }
-        }
-
-        private static DateTime _token_time;
-
-        private static string _token;
-
-        public static string Token
-        {
-            get
-            {
-                if (_token_time.AddMinutes(29) < DateTime.Now || String.IsNullOrEmpty(_token))
-                {
+                    // Обновление значения начала километража и значения уровня топлива путевого листа
+                    String prevPl = 
+                        "SELECT kilometrazh__projdeno, toplivo_1__konec " +
+                        "FROM autobase._umjets_putevye_listy upl " +
+                        "WHERE upl.transportnoe_sredstvo = " + carId + " " +
+                            "AND upl.data_vyezda__plan < " + plDate + "::timestamp with time zone + '1 minute'::interval " +
+                        "ORDER BY upl.data_vyezda__plan DESC " +
+                        "LIMIT 1";
                     using (var sqlCmd = MainPluginClass.App.SqlWork())
                     {
-                        sqlCmd.sql = "SELECT autobase.get_automap_token();";
-                        _token = sqlCmd.ExecuteScalar().ToString();
-                        _token_time = DateTime.Now;
+                        sqlCmd.sql = prevPl;
+                        sqlCmd.ExecuteReader();
+                        if (sqlCmd.CanRead())
+                        {
+                            if (sqlCmd.GetValue("kilometrazh__projdeno") != null)
+                            {
+                                textBox_kmBegin.Text = sqlCmd.GetValue("kilometrazh__projdeno").ToString();
+                            }
+                            if (sqlCmd.GetValue("toplivo_1__konec") != null)
+                            {
+                                textBox_fuelBegin.Text = sqlCmd.GetValue("toplivo_1__konec").ToString();
+                            }
+                        }
                     }
                 }
-                return _token;
+            }
+            formatTextBox(textBox_fuelBegin);
+        }
+
+        private void reorderDriverList(int? driver1, int? driver2)
+        {
+            filterDriver1Combobox = false;
+            filterDriver2Combobox = false;
+            clearClose = isInit;
+
+            // сброс сортировки списка
+            driversList.ForEach(delegate (myItem listItem)
+            {
+                listItem.SetOrder = 1;
+            });
+
+
+            HashSet<int> foundDrivers = new HashSet<int>();
+
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                int carId = item.GetId;
+                if (carId > 0)
+                {
+                    String sqlText =
+                        "SELECT DISTINCT upv.voditel " +
+                        "FROM autobase.umjets_plan_ispolzovanija_ts upit " +
+                          "JOIN autobase.umjets_avtopark ua ON(upit.transportnoe_sredstvo = ua.gid and ua.gid = " + carId + ") " +
+                          "JOIN autobase.umjets_privjazka_voditelej upv ON(upit.gid = upv.ts_po_planu)";
+
+                    using (var sqlCmd = MainPluginClass.App.SqlWork())
+                    {
+                        sqlCmd.sql = sqlText;
+                        sqlCmd.ExecuteReader();
+                        while (sqlCmd.CanRead())
+                        {
+                            foundDrivers.Add(sqlCmd.GetInt32("voditel"));
+                        }
+
+                        for (int i = 0; i < driversList.Count; i++)
+                        {
+                            if (foundDrivers.Contains(driversList[i].GetId))
+                            {
+                                // установка у найденной строки высокого приоритета
+                                driversList[i].SetOrder = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // сортировка по полю order и имени
+            IOrderedEnumerable<myItem> orderedList = driversList.OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
+
+            
+            comboBox_driver1.Items.Clear();
+            comboBox_driver2.Items.Clear();
+            if (!isInit)
+            {
+                textBox_udos1.Text = string.Empty;
+                textBox_udos2.Text = string.Empty;
+            }
+
+            // заполнение списков водителей в порядке сортировки
+            foreach (var listItem in orderedList)
+            {
+                int idx1 = comboBox_driver1.Items.Add(listItem);
+                int idx2 = comboBox_driver2.Items.Add(listItem);
+
+                if (driver1 != null && driver1.Value == listItem.GetId)
+                {
+                    comboBox_driver1.SelectedIndex = idx1;
+                    prevDriver1Idx = idx1;
+                }
+                if (driver2 != null && driver2.Value == listItem.GetId)
+                {
+                    comboBox_driver2.SelectedIndex = idx2;
+                    prevDriver2Idx = idx2;
+                }
+            }
+
+            if (driver1 == null)
+            {
+                comboBox_driver1.SelectedIndex = -1;
+                prevDriver1Idx = -1;
+                comboBox_driver1.ResetText();
+                updatePLDateOut();
+            }
+            if (driver2 == null)
+            {
+                comboBox_driver2.SelectedIndex = -1;
+                prevDriver2Idx = -1;
+                comboBox_driver2.ResetText();
+            }
+
+            // если найденная запись одна, то установка ее в качестве первого водителя
+            if (driver1 == null && foundDrivers.Count == 1 && comboBox_driver1.Items.Count > 0)
+            {
+                comboBox_driver1.SelectedIndex = 0;
+                prevDriver1Idx = 0;
+                textBox_udos1.Text = ((DriverItem)((myItem)comboBox_driver1.Items[0]).Data).getDriverCard;
+            }
+
+            filterDriver1Combobox = true;
+            filterDriver2Combobox = true;
+        }
+
+        private void comboBox_driver1_textChanged(Object sender, EventArgs e)
+        {
+            if (filterDriver1Combobox && comboBox_driver1.SelectedIndex == -1)
+            {
+                filterDriver1Combobox = false;
+                string item = comboBox_driver1.Text;
+                int cursorPos = comboBox_driver1.SelectionStart;
+                item = item.ToLower();
+                IOrderedEnumerable<myItem> orderedList = driversList
+                    .Where(listItem => String.IsNullOrEmpty(listItem.Name) ? false : listItem.Name.ToLower().Contains(item))
+                    .OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
+
+                comboBox_driver1.Items.Clear();
+                comboBox_driver1.Items.AddRange(orderedList.ToArray());
+
+                comboBox_driver1.SelectionStart = cursorPos;
+                filterDriver1Combobox = true;
             }
         }
 
-        private void create_task_btn_Click(object sender, EventArgs e)
+        private void comboBox_driver2_textChanged(Object sender, EventArgs e)
         {
+            if (filterDriver2Combobox && comboBox_driver2.SelectedIndex == -1)
+            {
+                filterDriver2Combobox = false;
+                string item = comboBox_driver2.Text;
+                int cursorPos = comboBox_driver2.SelectionStart;
+                item = item.ToLower();
+                IOrderedEnumerable<myItem> orderedList = driversList
+                    .Where(listItem => String.IsNullOrEmpty(listItem.Name) ? false : listItem.Name.ToLower().Contains(item))
+                    .OrderBy(listItem => listItem.GetOrder).ThenBy(listItem => listItem.Name);
 
-            CreateTaskWayBillForm frm = new CreateTaskWayBillForm(_id.Value, org_id);
-            frm.ShowDialog();
+                comboBox_driver2.Items.Clear();
+                comboBox_driver2.Items.AddRange(orderedList.ToArray());
+
+                comboBox_driver2.SelectionStart = cursorPos;
+                filterDriver2Combobox = true;
+            }
         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    int currentCarExternalId = 218;
-        //    long from = 1408277053000;
-        //    long till = 1410424268127;
-        //    // Получить список типов датчиков
-        //    String gaugeTypesJSon = MTAPI_Helper.Get(String.Format("http://gbu.asuds77.ru:8000/gauges/types?token={0}", Token));
-        //    List<MT_GaugeType> gaugeTypes = JsonHelper.JsonDeserialize<List<MT_GaugeType>>(gaugeTypesJSon);
-        //    if (gaugeTypes != null && gaugeTypes.Count > 0)
-        //    {
-        //        // Выбрать из списка датчик "Топливо" и узнать его typeId, port
-        //        MT_GaugeType fuelGaugeType = (from MT_GaugeType gt in gaugeTypes where gt.name == "Топливо" select gt).FirstOrDefault();
-        //        if (fuelGaugeType != null)
-        //        {
-        //            // Для текущего автомобиля получить список датчиков
-        //            String carGaugesJSon = MTAPI_Helper.Get(String.Format("http://gbu.asuds77.ru:8000/cars/{0}/gauges?token={1}", currentCarExternalId, Token));
-        //            List<MT_Gauge> carGauges = JsonHelper.JsonDeserialize<List<MT_Gauge>>(carGaugesJSon);
-        //            if(carGauges != null && carGauges.Count > 0)
-        //            {
-        //                // Выбрать из списка датчики, чьи typeId соответствуют датчику топлива
-        //                IEnumerable<MT_Gauge> fuelGauges = from MT_Gauge g in carGauges where g.typeId == fuelGaugeType.id select g;
-        //                if (fuelGauges.Count() > 0)
-        //                {
-        //                    MT_Gauge firstGauge = fuelGauges.ElementAt(0);
-        //                    // Получить показания первого датчика за выбранный период
-        //                    String gaugeValuesJSon = MTAPI_Helper.Get(
-        //                        String.Format("http://gbu.asuds77.ru:8000/reports/gaugehistory/{0}/{1}/{2}/{3}/{4}?token={5}",
-        //                                currentCarExternalId, 
-        //                                firstGauge.port, 
-        //                                fuelGaugeType.id,
-        //                                from, 
-        //                                till,
-        //                                Token));
-        //                    List<MT_GaugeValue> gaugeValues = JsonHelper.JsonDeserialize<List<MT_GaugeValue>>(gaugeValuesJSon);
-        //                    if (gaugeValues != null && gaugeValues.Count > 1)
-        //                    {
-        //                        MT_GaugeValue firstValue = gaugeValues[0];
-        //                        MT_GaugeValue lastValue = gaugeValues[gaugeValues.Count - 1];
-        //                        // Записать показания первого датчика за выбранный период как значения для первого бака
-        //                    }
-        //                    // Если есть второй датчик, записать его показания как значения для второго бака
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        private void comboBox_car_textChanged(Object sender, EventArgs e)
+        {
+            if (filterCarCombobox && comboBox_car.SelectedIndex == -1)
+            {
+                filterCarCombobox = false;
+                string item = comboBox_car.Text;
+                int cursorPos = comboBox_car.SelectionStart;
+                item = item.ToLower();
+                IEnumerable<myItem> list = carsList
+                    .Where(listItem => String.IsNullOrEmpty(((CarItem)(listItem.Data)).getGosNum) ? false : ((CarItem)(listItem.Data)).getGosNum.ToLower().Contains(item));
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    var sw = System.IO.File.AppendText("E:\\gauges.txt");
-        //    for(int i = 81; i<=4143; i++)
-        //    {
-        //        String carGauges = "[]";
-        //        try
-        //        {
-        //            carGauges = MTAPI_Helper.Get(String.Format("http://gbu.asuds77.ru:8000/cars/{0}/gauges?token={1}", i, Token));
-        //        }
-        //        catch (Exception)
-        //        { }
-        //        if(carGauges != "[]")
-        //        {
-        //            sw.WriteLine("Car id: {0}", i);
-        //            sw.WriteLine("Car gauges:");
-        //            sw.WriteLine(carGauges);
-        //            sw.WriteLine("==============================================================================================================");
-        //            sw.WriteLine();                  
-        //        }
-        //    }
-        //    sw.Close();
-        //}
+                comboBox_car.Items.Clear();
+                comboBox_car.Items.AddRange(list.ToArray());
+
+                comboBox_car.SelectionStart = cursorPos;
+                filterCarCombobox = true;
+            }
+        }
+
+        private void onOdoValueChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            string odoOut = textBox_kmBegin.Text;
+            string odoReturn = textBox_kmEnd.Text;
+
+            float odoOutVal = 0;
+            float odoReturnVal = 0;
+            try
+            {
+                odoOutVal = !string.IsNullOrEmpty(odoOut) ? float.Parse(odoOut) : 0;
+                odoReturnVal = !string.IsNullOrEmpty(odoReturn) ? float.Parse(odoReturn) : 0;
+
+            } catch
+            {
+                MessageBox.Show("Неверный формат значения километража!", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            float kmDiff = odoReturnVal - odoOutVal;
+            textBox_kmDiff.Text = kmDiff.ToString();
+            checkGridIsEditable();
+        }
+
+        private void textBox_fuel100kmPlan_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            float fuel100Plan = 0;
+            try
+            {
+                fuel100Plan = string.IsNullOrEmpty(textBox_fuel100kmPlan.Text) ? 0 : float.Parse(textBox_fuel100kmPlan.Text);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Норма расхода на 100 км, план");
+            }
+            // обновление нормы в поездках
+            foreach (DataGridViewRow row in dataGridView_trip.Rows)
+            {
+                row.Cells["dg_100km_plan"].Value = fuel100Plan;
+            }
+
+            if (string.IsNullOrEmpty(textBox_fuel100kmFact.Text) || prev100kmNormCons.Equals(textBox_fuel100kmFact.Text))
+            {
+                textBox_fuel100kmFact.Text = textBox_fuel100kmPlan.Text;
+            }
+
+            prev100kmNormCons = textBox_fuel100kmPlan.Text;
+        }
+
+        private void textBox_kmDiff_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+
+            calcNormFuelCons();
+            calcFact100kmFuelCons();
+        }
+
+        private void calcNormFuelCons()
+        {
+            float diff = 0;
+            float norm = 0;
+            float fuelStop = 0;
+            float fuelEquip = 0;
+            try
+            {
+                diff = string.IsNullOrEmpty(textBox_kmDiff.Text) ? 0 : float.Parse(textBox_kmDiff.Text);
+                norm = string.IsNullOrEmpty(textBox_fuel100kmPlan.Text) ? 0 : float.Parse(textBox_fuel100kmPlan.Text);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Пройдено");
+            }
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView_trip.Rows)
+                {
+                    DataGridViewCell curCell = row.Cells["dg_fuel_cons_stop"];
+                    fuelStop += curCell.Value == null || string.IsNullOrWhiteSpace(curCell.Value.ToString()) ? 0 : float.Parse(curCell.Value.ToString());
+
+                    curCell = row.Cells["dg_fuel_cons_equip"];
+                    fuelEquip += curCell.Value == null || string.IsNullOrWhiteSpace(curCell.Value.ToString()) ? 0 : float.Parse(curCell.Value.ToString());
+                }
+            }
+            catch
+            {
+                showInvalidFormatMessage("Расход топлива, стоянка и/или Расход топлива установки");
+            }
+
+            textBox_fuelConsNorm.Text = (diff * norm / (isMotoPlRegime ? 1 : (isMotoPlRegime ? 1 : 100)) + fuelStop + fuelEquip).ToString();
+            formatTextBox(textBox_fuelConsNorm);
+        }
+
+        private void calcFact100kmFuelCons()
+        {
+            float diff = 0;
+            float fact = 0;
+            try
+            {
+                diff = string.IsNullOrEmpty(textBox_kmDiff.Text) ? 0 : float.Parse(textBox_kmDiff.Text);
+                fact = string.IsNullOrEmpty(textBox_fuelConsFact.Text) ? 0 : float.Parse(textBox_fuelConsFact.Text);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Пройдено и/или Расход, факт");
+            }
+
+            textBox_fuel100kmFact.Text = diff == 0 ? "" : (fact / diff * (isMotoPlRegime ? 1 : 100)).ToString();
+            formatTextBox(textBox_fuel100kmFact);
+        }
+
+        private void calcFactFuelCons()
+        {
+            float diff = 0;
+            float fact100km = 0;
+            try
+            {
+                diff = string.IsNullOrEmpty(textBox_kmDiff.Text) ? 0 : float.Parse(textBox_kmDiff.Text);
+                fact100km = string.IsNullOrEmpty(textBox_fuel100kmFact.Text) ? 0 : float.Parse(textBox_fuel100kmFact.Text);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Пройдено и/или Норма расхода на 100 км, факт");
+            }
+
+            textBox_fuelConsFact.Text = diff == 0 ? "" : (diff * fact100km / (isMotoPlRegime ? 1 : 100)).ToString();
+            formatTextBox(textBox_fuelConsFact);
+
+            updateFuelEndValue();
+        }
+
+        private void textBox_fuelConsFact_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+
+            this.textBox_fuel100kmFact.TextChanged -= new EventHandler(this.textBox_fuel100kmFact_TextChanged);
+            calcFact100kmFuelCons();
+            this.textBox_fuel100kmFact.TextChanged += new EventHandler(this.textBox_fuel100kmFact_TextChanged);
+
+            updateFuelEndValue();
+        }
+
+        private void updateFuelEndValue()
+        {
+            if (!string.IsNullOrEmpty(textBox_fuelConsFact.Text))
+            {
+                // если пользователь ввел значение в фактический расход, то расчет конечного уровня топлива ведем по этому значению
+                updateFuelEndDueConsValue();
+            }
+            else
+            {
+                // иначе, значение конечного уровня топлива берем из грида
+                float fuelEnd = 0;
+                if (dataGridView_trip.RowCount > 0)
+                {
+                    DataGridViewCell curCell = dataGridView_trip.Rows[dataGridView_trip.RowCount - 1].Cells["dg_fuel_return"];
+                    try
+                    {
+                        fuelEnd = curCell.Value == null || string.IsNullOrWhiteSpace(curCell.Value.ToString()) ? 0 : float.Parse(curCell.Value.ToString());
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Расход топлива, факт и/или Расход топлива, норма");
+                    }
+                }
+                textBox_fuelEnd.Text = fuelEnd.ToString();
+                formatTextBox(textBox_fuelEnd);
+            }
+        }
+
+        private void textBox_fuelConsNorm_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+
+            if (string.IsNullOrEmpty(textBox_fuelConsFact.Text) || prevNormCons.Equals(textBox_fuelConsFact.Text))
+            {
+                textBox_fuelConsFact.Text = textBox_fuelConsNorm.Text;
+            }
+
+            prevNormCons = textBox_fuelConsNorm.Text;
+
+        }
+
+        private void textBox_fuel100kmFact_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+
+            updateDataGridConsFact();
+
+            this.textBox_fuelConsFact.TextChanged -= new EventHandler(this.textBox_fuelConsFact_TextChanged);
+            calcFactFuelCons();
+            this.textBox_fuelConsFact.TextChanged += new EventHandler(this.textBox_fuelConsFact_TextChanged);
+        }
+
+        private void updateDataGridConsFact()
+        {
+            float fuel100Fact = 0;
+            try
+            {
+                fuel100Fact = string.IsNullOrEmpty(textBox_fuel100kmFact.Text) ? 0 : float.Parse(textBox_fuel100kmFact.Text);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Норма расхода на 100 км, факт");
+            }
+            // обновление нормы в поездках
+            foreach (DataGridViewRow row in dataGridView_trip.Rows)
+            {
+                row.Cells["dg_100km_fact"].Value = fuel100Fact;
+            }
+        }
+
+        private void textBox_plNum_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (isRES)
+            {
+                textBox_issueNum.Text = textBox_plNum.Text;
+            }
+            checkGridIsEditable();
+        }
+
+        private void textBox_fuelBegin_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+            checkGridIsEditable();
+
+            if (!string.IsNullOrEmpty(textBox_fuelConsFact.Text))
+            {
+                // если пользователь ввел значение в фактический расход, то расчет конечного уровня топлива ведем по этому значению
+                updateFuelEndDueConsValue();
+            }
+
+            float fuelOut = string.IsNullOrEmpty(textBox_fuelBegin.Text) ? 0 : float.Parse(textBox_fuelBegin.Text);
+            if (isOutOfTankCapacity(fuelOut))
+            {
+                textBox_fuelBegin.BackColor = Color.Red;
+                return;
+            }
+
+            textBox_fuelBegin.BackColor = Color.White;
+        }
+
+        private void textBox_fuelEnd_TextChanged(object sender, EventArgs e)
+        {
+            clearClose = false;
+
+            float fuelReturn = string.IsNullOrEmpty(textBox_fuelEnd.Text) ? 0 : float.Parse(textBox_fuelEnd.Text);
+            if (isOutOfTankCapacity(fuelReturn))
+            {
+                textBox_fuelEnd.BackColor = Color.Red;
+                return;
+            }
+
+            textBox_fuelEnd.BackColor = Color.White;
+        }
+
+        private bool isOutOfTankCapacity(float aValue)
+        {
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                float fuelTank = ((CarItem)item.Data).getFuelTankCapacity;
+
+                if (fuelTank > 0)
+                {
+                    if (aValue > fuelTank)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void textBox_LostFocus_Formatter(object sender, EventArgs e)
+        {
+            if (sender is TextBoxNumber)
+            {
+                TextBoxNumber textBox = (TextBoxNumber)sender;
+                formatTextBox(textBox);
+            }
+            
+        }
+
+        private void formatTextBox(TextBoxNumber textBox)
+        {
+            if (!string.IsNullOrEmpty(textBox.Text))
+            {
+                try
+                {
+                    textBox.Text = string.Format("{0:#,###0.000}", double.Parse(textBox.Text));
+                }
+                catch { }
+            }
+        }
+
+        private void dataGrid_trip_Formatter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView_trip.RowCount > 0 && e.RowIndex >= 0)
+            {
+                // Форматирование топливных полей
+                if (e.ColumnIndex == 5 || e.ColumnIndex == 10 || e.ColumnIndex == 11 || e.ColumnIndex == 13
+                    || e.ColumnIndex == 14 || e.ColumnIndex == 15 || e.ColumnIndex == 9 || e.ColumnIndex == 7)
+                {
+                    DataGridViewCell cell = dataGridView_trip.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    if (cell.Value != null)
+                    {
+                        try
+                        {
+                            cell.Value = string.Format("{0:#,###0.000}", double.Parse(cell.Value.ToString()));
+                        }
+                        catch {}
+                    }
+                }
+            }
+        }
+
+        void btn_dg_add_Click(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (!checkDataGridRow(dataGridView_trip.RowCount - 1, false))
+            {
+                return;
+            }
+
+            // Проверка, что если существует предыдущий ПЛ, то у него заведены поездки
+            if (!checkPreviousPLTripExists())
+            {
+                return;
+            }
+
+            int k = dataGridView_trip.Rows.Add();
+
+
+            putCarDefaultsToRow(k);
+
+            DateTime returnDate = DateTime.Now;
+            DateTime outDate = DateTime.Now;
+
+            // если первая строка
+            if (k == 0)
+            {
+                // тянем дефолты для первой поездки
+                outDate = dateTimePicker_dateOutPlan.Value.Date + dateTimePicker_timeOutPlan.Value.TimeOfDay;
+
+                dataGridView_trip.Rows[k].Cells["dg_odo_begin"].Value = textBox_kmBegin.Text;
+                dataGridView_trip.Rows[k].Cells["dg_fuel_out"].Value = textBox_fuelBegin.Text;
+            }
+            else
+            {
+                // тянем дефолты для поездки из предыдущей
+                Object prevReturnDate = dataGridView_trip.Rows[k - 1].Cells["dg_date_return"].Value;
+                Object prevOutDate = dataGridView_trip.Rows[k - 1].Cells["dg_date_out"].Value;
+                if (prevReturnDate != null && prevOutDate != null)
+                {
+                    try
+                    {
+                        DateTime myPrevReturnDate = (DateTime)prevReturnDate;
+                        DateTime myPrevOutDate = (DateTime)prevOutDate;
+
+                        switch ((int)dataGridView_trip.Rows[k].Cells["dg_car_regime"].Value)
+                        {
+                            case 17:
+                                // Полуторасменный
+                                outDate = myPrevReturnDate;
+                                break;
+                            case 16:
+                            case 18:
+                            default:
+                                // Односменный
+                                // Трехсменный
+                                // По умолчанию
+                                outDate = myPrevOutDate.AddHours(24);
+                                break;
+                        }
+
+                    } catch
+                    {
+                        MessageBox.Show("Неверный формат даты возвращения.", "Ошибка при редактировании");
+                    }
+                }
+                dataGridView_trip.Rows[k].Cells["dg_odo_begin"].Value = dataGridView_trip.Rows[k - 1].Cells["dg_odo_return"].Value;
+                dataGridView_trip.Rows[k].Cells["dg_fuel_out"].Value = dataGridView_trip.Rows[k - 1].Cells["dg_fuel_return"].Value;
+
+            }
+
+            switch ((int)dataGridView_trip.Rows[k].Cells["dg_car_regime"].Value)
+            {
+                case 16:
+                case 17:
+                case 18:
+                    // Односменный
+                    // Полуторасменный
+                    // Трехсменный
+                    returnDate = outDate.AddHours((int)dataGridView_trip.Rows[k].Cells["dg_car_regime_hours"].Value);
+                    break;
+                default:
+                    // По умолчанию
+                    returnDate = outDate.AddHours(9);
+                    break;
+            }
+
+
+            dataGridView_trip.Rows[k].Cells["dg_date_return"].Value = returnDate;
+            dataGridView_trip.Rows[k].Cells["dg_date_out"].Value = outDate;
+
+            checkPLItemsIsEditable();
+
+        }
+
+        void updatePLDateOut()
+        {
+            DateTime outDate = dateTimePicker_dateOutPlan.Value.Date + DateTime.Parse("08:00").TimeOfDay;
+
+            if (comboBox_driver1.SelectedItem != null)
+            {
+                DriverItem item = (DriverItem)((myItem)comboBox_driver1.SelectedItem).Data;
+
+                if (!string.IsNullOrEmpty(item.getOutTime))
+                {
+                    try
+                    {
+                        outDate = outDate.Date + DateTime.Parse(item.getOutTime).TimeOfDay;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Неверный формат времени выезда водителя! Установка значения по умолчанию.", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            dateTimePicker_dateOutPlan.Value = outDate;
+            dateTimePicker_timeOutPlan.Value = outDate;
+
+        }
+
+        void updatePLDateReturn()
+        {
+            DateTime outDate = dateTimePicker_dateOutPlan.Value.Date + dateTimePicker_timeOutPlan.Value.TimeOfDay;
+            DateTime returnDate = dateTimePicker_dateOutPlan.Value.Date + DateTime.Parse("17:00").TimeOfDay;
+
+            if (comboBox_driver1.SelectedItem != null)
+            {
+                DriverItem driverItem = (DriverItem)((myItem)comboBox_driver1.SelectedItem).Data;
+
+                if (string.IsNullOrEmpty(driverItem.getOutTime))
+                {
+                    if (comboBox_car.SelectedItem != null)
+                    {
+                        CarItem item = (CarItem)((myItem)comboBox_car.SelectedItem).Data;
+
+                        switch (item.getRegime)
+                        {
+                            case 16:
+                            case 17:
+                            case 18:
+                                // Односменный
+                                // Полуторасменный
+                                // Трехсменный
+                                returnDate = outDate.AddHours(item.getRegimeHours);
+                                break;
+                            default:
+                                // По умолчанию
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        returnDate = returnDate.Date + DateTime.Parse(driverItem.getReturnTime).TimeOfDay;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Неверный формат времени возвращения водителя! Установка значения по умолчанию.", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+            dateTimePicker_dateReturnPlan.Value = returnDate;
+            dateTimePicker_timeReturnPlan.Value = returnDate;
+
+        }
+
+        private void fillDatagridFuelCell(int rowIndex)
+        {
+            try
+            {
+
+                DataGridViewCell curCell = dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"];
+                float fuel_return = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                curCell = dataGridView_trip.Rows[rowIndex].Cells["dg_car_fuel_tank"];
+                float fuel_tank = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                if (fuel_tank != 0 && fuel_tank < fuel_return || fuel_return < 0)
+                {
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"].Style.BackColor = Color.Red;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"].Style.SelectionBackColor = Color.Red;
+                    isGridWithErrors = true;
+                }
+                else
+                {
+
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"].Style.BackColor = Color.White;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"].Style.SelectionBackColor = dataGridView_trip.DefaultCellStyle.SelectionBackColor;
+                    // dataGridView_trip.Rows[rowIndex].Cells["dg_fuel_return"].Style = dataGridView_trip.DefaultCellStyle;
+                    isGridWithErrors = false;
+                }
+            }
+            catch { }
+        }
+
+        private void putCarDefaultsToRow(int rowIndex)
+        {
+            if (rowIndex >= 0 && rowIndex < dataGridView_trip.RowCount )
+            {
+                // установка значений норм расхода топлива по при стоянке ТС и при работе оборудования
+                if (comboBox_car.SelectedItem != null)
+                {
+                    myItem item = (myItem)comboBox_car.SelectedItem;
+                    float carNorm = ((CarItem)item.Data).getCarNorm;
+                    float carEquipNorm = ((CarItem)item.Data).getCarEquipNorm;
+                    int carRegime = ((CarItem)item.Data).getRegime;
+                    int carRegimeHours = ((CarItem)item.Data).getRegimeHours;
+                    float fuelTank = ((CarItem)item.Data).getFuelTankCapacity;
+                    bool motoPlRegime = ((CarItem)item.Data).getMotoPlRegime;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_car_norm"].Value = carNorm;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_car_equip_norm"].Value = carEquipNorm;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_car_regime"].Value = carRegime;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_car_regime_hours"].Value = carRegimeHours;
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_car_fuel_tank"].Value = fuelTank;
+                }
+
+                // Установка норм топлива на 100 км
+                float fuel100Plan = 0;
+                float fuel100Fact = 0;
+                try
+                {
+                    fuel100Plan = string.IsNullOrEmpty(textBox_fuel100kmPlan.Text) ? 0 : float.Parse(textBox_fuel100kmPlan.Text);
+                    fuel100Fact = string.IsNullOrEmpty(textBox_fuel100kmFact.Text) ? 0 : float.Parse(textBox_fuel100kmFact.Text);
+                }
+                catch
+                {
+                    showInvalidFormatMessage("Норма расхода на 100 км, факт и/или Норма расхода на 100 км, план");
+                }
+                dataGridView_trip.Rows[rowIndex].Cells["dg_100km_plan"].Value = fuel100Plan;
+                dataGridView_trip.Rows[rowIndex].Cells["dg_100km_fact"].Value = fuel100Fact;
+
+                fillDatagridFuelCell(rowIndex);
+            }
+        }
+
+        private double getDatePlanDaysDiff()
+        {
+            DateTime outDate = dateTimePicker_dateOutPlan.Value.Date + dateTimePicker_timeOutPlan.Value.TimeOfDay;
+            DateTime returnDate = dateTimePicker_dateReturnPlan.Value.Date + dateTimePicker_timeReturnPlan.Value.TimeOfDay;
+
+            return (returnDate - outDate).TotalDays;
+        }
+
+        private void update_next_dg_row(int currentRowIndex)
+        {
+            // если поездка не последняя в гриде
+            if (dataGridView_trip.RowCount - 1 > currentRowIndex)
+            {
+                dataGridView_trip.Rows[currentRowIndex + 1].Cells["dg_odo_begin"].Value = dataGridView_trip.Rows[currentRowIndex].Cells["dg_odo_return"].Value;
+                dataGridView_trip.Rows[currentRowIndex + 1].Cells["dg_fuel_out"].Value = dataGridView_trip.Rows[currentRowIndex].Cells["dg_fuel_return"].Value;
+            }
+        }
+
+        void dg_row_deleted(object sender, EventArgs e)
+        {
+            clearClose = false;
+            if (dataGridView_trip.SelectedRows.Count > 0)
+            {
+
+
+                Object idEl = dataGridView_trip.SelectedRows[0].Cells["dg_trip_gid"].Value;
+
+                if (dataGridView_trip.SelectedRows[0].IsNewRow == false && idEl != null && (int)idEl > 0)
+                {
+                    tripToDelete.Add((int)idEl);
+                }
+
+                int delIndex = dataGridView_trip.SelectedRows[0].Index;
+                dataGridView_trip.Rows.RemoveAt(delIndex);
+                if (delIndex > 0)
+                {
+                    update_next_dg_row(delIndex - 1);
+                }
+            }
+            checkPLItemsIsEditable();
+        }
+
+        void checkGridIsEditable()
+        {
+            if (!string.IsNullOrEmpty(textBox_plNum.Text) && comboBox_driver1.SelectedItem != null && dateTimePicker_dateOutPlan.Value != null &&
+                dateTimePicker_dateReturnPlan.Value != null && !string.IsNullOrEmpty(textBox_fuelBegin.Text) && 
+                !string.IsNullOrEmpty(textBox_kmBegin.Text) && comboBox_car.SelectedItem != null)
+            {
+                dataGridView_trip.ReadOnly = false;
+                dg_fuel_out.ReadOnly = true;
+                dg_fuel_return.ReadOnly = true;
+                dg_fuel_cons_stop.ReadOnly = true;
+                dg_fuel_cons_equip.ReadOnly = true;
+                dg_fuel_cons_norm.ReadOnly = true;
+                dg_fuel_cons_fact.ReadOnly = true;
+                dg_fuel_diff.ReadOnly = true;
+                dg_route_len.ReadOnly = true;
+
+                button_dgDel.Enabled = true;
+                button_dgAdd.Enabled = true;
+
+                actualizeMotoGridColumnsUpdateble();
+            } else
+            {
+                dataGridView_trip.ReadOnly = true;
+
+                button_dgDel.Enabled = false;
+                button_dgAdd.Enabled = false;
+            }
+        }
+
+        void checkPLItemsIsEditable()
+        {
+            // если создано несколько поездок или одна, но заполненная, то тогда надо блокировать поля
+            if (dataGridView_trip.RowCount > 1 || dataGridView_trip.RowCount == 1 && checkDataGridRow(0, true))
+            {
+                textBox_fuelBegin.ReadOnly = true;
+                textBox_kmBegin.ReadOnly = true;
+                
+                groupBox17.Enabled = false;
+                groupBox18.Enabled = false;
+                groupBox19.Enabled = false;
+                groupBox20.Enabled = false;
+                groupBox21.Enabled = false;
+            }
+            else
+            {
+                textBox_fuelBegin.ReadOnly = false;
+                textBox_kmBegin.ReadOnly = false;
+                
+                groupBox17.Enabled = true;
+                groupBox18.Enabled = true;
+                groupBox19.Enabled = true;
+                groupBox20.Enabled = true;
+                groupBox21.Enabled = true;
+            }
+            
+        }
+
+
+        private void updateFuelEndDueConsValue()
+        {
+            try
+            {
+                float fuelOut = string.IsNullOrEmpty(textBox_fuelBegin.Text) ? 0 : float.Parse(textBox_fuelBegin.Text);
+                float fuelCons = float.Parse(textBox_fuelConsFact.Text);
+
+                float fuelGot = 0;
+                foreach (DataGridViewRow row in dataGridView_trip.Rows)
+                {
+                    DataGridViewCell curCell = row.Cells["dg_fuel_got"];
+                    fuelGot += curCell.Value == null || string.IsNullOrWhiteSpace(curCell.Value.ToString()) ? 0 : float.Parse(curCell.Value.ToString());
+                }
+
+                textBox_fuelEnd.Text = (fuelOut - fuelCons + fuelGot).ToString();
+                formatTextBox(textBox_fuelEnd);
+            }
+            catch
+            {
+                showInvalidFormatMessage("Топливо при выезде и/или Движение топлива, получено и/или Расход, факт");
+            }
+        }
+
+        private void dateTimePicker_timeOutFact_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker_dateOutFact.Format = DateTimePickerFormat.Long;
+            this.dateTimePicker_timeOutFact.CustomFormat = "HH:mm";
+            factDateOutInitialized = true;
+        }
+
+        private void dateTimePicker_dateOutFact_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker_dateOutFact.Format = DateTimePickerFormat.Long;
+            this.dateTimePicker_timeOutFact.CustomFormat = "HH:mm";
+            factDateOutInitialized = true;
+        }
+
+        private void dateTimePicker_timeReturnFact_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker_dateReturnFact.Format = DateTimePickerFormat.Long;
+            this.dateTimePicker_timeReturnFact.CustomFormat = "HH:mm";
+            factDateReturnInitialized = true;
+        }
+
+        private void dateTimePicker_dateReturnFact_ValueChanged(object sender, EventArgs e)
+        {
+            this.dateTimePicker_dateReturnFact.Format = DateTimePickerFormat.Long;
+            this.dateTimePicker_timeReturnFact.CustomFormat = "HH:mm";
+            factDateReturnInitialized = true;
+        }
+
+        private void calculateRouteLenToRow(int rowIndex)
+        {
+            if (rowIndex >= 0 && rowIndex < dataGridView_trip.RowCount)
+            {
+                try
+                {
+
+                    DataGridViewCell curCell = dataGridView_trip.Rows[rowIndex].Cells["dg_odo_begin"];
+                    float odoBegin = curCell.Value != null && !string.IsNullOrWhiteSpace(curCell.Value.ToString()) ?
+                         float.Parse(curCell.Value.ToString()) : 0;
+
+                    curCell = dataGridView_trip.Rows[rowIndex].Cells["dg_odo_return"];
+                    float odoEnd = curCell.Value != null && !string.IsNullOrWhiteSpace(curCell.Value.ToString()) ?
+                         float.Parse(curCell.Value.ToString()) : 0;
+
+                    dataGridView_trip.Rows[rowIndex].Cells["dg_route_len"].Value = odoEnd - odoBegin;
+                }
+                catch
+                {
+                    showInvalidFormatMessage("Спидометр, начало и/или Спидометр, возвращение");
+                }
+            }
+        }
+
+        private void refresh_issue_block()
+        {
+            bool isComplex = false;
+
+            if (comboBox_car.SelectedItem != null)
+            {
+                myItem item = (myItem)comboBox_car.SelectedItem;
+                isComplex = ((CarItem)item.Data).getIsComplex;
+            }
+
+            // Если пользователь принадлежит РЭС (это смотрим в таблице "Настройки|Пользователи", в колонке "Район-закрепления".
+            if (isRES && !isComplex)
+            {
+                // Значения колонки "Тип путевого листа"(в справочнике "УМЭТС Тип ТС") равно 2, или 5 (!isComplex)
+                // Выводим выпадающий список со значениями из справочника "УМЭТС Служба" для редактирования поля.
+                textBox_rasp.Visible = false;
+                comboBox_service.Visible = true;
+
+                String serviceSQL =
+                        "SELECT uo.gid, naimenovanie, rajon_zakreplenie " +
+                        "FROM autobase.umjets_organizacija uo";
+                using (var sqlCmd = MainPluginClass.App.SqlWork())
+                {
+                    comboBox_service.Items.Clear();
+
+                    sqlCmd.sql = serviceSQL;
+                    sqlCmd.ExecuteReader();
+                    while (sqlCmd.CanRead())
+                    {
+                        int curResID = sqlCmd.GetInt32("rajon_zakreplenie");
+
+                        myItem x_service = new myItem(
+                        sqlCmd.GetString("naimenovanie"),
+                        sqlCmd.GetInt32("gid"),
+                        curResID
+                        );
+                        int idx = comboBox_service.Items.Add(x_service);
+
+                        if (resID == curResID)
+                        {
+                            comboBox_service.SelectedIndex = idx;
+                        }
+                    }
+                }
+
+            }
+            else if (isRES && isComplex)
+            {
+                // Значения колонки "Тип путевого листа" (в справочнике "УМЭТС Тип ТС") равно 1,3, или 4 (isComplex)
+                textBox_rasp.Visible = true;
+                comboBox_service.Visible = false;
+                // Заполняем в соответствии со значением таблицы "УМЭТС Район-закрепления" колонки "В распоряжение" на основании района закрепления пользователя (из таблицы "Настройки|Пользователи").
+                textBox_rasp.Text = issCust;
+            }
+            // Если пользователь не принадлежит РЭС (либо пустое поле в таблице "Настройки|Пользователи" в колонке "Район-закрепления", либо значение "Автох-во ул. Киевская 14".
+            else if (!isRES && !isComplex)
+            {
+                // Значения колонки "Тип путевого листа"(в справочнике "УМЭТС Тип ТС") равно 2, или 5 (!isComplex)
+                textBox_rasp.Visible = false;
+                comboBox_service.Visible = true;
+
+                // Выводим выпадающий список со значениями из справочника "УМЭТС Служба" для редактирования поля.
+                String serviceSQL =
+                        "SELECT uo.gid, naimenovanie, rajon_zakreplenie " +
+                        "FROM autobase.umjets_organizacija uo";
+                using (var sqlCmd = MainPluginClass.App.SqlWork())
+                {
+                    comboBox_service.Items.Clear();
+
+                    sqlCmd.sql = serviceSQL;
+                    sqlCmd.ExecuteReader();
+                    while (sqlCmd.CanRead())
+                    {
+                        int curResID = sqlCmd.GetInt32("rajon_zakreplenie");
+
+                        myItem x_service = new myItem(
+                        sqlCmd.GetString("naimenovanie"),
+                        sqlCmd.GetInt32("gid"),
+                        curResID
+                        );
+                        int idx = comboBox_service.Items.Add(x_service);
+                    }
+                }
+            }
+            else
+            {
+                // Значения колонки "Тип путевого листа" (в справочнике "УМЭТС Тип ТС") равно 1,3, или 4 (isComplex)
+                textBox_rasp.Visible = true;
+                comboBox_service.Visible = false;
+
+                // Либо тянем по соответствующей заявке из "УМЭТС Заявки на ТС", либо пользователь заполняет вручную.
+                textBox_rasp.Text = "";
+                if (comboBox_issue.SelectedItem != null)
+                {
+                    myItem item = (myItem)comboBox_issue.SelectedItem;
+
+                    textBox_rasp.Text = ((IssueItem)item.Data).getOwner;
+                }
+            }
+        }
+
+        // 0 -  dg_trip_gid
+        // 1 -  dg_date_out
+        // 2 -  dg_date_return
+        // 3 -  dg_odo_begin
+        // 4 -  dg_odo_return
+        // 5 -  dg_fuel_got
+        // 6 -  dg_equip_motohours
+        // 7 -  dg_fuel_cons_equip
+        // 8 -  dg_motohours_stop
+        // 9 -  dg_fuel_cons_stop
+        // 10 - dg_fuel_out
+        // 11 - dg_fuel_return
+        // 12 - dg_route_len
+        // 13 - dg_fuel_cons_norm
+        // 14 - dg_fuel_cons_fact
+        // 15 - dg_fuel_diff
+        // 16 - dg_car_norm
+        // 17 - dg_car_equip_norm
+        // 18 - dg_100km_plan
+        // 19 - dg_100km_fact
+        // 20 - dg_car_regime
+        // 21 - dg_car_regime_hours
+        // 22 - dg_car_fuel_tank
+
+        void dg_cell_changed(object sender, DataGridViewCellEventArgs e)
+        {
+            clearClose = isInit;
+
+            if (dataGridView_trip.RowCount > 0 && e.RowIndex >= 0)
+            {
+                // Проверка того, что дата выезда больше даты возвращения
+                if (e.ColumnIndex == 1 || e.ColumnIndex == 2)
+                {
+                    Object outCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_date_out"].Value;
+                    Object returnCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_date_return"].Value;
+                    if (outCell != null && returnCell != null)
+                    try
+                    {
+                        DateTime outDateTime = (DateTime)outCell;
+                        DateTime returnDateTime = (DateTime)returnCell;
+                        if (outDateTime > returnDateTime)
+                        {
+                            MessageBox.Show("Дата возвращения не может быть меньше даты выезда", "Ошибка при редактировании", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Неверный формат даты выезда/возвращения.", "Ошибка при редактировании");
+                    }
+                }
+
+                // Раскраска поля Топливо при возвращении
+                if (e.ColumnIndex == 11)
+                {
+                    fillDatagridFuelCell(e.RowIndex);
+                }
+
+                // Слежка за параметрами для изменения Топливо при возвращении
+                if (!isInit && string.IsNullOrEmpty(textBox_fuelConsFact.Text) && (e.ColumnIndex == 10 || e.ColumnIndex == 5 || e.ColumnIndex == 13 || e.ColumnIndex == 9 || e.ColumnIndex == 7 || e.ColumnIndex == 19))
+                {
+                   
+                    try
+                    {
+
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_out"];
+                        float fuel_out = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_got"];
+                        float fuel_got = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_norm"];
+                        float fuel_norm = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_stop"];
+                        float fuel_stop = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_equip"];
+                        float fuel_equip = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_return"].Value = fuel_out + fuel_got - fuel_norm;
+
+                        calcNormFuelCons();
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Топливо при выезде и/или Движение топлива, получено и/или Расход топлива, норма и/или Расход топлива, стоянка и/или Расход топлива, установки");
+                    }
+                 
+                }
+
+                // Слежка за параметрами для изменения Топливо при возвращении - в случае заполненного фактического расхода в ПЛ
+                if (!isInit && !string.IsNullOrEmpty(textBox_fuelConsFact.Text) && (e.ColumnIndex == 10 || e.ColumnIndex == 5 || e.ColumnIndex == 12 || e.ColumnIndex == 19))
+                {
+                    try
+                    {
+
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_out"];
+                        float fuel_out = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_got"];
+                        float fuel_got = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_route_len"];
+                        float route_len = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_100km_fact"];
+                        float fuel_fact_100km = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_return"].Value = fuel_out + fuel_got - fuel_fact_100km * route_len / (isMotoPlRegime ? 1 : 100);
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Топливо при выезде и/или Движение топлива, и/или Расход, факт");
+                    }
+
+                }
+
+                // Слежка за получением топлива для обновления фактического уровня топлива при возвращении
+                if (!isInit && (e.ColumnIndex == 5 && !string.IsNullOrEmpty(textBox_fuelConsFact.Text)))
+                {
+                    updateFuelEndDueConsValue();
+                }
+
+                // Слежка за параметрами для изменения Расход топлива, стоянка
+                if (e.ColumnIndex == 16 || e.ColumnIndex == 8)
+                {
+                    try
+                    {
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_car_norm"];
+                        float car_norm = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_motohours_stop"];
+                        float moto_stop = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_stop"].Value = car_norm * moto_stop;
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Работа двигателя при стоянке");
+                    }
+                }
+
+                // Слежка за параметрами для изменения Расход топлива, установки
+                if (e.ColumnIndex == 17 || e.ColumnIndex == 6)
+                {
+                    try
+                    {
+
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_car_equip_norm"];
+                        float car_equip_norm = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_equip_motohours"];
+                        float moto_equip = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_equip"].Value = car_equip_norm * moto_equip;
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Работа установки");
+                    }
+                }
+
+                // Слежка за параметрами для изменения Расход топлива, норма
+                if (e.ColumnIndex == 18 || e.ColumnIndex == 12 || e.ColumnIndex == 9 || e.ColumnIndex == 7)
+                {
+                    try
+                    {
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_100km_plan"];
+                        float fuel_100km_plan = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_route_len"];
+                        float routeLen = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_stop"];
+                        float fuelStop = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_equip"];
+                        float fuelEquip = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_norm"].Value = fuel_100km_plan * routeLen / (isMotoPlRegime ? 1 : 100) + 
+                            (isMotoPlRegime ? 0 : 1) * (fuelStop + fuelEquip);
+
+                        if (!isInit)
+                        {
+                            calcNormFuelCons();
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        showInvalidFormatMessage(ex.Message);
+
+                        showInvalidFormatMessage("Пробег и/или Расход топлива, стоянка, и/или Расход топлива, установки");
+                    }
+                }
+
+                // Слежка за параметрами для изменения Расход топлива, факт
+                if (e.ColumnIndex == 19 || e.ColumnIndex == 12)
+                {
+                    try
+                    {
+
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_100km_fact"];
+                        float fuel_100km_fact = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_route_len"];
+                        float routeLen = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_fact"].Value = fuel_100km_fact * routeLen / (isMotoPlRegime ? 1 : 100);
+                    }
+                    catch(Exception ex)
+                    {
+                        showInvalidFormatMessage(ex.Message);
+                        
+                        showInvalidFormatMessage("Пробег");
+                    }
+                }
+
+                // Слежка за параметрами для изменения Отклонения
+                if (e.ColumnIndex == 13 || e.ColumnIndex == 14)
+                {
+                    try
+                    {
+
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_norm"];
+                        float fuelNorm = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_cons_fact"];
+                        float fuelFact = curCell.Value == null ? 0 : float.Parse(curCell.Value.ToString());
+
+                        dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_diff"].Value = fuelNorm - fuelFact;
+                    }
+                    catch
+                    {
+                        showInvalidFormatMessage("Расход топлива, факт и/или Расход топлива, норма");
+                    }
+                }
+
+                // Слежка за параметрами для изменения Пробега
+                if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
+                {
+                    calculateRouteLenToRow(e.RowIndex);
+                }
+
+                // Слежка за параметрами dg_odo_return и dg_fuel_return для обновления следующих поездок
+                if (!isInit && (e.ColumnIndex == 4 || e.ColumnIndex == 11))
+                {
+                    update_next_dg_row(e.RowIndex);
+                }
+
+                // Слежка за параметром dg_fuel_return последней строки для обновления показания уровня топлива в путевом листе
+                if (!isInit && e.ColumnIndex == 11)
+                {
+                    if (e.RowIndex == dataGridView_trip.RowCount - 1 && string.IsNullOrEmpty(textBox_fuelConsFact.Text))
+                    {
+                        DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_fuel_return"];
+                        if (curCell.Value != null && !string.IsNullOrWhiteSpace(curCell.Value.ToString()))
+                        {
+                            textBox_fuelEnd.Text = curCell.Value.ToString();
+                            formatTextBox(textBox_fuelEnd);
+                        }
+                    }
+                }
+
+                // Слежка за параметром dg_odo_return последней строки для обновления показания конечного значения спидометра в путевом листе
+                if (!isInit && (e.ColumnIndex == 4 && e.RowIndex == dataGridView_trip.RowCount - 1))
+                {
+                    DataGridViewCell curCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_odo_return"];
+                    if (curCell.Value != null && !string.IsNullOrWhiteSpace(curCell.Value.ToString()))
+                    {
+                        textBox_kmEnd.Text = curCell.Value.ToString();
+                    }
+                }
+
+                // Слежка за параметром dg_date_out первой поездки для обновления фактической даты выезда в ПЛ
+                if (!isInit && (e.ColumnIndex == 1 && e.RowIndex == 0))
+                {
+                    Object outCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_date_out"].Value;
+                    if (outCell != null) {
+                        try
+                        {
+                            DateTime outDateTime = (DateTime)outCell;
+
+                            dateTimePicker_dateOutFact.Value = outDateTime;
+                            dateTimePicker_timeOutFact.Value = outDateTime;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Неверный формат даты выезда.", "Ошибка при редактировании");
+                        }
+                    }
+                }
+
+                // Слежка за параметром dg_date_return последней поездки для обновления фактической даты возвращения в ПЛ
+                if (!isInit && (e.ColumnIndex == 2 && e.RowIndex == dataGridView_trip.RowCount - 1))
+                {
+
+                    Object returnCell = dataGridView_trip.Rows[e.RowIndex].Cells["dg_date_return"].Value;
+                    if (returnCell != null)
+                    {
+                        try
+                        {
+                            DateTime returnDateTime = (DateTime)returnCell;
+
+                            dateTimePicker_dateReturnFact.Value = returnDateTime;
+                            dateTimePicker_timeReturnFact.Value = returnDateTime;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Неверный формат даты возвращения.", "Ошибка при редактировании");
+                        }
+
+                    }
+                }
+            }
+
+            checkPLItemsIsEditable();
+        }
+
+        private bool validateDataGrid()
+        {
+            for (int i = 0; i < dataGridView_trip.RowCount; i++)
+            {
+                if (!checkDataGridRow(i, false))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool validatePLForm()
+        {
+            // Теперь можно сохранять ПЛ и без номера
+
+            //if (string.IsNullOrWhiteSpace(textBox_plNum.Text))
+            //{
+            //    MessageBox.Show("Не указан номер путевого листа!", "Ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
+            return true && checkPlanDates(false);
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace GBU_Waybill_plugin
         public static string ZoneTabName = "Геозоны";
         public static AppEventsClass AppEvents = new AppEventsClass();
 
-        public int MapEditorTablePutList { get { return 209; } }
+        public int MapEditorTablePutList { get { return 460; } }
 
         public string GUID
         {
@@ -53,49 +53,49 @@ namespace GBU_Waybill_plugin
             App = app;
             Work = work;
             work.AddSpoofingAttributesOfObject(MapEditorTablePutList, ReplaceAttrForm);
-            GetParams();
-            LoadMedCheckParams();
-            CalcCanSyncAutoMapWaybills();
+            //GetParams();
+            //LoadMedCheckParams();
+            //CalcCanSyncAutoMapWaybills();
 
-            if (CreationAllowedTasks())
-            {
-                LoadOdh();
-                LoadTypes();
-                LoadZones();
+            //if (CreationAllowedTasks())
+            //{
+            //    LoadOdh();
+            //    LoadTypes();
+            //    LoadZones();
 
-                System.Windows.Controls.MenuItem menuTasks = new System.Windows.Controls.MenuItem();
-                menuTasks.Header = "Задания";
+            //    System.Windows.Controls.MenuItem menuTasks = new System.Windows.Controls.MenuItem();
+            //    menuTasks.Header = "Задания";
 
-                System.Windows.Controls.MenuItem menuTasksMng = new System.Windows.Controls.MenuItem();
-                menuTasksMng.Header = "Управление заданиями";
-                menuTasksMng.Click += menuTasks_Click;
-                menuTasks.Items.Add(menuTasksMng);
+            //    System.Windows.Controls.MenuItem menuTasksMng = new System.Windows.Controls.MenuItem();
+            //    menuTasksMng.Header = "Управление заданиями";
+            //    menuTasksMng.Click += menuTasks_Click;
+            //    menuTasks.Items.Add(menuTasksMng);
 
-                System.Windows.Controls.MenuItem menuRoutesMng = new System.Windows.Controls.MenuItem();
-                menuRoutesMng.Header = "Управление маршрутами";
-                menuRoutesMng.Click += menuRoutesMng_Click;
-                menuTasks.Items.Add(menuRoutesMng);
+            //    System.Windows.Controls.MenuItem menuRoutesMng = new System.Windows.Controls.MenuItem();
+            //    menuRoutesMng.Header = "Управление маршрутами";
+            //    menuRoutesMng.Click += menuRoutesMng_Click;
+            //    menuTasks.Items.Add(menuRoutesMng);
 
-                work.MainForm.Menu(menuTasks);
-            }
-            var t = app.getTableInfoOfNameDB("v_employees");
-            if (t != null)
-            {
-                var write_259 = app.getTableRight(t.idTable);
-                if (EmployeesSync.Url != null && write_259 != null && write_259.write)
-                {
-                    work.AddMenuInTable(259, () =>
-                                             {
-                                                 ToolStripMenuItem menu = new ToolStripMenuItem("Синхронизация");
-                                                 ToolStripMenuItem menu2 = new ToolStripMenuItem("Синхронизация c МедСервисом");
+            //    work.MainForm.Menu(menuTasks);
+            //}
+            //var t = app.getTableInfoOfNameDB("v_employees");
+            //if (t != null)
+            //{
+            //    var write_259 = app.getTableRight(t.idTable);
+            //    if (EmployeesSync.Url != null && write_259 != null && write_259.write)
+            //    {
+            //        work.AddMenuInTable(259, () =>
+            //                                 {
+            //                                     ToolStripMenuItem menu = new ToolStripMenuItem("Синхронизация");
+            //                                     ToolStripMenuItem menu2 = new ToolStripMenuItem("Синхронизация c МедСервисом");
 
-                                             //menu2.Click += Employees_Sync;
-                                             menu2.Click += menu2_Click;
-                                                 menu.DropDownItems.Add(menu2);
-                                                 return menu;
-                                             });
-                }
-            }
+            //                                 //menu2.Click += Employees_Sync;
+            //                                 menu2.Click += menu2_Click;
+            //                                     menu.DropDownItems.Add(menu2);
+            //                                     return menu;
+            //                                 });
+            //    }
+            //}
         }
 
         private void LoadMedCheckParams()

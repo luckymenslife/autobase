@@ -10,11 +10,20 @@ namespace GBU_Waybill_plugin
         private string _name;
         private int _id;
         private object _data;
+        private int _order;
         public myItem(string NameItem, int IdItem, object Data = null)
         {
             _name = NameItem;
             _id = IdItem;
             _data = Data;
+            _order = 1;
+        }
+        public myItem(string NameItem, int IdItem, int Order, object Data = null)
+        {
+            _name = NameItem;
+            _id = IdItem;
+            _data = Data;
+            _order = Order;
         }
         public override string ToString()
         {
@@ -29,6 +38,24 @@ namespace GBU_Waybill_plugin
             get
             {
                 return _id;
+            }
+        }
+        public int GetOrder
+        {
+            get
+            {
+                return _order;
+            }
+            set
+            {
+                _order = value;
+            }
+        }
+        public int SetOrder
+        {
+            set
+            {
+                _order = value;
             }
         }
         public object Data
